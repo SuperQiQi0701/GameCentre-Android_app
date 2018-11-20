@@ -24,12 +24,26 @@
         android:layout_width="178dp"
         android:layout_height="60dp"
         android:layout_marginStart="140dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="130dp"
-        android:layout_marginBottom="260dp"
         android:text="@string/sliding_tiles"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.578"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameCentre" />
+
+    <Button
+        android:id="@+id/enter_colormatching_button"
+        android:layout_width="178dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginBottom="137dp"
+        android:text="Color Matching"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enter_sliding_button" />
 </android.support.constraint.ConstraintLayout>

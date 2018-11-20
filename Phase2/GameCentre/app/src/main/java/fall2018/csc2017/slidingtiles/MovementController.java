@@ -26,6 +26,4 @@ class MovementController {
             Toast.makeText(context, "Invalid Tap", Toast.LENGTH_SHORT).show();
         }
     }
-
-
 }

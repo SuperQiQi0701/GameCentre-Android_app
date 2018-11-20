@@ -16,6 +16,7 @@ public class SelectGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_game);
         addSlidingButtonListener();
+        addColorMatchingListener();
     }
 
     @SuppressLint("SetTextI18n")
@@ -37,6 +38,16 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setTextColor(Color.YELLOW);
         mSliding.setOnClickListener(v -> {
             Intent slide = new Intent(this, StartingActivity.class);
+            startActivity(slide);
+        });
+    }
+
+    private void addColorMatchingListener() {
+        Button mSliding = findViewById(R.id.enter_colormatching_button);
+        mSliding.setBackgroundColor(Color.MAGENTA);
+        mSliding.setTextColor(Color.YELLOW);
+        mSliding.setOnClickListener(v -> {
+            Intent slide = new Intent(this, ColorMatchingGame.class);
             startActivity(slide);
         });
     }
