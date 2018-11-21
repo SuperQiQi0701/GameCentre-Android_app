@@ -24,7 +24,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
      */
     private ArrayList<Button> fTileButtons;
 
-    private String emoji[] = {"🐶", "🐻", "🌝", "🌚", "🍑", "🍙", "🐱", "❤️", "㊗️", "⌚️",
+    private String emoji[] = {"QAQ", "🐶", "🐻", "🌝", "🌚", "🍑", "🍙", "🐱", "❤️", "㊗️", "⌚️",
             "💻", "⏰", "💊", "🚗", "🗿", "🍗", "🍩", "🍺"};
 
     ArrayList<String> emojiChosen = new ArrayList<>();
@@ -46,6 +46,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
     // Display
     public void display() {
         updateTileButtons();
+//        flipGridView.invalidate();
         flipGridView.setAdapter(new CustomAdapter(fTileButtons, columnWidth2, columnHeight2));
     }
 
@@ -91,7 +92,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
         fTileButtons = new ArrayList<>();
 //        ArrayList<String> emojiChosen = new ArrayList<>();
         int complexity = Main.INSTANCE.getFlipToWinBoardManager().getGame().getComplexity();
-        getEmojiList((complexity * complexity) / 2, emojiChosen);
+        getEmojiList((complexity * complexity) / 2 + 1, emojiChosen);
         for (int row = 0; row != complexity; row++) {
             for (int col = 0; col != complexity; col++) {
                 Button tmp = new Button(context);
@@ -108,25 +109,32 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
      * Update the backgrounds on the buttons to match the tiles.
      */
     private void updateTileButtons() {
+        Toast.makeText(this, "updateTileButtons", Toast.LENGTH_SHORT).show();
         int nextPos = 0;
         for (Button b : fTileButtons) {
             int row = nextPos /  Main.INSTANCE.getFlipToWinBoardManager().getGame().getComplexity();
             int col = nextPos %  Main.INSTANCE.getFlipToWinBoardManager().getGame().getComplexity();
-            if ( Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col).isFlippedUp()) {
-                int emojiIndex =  Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col).getId();
-                b.setText(emojiChosen.get(emojiIndex - 1));
-                b.setTextSize(40);
-                b.setBackgroundColor(Color.WHITE);
-                if ( Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col).isPaired()) {
-                    b.setBackgroundColor(Color.BLACK);
-                }
-            } else {
-                b.setText("");
-                b.setBackgroundResource(R.drawable.hearteyes);
-            }
+            int emojiIndex = Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col).flipStatus();
+            b.setText(emojiChosen.get(emojiIndex ));
+            b.setTextSize(30);
+            b.setBackgroundColor(Color.WHITE);
+
+//            if ( Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col).isFlippedUp()) {
+//                int emojiIndex =  Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col).getId();
+//                b.setText(emojiChosen.get(emojiIndex - 1));
+//                b.setTextSize(40);
+//                b.setBackgroundColor(Color.WHITE);
+//                if ( Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col).isPaired()) {
+//                    b.setBackgroundColor(Color.BLACK);
+//                }
+//            } else {
+//                b.setText("");
+//                b.setBackgroundResource(R.drawable.hearteyes);
+//            }
 //            b.setBackgroundResource(Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col).getBackground());
             nextPos++;
         }
+
     }
 
 
@@ -163,7 +171,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
         startActivity(temp);
     }
 
-    /**
+    /**display
      * GetScore of the state.
      */
     void getScore() {
