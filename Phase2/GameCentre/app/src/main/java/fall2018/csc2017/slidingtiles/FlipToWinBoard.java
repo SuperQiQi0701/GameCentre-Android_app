@@ -90,6 +90,8 @@ public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile
      */
     public void makeMove(int row, int col) {
         ftiles[row][col].setFlipped();
+        setChanged();
+        notifyObservers();
     }
 
     @Override
