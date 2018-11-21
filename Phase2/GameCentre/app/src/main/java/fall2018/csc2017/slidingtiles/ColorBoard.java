@@ -3,11 +3,21 @@ package fall2018.csc2017.slidingtiles;
 import java.util.Iterator;
 import java.util.List;
 
-public class ColorBoard {
+public class ColorBoard implements Playable<ColorTile>{
     public ColorTile[][] tiles;
 
     ColorBoard() {
         this.tiles = new ColorTile[8][10];
+    }
+
+    @Override
+    public int getComplexity() {
+        return 0;
+    }
+
+    @Override
+    public int numGrids() {
+        return 0;
     }
 
     public ColorTile getGrid(int row, int col) {
