@@ -30,6 +30,8 @@
     <string name="level_2">Level 2</string>
     <string name="level_3">Level 3</string>
     <string name="undo">Undo</string>
+    <string name="flip_to_win">Flip To Win</string>
+    <string name="savegame">savegame</string>
 
 
 </resources>
