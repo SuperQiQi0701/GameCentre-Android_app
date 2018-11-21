@@ -29,11 +29,11 @@ public interface GameManageable {
      */
     int getScore();
 
-    /**
-     * Process a touch at position in the game.
-     *
-     * @param position the position.
-     */
-    void touchMove(int position);
+//    /**
+//     * Process a touch at position in the game.
+//     *
+//     * @param position the position.
+//     */
+//    void touchMove(int position);
 
 }
