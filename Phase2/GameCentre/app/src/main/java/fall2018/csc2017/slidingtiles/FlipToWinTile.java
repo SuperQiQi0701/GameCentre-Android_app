@@ -11,10 +11,10 @@ public class FlipToWinTile implements Serializable {
 
     private boolean paired = false;
 
-//    /**
-//     * The background id to find the tile image.
-//     */
-//    private int background;
+    /**
+     * The background id to find the tile image.
+     */
+    private static final int BACK_SIDE =  0; //R.drawable.hearteyes;
 
     /**
      * The unique id.
@@ -44,22 +44,24 @@ public class FlipToWinTile implements Serializable {
         return id;
     }
 
-    public void setFlipped() {
+    void setFlipped() {
 
         this.flippedUp = !(this.flippedUp);
     }
 
-    public boolean isFlippedUp() {
-
-        return (this.flippedUp);
+    int flipStatus() {
+        if (this.flippedUp){
+            return this.id;
+        }
+        return BACK_SIDE;
     }
 
-    public void setPaired() {
+    void setPaired() {
 
         this.paired = true;
     }
 
-    public boolean isPaired() {
+    boolean isPaired() {
 
         return (this.paired);
     }
