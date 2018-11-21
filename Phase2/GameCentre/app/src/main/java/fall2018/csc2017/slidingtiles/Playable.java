@@ -31,14 +31,14 @@ public interface Playable<T> {
     T getGrid(int row, int col);
 
 
-    /**
-     * Process a move for the object at (row1, col1) and (row2, col2)
-     *
-     * @param row1 the first object at row1
-     * @param col1 the first object at col1
-     * @param row2 the second object  row2
-     * @param col2 the second object  col2
-     */
-    void makeMove(int row1, int col1, int row2, int col2);
-
+//    /**
+//     * Process a move for the object at (row1, col1) and (row2, col2)
+//     *
+//     * @param row1 the first object at row1
+//     * @param col1 the first object at col1
+//     * @param row2 the second object  row2
+//     * @param col2 the second object  col2
+//     */
+//    void makeMove(int row1, int col1, int row2, int col2);
+//
 }
