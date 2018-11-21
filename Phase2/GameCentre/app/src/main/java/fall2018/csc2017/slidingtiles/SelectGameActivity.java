@@ -17,6 +17,7 @@ public class SelectGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_game);
         addSlidingButtonListener();
         addColorMatchingListener();
+        addFlipToWinListener();
     }
 
     @SuppressLint("SetTextI18n")
@@ -48,6 +49,17 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setTextColor(Color.YELLOW);
         mSliding.setOnClickListener(v -> {
             Intent slide = new Intent(this, ColorMatchingGame.class);
+            startActivity(slide);
+        });
+    }
+
+
+    private void addFlipToWinListener() {
+        Button mSliding = findViewById(R.id.enter_flipToTile_button);
+        mSliding.setBackgroundColor(Color.MAGENTA);
+        mSliding.setTextColor(Color.YELLOW);
+        mSliding.setOnClickListener(v -> {
+            Intent slide = new Intent(this, FlipToWinStartingActivity.class);
             startActivity(slide);
         });
     }
