@@ -84,5 +84,12 @@ changed the context of the info that shown to the player. We check the correctne
 finally. The only thing that is sad is we cannot finish the goal task(changing the background image 
 of each tiles and make it possible for user to use their own picture as the background), but we will 
 try it again later. For our next task(phase 2), we will working on it as soon as possible. 
+\\
+Meeting No.1 and No.2 (Nov.15/18)
+We met in TUT section, and we discussed about the two new game. Each of us had 2 ideas of the the 
+new games. After discussion, we decided that we make two games which were "Color Matching" and 
+"Flip to Win". And we separated our group in two minor groups. Qi Zou, Liu Shang, Runqi Bi were
+group 1 and Quan Xu, Zijin Zhang were group 2. Group 1 was working the game, 'Color Matching', and 
+group 2 was doing the game, 'Flip to Win'.
 ]
 
