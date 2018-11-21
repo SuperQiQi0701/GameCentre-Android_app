@@ -26,7 +26,6 @@ public class ColorMatchingGame extends AppCompatActivity {
     Point[] box;
     ColorBoard colorBoard;
     int boxSize;
-    int firstColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,11 @@ public class ColorMatchingGame extends AppCompatActivity {
         setContentView(R.layout.activity_color_matching_game);
         initData();
         initView();
-//        addRedButtonListener();
+        addRedButtonListener();
+        addYellowButtonListener();
+        addBlueButtonListener();
+        addGREENButtonListener();
+        addGreyButtonListener();
     }
 
     public void initData(){
@@ -44,6 +47,7 @@ public class ColorMatchingGame extends AppCompatActivity {
         board = new boolean[8][10];
         box = new Point[]{new Point(0,0)};
         boxSize = this.width / board.length;
+        colorBoard = new ColorBoard();
     }
 
     public void initView(){
@@ -58,7 +62,9 @@ public class ColorMatchingGame extends AppCompatActivity {
 
         view = new View(this) {
             protected void onDraw(Canvas canvas) {
-                drawNewBoard(canvas);
+                if (colorBoard.getGrid(1, 1) == null){
+                    drawNewBoard(canvas);
+                }else{uploadBoard(canvas);}
                 //draw line
                 for (int x = 0; x < board.length; x++) {
                     canvas.drawLine(x * boxSize, 0, x * boxSize, view.getHeight(), linePaint);
@@ -86,34 +92,86 @@ public class ColorMatchingGame extends AppCompatActivity {
                 int color = randomColor();
                 drawBox(canvas, color, x, y);
                 //存color
-//                colorBoard.getGrid(x, y).setColor(color);
+                colorBoard.setGrid(x, y);
+                colorBoard.getGrid(x, y).setColor(color);
             }
         }
     }
 
-//    private void addRedButtonListener() {
-//        Button redButton = findViewById(R.id.red);
-//        redButton.setOnClickListener(v -> changeColor(Color.RED));
-//        view.invalidate();
-//    }
+    public void uploadBoard(Canvas canvas){
+        for (int x = 0; x < board.length; x++) {
+            for (int y = 0; y < board[x].length; y++) {
+                int color = colorBoard.getGrid(x, y).getColor();
+                drawBox(canvas, color, x, y);
+            }
+        }
+    }
 
-    //new
-    //change color
-//    public void changeColor(int newColor){
-//        int initColor = colorBoard.getGrid(0, 0).getColor();
-//        int y = 1;
-//        while(colorBoard.getGrid(0, y).getColor() == initColor && y < board[0].length){
-//            y++;
-//        }
-//        while(colorBoard.getGrid(0, y).getColor() == newColor && y < board[0].length) {
-//            y++;
-//        }
-//        for(int i = 0; i < y; i++) {
-//            colorBoard.getGrid(0, i).setColor(newColor);
-//        }
-//    }
+    private void addRedButtonListener() {
+        Button redButton = findViewById(R.id.red);
+        redButton.setOnClickListener((v) -> {
+            changeColor(Color.RED);
+            view.invalidate();
+        });
+    }
+
+    private void addYellowButtonListener() {
+        Button redButton = findViewById(R.id.yellow);
+        redButton.setOnClickListener((v) -> {
+            changeColor(Color.YELLOW);
+            view.invalidate();
+        });
+    }
+
+    private void addBlueButtonListener() {
+        Button redButton = findViewById(R.id.blue);
+        redButton.setOnClickListener((v) -> {
+            changeColor(Color.BLUE);
+            view.invalidate();
+        });
+    }
+
+    private void addGREENButtonListener() {
+        Button redButton = findViewById(R.id.green);
+        redButton.setOnClickListener((v) -> {
+            changeColor(Color.GREEN);
+            view.invalidate();
+        });
+    }
+
+    private void addGreyButtonListener() {
+        Button redButton = findViewById(R.id.grey);
+        redButton.setOnClickListener((v) -> {
+            changeColor(Color.GRAY);
+            view.invalidate();
+        });
+    }
 
 
+    public void changeColor(int newColor){
+        int initColor = colorBoard.getGrid(0, 0).getColor();
+        int y = 0;
+        while(y < board[0].length && colorBoard.getGrid(0, y).getColor() == initColor){
+            y++;
+        }
+        int i = 0;
+        int x = 0;
+        while(i < y && colorBoard.getGrid(x, i).getColor() == initColor) {
+            while(x < board.length && colorBoard.getGrid(x, i).getColor() == initColor){
+                x++;
+            }
+            if(x < board.length){
+                if (colorBoard.getGrid(x, i).getColor() == newColor){
+                    colorBoard.getGrid(x, i).setColor(newColor);
+                }
+                if(x - 1 < board.length && x - 1 > 0 && i + 1 > 0 && i + 1 < board[0].length && colorBoard.getGrid(x - 1, i + 1).getColor() == newColor){
+                    colorBoard.getGrid(x - 1, i + 1).setColor(newColor);
+                }
+            }
+            i++;
+            x = 0;
+        }
+    }
 
     public void drawBox(Canvas canvas, int color, int x, int y){
         //draw box
