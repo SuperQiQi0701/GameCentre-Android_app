@@ -27,6 +27,8 @@ class FlipToWinBoardManager implements Serializable, GameManageable {
      */
     private int score = 0;
 
+    private int positionOneAndOnlyOneTileFaceUp = -1;
+
     /**
      * Manage a new shuffled board.
      */
@@ -86,7 +88,7 @@ class FlipToWinBoardManager implements Serializable, GameManageable {
         int row = position / fBoard.getComplexity();
         int col = position % fBoard.getComplexity();
 
-        return !(fBoard.getGrid(row, col).isPaired());
+        return (!(fBoard.getGrid(row, col).isPaired()) & (fBoard.getGrid(row, col).flipStatus() == 0));
     }
 
 
@@ -100,8 +102,94 @@ class FlipToWinBoardManager implements Serializable, GameManageable {
         int row = position / fBoard.getComplexity();
         int col = position % fBoard.getComplexity();
         ++this.score;
-        fBoard.makeMove(row, col);
-    }
+
+        if (isValidTap(position)) {
+            if (positionOneAndOnlyOneTileFaceUp == -1) {
+                positionOneAndOnlyOneTileFaceUp = position;
+                fBoard.makeMove(row, col);
+                System.out.println("first tap");
+            }
+            else {
+                int matchPosition = positionOneAndOnlyOneTileFaceUp;
+                int matchRow = matchPosition / fBoard.getComplexity();
+                int matchCol = matchPosition % fBoard.getComplexity();
+                if (matchPosition != position) {
+                    if (fBoard.getGrid(row, col).getId() == fBoard.getGrid(matchRow, matchCol).getId()) {
+                        fBoard.getGrid(row, col).setPaired();
+                        fBoard.getGrid(matchRow, matchCol).setPaired();
+                    }
+                    fBoard.makeMove(row, col);
+                    System.out.println("second tap");
+                    positionOneAndOnlyOneTileFaceUp = -1;
+                }
+                for (FlipToWinTile ft : fBoard) {
+                    if (!(ft.isPaired()) & ft.flipStatus() != 0) {
+
+                        ft.setFlipped();
+                    }
+                }
+            }
+        }
+//                int acc = 0;
+//                for (FlipToWinTile ft: fBoard) {
+//                    if (!(ft.isPaired()) & ft.flipStatus() != 0) {
+//                        int flipRow = acc / fBoard.getComplexity();
+//                        int flipCol = acc % fBoard.getComplexity();
+//                        fBoard.makeMove(flipRow, flipCol);
+//                        try {
+//                            Thread.currentThread().sleep(1000);//毫秒
+//                        } catch (Exception e) {
+//                        }
+//                        System.out.println("delay finish");
+//                        }
+//                    acc++ ;
+                }
+            }
+//
+//                int acc = 0;
+//                for (FlipToWinTile ft : fBoard) {
+//                    if (!(ft.isPaired()) & ft.flipStatus() != 0) {
+//
+//                        ft.setFlipped();
+//                        System.out.println("fliped over");
+
+//                        try {
+//                            Thread.currentThread().sleep(1000);//毫秒
+//                        } catch (Exception e) {
+//                        }
+//                        System.out.println("delayed");
+
+//                for (FlipToWinTile ft: fBoard) {
+//                    if (!(ft.isPaired()) & ft.flipStatus() != 0) {
+//                        int flipRow = acc / fBoard.getComplexity();
+//                        int flipCol = acc % fBoard.getComplexity();
+//                        fBoard.makeMove(flipRow, flipCol);
+//                        }
+//                    acc++ ;
+
+
+//
+//        if (!(fBoard.getGrid(row, col).isPaired())) {
+//            int matchPosition = positionOneAndOnlyOneTileFaceUp;
+//            int matchRow = matchPosition / fBoard.getComplexity();
+//            int matchCol = matchPosition % fBoard.getComplexity();
+//            if (matchPosition != position) {
+//                if (fBoard.getGrid(row, col).getId() == fBoard.getGrid(matchRow, matchCol).getId()) {
+//                    fBoard.getGrid(row, col).setPaired();
+//                    fBoard.getGrid(matchRow, matchCol).setPaired();
+//                }
+//                fBoard.makeMove(row, col);
+//                positionOneAndOnlyOneTileFaceUp = 0;
+//            }
+//            for (FlipToWinTile ft: fBoard) {
+//                if (ft.flipStatus() != 0) {
+//                    ft.setFlipped();
+//                }
+//            }
+//            fBoard.makeMove(row, col);
+//            positionOneAndOnlyOneTileFaceUp = fBoard.getGrid(row, col).getId();
+//        }
+
 
 
     //    /**
@@ -125,5 +213,4 @@ class FlipToWinBoardManager implements Serializable, GameManageable {
 //            ++this.score;  //penalty for using undo
 //            ++this.score;
 //        }
-//    }
-}
+//    }}
