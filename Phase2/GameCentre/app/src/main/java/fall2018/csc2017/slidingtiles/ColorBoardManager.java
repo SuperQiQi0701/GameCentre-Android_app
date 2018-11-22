@@ -1,7 +1,7 @@
 package fall2018.csc2017.slidingtiles;
 
 public class ColorBoardManager implements GameManageable {
-    private ColorBoard colorBoard;
+    ColorBoard colorBoard;
     private int score;
     private int complexity;
     boolean[][] board;

@@ -48,7 +48,7 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setBackgroundColor(Color.MAGENTA);
         mSliding.setTextColor(Color.YELLOW);
         mSliding.setOnClickListener(v -> {
-            Intent slide = new Intent(this, ColorMatchingGame.class);
+            Intent slide = new Intent(this, ColorMatchingActivity.class);
             startActivity(slide);
         });
     }
