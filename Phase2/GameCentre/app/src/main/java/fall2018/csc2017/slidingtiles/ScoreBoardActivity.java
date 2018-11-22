@@ -86,7 +86,7 @@ public class ScoreBoardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent temp = new Intent(this, StartingActivity.class);
+        Intent temp = new Intent(this, SelectGameActivity.class);
         startActivity(temp);
     }
 }
