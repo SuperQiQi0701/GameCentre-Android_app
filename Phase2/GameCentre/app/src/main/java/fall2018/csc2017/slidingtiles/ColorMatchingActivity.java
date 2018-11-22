@@ -26,6 +26,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
     ColorBoardManager colorBoardManager;
     int boxSize;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
