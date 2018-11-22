@@ -43,6 +43,8 @@ public enum Main {
      */
     private ScoreBoard scoreBoard;
 
+    private FlipToWinScoreBoard flipScoreBoard;
+
     /**
      * The FlipToWinBoardManager of this game
      */
@@ -152,11 +154,20 @@ public enum Main {
     }
 
 
+    public FlipToWinScoreBoard getFlipToWinScoreBoard() {
+        return flipScoreBoard;
+    }
+
+
     /**
      * This will create a new instance of ScoreBoard for new game function
      */
     void setScoreBoard(ScoreBoard sb) {
         this.scoreBoard = sb;
+    }
+
+    void setFlipToWinScoreBoard(FlipToWinScoreBoard fsb) {
+        this.flipScoreBoard = fsb;
     }
 
 
@@ -167,6 +178,13 @@ public enum Main {
         this.userManager = new UserManager();
     }
 
+
+    /**
+     * Create an new ScoreBoard
+     */
+    void newFlipScoreBoard() {
+        this.flipScoreBoard = new FlipToWinScoreBoard();
+    }
 
     /**
      * Create an new ScoreBoard
@@ -386,5 +404,49 @@ public enum Main {
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
+
+
+    /**
+     * Load scoreBoard from file
+     *
+     * @param fileContext this.getApplicationContext()
+     */
+    void loadFlipToWinScoreBoardFromFile(Context fileContext) {
+        try {
+            String fileName = FlipToWinBoard.GAME_NAME + "_ScoreBoard.ser";
+            InputStream inputStream = fileContext.openFileInput(fileName);
+            if (inputStream != null) {
+                ObjectInputStream input = new ObjectInputStream(inputStream);
+                setFlipToWinScoreBoard((FlipToWinScoreBoard) input.readObject());
+                inputStream.close();
+            }
+        } catch (FileNotFoundException e) {
+            newFlipScoreBoard();
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        } catch (ClassNotFoundException e) {
+            Log.e("login activity", "File contained unexpected data type: " + e.toString());
+        }
+    }
+
+
+    /**
+     * Save the scoreBoard to file.
+     *
+     * @param fileContext this.getApplicationContext()
+     */
+    void saveFlipToWinScoreBoardToFile(Context fileContext) {
+        try {
+            String fileName = FlipToWinBoard.GAME_NAME + "_ScoreBoard.ser";
+            ObjectOutputStream outputStream = new ObjectOutputStream(
+                    fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
+            outputStream.writeObject(flipScoreBoard);
+            outputStream.close();
+        } catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
+
+
 
 }
