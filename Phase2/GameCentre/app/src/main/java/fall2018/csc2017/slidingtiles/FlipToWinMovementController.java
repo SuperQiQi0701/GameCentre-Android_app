@@ -20,12 +20,12 @@ class FlipToWinMovementController {
 //            Toast.makeText(context, "does move", Toast.LENGTH_SHORT).show();
             if (Main.INSTANCE.getFlipToWinBoardManager().puzzleSolved()) {
                 Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
-                Intent temp = new Intent(context, ScoreBoardActivity.class);
+                Intent temp = new Intent(context, FlipToWinScoreBoardActivity.class);
                 temp.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(temp);
             }
         } else {
-            Toast.makeText(context, "Already Solved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Already FaceUp", Toast.LENGTH_SHORT).show();
         }
     }
 
