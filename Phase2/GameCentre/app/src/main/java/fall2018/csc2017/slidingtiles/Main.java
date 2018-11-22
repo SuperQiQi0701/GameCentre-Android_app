@@ -32,6 +32,11 @@ public enum Main {
      */
     private UserManager userManager;
 
+    /**
+     * The ColorBoardManager of this game
+     */
+    private ColorBoardManager colorBoardManager;
+
 
     /**
      * The ScoreBoard of this game
@@ -53,6 +58,11 @@ public enum Main {
 
 
     /**
+     * Return the ColorBoardManager
+     */
+    ColorBoardManager getColorBoardManager(){ return this.colorBoardManager;}
+
+    /**
      * Set the FlipToWinBoardManager for loading function.
      *
      * @param fbm the FlipToWinBoardManager instance will be loaded
@@ -61,12 +71,27 @@ public enum Main {
         this.flipToWinBoardManager = fbm;
     }
 
+    /**
+     * Set the ColorBoardManager for loading function.
+     *
+     * @param cbm the ColorBoardManager instance will be loaded
+     */
+    void setColorBoardManager(ColorBoardManager cbm) {
+        this.colorBoardManager = cbm;
+    }
 
     /**
      * This will create a new instance of FlipToWinBoardManager for new game function
      */
     void startNewFlipToWinGame(int complexity) {
         this.flipToWinBoardManager = new FlipToWinBoardManager(complexity);
+    }
+
+    /**
+     * This will create a new instance of FlipToWinBoardManager for new game function
+     */
+    void startNewColorMatchingGame(int complexity) {
+        this.colorBoardManager = new ColorBoardManager(complexity);
     }
 
 
@@ -94,6 +119,7 @@ public enum Main {
     void startNewGame(int complexity) {
         this.boardManager = new BoardManager(complexity);
     }
+
 
 
     /**
@@ -181,6 +207,49 @@ public enum Main {
      * @param fileContext this.getApplicationContext()
      * @param fileName    the name of the file
      */
+    void saveColorBoardManagerToFile(@NonNull Context fileContext, String fileName) {
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(
+                    fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
+            outputStream.writeObject(colorBoardManager);
+            outputStream.close();
+        } catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
+
+
+    /**
+     * Load the ColorMatching BoardManager from fileName.
+     *
+     * @param fileContext this.getApplicationContext()
+     * @param fileName    the name of the file
+     */
+    void loadColorBoardManagerFromFile(@NonNull Context fileContext, String fileName) {
+
+        try {
+            InputStream inputStream = fileContext.openFileInput(fileName);
+            if (inputStream != null) {
+                ObjectInputStream input = new ObjectInputStream(inputStream);
+                setColorBoardManager((ColorBoardManager) input.readObject());
+                inputStream.close();
+            }
+        } catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        } catch (ClassNotFoundException e) {
+            Log.e("login activity", "File contained unexpected data type: " + e.toString());
+        }
+    }
+
+
+    /**
+     * Save the ColorMatching BoardManager to fileName.
+     *
+     * @param fileContext this.getApplicationContext()
+     * @param fileName    the name of the file
+     */
     void saveFlipToWinBoardManagerToFile(@NonNull Context fileContext, String fileName) {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
@@ -191,7 +260,6 @@ public enum Main {
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
-
 
     /**
      * Load the board manager from fileName.
