@@ -38,8 +38,53 @@ class BoardManager implements Serializable, GameManageable {
         }
 
         Collections.shuffle(tiles);
+        while (!checkSolvable(tiles, complexity)){
+            Collections.shuffle(tiles);
+        }
         this.board = new Board(tiles, complexity);
         this.previousMoves = new ArrayList<>();
+    }
+
+    private boolean checkSolvable(List<Tile> tiles, int complexity){
+        int num = getInvNumber(tiles);
+        if (tiles.size() % 2 == 1){
+            return num % 2 == 0;
+        } else{
+            int blank_pos = findBlank(tiles, complexity);
+            if (blank_pos % 2 == 1){
+                return num % 2 == 0;
+            } else{
+                return num % 2 == 1;
+            }
+        }
+
+    }
+
+    private int findBlank(List<Tile> tiles, int complexity){
+        for (int row = complexity - 1; row >= 0; row--){
+            for (int col = complexity - 1; col >= 0; col--){
+                if (tiles.get(row * complexity + col).getId() == tiles.size()){
+                    return complexity - row;
+                }
+            }
+        }
+        return 0;
+    }
+
+
+    private int getInvNumber(List<Tile> tiles){
+        int sum = 0;
+        for (int first = 0; first < tiles.size() - 1; first++){
+            for (int second = first + 1; second < tiles.size(); second++){
+
+                if (tiles.get(first).getId() > tiles.get(second).getId() &&
+                       tiles.get(first).getId() != tiles.size() &&
+                        tiles.get(second).getId() != tiles.size()){
+                    sum++;
+                }
+            }
+        }
+        return sum;
     }
 
     /**
