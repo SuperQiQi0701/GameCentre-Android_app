@@ -1,12 +1,8 @@
 package fall2018.csc2017.slidingtiles;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-public class ColorBoardManager {
-    ColorBoard colorBoard;
-    private int score = 0;
+public class ColorBoardManager implements GameManageable {
+    private ColorBoard colorBoard;
+    private int score;
     private int complexity;
     boolean[][] board;
 
@@ -14,10 +10,6 @@ public class ColorBoardManager {
         this.complexity = complexity;
         this.colorBoard = new ColorBoard();
         board = new boolean[8][10];
-    }
-
-    public int getScore() {
-        return this.score;
     }
 
     public void changeColor(int newColor){
@@ -42,6 +34,11 @@ public class ColorBoardManager {
         score++;
     }
 
+    public ColorBoard getGame(){
+        return colorBoard;
+    }
+
+    @Override
     public boolean puzzleSolved() {
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {
@@ -52,4 +49,10 @@ public class ColorBoardManager {
         }
         return true;
     }
+
+    @Override
+    public int getScore() {
+        return this.score;
+    }
+
 }
