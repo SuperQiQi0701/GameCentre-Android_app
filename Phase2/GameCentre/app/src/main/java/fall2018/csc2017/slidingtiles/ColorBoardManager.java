@@ -3,22 +3,20 @@ package fall2018.csc2017.slidingtiles;
 public class ColorBoardManager implements GameManageable {
     ColorBoard colorBoard;
     private int score;
-    private int complexity;
     boolean[][] board;
 
     ColorBoardManager(int complexity) {
-        this.complexity = complexity;
         this.colorBoard = new ColorBoard();
         board = new boolean[8][10];
     }
 
-    public void changeColor(int newColor){
+    void changeColor(int newColor) {
         if(! puzzleSolved()){
             changeOriColor(newColor);
         }
     }
 
-    public void changeOriColor(int newColor){
+    private void changeOriColor(int newColor) {
         int initColor = colorBoard.getGrid(0, 0).getColor();
         int x = 0;
         int y = 0;

@@ -5,7 +5,7 @@ public class ColorTile {
     int y;
     int color;
 
-    public ColorTile(int x, int y){
+    ColorTile(int x, int y){
         this.x = x;
         this.y = y;
     }

@@ -3,7 +3,6 @@ package fall2018.csc2017.slidingtiles;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -59,13 +58,14 @@ public class ColorMatchingActivity extends AppCompatActivity {
     }
 
     public void initView(){
-        FrameLayout layoutGame = (FrameLayout) findViewById(R.id.layoutGame);
+        FrameLayout layoutGame = findViewById(R.id.layoutGame);
         draw();
         layoutGame.addView(colorView.view);}
 
     public static int getScreenWidth(Context context){
         WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
+        assert wm != null;
         wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.widthPixels;
     }
