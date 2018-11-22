@@ -40,7 +40,6 @@ class FlipToWinBoardManager implements Serializable, GameManageable {
 
         Collections.shuffle(fTiles);
         this.fBoard = new FlipToWinBoard(fTiles, complexity);
-//        this.previousMoves = new ArrayList<>();
     }
 
     /**
