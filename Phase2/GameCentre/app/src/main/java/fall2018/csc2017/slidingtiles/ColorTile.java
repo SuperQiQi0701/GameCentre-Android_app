@@ -1,7 +1,5 @@
 package fall2018.csc2017.slidingtiles;
 
-import android.graphics.Point;
-
 public class ColorTile {
     int x;
     int y;

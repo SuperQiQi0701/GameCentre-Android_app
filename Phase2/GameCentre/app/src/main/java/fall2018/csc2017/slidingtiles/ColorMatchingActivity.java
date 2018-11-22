@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -22,7 +21,6 @@ public class ColorMatchingActivity extends AppCompatActivity {
     Paint linePaint;
     Paint boxPaint;
 
-    Point[] box;
     ColorBoardManager colorBoardManager;
     int boxSize;
 
@@ -44,7 +42,6 @@ public class ColorMatchingActivity extends AppCompatActivity {
         int width = getScreenWidth(this);
         this.width = width;
         height = width*5/4;
-        box = new Point[]{new Point(0,0)};
         colorBoardManager = new ColorBoardManager(5);
         colorBoardManager.board = new boolean[8][10];
         boxSize = this.width / colorBoardManager.board.length;
