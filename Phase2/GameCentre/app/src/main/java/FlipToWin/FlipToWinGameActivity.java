@@ -15,7 +15,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import Basic.Main;
-import fall2018.csc2017.slidingtiles.CustomAdapter;
+import Basic.CustomAdapter;
 import fall2018.csc2017.slidingtiles.R;
 
 /**

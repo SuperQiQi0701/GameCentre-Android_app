@@ -11,7 +11,7 @@ import java.io.File;
 
 import Basic.Main;
 import fall2018.csc2017.slidingtiles.R;
-import fall2018.csc2017.slidingtiles.SelectGameActivity;
+import Basic.SelectGameActivity;
 
 /**
  * The initial activity for the sliding puzzle tile game.
