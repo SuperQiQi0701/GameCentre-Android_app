@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package FlipToWin;
 
 import java.io.Serializable;
 

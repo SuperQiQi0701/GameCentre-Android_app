@@ -1,11 +1,13 @@
-package fall2018.csc2017.slidingtiles;
+package ColorMatching;
+
+import Basic.GameManageable;
 
 public class ColorBoardManager implements GameManageable {
     ColorBoard colorBoard;
     private int score;
     boolean[][] board;
 
-    ColorBoardManager(int complexity) {
+    public ColorBoardManager(int complexity) {
         this.colorBoard = new ColorBoard();
         board = new boolean[8][10];
     }

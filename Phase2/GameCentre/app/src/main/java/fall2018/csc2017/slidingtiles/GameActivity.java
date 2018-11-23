@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import Basic.Main;
+
 /**
  * The game activity.
  */

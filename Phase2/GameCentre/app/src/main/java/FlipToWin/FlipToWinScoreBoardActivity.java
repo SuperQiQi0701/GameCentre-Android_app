@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package FlipToWin;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,7 +8,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static fall2018.csc2017.slidingtiles.Main.INSTANCE;
+import Basic.Main;
+import fall2018.csc2017.slidingtiles.R;
+import fall2018.csc2017.slidingtiles.SelectGameActivity;
+
+import static Basic.Main.INSTANCE;
 
 public class FlipToWinScoreBoardActivity extends AppCompatActivity {
 

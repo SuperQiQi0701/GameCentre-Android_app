@@ -1,8 +1,11 @@
-package fall2018.csc2017.slidingtiles;
+package FlipToWin;
 
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
+
+import Basic.Main;
+import FlipToWin.FlipToWinScoreBoardActivity;
 
 
 class FlipToWinMovementController {

@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package ColorMatching;
 
 public class ColorTile {
     int x;

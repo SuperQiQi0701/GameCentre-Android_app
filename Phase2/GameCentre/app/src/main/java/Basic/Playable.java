@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package Basic;
 
 /**
  * Implementing this interface allows it to be playable game with grid, including getting the
@@ -12,14 +12,12 @@ public interface Playable<T> {
      */
     int getComplexity();
 
-
     /**
      * Return the number of grids in the game.
      *
      * @return the number of grids.
      */
     int numGrids();
-
 
     /**
      * Return the object at (row, col)

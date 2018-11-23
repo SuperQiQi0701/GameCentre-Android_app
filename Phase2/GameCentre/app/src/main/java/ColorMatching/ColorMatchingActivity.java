@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package ColorMatching;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import java.util.Random;
+
+import fall2018.csc2017.slidingtiles.R;
 
 public class ColorMatchingActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package FlipToWin;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +8,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.File;
+
+import Basic.Main;
+import fall2018.csc2017.slidingtiles.R;
+import fall2018.csc2017.slidingtiles.SelectGameActivity;
 
 /**
  * The initial activity for the sliding puzzle tile game.

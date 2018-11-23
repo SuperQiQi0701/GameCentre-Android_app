@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package Basic;
 
 
 import android.content.Context;
@@ -10,6 +10,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import fall2018.csc2017.slidingtiles.Board;
+import fall2018.csc2017.slidingtiles.BoardManager;
+import ColorMatching.ColorBoardManager;
+import FlipToWin.FlipToWinBoard;
+import FlipToWin.FlipToWinBoardManager;
+import FlipToWin.FlipToWinScoreBoard;
+import fall2018.csc2017.slidingtiles.ScoreBoard;
 
 
 /**
@@ -24,37 +32,37 @@ public enum Main {
     /**
      * the FlipToWinBoardManager of this game
      */
-    private BoardManager boardManager;
+    public BoardManager boardManager;
 
 
     /**
      * The UserManager of this game
      */
-    private UserManager userManager;
+    public UserManager userManager;
 
     /**
      * The ColorBoardManager of this game
      */
-    private ColorBoardManager colorBoardManager;
+    public ColorBoardManager colorBoardManager;
 
 
     /**
      * The ScoreBoard of this game
      */
-    private ScoreBoard scoreBoard;
+    public ScoreBoard scoreBoard;
 
-    private FlipToWinScoreBoard flipScoreBoard;
+    public FlipToWinScoreBoard flipScoreBoard;
 
     /**
      * The FlipToWinBoardManager of this game
      */
-    private FlipToWinBoardManager flipToWinBoardManager;
+    public FlipToWinBoardManager flipToWinBoardManager;
 
 
     /**
      * Return the FlipToWinBoardManager
      */
-    FlipToWinBoardManager getFlipToWinBoardManager() {
+    public FlipToWinBoardManager getFlipToWinBoardManager() {
         return this.flipToWinBoardManager;
     }
 
@@ -85,7 +93,7 @@ public enum Main {
     /**
      * This will create a new instance of FlipToWinBoardManager for new game function
      */
-    void startNewFlipToWinGame(int complexity) {
+    public void startNewFlipToWinGame(int complexity) {
         this.flipToWinBoardManager = new FlipToWinBoardManager(complexity);
     }
 
@@ -100,7 +108,7 @@ public enum Main {
     /**
      * Return the boardManager
      */
-    BoardManager getBoardManager() {
+    public BoardManager getBoardManager() {
         return this.boardManager;
     }
 
@@ -118,7 +126,7 @@ public enum Main {
     /**
      * This will create a new instance of FlipToWinBoardManager for new game function
      */
-    void startNewGame(int complexity) {
+    public void startNewGame(int complexity) {
         this.boardManager = new BoardManager(complexity);
     }
 
@@ -129,7 +137,7 @@ public enum Main {
      *
      * @return the UserManager of the game
      */
-    UserManager getUserManager() {
+    public UserManager getUserManager() {
         return userManager;
     }
 
@@ -182,14 +190,14 @@ public enum Main {
     /**
      * Create an new ScoreBoard
      */
-    void newFlipScoreBoard() {
+    public void newFlipScoreBoard() {
         this.flipScoreBoard = new FlipToWinScoreBoard();
     }
 
     /**
      * Create an new ScoreBoard
      */
-    void newScoreBoard() {
+    public void newScoreBoard() {
         this.scoreBoard = new ScoreBoard();
     }
 
@@ -200,7 +208,7 @@ public enum Main {
      * @param fileContext this.getApplicationContext()
      * @param fileName    the name of the file
      */
-    void loadFlipToWinBoardManagerFromFile(@NonNull Context fileContext, String fileName) {
+    public void loadFlipToWinBoardManagerFromFile(@NonNull Context fileContext, String fileName) {
 
         try {
             InputStream inputStream = fileContext.openFileInput(fileName);
@@ -268,7 +276,7 @@ public enum Main {
      * @param fileContext this.getApplicationContext()
      * @param fileName    the name of the file
      */
-    void saveFlipToWinBoardManagerToFile(@NonNull Context fileContext, String fileName) {
+    public void saveFlipToWinBoardManagerToFile(@NonNull Context fileContext, String fileName) {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
@@ -285,7 +293,7 @@ public enum Main {
      * @param fileContext this.getApplicationContext()
      * @param fileName    the name of the file
      */
-    void loadBoardManagerFromFile(@NonNull Context fileContext, String fileName) {
+    public void loadBoardManagerFromFile(@NonNull Context fileContext, String fileName) {
 
         try {
             InputStream inputStream = fileContext.openFileInput(fileName);
@@ -310,7 +318,7 @@ public enum Main {
      * @param fileContext this.getApplicationContext()
      * @param fileName    the name of the file
      */
-    void saveBoardManagerToFile(@NonNull Context fileContext, String fileName) {
+    public void saveBoardManagerToFile(@NonNull Context fileContext, String fileName) {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
@@ -327,7 +335,7 @@ public enum Main {
      *
      * @param fileContext this.getApplicationContext()
      */
-    void loadScoreBoardFromFile(Context fileContext) {
+    public void loadScoreBoardFromFile(Context fileContext) {
         try {
             String fileName = Board.GAME_NAME + "_ScoreBoard.ser";
             InputStream inputStream = fileContext.openFileInput(fileName);
@@ -351,7 +359,7 @@ public enum Main {
      *
      * @param fileContext this.getApplicationContext()
      */
-    void saveScoreBoardToFile(Context fileContext) {
+    public void saveScoreBoardToFile(Context fileContext) {
         try {
             String fileName = Board.GAME_NAME + "_ScoreBoard.ser";
             ObjectOutputStream outputStream = new ObjectOutputStream(
@@ -393,7 +401,7 @@ public enum Main {
      *
      * @param fileContext this.getApplicationContext()
      */
-    void saveUserManagerToFile(Context fileContext) {
+    public void saveUserManagerToFile(Context fileContext) {
         try {
             String fileName = Board.GAME_NAME + "_UserManager.ser";
             ObjectOutputStream outputStream = new ObjectOutputStream(
@@ -411,7 +419,7 @@ public enum Main {
      *
      * @param fileContext this.getApplicationContext()
      */
-    void loadFlipToWinScoreBoardFromFile(Context fileContext) {
+    public void loadFlipToWinScoreBoardFromFile(Context fileContext) {
         try {
             String fileName = FlipToWinBoard.GAME_NAME + "_ScoreBoard.ser";
             InputStream inputStream = fileContext.openFileInput(fileName);
@@ -435,7 +443,7 @@ public enum Main {
      *
      * @param fileContext this.getApplicationContext()
      */
-    void saveFlipToWinScoreBoardToFile(Context fileContext) {
+    public void saveFlipToWinScoreBoardToFile(Context fileContext) {
         try {
             String fileName = FlipToWinBoard.GAME_NAME + "_ScoreBoard.ser";
             ObjectOutputStream outputStream = new ObjectOutputStream(

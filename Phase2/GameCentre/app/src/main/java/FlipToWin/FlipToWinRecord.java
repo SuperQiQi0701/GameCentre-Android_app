@@ -1,9 +1,12 @@
-package fall2018.csc2017.slidingtiles;
+package FlipToWin;
 
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
+
+import Basic.Main;
+import fall2018.csc2017.slidingtiles.Board;
 
 public class FlipToWinRecord implements Comparable<FlipToWinRecord>, Serializable {
 

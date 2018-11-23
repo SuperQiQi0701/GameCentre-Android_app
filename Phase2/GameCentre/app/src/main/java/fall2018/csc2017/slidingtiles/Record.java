@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 
+import Basic.Main;
+
 public class Record implements Comparable<Record>, Serializable {
 
 

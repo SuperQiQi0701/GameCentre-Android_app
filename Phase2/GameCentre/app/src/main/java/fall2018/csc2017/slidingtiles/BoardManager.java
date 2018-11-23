@@ -7,10 +7,12 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import Basic.GameManageable;
+
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
  */
-class BoardManager implements Serializable, GameManageable {
+public class BoardManager implements Serializable, GameManageable {
 
     /**
      * The board being managed.
@@ -30,7 +32,7 @@ class BoardManager implements Serializable, GameManageable {
     /**
      * Manage a new shuffled board.
      */
-    BoardManager(int complexity) {
+    public BoardManager(int complexity) {
         List<Tile> tiles = new ArrayList<>();
         final int numTiles = complexity * complexity;
         for (int tileNum = 0; tileNum != numTiles; tileNum++) {

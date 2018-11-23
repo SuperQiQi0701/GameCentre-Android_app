@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import Basic.LoginActivity;
+import ColorMatching.ColorMatchingActivity;
+import FlipToWin.FlipToWinStartingActivity;
+
 
 public class SelectGameActivity extends AppCompatActivity {
 

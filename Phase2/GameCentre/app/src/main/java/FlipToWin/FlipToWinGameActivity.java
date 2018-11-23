@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package FlipToWin;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
+import Basic.Main;
+import fall2018.csc2017.slidingtiles.CustomAdapter;
+import fall2018.csc2017.slidingtiles.R;
 
 /**
  * The game activity.

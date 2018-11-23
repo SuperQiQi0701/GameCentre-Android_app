@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import Basic.Main;
+
 /**
  * The initial activity for the sliding puzzle tile game.
  */

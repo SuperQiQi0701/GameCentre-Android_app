@@ -10,22 +10,22 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import Basic.Playable;
+
 /**
  * The sliding tiles board.
  */
 
 public class Board extends Observable implements Iterable<Tile>, Serializable, Playable<Tile> {
 
-
+    /**
+     * The game name for current board
+     */
+    public static final String GAME_NAME = "Sliding_Tiles";
     /**
      * The number of row and col
      */
     private int complexity;
-
-    /**
-     * The game name for current board
-     */
-    final static String GAME_NAME = "Sliding_Tiles";
 
     /**
      * The tiles on the board in row-major order.

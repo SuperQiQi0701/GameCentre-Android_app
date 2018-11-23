@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package FlipToWin;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -7,6 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+
+import Basic.Main;
+import FlipToWin.FlipToWinGameActivity;
+import FlipToWin.FlipToWinStartingActivity;
+import fall2018.csc2017.slidingtiles.R;
 
 public class FlipToWinComplexityActivity extends AppCompatActivity {
 

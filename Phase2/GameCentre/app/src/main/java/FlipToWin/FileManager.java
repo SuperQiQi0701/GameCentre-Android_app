@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package FlipToWin;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import Basic.Main;
+import Basic.UserManager;
+import Basic.DataManager;
+import fall2018.csc2017.slidingtiles.ScoreBoard;
 
 public class FileManager {
 

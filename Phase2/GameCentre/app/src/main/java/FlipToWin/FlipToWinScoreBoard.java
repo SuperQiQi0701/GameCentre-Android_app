@@ -1,10 +1,10 @@
-package fall2018.csc2017.slidingtiles;
+package FlipToWin;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-class FlipToWinScoreBoard implements Serializable {
+public class FlipToWinScoreBoard implements Serializable {
 
 
     /**

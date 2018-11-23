@@ -1,8 +1,9 @@
-package fall2018.csc2017.slidingtiles;
-
+package Basic;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import Basic.User;
 
 public class UserManager implements Serializable {
 
@@ -54,7 +55,7 @@ public class UserManager implements Serializable {
      * @param username the username of the current user.
      * @param password the password of the current user.
      */
-    void signUp(String username, String password) {
+    public void signUp(String username, String password) {
         User tempuser = new User(username);
         tempuser.setPassword(password);
         users.add(tempuser);
@@ -66,7 +67,7 @@ public class UserManager implements Serializable {
      * @param username the username of the current user.
      * @return the user with username in the users's Array List.
      */
-    User getUser(String username) {
+    public User getUser(String username) {
         for (User u : users) {
             if (u.getUserName().equals(username)) {
                 return u;
@@ -80,7 +81,7 @@ public class UserManager implements Serializable {
      *
      * @return the current user of the game
      */
-    String getCurrentUser() {
+    public String getCurrentUser() {
         return currUser;
     }
 }

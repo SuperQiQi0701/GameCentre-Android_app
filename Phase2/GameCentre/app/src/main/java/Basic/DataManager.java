@@ -1,4 +1,10 @@
-package fall2018.csc2017.slidingtiles;
+package Basic;
+
+import Basic.UserManager;
+import ColorMatching.ColorBoardManager;
+import FlipToWin.FlipToWinBoardManager;
+import fall2018.csc2017.slidingtiles.BoardManager;
+import fall2018.csc2017.slidingtiles.ScoreBoard;
 
 public enum DataManager {
     INSTANCE;
@@ -102,7 +108,7 @@ public enum DataManager {
     /**
      * Return the boardManager
      */
-    BoardManager getBoardManager() {
+    public BoardManager getBoardManager() {
         return slideTileBoardManager;
 //        switch (currentGame){
 //            case "ST":
@@ -120,7 +126,7 @@ public enum DataManager {
      *
      * @param object the FlipToWinBoardManager instance will be loaded
      */
-    void setBoardManager(Object object) {
+    public void setBoardManager(Object object) {
         switch (currentGame){
             case "ST":
                 this.slideTileBoardManager = (BoardManager) object;
@@ -149,7 +155,7 @@ public enum DataManager {
      *
      * @return the UserManager of the game
      */
-    UserManager getUserManager() {
+    public UserManager getUserManager() {
         return userManager;
     }
 
@@ -159,7 +165,7 @@ public enum DataManager {
      *
      * @param um the UserManager from the file
      */
-    void setUserManager(UserManager um) {
+    public void setUserManager(UserManager um) {
         this.userManager = um;
     }
 
@@ -177,7 +183,7 @@ public enum DataManager {
     /**
      * This will create a new instance of ScoreBoard for new game function
      */
-    void setScoreBoard(ScoreBoard sb) {
+    public void setScoreBoard(ScoreBoard sb) {
         this.scoreBoard = sb;
     }
 
@@ -185,7 +191,7 @@ public enum DataManager {
     /**
      * Create an new UserManager
      */
-    void newUserManager() {
+    public void newUserManager() {
         this.userManager = new UserManager();
     }
 
@@ -193,7 +199,7 @@ public enum DataManager {
     /**
      * Create an new ScoreBoard
      */
-    void newScoreBoard() {
+    public void newScoreBoard() {
         this.scoreBoard = new ScoreBoard();
     }
 }

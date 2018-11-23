@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package Basic;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import Basic.LoginActivity;
+import Basic.Main;
+import fall2018.csc2017.slidingtiles.R;
 
 @SuppressLint("Registered")
 public class ResetPasswordActivity extends AppCompatActivity {

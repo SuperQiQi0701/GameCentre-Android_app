@@ -8,7 +8,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static fall2018.csc2017.slidingtiles.Main.INSTANCE;
+import Basic.Main;
+
+import static Basic.Main.INSTANCE;
 
 public class ScoreBoardActivity extends AppCompatActivity {
 

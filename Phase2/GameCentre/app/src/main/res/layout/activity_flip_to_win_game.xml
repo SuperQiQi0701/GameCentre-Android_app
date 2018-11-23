@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fall2018.csc2017.slidingtiles.FlipGestureDetectGridView xmlns:android="http://schemas.android.com/apk/res/android"
+    <FlipToWin.FlipGestureDetectGridView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/fliptowingrid"
         android:layout_width="match_parent"
@@ -14,9 +14,9 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="61dp"
-        tools:context="fall2018.csc2017.slidingtiles.FlipToWinGameActivity">
+        tools:context="fall2018.csc2017.slidingtiles.FlipToWin.FlipToWinGameActivity">
 
-    </fall2018.csc2017.slidingtiles.FlipGestureDetectGridView>
+    </FlipToWin.FlipGestureDetectGridView>
 
     <Button
         android:id="@+id/fliptowin_saveGameButton"

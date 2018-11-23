@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package FlipToWin;
 
 import android.support.annotation.NonNull;
 
@@ -10,6 +10,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import Basic.Playable;
+
 /**
  * The sliding tiles board.
  */
@@ -18,15 +20,11 @@ public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile
         Playable<FlipToWinTile> {
 
 
+    public static final String GAME_NAME = "Flip To Win";
     /**
      * The number of row and col
      */
     private int complexity;
-
-    /**
-     * The game name for current board
-     */
-    final static String GAME_NAME = "Flip To Win";
 
     /**
      * The tiles on the board in row-major order.

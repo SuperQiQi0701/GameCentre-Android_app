@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package FlipToWin;
 
 
 import java.io.Serializable;
@@ -7,10 +7,12 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import Basic.GameManageable;
+
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
  */
-class FlipToWinBoardManager implements Serializable, GameManageable {
+public class FlipToWinBoardManager implements Serializable, GameManageable {
 
     /**
      * The board being managed.
@@ -32,7 +34,7 @@ class FlipToWinBoardManager implements Serializable, GameManageable {
     /**
      * Manage a new shuffled board.
      */
-    FlipToWinBoardManager(int complexity) {
+    public FlipToWinBoardManager(int complexity) {
         List<FlipToWinTile> fTiles = new ArrayList<>();
         final int numTiles = complexity * complexity;
         for (int tileNum = 0; tileNum != numTiles / 2; tileNum++) {

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-class ScoreBoard implements Serializable {
+public class ScoreBoard implements Serializable {
 
 
     /**

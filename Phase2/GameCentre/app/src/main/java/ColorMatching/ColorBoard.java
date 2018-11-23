@@ -1,6 +1,8 @@
-package fall2018.csc2017.slidingtiles;
+package ColorMatching;
 
-public class ColorBoard implements Playable<ColorTile>{
+import Basic.Playable;
+
+public class ColorBoard implements Playable<ColorTile> {
     public ColorTile[][] tiles;
 
     ColorBoard() {

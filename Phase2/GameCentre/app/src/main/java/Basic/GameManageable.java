@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package Basic;
 
 /**
  * Implementing this interface allows you to manage a playable game, including winning the game,
