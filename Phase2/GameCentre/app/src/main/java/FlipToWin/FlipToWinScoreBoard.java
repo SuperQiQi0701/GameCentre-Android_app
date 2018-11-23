@@ -30,7 +30,7 @@ public class FlipToWinScoreBoard implements Serializable {
      * @return return a ArrayList which corresponding to the current game complexity.
      */
     private ArrayList<FlipToWinRecord> getComplexityRecords(int complexity) {
-        if (complexity == 3) {
+        if (complexity == 4) {
             return recordsComplexity1;
         }
         else {
