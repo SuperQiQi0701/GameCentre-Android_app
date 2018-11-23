@@ -28,8 +28,8 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
      */
     private ArrayList<Button> fTileButtons;
 
-    private String emoji[] = {"🐶", "🐻", "🌝", "🌚", "🍑", "🍙", "🐱", "❤️", "㊗️", "⌚️",
-            "💻", "⏰", "💊", "🚗", "🗿", "🍗", "🍩", "🍺"};
+    private String emoji[] = {"🐶", "🐻", "🌝", "🌚", "🍑", "🐱", "❤️", "🍭️",
+            "💻", "💊", "🚗", "🗿", "🍗", "🍩", "🍺"};
 
     ArrayList<String> emojiChosen = new ArrayList<>();
 
@@ -63,7 +63,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
         setContentView(R.layout.activity_flip_to_win_game);
         // Add View to activity
         flipGridView = findViewById(R.id.fliptowingrid);
-        flipGridView.setNumColumns(Main.INSTANCE.getFlipToWinBoardManager().getGame().getComplexity());
+        flipGridView.setNumColumns(Main.INSTANCE.getFlipToWinBoardManager().getGame().getColNum());
         Main.INSTANCE.getFlipToWinBoardManager().getGame().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
         flipGridView.getViewTreeObserver().addOnGlobalLayoutListener(
@@ -75,8 +75,8 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
                         int displayWidth = flipGridView.getMeasuredWidth();
                         int displayHeight = flipGridView.getMeasuredHeight();
 
-                        columnWidth2 = displayWidth / Main.INSTANCE.getFlipToWinBoardManager().getGame().getComplexity();
-                        columnHeight2 = displayHeight / Main.INSTANCE.getFlipToWinBoardManager().getGame().getComplexity();
+                        columnWidth2 = displayWidth / Main.INSTANCE.getFlipToWinBoardManager().getGame().getColNum();
+                        columnHeight2 = displayHeight / Main.INSTANCE.getFlipToWinBoardManager().getGame().getRowNum();
 
                         display();
                     }
@@ -95,10 +95,11 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
         FlipToWinBoard flipToWinBoard = Main.INSTANCE.getFlipToWinBoardManager().getGame();
         fTileButtons = new ArrayList<>();
 //        ArrayList<String> emojiChosen = new ArrayList<>();
-        int complexity = Main.INSTANCE.getFlipToWinBoardManager().getGame().getComplexity();
-        getEmojiList((complexity * complexity) / 2, emojiChosen);
-        for (int row = 0; row != complexity; row++) {
-            for (int col = 0; col != complexity; col++) {
+        int rowNum = Main.INSTANCE.getFlipToWinBoardManager().getGame().getRowNum();
+        int colNum = Main.INSTANCE.getFlipToWinBoardManager().getGame().getColNum();
+        getEmojiList((rowNum * colNum) / 2, emojiChosen);
+        for (int row = 0; row != rowNum; row++) {
+            for (int col = 0; col != colNum; col++) {
                 Button tmp = new Button(context);
                 tmp.setText(emojiChosen.get(flipToWinBoard.getGrid(row, col).getId() - 1 ));
                 tmp.setTextSize(40);
@@ -115,8 +116,8 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
     private void updateTileButtons() {
         int nextPos = 0;
         for (Button b : fTileButtons) {
-            int row = nextPos /  Main.INSTANCE.getFlipToWinBoardManager().getGame().getComplexity();
-            int col = nextPos %  Main.INSTANCE.getFlipToWinBoardManager().getGame().getComplexity();
+            int row = nextPos /  Main.INSTANCE.getFlipToWinBoardManager().getGame().getColNum();
+            int col = nextPos %  Main.INSTANCE.getFlipToWinBoardManager().getGame().getColNum();
             int emojiIndex = Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col).flipStatus();
             if (emojiIndex == 0) {
                 b.setBackgroundResource(R.drawable.back_of_tile4);

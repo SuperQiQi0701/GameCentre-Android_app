@@ -18,6 +18,11 @@ public class FlipToWinScoreBoard implements Serializable {
     private ArrayList<FlipToWinRecord> recordsComplexity2 = new ArrayList<>();
 
     /**
+     * this is a ArrayList of all records of Complexity 3
+     */
+    private ArrayList<FlipToWinRecord> recordsComplexity3 = new ArrayList<>();
+
+    /**
      * get the current complexity  the game.
      */
     private int currComplexity;
@@ -30,11 +35,14 @@ public class FlipToWinScoreBoard implements Serializable {
      * @return return a ArrayList which corresponding to the current game complexity.
      */
     private ArrayList<FlipToWinRecord> getComplexityRecords(int complexity) {
-        if (complexity == 4) {
+        if (complexity == 3) {
             return recordsComplexity1;
         }
-        else {
+        if (complexity == 4) {
             return recordsComplexity2;
+        }
+        else {
+            return recordsComplexity3;
         }
     }
 
