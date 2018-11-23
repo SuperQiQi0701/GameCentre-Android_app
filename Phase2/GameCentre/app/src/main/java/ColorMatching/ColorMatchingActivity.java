@@ -33,6 +33,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
         addBlueButtonListener();
         addGREENButtonListener();
         addGreyButtonListener();
+        addUndoButtonListener();
     }
 
     public void draw(){
@@ -91,6 +92,14 @@ public class ColorMatchingActivity extends AppCompatActivity {
                 colorView.drawBox(canvas, color, x, y);
             }
         }
+    }
+
+    private void addUndoButtonListener(){
+        Button undo = findViewById(R.id.undo);
+        undo.setOnClickListener((v) -> {
+            colorBoardManager.undo();
+            colorView.view.invalidate();
+        });
     }
 
     private void addRedButtonListener() {
