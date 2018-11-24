@@ -2,13 +2,13 @@ package FlipToWin;
 
 import java.io.Serializable;
 
-import Basic.SuperTile;
+import Basic.MovableTile;
 import fall2018.csc2017.slidingtiles.R;
 
 /**
  * A Tile in a sliding tiles puzzle.
  */
-public class FlipToWinTile extends SuperTile implements Serializable {
+public class FlipToWinTile extends MovableTile implements Serializable {
 
     private boolean facedUp = false;
 
@@ -32,10 +32,6 @@ public class FlipToWinTile extends SuperTile implements Serializable {
 //    public int getBackground() {
 //        return background;
 //    }
-
-    FlipToWinTile(int background, int id){
-        super(background, id);
-    }
 
     FlipToWinTile(int num) {
         this.id = num + 1;
