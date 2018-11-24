@@ -5,8 +5,16 @@ import java.util.ArrayList;
 import Basic.GameManageable;
 
 public class ColorBoardManager implements GameManageable {
+    /**
+     * The board being managed.
+     */
     ColorBoard colorBoard;
-    private int score;
+
+    /**
+     * An integer that keep track the score of the current game
+     */
+    private int score = 0;
+
     boolean[][] board;
     private ArrayList<ArrayList<ColorTile>> allMove;
     private ArrayList<ColorTile> current;
@@ -31,6 +39,15 @@ public class ColorBoardManager implements GameManageable {
             return colorBoard.getGrid((tile.x)-1, tile.y);
         }
         return null;
+    }
+
+    /**
+     * Return the current score of the game
+     *
+     * @return the current score
+     */
+    public int getScore() {
+        return this.score;
     }
 
     public ColorTile getRight(ColorTile tile){
@@ -109,6 +126,7 @@ public class ColorBoardManager implements GameManageable {
         }
         allMove.add(arr);
         colors.add(initColor);
+        ++this.score;
     }
 
 
@@ -155,6 +173,8 @@ public class ColorBoardManager implements GameManageable {
                 cur.setColor(color);
             }
         }
+        ++this.score;
+        ++this.score;
     }
 
     public ColorBoard getGame(){
@@ -173,8 +193,5 @@ public class ColorBoardManager implements GameManageable {
         return true;
     }
 
-    @Override
-    public int getScore() {
-        return this.score;
-    }
+
 }
