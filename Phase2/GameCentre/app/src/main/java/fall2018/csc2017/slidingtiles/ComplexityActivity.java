@@ -43,14 +43,8 @@ public class ComplexityActivity extends AppCompatActivity {
         Button complexity1Button = findViewById(R.id.complexity1Button);
         complexity1Button.setBackgroundColor(Color.GREEN);
         complexity1Button.setTextColor(Color.BLACK);
-        complexity1Button.setOnClickListener((v) -> {
-            Main.INSTANCE.startNewGame(3);
-            String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-            Main.INSTANCE.saveBoardManagerToFile(this.getApplicationContext(), fileName);
-            Intent temp = new Intent(this, GameActivity.class);
-            startActivity(temp);
-            finish();
-        });
+        complexity1Button.setOnClickListener((v) -> setUpGame(3));
+
     }
 
 
@@ -61,14 +55,7 @@ public class ComplexityActivity extends AppCompatActivity {
         Button complexity2Button = findViewById(R.id.complexity2Button);
         complexity2Button.setBackgroundColor(Color.YELLOW);
         complexity2Button.setTextColor(Color.BLACK);
-        complexity2Button.setOnClickListener((v) -> {
-            Main.INSTANCE.startNewGame(4);
-            String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-            Main.INSTANCE.saveBoardManagerToFile(this.getApplicationContext(), fileName);
-            Intent temp = new Intent(this, GameActivity.class);
-            startActivity(temp);
-            finish();
-        });
+        complexity2Button.setOnClickListener((v) -> setUpGame(4));
     }
 
 
@@ -79,14 +66,7 @@ public class ComplexityActivity extends AppCompatActivity {
         Button complexity3Button = findViewById(R.id.complexity3Button);
         complexity3Button.setBackgroundColor(Color.RED);
         complexity3Button.setTextColor(Color.BLACK);
-        complexity3Button.setOnClickListener((v) -> {
-            Main.INSTANCE.startNewGame(5);
-            String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-            Main.INSTANCE.saveBoardManagerToFile(this.getApplicationContext(), fileName);
-            Intent temp = new Intent(this, GameActivity.class);
-            startActivity(temp);
-            finish();
-        });
+        complexity3Button.setOnClickListener((v) -> setUpGame(5));
     }
 
 
@@ -97,5 +77,13 @@ public class ComplexityActivity extends AppCompatActivity {
         startActivity(temp);
     }
 
+    private void setUpGame(int complexity) {
+        Main.INSTANCE.startNewGame(complexity);
+        String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
+        Main.INSTANCE.saveBoardManagerToFile(this.getApplicationContext(), fileName);
+        Intent temp = new Intent(this, GameActivity.class);
+        startActivity(temp);
+        finish();
+    }
 
 }

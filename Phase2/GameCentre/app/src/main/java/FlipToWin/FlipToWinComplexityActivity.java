@@ -45,14 +45,7 @@ public class FlipToWinComplexityActivity extends AppCompatActivity {
         Button complexity1Button = findViewById(R.id.fliptowin_complexity1Button);
         complexity1Button.setBackgroundColor(Color.GREEN);
         complexity1Button.setTextColor(Color.BLACK);
-        complexity1Button.setOnClickListener((v) -> {
-            Main.INSTANCE.startNewFlipToWinGame(3);
-            String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-            Main.INSTANCE.saveFlipToWinBoardManagerToFile(this.getApplicationContext(), fileName);
-            Intent temp = new Intent(this, FlipToWinGameActivity.class);
-            startActivity(temp);
-            finish();
-        });
+        complexity1Button.setOnClickListener((v) -> setUpGame(3));
     }
 
 
@@ -63,14 +56,7 @@ public class FlipToWinComplexityActivity extends AppCompatActivity {
         Button complexity2Button = findViewById(R.id.fliptowin_complexity2Button);
         complexity2Button.setBackgroundColor(Color.YELLOW);
         complexity2Button.setTextColor(Color.BLACK);
-        complexity2Button.setOnClickListener((v) -> {
-            Main.INSTANCE.startNewFlipToWinGame(4);
-            String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-            Main.INSTANCE.saveFlipToWinBoardManagerToFile(this.getApplicationContext(), fileName);
-            Intent temp = new Intent(this, FlipToWinGameActivity.class);
-            startActivity(temp);
-            finish();
-        });
+        complexity2Button.setOnClickListener((v) -> setUpGame(4));
     }
 
     /**
@@ -78,16 +64,9 @@ public class FlipToWinComplexityActivity extends AppCompatActivity {
      */
     private void setupComplexity3ButtonListener() {
         Button complexity2Button = findViewById(R.id.fliptowin_complexity3Button);
-        complexity2Button.setBackgroundColor(Color.YELLOW);
+        complexity2Button.setBackgroundColor(Color.GRAY);
         complexity2Button.setTextColor(Color.BLACK);
-        complexity2Button.setOnClickListener((v) -> {
-            Main.INSTANCE.startNewFlipToWinGame(5);
-            String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-            Main.INSTANCE.saveFlipToWinBoardManagerToFile(this.getApplicationContext(), fileName);
-            Intent temp = new Intent(this, FlipToWinGameActivity.class);
-            startActivity(temp);
-            finish();
-        });
+        complexity2Button.setOnClickListener((v) -> setUpGame(5));
     }
 
 
@@ -98,5 +77,12 @@ public class FlipToWinComplexityActivity extends AppCompatActivity {
         startActivity(temp);
     }
 
-
+    private void setUpGame(int complexity) {
+        Main.INSTANCE.startNewFlipToWinGame(complexity);
+        String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
+        Main.INSTANCE.saveFlipToWinBoardManagerToFile(this.getApplicationContext(), fileName);
+        Intent temp = new Intent(this, FlipToWinGameActivity.class);
+        startActivity(temp);
+        finish();
+    }
 }

@@ -104,6 +104,7 @@ public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile
         ftiles[row][col].setFlipped();
         setChanged();
         notifyObservers();
+        System.out.println("update");
     }
 
     @Override
@@ -112,6 +113,16 @@ public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile
                 "tiles=" + Arrays.toString(ftiles) +
                 '}';
     }
+
+//    public void flipBack() {
+//        for (FlipToWinTile temp : this) {
+//            if (!(temp.isPaired()) & temp.flipStatus() != 0) {
+//                temp.setFlipped();
+//            }
+//        }
+//        setChanged();
+//        notifyObservers();
+//    }
 
 
     /**

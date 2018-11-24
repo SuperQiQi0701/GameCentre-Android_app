@@ -2,24 +2,26 @@ package FlipToWin;
 
 import java.io.Serializable;
 
+import fall2018.csc2017.slidingtiles.R;
+
 /**
  * A Tile in a sliding tiles puzzle.
  */
 public class FlipToWinTile implements Serializable {
 
-    private boolean flippedUp = false;
+    private boolean facedUp = false;
 
     private boolean paired = false;
-
-    /**
-     * The background id to find the tile image.
-     */
-    private static final int BACK_SIDE =  0; //R.drawable.hearteyes;
 
     /**
      * The unique id.
      */
     private int id;
+
+    /**
+     * The background id to find the tile image.
+     */
+    private int background;
 
 //    /**
 //     * Return the background id.
@@ -32,7 +34,18 @@ public class FlipToWinTile implements Serializable {
 
     FlipToWinTile(int num) {
         this.id = num + 1;
+        this.background = R.drawable.back_of_tile4;
     }
+
+    /**
+     * Return the background id.
+     *
+     * @return the background id
+     */
+    public int getBackground() {
+        return background;
+    }
+
 
     /**
      * Return the tile id.
@@ -46,14 +59,11 @@ public class FlipToWinTile implements Serializable {
 
     void setFlipped() {
 
-        this.flippedUp = !(this.flippedUp);
+        this.facedUp = !(this.facedUp);
     }
 
-    int flipStatus() {
-        if (this.flippedUp){
-            return this.id;
-        }
-        return BACK_SIDE;
+    boolean facedUpStatus() {
+        return facedUp;
     }
 
     void setPaired() {

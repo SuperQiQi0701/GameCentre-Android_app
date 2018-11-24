@@ -36,9 +36,9 @@ public class FlipToWinRecord implements Comparable<FlipToWinRecord>, Serializabl
      */
     @SuppressLint("DefaultLocale")
     String recordToString() {
-        String temp = "User: %s, took %d steps in game: %s, in complexity: %d";
-        String gameName = Board.GAME_NAME;
-        return String.format(temp, userName, finalScore, gameName, complexity);
+        String temp = "User: %s, took %d steps in game: %s, in level: %d";
+        String gameName = FlipToWinBoard.GAME_NAME;
+        return String.format(temp, userName, finalScore, gameName, complexity - 2);
     }
 
 
