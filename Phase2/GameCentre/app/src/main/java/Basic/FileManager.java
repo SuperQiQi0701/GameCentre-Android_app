@@ -87,7 +87,7 @@ public class FileManager {
      * Save the boardManager of the current game to file
      *
      * @param fileContext this.getApplicationContext()
-     * @param operation "Save" or "Auto"
+     * @param operation   "Save" or "Auto"
      */
     void saveGame(Context fileContext, String operation) {
         try {
@@ -95,7 +95,7 @@ public class FileManager {
                     DataManager.INSTANCE.getCurrentUserName() + "_" + operation + ".ser";
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
-            outputStream.writeObject(DataManager.INSTANCE.getBoardManager());
+            outputStream.writeObject((Object) DataManager.INSTANCE.getBoardManager());
             outputStream.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
@@ -106,7 +106,7 @@ public class FileManager {
      * Load boardManager of the current game related to current user from file
      *
      * @param fileContext this.getApplicationContext()
-     * @param operation "Save" or "Auto"
+     * @param operation   "Save" or "Auto"
      */
     void loadGame(Context fileContext, String operation) {
         try {
@@ -115,7 +115,7 @@ public class FileManager {
             InputStream inputStream = fileContext.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
-                DataManager.INSTANCE.setBoardManager((SuperBoardManager) input.readObject());
+                DataManager.INSTANCE.setBoardManager((GridBoardManager) input.readObject());
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {

@@ -23,7 +23,7 @@ public enum DataManager {
     /**
      * The boardManager of the game
      */
-    private SuperBoardManager boardManager;
+    private GridBoardManager boardManager;
 
 
     /**
@@ -67,7 +67,7 @@ public enum DataManager {
      *
      * @return the boardManager of the game
      */
-    public SuperBoardManager getBoardManager() {
+    public GridBoardManager getBoardManager() {
         return boardManager;
     }
 
@@ -76,7 +76,7 @@ public enum DataManager {
      *
      * @param boardManager the given boardManager
      */
-    public void setBoardManager(SuperBoardManager boardManager) {
+    public void setBoardManager(GridBoardManager boardManager) {
         this.boardManager = boardManager;
     }
 
