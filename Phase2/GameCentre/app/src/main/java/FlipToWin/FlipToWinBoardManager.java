@@ -101,7 +101,7 @@ public class FlipToWinBoardManager implements Serializable, GameManageable {
      * @param position the position
      */
     public void touchMove(int position) {
-
+        //position:点击的图片
         int row = position / fBoard.getColNum();
         int col = position % fBoard.getColNum();
         ++this.score;
@@ -120,6 +120,8 @@ public class FlipToWinBoardManager implements Serializable, GameManageable {
                     if (fBoard.getGrid(row, col).getId() == fBoard.getGrid(matchRow, matchCol).getId()) {
                         fBoard.getGrid(row, col).setPaired();
                         fBoard.getGrid(matchRow, matchCol).setPaired();
+                    }else{
+                        fBoard.makeMove(matchRow, matchCol);
                     }
                     fBoard.makeMove(row, col);
 //                    System.out.println("second tap");
