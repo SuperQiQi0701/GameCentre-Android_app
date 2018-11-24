@@ -43,6 +43,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
         addGreyButtonListener();
         addUndoButtonListener();
         addScoreBoardListener();
+        addSaveGameButtonListener();
     }
 
     public void checkWin(){
@@ -117,11 +118,53 @@ public class ColorMatchingActivity extends AppCompatActivity {
     private void addUndoButtonListener(){
         Button undo = findViewById(R.id.undo);
         undo.setOnClickListener((v) -> {
-            Main.INSTANCE.getColorBoardManager().undo();
-            colorView.view.invalidate();
+            if (Main.INSTANCE.getColorBoardManager().undoAvailable()) {
+                Main.INSTANCE.getColorBoardManager().undo();
+                colorView.view.invalidate();
+
+                makeToastUndoSuccessText();
+            }
+            else{
+                makeToastUndoFailText();
+            }
+            String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
+            Main.INSTANCE.saveColorBoardManagerToFile(this.getApplicationContext(), fileName);
             getScore();
         });
+    }
 
+    /**
+     * Display that a game was undo successfully.
+     */
+    private void makeToastUndoSuccessText() {
+        Toast.makeText(this, "Undo successfully", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Display that a game was failed to undo.
+     */
+    private void makeToastUndoFailText() {
+        Toast.makeText(this, "Undo failed: Cannot undo in this state.", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Activate SaveGame button.
+     */
+    private void addSaveGameButtonListener() {
+        Button save = findViewById(R.id.save);
+        save.setOnClickListener(v -> {
+            String fileName = Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
+            Main.INSTANCE.saveColorBoardManagerToFile(this.getApplicationContext(), fileName);
+            Main.INSTANCE.saveColorBoardManagerToFile(this.getApplicationContext(), "Auto_" + fileName);
+            makeToastSavedText();
+        });
+    }
+
+    /**
+     * Display that a game was saved successfully.
+     */
+    private void makeToastSavedText() {
+        Toast.makeText(this, "Game Saved", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -212,5 +255,11 @@ public class ColorMatchingActivity extends AppCompatActivity {
                 break;
         }
         return color;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent temp = new Intent(this, ColorMatchingStartActivity.class);
+        startActivity(temp);
     }
 }
