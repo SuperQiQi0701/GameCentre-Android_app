@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import java.io.Serializable;
 
 import Basic.Main;
-import FlipToWin.FlipToWinRecord;
 import fall2018.csc2017.slidingtiles.Board;
 
 public class ColorMatchingRecord implements Comparable<ColorMatchingRecord>, Serializable {
