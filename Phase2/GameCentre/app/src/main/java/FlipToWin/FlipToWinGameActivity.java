@@ -130,9 +130,9 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
                 b.setText("");
             }
             else {
-            b.setText(emojiChosen.get(tile.getId() - 1));
-            b.setTextSize(40);
-            b.setBackgroundColor(Color.YELLOW);
+                b.setText(emojiChosen.get(tile.getId() - 1));
+                b.setTextSize(40);
+                b.setBackgroundColor(Color.YELLOW);
             }
 
 //            if ( Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col).isFlippedUp()) {
