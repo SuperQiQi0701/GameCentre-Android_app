@@ -9,16 +9,25 @@ public abstract class SuperTile implements Serializable {
      */
     private int background;
 
-    private int id;
+    private int complexity;
 
-    public int getId() {
-        return id;
+    public SuperTile(){
+    }
+
+    public SuperTile(int background, int complexity) {
+        this.background = background;
+        this.complexity = complexity;
+    }
+
+    public int getComplexity() {
+        return complexity;
     }
 
     public int getBackground() {
         return background;
     }
 
-
-
+    public void setBackground(int background){
+        this.background = background;
+    }
 }

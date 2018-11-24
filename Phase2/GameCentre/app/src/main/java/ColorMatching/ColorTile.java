@@ -1,9 +1,9 @@
 package ColorMatching;
 
-public class ColorTile {
+public class ColorTile{
     int x;
     int y;
-    int color;
+    private int color;
 
     ColorTile(int x, int y){
         this.x = x;
