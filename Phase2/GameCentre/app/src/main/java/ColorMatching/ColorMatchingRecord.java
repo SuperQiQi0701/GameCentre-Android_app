@@ -33,8 +33,8 @@ public class ColorMatchingRecord implements Comparable<ColorMatchingRecord>, Ser
      */
     @SuppressLint("DefaultLocale")
     String recordToString() {
-        String temp = "User: %s, took %d steps in game: %s, in complexity: %d";
-        String gameName = Board.GAME_NAME;
+        String temp = "User: %s, took %d steps in game: %s, in level: %d";
+        String gameName = ColorBoard.GAME_NAME;
         return String.format(temp, userName, finalScore, gameName, complexity);
     }
 

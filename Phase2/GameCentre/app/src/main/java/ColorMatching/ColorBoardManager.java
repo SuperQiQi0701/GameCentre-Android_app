@@ -5,8 +5,16 @@ import java.util.ArrayList;
 import Basic.GameManageable;
 
 public class ColorBoardManager implements GameManageable {
+    /**
+     * The board being managed.
+     */
     ColorBoard colorBoard;
-    private int score;
+
+    /**
+     * An integer that keep track the score of the current game
+     */
+    private int score = 0;
+
     boolean[][] board;
     private ArrayList<ArrayList<ColorTile>> allMove;
     private ArrayList<ColorTile> current;
@@ -26,28 +34,37 @@ public class ColorBoardManager implements GameManageable {
         arr = new ArrayList();
     }
 
-    public ColorTile getLeft(ColorTile tile){
+    private ColorTile getLeft(ColorTile tile){
         if((tile.x)-1 >= 0){
             return colorBoard.getGrid((tile.x)-1, tile.y);
         }
         return null;
     }
 
-    public ColorTile getRight(ColorTile tile){
+    /**
+     * Return the current score of the game
+     *
+     * @return the current score
+     */
+    public int getScore() {
+        return this.score;
+    }
+
+    private ColorTile getRight(ColorTile tile){
         if((tile.x)+1 < 8){
             return colorBoard.getGrid((tile.x)+1, tile.y);
         }
         return null;
     }
 
-    public ColorTile getTop(ColorTile tile){
+    private ColorTile getTop(ColorTile tile){
         if((tile.y)-1 >= 0){
             return colorBoard.getGrid(tile.x, (tile.y)-1);
         }
         return null;
     }
 
-    public ColorTile getBottom(ColorTile tile){
+    private ColorTile getBottom(ColorTile tile){
         if((tile.y)+1 < 10){
             return colorBoard.getGrid(tile.x, (tile.y)+1);
         }
@@ -60,7 +77,7 @@ public class ColorBoardManager implements GameManageable {
 ////        }
 ////    }
 
-    public void neighbour(ColorTile tile, int initColor){
+    private void neighbour(ColorTile tile, int initColor){
         if(getLeft(tile)!= null){
             if(getLeft(tile).getColor() == initColor){
                 if(! allState.contains(getLeft(tile)) && ! arr.contains(getLeft(tile))){
@@ -109,6 +126,7 @@ public class ColorBoardManager implements GameManageable {
         }
         allMove.add(arr);
         colors.add(initColor);
+        ++this.score;
     }
 
 
@@ -155,6 +173,8 @@ public class ColorBoardManager implements GameManageable {
                 cur.setColor(color);
             }
         }
+        ++this.score;
+        ++this.score;
     }
 
     public ColorBoard getGame(){
@@ -173,8 +193,5 @@ public class ColorBoardManager implements GameManageable {
         return true;
     }
 
-    @Override
-    public int getScore() {
-        return this.score;
-    }
+
 }

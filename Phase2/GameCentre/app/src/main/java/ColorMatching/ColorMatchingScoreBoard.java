@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import Basic.Main;
+
 
 public class ColorMatchingScoreBoard implements Serializable {
     /**
@@ -51,22 +53,24 @@ public class ColorMatchingScoreBoard implements Serializable {
      * @param record a record
      */
     void addNewRecords(ColorMatchingRecord record) {
-        int complexity = record.getComplexity();
-        updateComplexity(complexity);
+        if (Main.INSTANCE.getColorBoardManager().puzzleSolved()) {
+            int complexity = record.getComplexity();
+            updateComplexity(complexity);
 
-        // get the ArrayList records which corresponding to the current game
-        // complexity(add a record)
-        ArrayList<ColorMatchingRecord> currentRecords = getComplexityRecords(currComplexity);
+            // get the ArrayList records which corresponding to the current game
+            // complexity(add a record)
+            ArrayList<ColorMatchingRecord> currentRecords = getComplexityRecords(currComplexity);
 
-        // add or replace the record
-        int temp = checkRecordIndex(record);
-        if (temp == -1) {
-            currentRecords.add(record);
-        } else if (currentRecords.get(temp).checkLowerScore(record)) {
-            currentRecords.remove(temp);
-            currentRecords.add(record);
+            // add or replace the record
+            int temp = checkRecordIndex(record);
+            if (temp == -1) {
+                currentRecords.add(record);
+            } else if (currentRecords.get(temp).checkLowerScore(record)) {
+                currentRecords.remove(temp);
+                currentRecords.add(record);
+            }
+            sortRecords();
         }
-        sortRecords();
     }
 
     /**
