@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package Basic;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 import Basic.LoginActivity;
 import ColorMatching.ColorMatchingActivity;
 import FlipToWin.FlipToWinStartingActivity;
+import fall2018.csc2017.slidingtiles.R;
+import fall2018.csc2017.slidingtiles.StartingActivity;
 
 
 public class SelectGameActivity extends AppCompatActivity {

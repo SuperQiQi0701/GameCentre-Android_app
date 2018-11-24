@@ -7,17 +7,29 @@
     tools:context="FlipToWin.FlipToWinComplexityActivity">
 
     <Button
+        android:id="@+id/fliptowin_complexity3Button"
+        android:layout_width="120dp"
+        android:layout_height="79dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="128dp"
+        android:text="@string/level_3"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/fliptowin_complexity2Button"
         android:layout_width="120dp"
         android:layout_height="79dp"
         android:layout_marginStart="120dp"
         android:layout_marginEnd="120dp"
-        android:layout_marginBottom="255dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/level_2"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/fliptowin_complexity3Button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -25,15 +37,13 @@
         android:layout_width="119dp"
         android:layout_height="80dp"
         android:layout_marginStart="120dp"
-        android:layout_marginTop="183dp"
         android:layout_marginEnd="120dp"
-        android:layout_marginBottom="62dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/level_1"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
         app:layout_constraintBottom_toTopOf="@+id/fliptowin_complexity2Button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/fliptowin_complexityTitle"

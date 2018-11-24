@@ -30,8 +30,8 @@ public class FlipToWinTile implements Serializable {
 //        return background;
 //    }
 
-    FlipToWinTile(int id) {
-        this.id = id + 1;
+    FlipToWinTile(int num) {
+        this.id = num + 1;
     }
 
     /**

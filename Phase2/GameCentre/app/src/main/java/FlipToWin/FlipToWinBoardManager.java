@@ -36,13 +36,13 @@ public class FlipToWinBoardManager implements Serializable, GameManageable {
      */
     public FlipToWinBoardManager(int complexity) {
         List<FlipToWinTile> fTiles = new ArrayList<>();
-        final int numTiles = complexity * complexity;
+        final int numTiles = complexity * (complexity + 1);
         for (int tileNum = 0; tileNum != numTiles / 2; tileNum++) {
             fTiles.add(new FlipToWinTile(tileNum));
             fTiles.add(new FlipToWinTile(tileNum));
         }
 
-        Collections.shuffle(fTiles);
+//        Collections.shuffle(fTiles);
         this.fBoard = new FlipToWinBoard(fTiles, complexity);
     }
 
@@ -87,10 +87,11 @@ public class FlipToWinBoardManager implements Serializable, GameManageable {
      * @return whether the tile at position is surrounded by a blank tile
      */
     boolean isValidTap(int position) {
-        int row = position / fBoard.getComplexity();
-        int col = position % fBoard.getComplexity();
+        int row = position / fBoard.getColNum();
+        int col = position % fBoard.getColNum();
 
-        return (!(fBoard.getGrid(row, col).isPaired()) & (fBoard.getGrid(row, col).flipStatus() == 0));
+        return (!(fBoard.getGrid(row, col).isPaired())
+                & (fBoard.getGrid(row, col).flipStatus() == 0));
     }
 
 
@@ -101,27 +102,27 @@ public class FlipToWinBoardManager implements Serializable, GameManageable {
      */
     public void touchMove(int position) {
 
-        int row = position / fBoard.getComplexity();
-        int col = position % fBoard.getComplexity();
+        int row = position / fBoard.getColNum();
+        int col = position % fBoard.getColNum();
         ++this.score;
 
         if (isValidTap(position)) {
             if (positionOneAndOnlyOneTileFaceUp == -1) {
                 positionOneAndOnlyOneTileFaceUp = position;
                 fBoard.makeMove(row, col);
-                System.out.println("first tap");
+//                System.out.println("first tap");
             }
             else {
                 int matchPosition = positionOneAndOnlyOneTileFaceUp;
-                int matchRow = matchPosition / fBoard.getComplexity();
-                int matchCol = matchPosition % fBoard.getComplexity();
+                int matchRow = matchPosition / fBoard.getColNum();
+                int matchCol = matchPosition % fBoard.getColNum();
                 if (matchPosition != position) {
                     if (fBoard.getGrid(row, col).getId() == fBoard.getGrid(matchRow, matchCol).getId()) {
                         fBoard.getGrid(row, col).setPaired();
                         fBoard.getGrid(matchRow, matchCol).setPaired();
                     }
                     fBoard.makeMove(row, col);
-                    System.out.println("second tap");
+//                    System.out.println("second tap");
                     positionOneAndOnlyOneTileFaceUp = -1;
                 }
                 for (FlipToWinTile ft : fBoard) {

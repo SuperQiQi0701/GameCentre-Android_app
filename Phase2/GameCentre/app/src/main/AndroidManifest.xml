@@ -26,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SelectGameActivity" />
+        <activity android:name="Basic.SelectGameActivity" />
         <activity android:name="Basic.ResetPasswordActivity" />
         <activity android:name="ColorMatching.ColorMatchingActivity" />
         <activity android:name="FlipToWin.FlipToWinGameActivity" />

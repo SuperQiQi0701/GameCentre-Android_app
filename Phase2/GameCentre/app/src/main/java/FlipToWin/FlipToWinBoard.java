@@ -26,6 +26,11 @@ public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile
      */
     private int complexity;
 
+    private int rowNum;
+
+    private int colNum;
+
+
     /**
      * The tiles on the board in row-major order.
      */
@@ -40,10 +45,12 @@ public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile
     FlipToWinBoard(List<FlipToWinTile> ftiles, int complexity) {
         Iterator<FlipToWinTile> iter = ftiles.iterator();
         this.complexity = complexity;
-        this.ftiles = new FlipToWinTile[this.complexity][this.complexity];
+        this.rowNum = complexity;
+        this.colNum = complexity + 1;
+        this.ftiles = new FlipToWinTile[this.rowNum][this.colNum];
 
-        for (int row = 0; row != this.complexity; row++) {
-            for (int col = 0; col != this.complexity; col++) {
+        for (int row = 0; row != this.rowNum; row++) {
+            for (int col = 0; col != this.colNum; col++) {
                 this.ftiles[row][col] = iter.next();
             }
         }
@@ -56,9 +63,16 @@ public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile
      */
     public int numGrids() {
 
-        return this.complexity * this.complexity;
+        return this.rowNum* this.colNum;
     }
 
+    public int getColNum() {
+        return this.colNum;
+    }
+
+    public int getRowNum() {
+        return this.rowNum;
+    }
 
     /**
      * Return the complexity of current board
@@ -86,7 +100,7 @@ public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile
      * FLip the tile
      *
      */
-    public void makeMove(int row, int col) {
+    void makeMove(int row, int col) {
         ftiles[row][col].setFlipped();
         setChanged();
         notifyObservers();
@@ -94,7 +108,7 @@ public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile
 
     @Override
     public String toString() {
-        return "Board{" +
+        return "FlipToWinBoard{" +
                 "tiles=" + Arrays.toString(ftiles) +
                 '}';
     }
@@ -109,13 +123,13 @@ public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile
     @Override
     public Iterator<FlipToWinTile> iterator() {
 
-        return new FilpToWinBoardIterator();
+        return new FlipToWinBoardIterator();
     }
 
     /**
      * Iterate over tiles in a range of total number of tiles.
      */
-    private class FilpToWinBoardIterator implements Iterator<FlipToWinTile> {
+    private class FlipToWinBoardIterator implements Iterator<FlipToWinTile> {
 
         /**
          * The row number of the tile.
@@ -128,14 +142,14 @@ public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile
 
         @Override
         public boolean hasNext() {
-            return row < FlipToWinBoard.this.getComplexity() &&
-                    col < FlipToWinBoard.this.getComplexity();
+            return row < FlipToWinBoard.this.rowNum &&
+                    col < FlipToWinBoard.this.colNum;
         }
 
         @Override
         public FlipToWinTile next() {
             if (hasNext()) {
-                if (FlipToWinBoard.this.getComplexity() - 1 == col) {
+                if (FlipToWinBoard.this.colNum - 1 == col) {
                     FlipToWinTile temp = getGrid(row, col);
                     row++;
                     col = 0;

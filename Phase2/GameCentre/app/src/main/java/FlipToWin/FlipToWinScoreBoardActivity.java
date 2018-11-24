@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import Basic.Main;
 import fall2018.csc2017.slidingtiles.R;
-import fall2018.csc2017.slidingtiles.SelectGameActivity;
+import Basic.SelectGameActivity;
 
 import static Basic.Main.INSTANCE;
 

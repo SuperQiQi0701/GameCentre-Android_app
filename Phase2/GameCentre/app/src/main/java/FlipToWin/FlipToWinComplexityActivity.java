@@ -23,6 +23,7 @@ public class FlipToWinComplexityActivity extends AppCompatActivity {
 
         setupComplexity1ButtonListener();
         setupComplexity2ButtonListener();
+        setupComplexity3ButtonListener();
     }
 
 
@@ -45,7 +46,7 @@ public class FlipToWinComplexityActivity extends AppCompatActivity {
         complexity1Button.setBackgroundColor(Color.GREEN);
         complexity1Button.setTextColor(Color.BLACK);
         complexity1Button.setOnClickListener((v) -> {
-            Main.INSTANCE.startNewFlipToWinGame(4);
+            Main.INSTANCE.startNewFlipToWinGame(3);
             String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
             Main.INSTANCE.saveFlipToWinBoardManagerToFile(this.getApplicationContext(), fileName);
             Intent temp = new Intent(this, FlipToWinGameActivity.class);
@@ -63,7 +64,24 @@ public class FlipToWinComplexityActivity extends AppCompatActivity {
         complexity2Button.setBackgroundColor(Color.YELLOW);
         complexity2Button.setTextColor(Color.BLACK);
         complexity2Button.setOnClickListener((v) -> {
-            Main.INSTANCE.startNewFlipToWinGame(6);
+            Main.INSTANCE.startNewFlipToWinGame(4);
+            String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
+            Main.INSTANCE.saveFlipToWinBoardManagerToFile(this.getApplicationContext(), fileName);
+            Intent temp = new Intent(this, FlipToWinGameActivity.class);
+            startActivity(temp);
+            finish();
+        });
+    }
+
+    /**
+     * Activate the Level 2 button.
+     */
+    private void setupComplexity3ButtonListener() {
+        Button complexity2Button = findViewById(R.id.fliptowin_complexity3Button);
+        complexity2Button.setBackgroundColor(Color.YELLOW);
+        complexity2Button.setTextColor(Color.BLACK);
+        complexity2Button.setOnClickListener((v) -> {
+            Main.INSTANCE.startNewFlipToWinGame(5);
             String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
             Main.INSTANCE.saveFlipToWinBoardManagerToFile(this.getApplicationContext(), fileName);
             Intent temp = new Intent(this, FlipToWinGameActivity.class);

@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import fall2018.csc2017.slidingtiles.R;
-import fall2018.csc2017.slidingtiles.SelectGameActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
