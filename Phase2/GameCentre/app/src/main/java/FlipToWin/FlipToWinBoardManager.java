@@ -1,22 +1,26 @@
 package FlipToWin;
 
 
+import android.os.Handler;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Observable;
 
 import Basic.GameManageable;
 
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
  */
-public class FlipToWinBoardManager implements Serializable, GameManageable {
+public class FlipToWinBoardManager extends Observable implements Serializable, GameManageable {
 
     /**
      * The board being managed.
      */
     private FlipToWinBoard board;
+    public int decisionMaking;
 
 //    /**
 //     * An ArrayList that store all the previous moves for undo function.
@@ -28,7 +32,9 @@ public class FlipToWinBoardManager implements Serializable, GameManageable {
      */
     private int score = 0;
 
-    private int positionOneAndOnlyOneTileFaceUp = -1;
+    private int positionTileOneFaceUp = -1;
+
+    private int positionTileTwoFaceUp = -1;
 
     /**
      * Manage a new shuffled board.
@@ -103,36 +109,136 @@ public class FlipToWinBoardManager implements Serializable, GameManageable {
         //position:点击的图片
         int row = position / board.getColNum();
         int col = position % board.getColNum();
-        ++this.score;
 
         if (isValidTap(position)) {
-            if (positionOneAndOnlyOneTileFaceUp == -1) {
-                positionOneAndOnlyOneTileFaceUp = position;
+            ++this.score;
+            if (positionTileOneFaceUp == -1) {
+                positionTileOneFaceUp = position;
+                decisionMaking = 0;
                 board.makeMove(row, col);
-//                System.out.println("first tap");
             }
-            else {
-                int matchPosition = positionOneAndOnlyOneTileFaceUp;
-                int matchRow = matchPosition / board.getColNum();
-                int matchCol = matchPosition % board.getColNum();
-                if (matchPosition != position) {
-                    if (board.getGrid(row, col).getId() == board.getGrid(matchRow, matchCol).getId()) {
-                        board.getGrid(row, col).setPaired();
-                        board.getGrid(matchRow, matchCol).setPaired();
-                    }
+            else if (positionTileTwoFaceUp == -1) {
 
+                int rowTileOne = positionTileOneFaceUp / board.getColNum();
+                int colTileOne = positionTileOneFaceUp % board.getColNum();
+                FlipToWinTile tileOwoFaceUp = board.getGrid(rowTileOne, colTileOne);
+                FlipToWinTile tileCurrFaceUp = board.getGrid(row, col);
+
+                if (tileOwoFaceUp.getId() == tileCurrFaceUp.getId()) {
+                    positionTileOneFaceUp = -1;
+                    tileOwoFaceUp.setPaired();
+                    tileCurrFaceUp.setPaired();
+                    decisionMaking = 1;
                     board.makeMove(row, col);
-//                    System.out.println("second tap");
-                    positionOneAndOnlyOneTileFaceUp = -1;
                 }
-                for (FlipToWinTile ft : board) {
-                    if (!(ft.isPaired()) & ft.facedUpStatus()) {
+                else {
+                    positionTileTwoFaceUp = position;
+                    decisionMaking = -1;
+                    board.makeMove(row, col);
 
-                        ft.setFlipped();
-                    }
                 }
             }
+
+            if ((positionTileOneFaceUp != -1) & (positionTileTwoFaceUp != -1)) {
+                int rowTileOne = positionTileOneFaceUp / board.getColNum();
+                int colTileOne = positionTileOneFaceUp % board.getColNum();
+                int rowTileTwo = positionTileTwoFaceUp / board.getColNum();
+                int colTileTwo = positionTileTwoFaceUp % board.getColNum();
+
+                new Handler().postDelayed(() -> {
+
+                    board.makeMove(rowTileOne, colTileOne);
+                    board.makeMove(rowTileTwo, colTileTwo);
+                    positionTileOneFaceUp = -1;
+                    positionTileTwoFaceUp = -1;
+
+                }, 1200); // 延时1秒
+            }
+
+
+
+//            Timer timer = new Timer();
+//            timer.schedule(new TimerTask() {
+//                @Override
+//                public void run() {
+//
+//                    System.out.println("delaying");
+//
+//                }
+//            },1000); // 延时1秒
+
+//            new Thread(() -> {
+//
+//                try {
+//                    Thread.sleep(1000); // 休眠1秒
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                if ((positionTileOneFaceUp != -1) & (positionTileTwoFaceUp != -1)) {
+//                    int rowTileOne = positionTileOneFaceUp / board.getColNum();
+//                    int colTileOne = positionTileOneFaceUp % board.getColNum();
+//                    int rowTileTwo = positionTileTwoFaceUp / board.getColNum();
+//                    int colTileTwo = positionTileTwoFaceUp % board.getColNum();
+//
+//                    board.makeMove(rowTileOne, colTileOne);
+//                    board.makeMove(rowTileTwo, colTileTwo);
+//                    positionTileOneFaceUp = -1;
+//                    positionTileTwoFaceUp = -1;
+//                }
+//
+//            }).start();
+
+
+//            if ((positionTileOneFaceUp != -1) & (positionTileTwoFaceUp != -1)) {
+//                int rowTileOne = positionTileOneFaceUp / board.getColNum();
+//                int colTileOne = positionTileOneFaceUp % board.getColNum();
+//                int rowTileTwo = positionTileTwoFaceUp / board.getColNum();
+//                int colTileTwo = positionTileTwoFaceUp % board.getColNum();
+//
+//                board.makeMove(rowTileOne, colTileOne);
+//                board.makeMove(rowTileTwo, colTileTwo);
+//                positionTileOneFaceUp = -1;
+//                positionTileTwoFaceUp = -1;
+//            }
+
+
+
+
+
+
         }
+//            if (positionTileOneFaceUp == -1) {
+//                positionTileOneFaceUp = position;
+//                board.makeMove(row, col);
+////                System.out.println("first tap");
+//            }
+//            else {
+//                int matchPosition = positionTileOneFaceUp;
+//                int matchRow = matchPosition / board.getColNum();
+//                int matchCol = matchPosition % board.getColNum();
+//                if (matchPosition != position) {
+//                    if (board.getGrid(row, col).getId() == board.getGrid(matchRow, matchCol).getId()) {
+//                        board.getGrid(row, col).setPaired();
+//                        board.getGrid(matchRow, matchCol).setPaired();
+//                    }
+//
+//                    board.makeMove(row, col);
+////                    System.out.println("second tap");
+//                    positionTileOneFaceUp = -1;
+//                }
+//                for (FlipToWinTile ft : board) {
+//                    if (!(ft.isPaired()) & ft.facedUpStatus()) {
+//
+//                        ft.setFlipped();
+//                    }
+//                }
+//            }
+//        }
+
+
+
+
 //                int acc = 0;
 //                for (FlipToWinTile ft: board) {
 //                    if (!(ft.isPaired()) & ft.flipStatus() != 0) {
