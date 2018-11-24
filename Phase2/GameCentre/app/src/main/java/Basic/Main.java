@@ -106,7 +106,7 @@ public enum Main {
     /**
      * This will create a new instance of FlipToWinBoardManager for new game function
      */
-    void startNewColorMatchingGame(int complexity) {
+    public void startNewColorMatchingGame(int complexity) {
         this.colorBoardManager = new ColorBoardManager(complexity);
     }
 
@@ -254,7 +254,7 @@ public enum Main {
      * @param fileContext this.getApplicationContext()
      * @param fileName    the name of the file
      */
-    void saveColorBoardManagerToFile(@NonNull Context fileContext, String fileName) {
+    public void saveColorBoardManagerToFile(@NonNull Context fileContext, String fileName) {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
@@ -272,7 +272,7 @@ public enum Main {
      * @param fileContext this.getApplicationContext()
      * @param fileName    the name of the file
      */
-    void loadColorBoardManagerFromFile(@NonNull Context fileContext, String fileName) {
+    public void loadColorBoardManagerFromFile(@NonNull Context fileContext, String fileName) {
 
         try {
             InputStream inputStream = fileContext.openFileInput(fileName);
