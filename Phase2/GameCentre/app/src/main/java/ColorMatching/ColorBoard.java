@@ -26,4 +26,6 @@ public class ColorBoard implements Playable<ColorTile> {
     void setGrid(int row, int col) {
         tiles[row][col] = new ColorTile(row, col);
     }
+
+
 }
