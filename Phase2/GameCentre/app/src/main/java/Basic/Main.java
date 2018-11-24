@@ -32,7 +32,7 @@ public enum Main {
 
 
     /**
-     * the FlipToWinBoardManager of this game
+     * the slidingTileBoardManager of this game
      */
     public BoardManager boardManager;
 
