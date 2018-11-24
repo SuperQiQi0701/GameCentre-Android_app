@@ -2,7 +2,7 @@ package Basic;
 
 import java.io.Serializable;
 
-public abstract class SuperTile implements Serializable {
+public abstract class GridTile implements Serializable {
 
     /**
      * The background id to find the tile image.
@@ -11,10 +11,10 @@ public abstract class SuperTile implements Serializable {
 
     private int complexity;
 
-    public SuperTile(){
+    public GridTile(){
     }
 
-    public SuperTile(int background, int complexity) {
+    public GridTile(int background, int complexity) {
         this.background = background;
         this.complexity = complexity;
     }

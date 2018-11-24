@@ -6,11 +6,11 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public abstract class SuperBoard implements Iterable, Serializable {
+public abstract class GridBoard implements Iterable, Serializable {
 
     private int complexity;
 
-    abstract public SuperTile getGrid(int row, int col);
+    abstract public GridTile getGrid(int row, int col);
 
     abstract public int getColNum();
 
@@ -52,14 +52,14 @@ public abstract class SuperBoard implements Iterable, Serializable {
 
         @Override
         public boolean hasNext() {
-            return row < SuperBoard.this.getComplexity() && col < SuperBoard.this.getComplexity();
+            return row < GridBoard.this.getComplexity() && col < GridBoard.this.getComplexity();
         }
 
         @Override
-        public SuperTile next() {
+        public GridTile next() {
             if (hasNext()) {
-                if (SuperBoard.this.getComplexity() - 1 == col) {
-                    SuperTile temp = getGrid(row, col);
+                if (GridBoard.this.getComplexity() - 1 == col) {
+                    GridTile temp = getGrid(row, col);
                     row++;
                     col = 0;
                     return temp;
