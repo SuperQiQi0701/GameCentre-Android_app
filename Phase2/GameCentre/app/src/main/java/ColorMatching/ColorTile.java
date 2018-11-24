@@ -1,6 +1,8 @@
 package ColorMatching;
 
-public class ColorTile{
+import java.io.Serializable;
+
+public class ColorTile implements Serializable {
     int x;
     int y;
     private int color;

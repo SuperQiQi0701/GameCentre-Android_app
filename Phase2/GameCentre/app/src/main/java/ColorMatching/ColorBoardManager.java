@@ -1,10 +1,11 @@
 package ColorMatching;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Basic.GameManageable;
 
-public class ColorBoardManager implements GameManageable {
+public class ColorBoardManager implements Serializable, GameManageable {
     /**
      * The board being managed.
      */

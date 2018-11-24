@@ -1,8 +1,10 @@
 package ColorMatching;
 
+import java.io.Serializable;
+
 import Basic.Playable;
 
-public class ColorBoard implements Playable<ColorTile> {
+public class ColorBoard implements Serializable, Playable<ColorTile> {
 
     /**
      * The name of this game.
