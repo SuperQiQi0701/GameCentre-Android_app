@@ -25,6 +25,12 @@ class FlipToWinMovementController {
 //            Toast.makeText(context, "is valid", Toast.LENGTH_SHORT).show();
             Main.INSTANCE.getFlipToWinBoardManager().touchMove(position);
 //            Toast.makeText(context, "does move", Toast.LENGTH_SHORT).show();
+            if (Main.INSTANCE.getFlipToWinBoardManager().decisionMaking == -1) {
+                Toast.makeText(context, "Wrong Decision !", Toast.LENGTH_SHORT).show();
+            }
+            else if (Main.INSTANCE.getFlipToWinBoardManager().decisionMaking == 1){
+                Toast.makeText(context, "Correct Decision !", Toast.LENGTH_SHORT).show();
+            }
             if (Main.INSTANCE.getFlipToWinBoardManager().puzzleSolved()) {
                 Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
                 Intent temp = new Intent(context, FlipToWinScoreBoardActivity.class);
