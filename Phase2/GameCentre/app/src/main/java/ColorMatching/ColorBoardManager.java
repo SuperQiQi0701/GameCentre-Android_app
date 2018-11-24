@@ -107,6 +107,8 @@ public class ColorBoardManager implements GameManageable {
             arr.add(tile);
             allState.remove(0);
         }
+        allMove.add(arr);
+        colors.add(initColor);
     }
 
 
