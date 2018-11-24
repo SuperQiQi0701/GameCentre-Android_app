@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import java.util.Random;
 
 import Basic.CustomAdapter;
+import Basic.Main;
 import fall2018.csc2017.slidingtiles.R;
 
 public class ColorMatchingActivity extends AppCompatActivity {
@@ -30,6 +31,8 @@ public class ColorMatchingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_matching_game);
+        String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
+        Main.INSTANCE.loadColorBoardManagerFromFile(this.getApplicationContext(), fileName);
         initData();
         initView();
         addRedButtonListener();
@@ -56,13 +59,14 @@ public class ColorMatchingActivity extends AppCompatActivity {
     }
 
     public void initData(){
+        int complexity = Main.INSTANCE.getColorBoardManager().getGame().getComplexity();
         int width = getScreenWidth(this);
         this.width = width;
-        height = width*5/4;
-        colorBoardManager = new ColorBoardManager(5);
+        height = width * 5 / 4;
+        colorBoardManager = new ColorBoardManager(complexity);
         colorView = new ColorView();
-        colorBoardManager.board = new boolean[8][10];
-        colorView.setBoxSize(this.width / colorBoardManager.board.length);
+        colorBoardManager.board = new boolean[(complexity - 2) * 4 ][(complexity - 2) * 5 ];
+        colorView.setBoxSize(this.width / (colorBoardManager.board.length));
     }
 
     public void initView(){

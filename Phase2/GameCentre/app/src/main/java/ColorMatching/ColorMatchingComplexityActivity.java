@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import Basic.Main;
 
+import Basic.SelectGameActivity;
 import fall2018.csc2017.slidingtiles.R;
 
 public class ColorMatchingComplexityActivity extends AppCompatActivity {
@@ -28,9 +29,9 @@ public class ColorMatchingComplexityActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        TextView tv = findViewById(R.id.complexityTitle);
+        /*TextView tv = findViewById(R.id.complexityTitle);
         tv.setText("Choose A Level!");
-        tv.setTextColor(Color.BLACK);
+        tv.setTextColor(Color.BLACK);*/
     }
 
 
@@ -68,17 +69,17 @@ public class ColorMatchingComplexityActivity extends AppCompatActivity {
     }
 
 
-/*    @Override
+    @Override
     public void onBackPressed() {
         finish();
-        Intent temp = new Intent(this, StartingActivity.class);
+        Intent temp = new Intent(this, SelectGameActivity.class);
         startActivity(temp);
-    }*/
+    }
 
     private void setUpGame(int complexity) {
         Main.INSTANCE.startNewColorMatchingGame(complexity);
         String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-        Main.INSTANCE.saveBoardManagerToFile(this.getApplicationContext(), fileName);
+        Main.INSTANCE.saveColorBoardManagerToFile(this.getApplicationContext(), fileName);
         Intent temp = new Intent(this, ColorMatchingActivity.class);
         startActivity(temp);
         finish();

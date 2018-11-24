@@ -6,20 +6,23 @@ public class ColorBoard implements Playable<ColorTile> {
 
     public static final String GAME_NAME = "Color Matching";
 
+    private int complexity;
+
     public ColorTile[][] tiles;
 
-    ColorBoard() {
-        this.tiles = new ColorTile[8][10];
+    ColorBoard( int complexity) {
+        this.tiles = new ColorTile[(complexity - 2) * 4][(complexity - 2)  * 5];
+        this.complexity = complexity;
     }
 
     @Override
     public int getComplexity() {
-        return 0;
+        return complexity;
     }
 
     @Override
     public int numGrids() {
-        return 0;
+        return complexity * complexity * 20;
     }
 
     public ColorTile getGrid(int row, int col) {

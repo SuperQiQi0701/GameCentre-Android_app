@@ -16,8 +16,8 @@ public class ColorBoardManager implements GameManageable {
     ArrayList arr;
 
     public ColorBoardManager(int complexity) {
-        this.colorBoard = new ColorBoard();
-        board = new boolean[8][10];
+        this.colorBoard = new ColorBoard(complexity);
+        board = new boolean[(complexity - 2) * 4][ (complexity - 2) * 5];
         allMove = new ArrayList<>();
         current = new ArrayList<>();
         colors = new ArrayList<>();
@@ -34,7 +34,7 @@ public class ColorBoardManager implements GameManageable {
     }
 
     public ColorTile getRight(ColorTile tile){
-        if((tile.x)+1 < 8){
+        if((tile.x)+1 < board.length){
             return colorBoard.getGrid((tile.x)+1, tile.y);
         }
         return null;
@@ -48,7 +48,7 @@ public class ColorBoardManager implements GameManageable {
     }
 
     public ColorTile getBottom(ColorTile tile){
-        if((tile.y)+1 < 10){
+        if((tile.y)+1 < board.length*5/4){
             return colorBoard.getGrid(tile.x, (tile.y)+1);
         }
         return null;
