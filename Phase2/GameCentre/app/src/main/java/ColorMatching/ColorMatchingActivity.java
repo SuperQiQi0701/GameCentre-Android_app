@@ -1,6 +1,7 @@
 package ColorMatching;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.FrameLayout;
 
 import java.util.Random;
 
+import Basic.CustomAdapter;
 import fall2018.csc2017.slidingtiles.R;
 
 public class ColorMatchingActivity extends AppCompatActivity {
@@ -20,6 +22,8 @@ public class ColorMatchingActivity extends AppCompatActivity {
     int width, height;
     ColorBoardManager colorBoardManager;
     ColorView colorView;
+
+//    private ColorMatchingGestureDetectGridView colorGridView;
 
 
     @Override
@@ -34,6 +38,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
         addGREENButtonListener();
         addGreyButtonListener();
         addUndoButtonListener();
+        addScoreBoardListener();
     }
 
     public void draw(){
@@ -139,6 +144,14 @@ public class ColorMatchingActivity extends AppCompatActivity {
         redButton.setOnClickListener((v) -> {
             colorBoardManager.changeColor(Color.GRAY);
             colorView.view.invalidate();
+        });
+    }
+
+    private void addScoreBoardListener(){
+        Button scoreboard = findViewById(R.id.scoreboard);
+        scoreboard.setOnClickListener((v) -> {
+            Intent temp = new Intent(this, ColorMatchingScoreBoardActivity.class);
+            startActivity(temp);
         });
     }
 

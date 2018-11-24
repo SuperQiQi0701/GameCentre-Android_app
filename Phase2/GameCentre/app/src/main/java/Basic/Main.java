@@ -11,6 +11,8 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import ColorMatching.ColorBoard;
+import ColorMatching.ColorMatchingScoreBoard;
 import fall2018.csc2017.slidingtiles.Board;
 import fall2018.csc2017.slidingtiles.BoardManager;
 import ColorMatching.ColorBoardManager;
@@ -34,16 +36,22 @@ public enum Main {
      */
     public BoardManager boardManager;
 
+    /**
+     * The ColorBoardManager of this game
+     */
+    public ColorBoardManager colorBoardManager;
+
+
+    /**
+     * The FlipToWinBoardManager of this game
+     */
+    public FlipToWinBoardManager flipToWinBoardManager;
+
 
     /**
      * The UserManager of this game
      */
     public UserManager userManager;
-
-    /**
-     * The ColorBoardManager of this game
-     */
-    public ColorBoardManager colorBoardManager;
 
 
     /**
@@ -53,10 +61,7 @@ public enum Main {
 
     public FlipToWinScoreBoard flipScoreBoard;
 
-    /**
-     * The FlipToWinBoardManager of this game
-     */
-    public FlipToWinBoardManager flipToWinBoardManager;
+    public ColorMatchingScoreBoard colorScoreBoard = new ColorMatchingScoreBoard();
 
 
     /**
@@ -167,6 +172,10 @@ public enum Main {
         return flipScoreBoard;
     }
 
+    public ColorMatchingScoreBoard getColorScoreBoard(){
+        return colorScoreBoard;
+    }
+
 
     /**
      * This will create a new instance of ScoreBoard for new game function
@@ -177,6 +186,10 @@ public enum Main {
 
     void setFlipToWinScoreBoard(FlipToWinScoreBoard fsb) {
         this.flipScoreBoard = fsb;
+    }
+
+    void setColorMatchingScoreboard(ColorMatchingScoreBoard csb){
+        this.colorScoreBoard = csb;
     }
 
 
@@ -200,6 +213,13 @@ public enum Main {
      */
     public void newScoreBoard() {
         this.scoreBoard = new ScoreBoard();
+    }
+
+    /**
+     * Create an new ScoreBoard
+     */
+    public void newColorMatchingScoreBoard() {
+        this.colorScoreBoard = new ColorMatchingScoreBoard();
     }
 
 
@@ -450,6 +470,46 @@ public enum Main {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
             outputStream.writeObject(flipScoreBoard);
+            outputStream.close();
+        } catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
+
+    /**
+     * Load scoreBoard from file
+     *
+     * @param fileContext this.getApplicationContext()
+     */
+    public void loadColorMatchingScoreBoardFromFile(Context fileContext) {
+        try {
+            String fileName = ColorBoard.GAME_NAME + "_ScoreBoard.ser";
+            InputStream inputStream = fileContext.openFileInput(fileName);
+            if (inputStream != null) {
+                ObjectInputStream input = new ObjectInputStream(inputStream);
+                setColorMatchingScoreboard((ColorMatchingScoreBoard) input.readObject());
+                inputStream.close();
+            }
+        } catch (FileNotFoundException e) {
+            newColorMatchingScoreBoard();
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        } catch (ClassNotFoundException e) {
+            Log.e("login activity", "File contained unexpected data type: " + e.toString());
+        }
+    }
+
+    /**
+     * Save the scoreBoard to file.
+     *
+     * @param fileContext this.getApplicationContext()
+     */
+    public void saveColorMatchingScoreBoardToFile(Context fileContext) {
+        try {
+            String fileName = ColorBoard.GAME_NAME + "_ScoreBoard.ser";
+            ObjectOutputStream outputStream = new ObjectOutputStream(
+                    fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
+            outputStream.writeObject(colorScoreBoard);
             outputStream.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());

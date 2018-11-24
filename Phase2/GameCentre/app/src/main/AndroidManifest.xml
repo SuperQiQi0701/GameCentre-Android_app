@@ -32,7 +32,8 @@
         <activity android:name="FlipToWin.FlipToWinGameActivity" />
         <activity android:name="FlipToWin.FlipToWinStartingActivity" />
         <activity android:name="FlipToWin.FlipToWinComplexityActivity" />
-        <activity android:name="FlipToWin.FlipToWinScoreBoardActivity"></activity>
+        <activity android:name="FlipToWin.FlipToWinScoreBoardActivity" />
+        <activity android:name="ColorMatching.ColorMatchingScoreBoardActivity"></activity>
     </application>
 
 </manifest>
