@@ -11,10 +11,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import java.util.Random;
 
 import Basic.CustomAdapter;
+import Basic.Main;
 import fall2018.csc2017.slidingtiles.R;
 
 public class ColorMatchingActivity extends AppCompatActivity {
@@ -53,6 +55,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
         };
         colorView.view.setLayoutParams(new FrameLayout.LayoutParams(width,height));
         colorView.view.setBackgroundColor(0x10000000);
+        getScore();
     }
 
     public void initData(){
@@ -68,7 +71,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
     public void initView(){
         FrameLayout layoutGame = findViewById(R.id.layoutGame);
         draw();
-        layoutGame.addView(colorView.view);}
+        layoutGame.addView(colorView.view); }
 
     public static int getScreenWidth(Context context){
         WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
@@ -88,6 +91,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
                 colorBoardManager.colorBoard.getGrid(x, y).setColor(color);
             }
         }
+        getScore();
     }
 
     public void uploadBoard(Canvas canvas){
@@ -97,6 +101,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
                 colorView.drawBox(canvas, color, x, y);
             }
         }
+        getScore();
     }
 
     private void addUndoButtonListener(){
@@ -104,7 +109,18 @@ public class ColorMatchingActivity extends AppCompatActivity {
         undo.setOnClickListener((v) -> {
             colorBoardManager.undo();
             colorView.view.invalidate();
+            getScore();
         });
+
+    }
+
+    /**
+     * GetScore of the state.
+     */
+    void getScore() {
+        TextView currScoreTextView = findViewById(R.id.colormatch_currScoreText);
+        String score = Integer.toString(colorBoardManager.getScore());
+        currScoreTextView.setText(score);
     }
 
     private void addRedButtonListener() {
@@ -112,6 +128,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
         redButton.setOnClickListener((v) -> {
             colorBoardManager.changeColor(Color.RED);
             colorView.view.invalidate();
+            getScore();
         });
     }
 
@@ -120,6 +137,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
         redButton.setOnClickListener((v) -> {
             colorBoardManager.changeColor(Color.YELLOW);
             colorView.view.invalidate();
+            getScore();
         });
     }
 
@@ -128,6 +146,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
         redButton.setOnClickListener((v) -> {
             colorBoardManager.changeColor(Color.BLUE);
             colorView.view.invalidate();
+            getScore();
         });
     }
 
@@ -136,6 +155,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
         redButton.setOnClickListener((v) -> {
             colorBoardManager.changeColor(Color.GREEN);
             colorView.view.invalidate();
+            getScore();
         });
     }
 
@@ -144,6 +164,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
         redButton.setOnClickListener((v) -> {
             colorBoardManager.changeColor(Color.GRAY);
             colorView.view.invalidate();
+            getScore();
         });
     }
 
