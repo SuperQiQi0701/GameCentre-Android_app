@@ -5,7 +5,6 @@ import android.os.Handler;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
@@ -48,7 +47,7 @@ public class FlipToWinBoardManager extends Observable implements Serializable, G
             fTiles.add(new FlipToWinTile(tileNum));
         }
 
-        Collections.shuffle(fTiles);
+//        Collections.shuffle(fTiles);
         this.board = new FlipToWinBoard(fTiles, complexity);
     }
 

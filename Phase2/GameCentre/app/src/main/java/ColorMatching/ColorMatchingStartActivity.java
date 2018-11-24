@@ -96,7 +96,7 @@ public class ColorMatchingStartActivity extends AppCompatActivity {
      * Switch to the ComplexityActivity view to choose a game level.
      */
     private void switchToComplexity() {
-        Intent temp = new Intent(this, ColorMatchingActivity.class);
+        Intent temp = new Intent(this, ColorMatchingComplexityActivity.class);
         startActivity(temp);
         finish();
     }
