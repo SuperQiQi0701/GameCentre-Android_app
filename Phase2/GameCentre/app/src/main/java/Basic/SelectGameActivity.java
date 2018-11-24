@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import Basic.LoginActivity;
-import ColorMatching.ColorMatchingActivity;
+import ColorMatching.ColorMatchingStartActivity;
 import FlipToWin.FlipToWinStartingActivity;
 import fall2018.csc2017.slidingtiles.R;
 import fall2018.csc2017.slidingtiles.StartingActivity;
@@ -54,7 +54,7 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setBackgroundColor(Color.YELLOW);
         mSliding.setTextColor(Color.BLACK);
         mSliding.setOnClickListener(v -> {
-            Intent slide = new Intent(this, ColorMatchingActivity.class);
+            Intent slide = new Intent(this, ColorMatchingStartActivity.class);
             startActivity(slide);
         });
     }
