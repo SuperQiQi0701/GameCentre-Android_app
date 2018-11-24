@@ -28,13 +28,10 @@ public class FileManager {
     void saveToFile(Context fileContext, Object object, String type) {
         try {
             String fileName = DataManager.INSTANCE.getCurrentGameName();
-            switch (type) {
-                case "UM":
-                    fileName = fileName + "_UserManager.ser";
-                    break;
-                case "SB":
-                    fileName = fileName + "_ScoreBoard.ser";
-                    break;
+            if ("UM".equals(type)) {
+                fileName = fileName + "_UserManager.ser";
+            } else {
+                fileName = fileName + "_ScoreBoard.ser";
             }
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
@@ -45,38 +42,49 @@ public class FileManager {
         }
     }
 
-//    /**
-//     * Load the object from file and return it
-//     *
-//     * Precondition: the type is either "UM" or "SB"
-//     *
-//     * @param fileContext this.getApplicationContext()
-//     * @param type the type of the object.
-//     * @return the object that loaded from file
-//     */
-//    Object loadFromFile(Context fileContext, String type) {
-//        try {
-//            String fileName = DataManager.INSTANCE.getCurrentGameName();
-//            if ("UM".equals(type)) {
-//                fileName = fileName + "_UserManager.ser";
-//            } else {
-//                fileName = fileName + "_ScoreBoard.ser";
-//            }
-//            InputStream inputStream = fileContext.openFileInput(fileName);
-//            if (inputStream != null) {
-//                ObjectInputStream input = new ObjectInputStream(inputStream);
-//                Object object = input.readObject();
-//                inputStream.close();
-//                return object;
-//            }
-//        } catch (Exception e) {
-//            if ("UM".equals(type)) {
-//                return new UserManager();
-//            } else {
-//                return new ScoreBoard();
-//            }
-//        }
-//    }
+    /**
+     * Load the userManager from file and return it
+     *
+     * @param fileContext this.getApplicationContext()
+     * @return the userManager that loaded from file
+     */
+    UserManager loadUserManager(Context fileContext) {
+        try {
+            String fileName = DataManager.INSTANCE.getCurrentGameName() + "_UserManager.ser";
+            InputStream inputStream = fileContext.openFileInput(fileName);
+            if (inputStream != null) {
+                ObjectInputStream input = new ObjectInputStream(inputStream);
+                UserManager userManager = (UserManager) input.readObject();
+                inputStream.close();
+                return userManager;
+            }
+            return new UserManager();
+        } catch (Exception e) {
+            return new UserManager();
+        }
+    }
+
+    /**
+     * Load the scoreBoard from file and return it
+     *
+     * @param fileContext this.getApplicationContext()
+     * @return the scoreBoard that loaded from file
+     */
+    ScoreBoard loadScoreBoard(Context fileContext) {
+        try {
+            String fileName = DataManager.INSTANCE.getCurrentGameName() + "_ScoreBoard.ser";
+            InputStream inputStream = fileContext.openFileInput(fileName);
+            if (inputStream != null) {
+                ObjectInputStream input = new ObjectInputStream(inputStream);
+                ScoreBoard scoreBoard = (ScoreBoard) input.readObject();
+                inputStream.close();
+                return scoreBoard;
+            }
+            return new ScoreBoard();
+        } catch (Exception e) {
+            return new ScoreBoard();
+        }
+    }
 
 
 //    /**
