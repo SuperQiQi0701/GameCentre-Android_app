@@ -70,7 +70,7 @@ public enum Main {
     /**
      * Return the ColorBoardManager
      */
-    ColorBoardManager getColorBoardManager(){ return this.colorBoardManager;}
+    public ColorBoardManager getColorBoardManager(){ return this.colorBoardManager;}
 
     /**
      * Set the FlipToWinBoardManager for loading function.
@@ -89,6 +89,7 @@ public enum Main {
     void setColorBoardManager(ColorBoardManager cbm) {
         this.colorBoardManager = cbm;
     }
+
 
     /**
      * This will create a new instance of FlipToWinBoardManager for new game function
