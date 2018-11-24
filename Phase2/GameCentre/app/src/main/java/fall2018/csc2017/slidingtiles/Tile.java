@@ -4,16 +4,18 @@ import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 
+import Basic.SuperTile;
+
 /**
  * A Tile in a sliding tiles puzzle.
  */
-public class Tile implements Comparable<Tile>, Serializable {
+public class Tile extends SuperTile implements Comparable<Tile>, Serializable {
 
-    /**
-     * The background id to find the tile image.
-     */
-    private int background;
-
+//    /**
+//     * The background id to find the tile image.
+//     */
+//    private int background;
+//
     /**
      * The unique id.
      */
@@ -25,7 +27,7 @@ public class Tile implements Comparable<Tile>, Serializable {
      * @return the background id
      */
     public int getBackground() {
-        return background;
+        return super.getBackground();
     }
 
     /**
@@ -44,93 +46,94 @@ public class Tile implements Comparable<Tile>, Serializable {
      * @param complexity   the complexity of the game
      */
     Tile(int backgroundId, int complexity) {
+        super(backgroundId, complexity);
         id = backgroundId + 1;
         switch (backgroundId + 1) {
             case 1:
-                background = R.drawable.tile_1;
+                super.setBackground(R.drawable.tile_1);
                 break;
             case 2:
-                background = R.drawable.tile_2;
+                super.setBackground(R.drawable.tile_2);
                 break;
             case 3:
-                background = R.drawable.tile_3;
+                super.setBackground(R.drawable.tile_3);
                 break;
             case 4:
-                background = R.drawable.tile_4;
+                super.setBackground(R.drawable.tile_4);
                 break;
             case 5:
-                background = R.drawable.tile_5;
+                super.setBackground(R.drawable.tile_5);
                 break;
             case 6:
-                background = R.drawable.tile_6;
+                super.setBackground(R.drawable.tile_6);
                 break;
             case 7:
-                background = R.drawable.tile_7;
+                super.setBackground(R.drawable.tile_7);
                 break;
             case 8:
-                background = R.drawable.tile_8;
+                super.setBackground(R.drawable.tile_8);
                 break;
             case 9:
                 if (complexity == 3) {
-                    background = R.drawable.tile_0;
+                    super.setBackground(R.drawable.tile_0);
                 } else {
-                    background = R.drawable.tile_9;
+                    super.setBackground(R.drawable.tile_9);
                 }
                 break;
             case 10:
-                background = R.drawable.tile_10;
+                super.setBackground(R.drawable.tile_10);
                 break;
             case 11:
-                background = R.drawable.tile_11;
+                super.setBackground(R.drawable.tile_11);
                 break;
             case 12:
-                background = R.drawable.tile_12;
+                super.setBackground(R.drawable.tile_12);
                 break;
             case 13:
-                background = R.drawable.tile_13;
+                super.setBackground(R.drawable.tile_13);
                 break;
             case 14:
-                background = R.drawable.tile_14;
+                super.setBackground(R.drawable.tile_14);
                 break;
             case 15:
-                background = R.drawable.tile_15;
+                super.setBackground(R.drawable.tile_15);
                 break;
             case 16:
                 if (complexity == 4) {
-                    background = R.drawable.tile_0;
+                    super.setBackground(R.drawable.tile_0);
                 } else {
-                    background = R.drawable.tile_16;
+                    super.setBackground(R.drawable.tile_16);
                 }
                 break;
             case 17:
-                background = R.drawable.tile_17;
+                super.setBackground(R.drawable.tile_17);
                 break;
             case 18:
-                background = R.drawable.tile_18;
+                super.setBackground(R.drawable.tile_18);
                 break;
             case 19:
-                background = R.drawable.tile_19;
+                super.setBackground(R.drawable.tile_19);
                 break;
             case 20:
-                background = R.drawable.tile_20;
+                super.setBackground(R.drawable.tile_20);
                 break;
             case 21:
-                background = R.drawable.tile_21;
+                super.setBackground(R.drawable.tile_21);
                 break;
             case 22:
-                background = R.drawable.tile_22;
+                super.setBackground(R.drawable.tile_22);
                 break;
             case 23:
-                background = R.drawable.tile_23;
+                super.setBackground(R.drawable.tile_23);
                 break;
             case 24:
-                background = R.drawable.tile_24;
+                super.setBackground(R.drawable.tile_24);
                 break;
             case 25:
-                background = R.drawable.tile_0;
+                super.setBackground(R.drawable.tile_0);
                 break;
             default:
-                background = R.drawable.tile_0;
+                super.setBackground(R.drawable.tile_0);
         }
     }
 
