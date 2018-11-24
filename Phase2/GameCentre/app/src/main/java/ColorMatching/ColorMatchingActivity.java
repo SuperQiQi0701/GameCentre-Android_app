@@ -118,7 +118,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
      * GetScore of the state.
      */
     void getScore() {
-        TextView currScoreTextView = findViewById(R.id.colormatch_currScoreText);
+        TextView currScoreTextView = findViewById(R.id.color_match_currScoreText);
         String score = Integer.toString(colorBoardManager.getScore());
         currScoreTextView.setText(score);
     }
