@@ -12,12 +12,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
 import Basic.CustomAdapter;
 import Basic.Main;
 import fall2018.csc2017.slidingtiles.R;
+import fall2018.csc2017.slidingtiles.ScoreBoardActivity;
 
 public class ColorMatchingActivity extends AppCompatActivity {
 
@@ -41,6 +43,14 @@ public class ColorMatchingActivity extends AppCompatActivity {
         addGreyButtonListener();
         addUndoButtonListener();
         addScoreBoardListener();
+    }
+
+    public void checkWin(){
+        if (Main.INSTANCE.getColorBoardManager().puzzleSolved()){
+            Toast.makeText(this, "YOU WIN!", Toast.LENGTH_SHORT).show();
+            Intent temp = new Intent(this, ColorMatchingScoreBoardActivity.class);
+            startActivity(temp);
+        }
     }
 
     public void draw(){
@@ -129,6 +139,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
             Main.INSTANCE.getColorBoardManager().changeColor(Color.RED);
             colorView.view.invalidate();
             getScore();
+            checkWin();
         });
     }
 
@@ -138,6 +149,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
             Main.INSTANCE.getColorBoardManager().changeColor(Color.YELLOW);
             colorView.view.invalidate();
             getScore();
+            checkWin();
         });
     }
 
@@ -147,6 +159,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
             Main.INSTANCE.getColorBoardManager().changeColor(Color.BLUE);
             colorView.view.invalidate();
             getScore();
+            checkWin();
         });
     }
 
@@ -156,6 +169,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
             Main.INSTANCE.getColorBoardManager().changeColor(Color.GREEN);
             colorView.view.invalidate();
             getScore();
+            checkWin();
         });
     }
 
@@ -165,6 +179,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
             Main.INSTANCE.getColorBoardManager().changeColor(Color.GRAY);
             colorView.view.invalidate();
             getScore();
+            checkWin();
         });
     }
 
