@@ -92,10 +92,12 @@ public class ColorMatchingScoreBoardActivity extends AppCompatActivity {
         TextView05.setTextColor(Color.MAGENTA);
     }
 
-//    @Override
-////    public void onBackPressed() {
-////        finish();
-////        Intent temp = new Intent(this, SelectGameActivity.class);
-////        startActivity(temp);
-////    }
+    @Override
+    public void onBackPressed() {
+        if (Main.INSTANCE.getColorBoardManager().puzzleSolved()) {
+            finish();
+            Intent temp = new Intent(this, SelectGameActivity.class);
+            startActivity(temp);
+        }
+    }
 }
