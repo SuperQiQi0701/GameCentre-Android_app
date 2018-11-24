@@ -2,7 +2,7 @@ package Basic;
 
 import java.io.Serializable;
 
-public abstract class SuperBoardManager implements Serializable {
+public abstract class GridBoardManager implements Serializable {
 
     /**
      * An integer that keep track the score of the current game
@@ -12,7 +12,7 @@ public abstract class SuperBoardManager implements Serializable {
     /**
      * The board being managed.
      */
-    private SuperBoard board;
+    private GridBoard board;
 
     /**
      * Return the current score of the game
@@ -26,7 +26,7 @@ public abstract class SuperBoardManager implements Serializable {
     /**
      * Return the current board.
      */
-    public SuperBoard getGame() {
+    public GridBoard getGame() {
         return board;
     }
 

@@ -10,6 +10,8 @@ public enum DataManager {
 
     /**
      * The String that represent the current game name.
+     * <p>
+     * Precondition: currentGameName should be one of the "ST", "CM" and "FTW"
      */
     private String currentGameName;
 
@@ -17,6 +19,12 @@ public enum DataManager {
      * The String that represent the current user name.
      */
     private String currentUserName;
+
+    /**
+     * The boardManager of the game
+     */
+    private GridBoardManager boardManager;
+
 
     /**
      * Return the current game name
@@ -28,7 +36,7 @@ public enum DataManager {
     }
 
     /**
-     * Set the currentGameName to the given game name
+     * Set the this.currentGameName to the given game name
      *
      * @param currentGameName the given current game name
      */
@@ -46,7 +54,7 @@ public enum DataManager {
     }
 
     /**
-     * Set currentUserName to the given game name
+     * Set this.currentUserName to the given game name
      *
      * @param currentUserName the given game name
      */
@@ -54,6 +62,36 @@ public enum DataManager {
         this.currentUserName = currentUserName;
     }
 
+    /**
+     * Return the boardManager of the game
+     *
+     * @return the boardManager of the game
+     */
+    public GridBoardManager getBoardManager() {
+        return boardManager;
+    }
+
+    /**
+     * Set this.boardManager to the given boardManager
+     *
+     * @param boardManager the given boardManager
+     */
+    public void setBoardManager(GridBoardManager boardManager) {
+        this.boardManager = boardManager;
+    }
+
+//    /**
+//     * This will create a new instance of FlipToWinBoardManager for new game function
+//     */
+//    void startNewGame(int complexity) {
+//        if (currentGameName.equals("ST")) {
+//            this.boardManager = new BoardManager(complexity);
+//        } else if (currentGameName.equals("CM")) {
+//            this.boardManager = new ColorBoardManager(complexity);
+//        } else {
+//            this.boardManager = new FlipToWinBoardManager(complexity);
+//        }
+//    }
 
 
 //    /**

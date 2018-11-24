@@ -5,7 +5,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
-public class ColorView {
+import java.io.Serializable;
+
+public class ColorView implements Serializable {
 
     View view;
     private int boxSize;

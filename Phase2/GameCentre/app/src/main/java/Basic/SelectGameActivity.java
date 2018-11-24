@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import Basic.LoginActivity;
+import ColorMatching.ColorMatchingStartActivity;
 import ColorMatching.ColorMatchingActivity;
 import ColorMatching.ColorMatchingComplexityActivity;
 import FlipToWin.FlipToWinStartingActivity;
@@ -52,8 +53,8 @@ public class SelectGameActivity extends AppCompatActivity {
 
     private void addColorMatchingListener() {
         Button mSliding = findViewById(R.id.enter_colormatching_button);
-        mSliding.setBackgroundColor(Color.MAGENTA);
-        mSliding.setTextColor(Color.YELLOW);
+        mSliding.setBackgroundColor(Color.YELLOW);
+        mSliding.setTextColor(Color.BLACK);
         mSliding.setOnClickListener(v -> {
             Intent slide = new Intent(this, ColorMatchingComplexityActivity.class);
             startActivity(slide);
@@ -63,8 +64,8 @@ public class SelectGameActivity extends AppCompatActivity {
 
     private void addFlipToWinListener() {
         Button mSliding = findViewById(R.id.enter_flipToTile_button);
-        mSliding.setBackgroundColor(Color.MAGENTA);
-        mSliding.setTextColor(Color.YELLOW);
+        mSliding.setBackgroundColor(Color.CYAN);
+        mSliding.setTextColor(Color.RED);
         mSliding.setOnClickListener(v -> {
             Intent slide = new Intent(this, FlipToWinStartingActivity.class);
             startActivity(slide);
