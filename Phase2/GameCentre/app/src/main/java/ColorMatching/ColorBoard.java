@@ -3,6 +3,9 @@ package ColorMatching;
 import Basic.Playable;
 
 public class ColorBoard implements Playable<ColorTile> {
+
+    public static final String GAME_NAME = "Color Matching";
+
     public ColorTile[][] tiles;
 
     ColorBoard() {
