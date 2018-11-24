@@ -118,12 +118,14 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
         for (Button b : fTileButtons) {
             int row = nextPos /  Main.INSTANCE.getFlipToWinBoardManager().getGame().getColNum();
             int col = nextPos %  Main.INSTANCE.getFlipToWinBoardManager().getGame().getColNum();
-            int emojiIndex = Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col).flipStatus();
-            if (emojiIndex == 0) {
-                b.setBackgroundResource(R.drawable.back_of_tile4);
+            FlipToWinTile tile = Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col);
+//            int emojiIndex = Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col).flipStatus();
+
+            if (!(tile.facedUpStatus())) {
+                b.setBackgroundResource(tile.getBackground());
                 b.setText("");
             } else {
-            b.setText(emojiChosen.get(emojiIndex - 1));
+            b.setText(emojiChosen.get(tile.getId() - 1));
             b.setTextSize(40);
             b.setBackgroundColor(Color.YELLOW);
             }
