@@ -91,7 +91,7 @@ public class FlipToWinBoardManager implements Serializable, GameManageable {
         int col = position % fBoard.getColNum();
 
         return (!(fBoard.getGrid(row, col).isPaired())
-                & (fBoard.getGrid(row, col).flipStatus() == 0));
+                & (!fBoard.getGrid(row, col).facedUpStatus()));
     }
 
 
@@ -120,15 +120,14 @@ public class FlipToWinBoardManager implements Serializable, GameManageable {
                     if (fBoard.getGrid(row, col).getId() == fBoard.getGrid(matchRow, matchCol).getId()) {
                         fBoard.getGrid(row, col).setPaired();
                         fBoard.getGrid(matchRow, matchCol).setPaired();
-                    }else{
-                        fBoard.makeMove(matchRow, matchCol);
                     }
+
                     fBoard.makeMove(row, col);
 //                    System.out.println("second tap");
                     positionOneAndOnlyOneTileFaceUp = -1;
                 }
                 for (FlipToWinTile ft : fBoard) {
-                    if (!(ft.isPaired()) & ft.flipStatus() != 0) {
+                    if (!(ft.isPaired()) & ft.facedUpStatus()) {
 
                         ft.setFlipped();
                     }
