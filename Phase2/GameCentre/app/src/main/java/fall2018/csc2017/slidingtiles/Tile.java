@@ -4,12 +4,12 @@ import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 
-import Basic.GridTile;
+import Basic.SuperTile;
 
 /**
  * A Tile in a sliding tiles puzzle.
  */
-public class Tile extends GridTile implements Comparable<Tile>, Serializable {
+public class Tile extends SuperTile implements Comparable<Tile>, Serializable {
 
 //    /**
 //     * The background id to find the tile image.

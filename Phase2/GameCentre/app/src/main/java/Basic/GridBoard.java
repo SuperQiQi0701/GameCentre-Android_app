@@ -10,7 +10,7 @@ public abstract class GridBoard implements Iterable, Serializable {
 
     private int complexity;
 
-    abstract public GridTile getGrid(int row, int col);
+    abstract public SuperTile getGrid(int row, int col);
 
     abstract public int getColNum();
 
@@ -56,10 +56,10 @@ public abstract class GridBoard implements Iterable, Serializable {
         }
 
         @Override
-        public GridTile next() {
+        public SuperTile next() {
             if (hasNext()) {
                 if (GridBoard.this.getComplexity() - 1 == col) {
-                    GridTile temp = getGrid(row, col);
+                    SuperTile temp = getGrid(row, col);
                     row++;
                     col = 0;
                     return temp;
