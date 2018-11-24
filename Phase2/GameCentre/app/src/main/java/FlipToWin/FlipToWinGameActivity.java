@@ -125,10 +125,10 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
                 b.setBackgroundResource(tile.getBackground());
                 b.setText("");
             }
-            else if (tile.isPaired()) {
-                b.setBackgroundColor(Color.TRANSPARENT);
-                b.setText("");
-            }
+//            else if (tile.isPaired()) {
+//                b.setBackgroundColor(Color.TRANSPARENT);
+//                b.setText("");
+//            }
             else {
                 b.setText(emojiChosen.get(tile.getId() - 1));
                 b.setTextSize(40);

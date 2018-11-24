@@ -1,29 +1,25 @@
 package Basic;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import fall2018.csc2017.slidingtiles.Board;
 import fall2018.csc2017.slidingtiles.ScoreBoard;
 
 public class FileManager {
 
-
     /**
      * Save the given object to file.
-     *
+     * <p>
      * Precondition: the type is either "UM" or "SB"
      *
      * @param fileContext this.getApplicationContext()
-     * @param object the object that will be saved
-     * @param type the type of the object.
+     * @param object      the object that will be saved
+     * @param type        the type of the object.
      */
     void saveToFile(Context fileContext, Object object, String type) {
         try {
