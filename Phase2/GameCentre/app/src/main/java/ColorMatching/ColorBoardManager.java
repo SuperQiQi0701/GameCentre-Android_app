@@ -165,8 +165,20 @@ public class ColorBoardManager implements GameManageable {
 //        colors.add(initColor);
 //    }
 
+    /**
+     * Return true if the undo function is available, false otherwise.
+     *
+     * @return if the undo function is available
+     */
+    boolean undoAvailable(){
+        return (this.allMove.size() >= 1);
+    }
+
+    /**
+     * Undo the previous move
+     */
     public void undo(){
-        if(allMove.size() >= 1){
+        if(undoAvailable()){
             ArrayList<ColorTile> whatever = allMove.remove(allMove.size()-1);
             int color = colors.remove(colors.size()-1);
             for(ColorTile cur: whatever){
