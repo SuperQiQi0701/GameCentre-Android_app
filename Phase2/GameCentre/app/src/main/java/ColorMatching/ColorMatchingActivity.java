@@ -22,7 +22,7 @@ import fall2018.csc2017.slidingtiles.R;
 public class ColorMatchingActivity extends AppCompatActivity {
 
     int width, height;
-    ColorBoardManager colorBoardManager;
+//    ColorBoardManager colorBoardManager = Main.INSTANCE.getColorBoardManager();
     ColorView colorView;
 
 //    private ColorMatchingGestureDetectGridView colorGridView;
@@ -46,7 +46,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
     public void draw(){
         colorView.view = new View(this) {
             protected void onDraw(Canvas canvas) {
-                if (colorBoardManager.colorBoard.getGrid(1, 1) == null){
+                if (Main.INSTANCE.getColorBoardManager().colorBoard.getGrid(1, 1) == null){
                     drawNewBoard(canvas);
                 }else{uploadBoard(canvas);}
                 //draw line
@@ -62,10 +62,10 @@ public class ColorMatchingActivity extends AppCompatActivity {
         int width = getScreenWidth(this);
         this.width = width;
         height = width*5/4;
-        colorBoardManager = new ColorBoardManager(5);
+        Main.INSTANCE.colorBoardManager = new ColorBoardManager(5);
         colorView = new ColorView();
-        colorBoardManager.board = new boolean[8][10];
-        colorView.setBoxSize(this.width / colorBoardManager.board.length);
+        Main.INSTANCE.getColorBoardManager().board = new boolean[8][10];
+        colorView.setBoxSize(this.width / Main.INSTANCE.getColorBoardManager().board.length);
     }
 
     public void initView(){
@@ -82,22 +82,22 @@ public class ColorMatchingActivity extends AppCompatActivity {
     }
 
     public void drawNewBoard(Canvas canvas){
-        for (int x = 0; x < colorBoardManager.board.length; x++) {
-            for (int y = 0; y < colorBoardManager.board[x].length; y++) {
+        for (int x = 0; x < Main.INSTANCE.getColorBoardManager().board.length; x++) {
+            for (int y = 0; y < Main.INSTANCE.getColorBoardManager().board[x].length; y++) {
                 int color = randomColor();
                 colorView.drawBox(canvas, color, x, y);
                 //存color
-                colorBoardManager.colorBoard.setGrid(x, y);
-                colorBoardManager.colorBoard.getGrid(x, y).setColor(color);
+                Main.INSTANCE.getColorBoardManager().colorBoard.setGrid(x, y);
+                Main.INSTANCE.getColorBoardManager().colorBoard.getGrid(x, y).setColor(color);
             }
         }
         getScore();
     }
 
     public void uploadBoard(Canvas canvas){
-        for (int x = 0; x < colorBoardManager.board.length; x++) {
-            for (int y = 0; y < colorBoardManager.board[x].length; y++) {
-                int color = colorBoardManager.colorBoard.getGrid(x, y).getColor();
+        for (int x = 0; x < Main.INSTANCE.getColorBoardManager().board.length; x++) {
+            for (int y = 0; y < Main.INSTANCE.getColorBoardManager().board[x].length; y++) {
+                int color = Main.INSTANCE.getColorBoardManager().colorBoard.getGrid(x, y).getColor();
                 colorView.drawBox(canvas, color, x, y);
             }
         }
@@ -107,7 +107,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
     private void addUndoButtonListener(){
         Button undo = findViewById(R.id.undo);
         undo.setOnClickListener((v) -> {
-            colorBoardManager.undo();
+            Main.INSTANCE.getColorBoardManager().undo();
             colorView.view.invalidate();
             getScore();
         });
@@ -119,14 +119,14 @@ public class ColorMatchingActivity extends AppCompatActivity {
      */
     void getScore() {
         TextView currScoreTextView = findViewById(R.id.color_match_currScoreText);
-        String score = Integer.toString(colorBoardManager.getScore());
+        String score = Integer.toString(Main.INSTANCE.getColorBoardManager().getScore());
         currScoreTextView.setText(score);
     }
 
     private void addRedButtonListener() {
         Button redButton = findViewById(R.id.red);
         redButton.setOnClickListener((v) -> {
-            colorBoardManager.changeColor(Color.RED);
+            Main.INSTANCE.getColorBoardManager().changeColor(Color.RED);
             colorView.view.invalidate();
             getScore();
         });
@@ -135,7 +135,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
     private void addYellowButtonListener() {
         Button redButton = findViewById(R.id.yellow);
         redButton.setOnClickListener((v) -> {
-            colorBoardManager.changeColor(Color.YELLOW);
+            Main.INSTANCE.getColorBoardManager().changeColor(Color.YELLOW);
             colorView.view.invalidate();
             getScore();
         });
@@ -144,7 +144,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
     private void addBlueButtonListener() {
         Button redButton = findViewById(R.id.blue);
         redButton.setOnClickListener((v) -> {
-            colorBoardManager.changeColor(Color.BLUE);
+            Main.INSTANCE.getColorBoardManager().changeColor(Color.BLUE);
             colorView.view.invalidate();
             getScore();
         });
@@ -153,7 +153,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
     private void addGREENButtonListener() {
         Button redButton = findViewById(R.id.green);
         redButton.setOnClickListener((v) -> {
-            colorBoardManager.changeColor(Color.GREEN);
+            Main.INSTANCE.getColorBoardManager().changeColor(Color.GREEN);
             colorView.view.invalidate();
             getScore();
         });
@@ -162,7 +162,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
     private void addGreyButtonListener() {
         Button redButton = findViewById(R.id.grey);
         redButton.setOnClickListener((v) -> {
-            colorBoardManager.changeColor(Color.GRAY);
+            Main.INSTANCE.getColorBoardManager().changeColor(Color.GRAY);
             colorView.view.invalidate();
             getScore();
         });
