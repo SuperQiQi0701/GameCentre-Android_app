@@ -32,7 +32,8 @@ public class ColorMatchingScoreBoardActivity extends AppCompatActivity {
         int myRank = Main.INSTANCE.getColorScoreBoard().getMyBestRank(myRecord);
         String myScoreToString = "You totally take " + myScore + " steps and your best rank is "
                 + myRank + ".";
-        String noScore = "You have not won the game, so you don't have a score.";
+        String noScore = "You don't have a current score because you have not won the current game " +
+                "yet.";
 
         if (Main.INSTANCE.getColorBoardManager().puzzleSolved()){
             myTextView.setText(myScoreToString);
@@ -91,10 +92,10 @@ public class ColorMatchingScoreBoardActivity extends AppCompatActivity {
         TextView05.setTextColor(Color.MAGENTA);
     }
 
-    @Override
-    public void onBackPressed() {
-        finish();
-        Intent temp = new Intent(this, SelectGameActivity.class);
-        startActivity(temp);
-    }
+//    @Override
+////    public void onBackPressed() {
+////        finish();
+////        Intent temp = new Intent(this, SelectGameActivity.class);
+////        startActivity(temp);
+////    }
 }
