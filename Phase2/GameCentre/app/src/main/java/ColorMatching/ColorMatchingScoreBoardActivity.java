@@ -28,7 +28,7 @@ public class ColorMatchingScoreBoardActivity extends AppCompatActivity {
 
         //modify the TextView of the myScore
         TextView myTextView = findViewById(R.id.cm_myScore);
-        String myScore = Integer.toString(INSTANCE.getFlipToWinBoardManager().getScore());
+        String myScore = Integer.toString(INSTANCE.getColorBoardManager().getScore());
         int myRank = Main.INSTANCE.getColorScoreBoard().getMyBestRank(myRecord);
 
         String myScoreToString = "You totally take " + myScore + " steps and your best rank is "
