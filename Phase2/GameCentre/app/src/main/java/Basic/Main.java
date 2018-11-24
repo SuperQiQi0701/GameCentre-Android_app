@@ -36,16 +36,22 @@ public enum Main {
      */
     public BoardManager boardManager;
 
+    /**
+     * The ColorBoardManager of this game
+     */
+    public ColorBoardManager colorBoardManager;
+
+
+    /**
+     * The FlipToWinBoardManager of this game
+     */
+    public FlipToWinBoardManager flipToWinBoardManager;
+
 
     /**
      * The UserManager of this game
      */
     public UserManager userManager;
-
-    /**
-     * The ColorBoardManager of this game
-     */
-    public ColorBoardManager colorBoardManager;
 
 
     /**
@@ -55,12 +61,7 @@ public enum Main {
 
     public FlipToWinScoreBoard flipScoreBoard;
 
-    public ColorMatchingScoreBoard colorScoreBoard;
-
-    /**
-     * The FlipToWinBoardManager of this game
-     */
-    public FlipToWinBoardManager flipToWinBoardManager;
+    public ColorMatchingScoreBoard colorScoreBoard = new ColorMatchingScoreBoard();
 
 
     /**
@@ -213,7 +214,6 @@ public enum Main {
     public void newScoreBoard() {
         this.scoreBoard = new ScoreBoard();
     }
-
 
     /**
      * Create an new ScoreBoard
@@ -491,7 +491,7 @@ public enum Main {
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {
-            newFlipScoreBoard();
+            newColorMatchingScoreBoard();
         } catch (IOException e) {
             Log.e("login activity", "Can not read file: " + e.toString());
         } catch (ClassNotFoundException e) {
