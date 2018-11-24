@@ -3,6 +3,7 @@ package Basic;
 import android.content.Context;
 import android.util.Log;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -79,6 +80,50 @@ public class FileManager {
             return new ScoreBoard();
         } catch (Exception e) {
             return new ScoreBoard();
+        }
+    }
+
+    /**
+     * Save the boardManager of the current game to file
+     *
+     * @param fileContext this.getApplicationContext()
+     * @param operation "Save" or "Auto"
+     */
+    void saveGame(Context fileContext, String operation) {
+        try {
+            String fileName = DataManager.INSTANCE.getCurrentGameName() + "_" +
+                    DataManager.INSTANCE.getCurrentUserName() + "_" + operation + ".ser";
+            ObjectOutputStream outputStream = new ObjectOutputStream(
+                    fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
+            outputStream.writeObject(DataManager.INSTANCE.getBoardManager());
+            outputStream.close();
+        } catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
+
+    /**
+     * Load boardManager of the current game related to current user from file
+     *
+     * @param fileContext this.getApplicationContext()
+     * @param operation "Save" or "Auto"
+     */
+    void loadGame(Context fileContext, String operation) {
+        try {
+            String fileName = DataManager.INSTANCE.getCurrentGameName() + "_" +
+                    DataManager.INSTANCE.getCurrentUserName() + "_" + operation + ".ser";
+            InputStream inputStream = fileContext.openFileInput(fileName);
+            if (inputStream != null) {
+                ObjectInputStream input = new ObjectInputStream(inputStream);
+                DataManager.INSTANCE.setBoardManager((SuperBoardManager) input.readObject());
+                inputStream.close();
+            }
+        } catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        } catch (ClassNotFoundException e) {
+            Log.e("login activity", "File contained unexpected data type: " + e.toString());
         }
     }
 
