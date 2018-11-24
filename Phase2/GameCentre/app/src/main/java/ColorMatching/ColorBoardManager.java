@@ -34,7 +34,7 @@ public class ColorBoardManager implements GameManageable {
         arr = new ArrayList();
     }
 
-    public ColorTile getLeft(ColorTile tile){
+    private ColorTile getLeft(ColorTile tile){
         if((tile.x)-1 >= 0){
             return colorBoard.getGrid((tile.x)-1, tile.y);
         }
@@ -50,21 +50,21 @@ public class ColorBoardManager implements GameManageable {
         return this.score;
     }
 
-    public ColorTile getRight(ColorTile tile){
+    private ColorTile getRight(ColorTile tile){
         if((tile.x)+1 < 8){
             return colorBoard.getGrid((tile.x)+1, tile.y);
         }
         return null;
     }
 
-    public ColorTile getTop(ColorTile tile){
+    private ColorTile getTop(ColorTile tile){
         if((tile.y)-1 >= 0){
             return colorBoard.getGrid(tile.x, (tile.y)-1);
         }
         return null;
     }
 
-    public ColorTile getBottom(ColorTile tile){
+    private ColorTile getBottom(ColorTile tile){
         if((tile.y)+1 < 10){
             return colorBoard.getGrid(tile.x, (tile.y)+1);
         }
@@ -77,7 +77,7 @@ public class ColorBoardManager implements GameManageable {
 ////        }
 ////    }
 
-    public void neighbour(ColorTile tile, int initColor){
+    private void neighbour(ColorTile tile, int initColor){
         if(getLeft(tile)!= null){
             if(getLeft(tile).getColor() == initColor){
                 if(! allState.contains(getLeft(tile)) && ! arr.contains(getLeft(tile))){
