@@ -119,7 +119,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
      */
     void getScore() {
         TextView currScoreTextView = findViewById(R.id.color_match_currScoreText);
-        String score = Integer.toString(Main.INSTANCE.getColorBoardManager().getScore());
+        String score = "          " + Integer.toString(Main.INSTANCE.getColorBoardManager().getScore());
         currScoreTextView.setText(score);
     }
 
