@@ -22,24 +22,62 @@ public class FlipToWinScoreBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_flip_to_win_score_board);
         Main.INSTANCE.newFlipScoreBoard();
         Main.INSTANCE.loadFlipToWinScoreBoardFromFile(this.getApplicationContext());
-        FlipToWinRecord myRecord = new FlipToWinRecord();
-        Main.INSTANCE.getFlipToWinScoreBoard().addNewRecords(myRecord);
-        Main.INSTANCE.saveFlipToWinScoreBoardToFile(this.getApplicationContext());
+
+//            FlipToWinRecord myRecord = new FlipToWinRecord();
+//            Main.INSTANCE.getFlipToWinScoreBoard().addNewRecords(myRecord);
+//            Main.INSTANCE.saveFlipToWinScoreBoardToFile(this.getApplicationContext());
+
+
+
+
 
         //modify the TextView of the myScore
         TextView myTextView = findViewById(R.id.ftw_myScore);
-        String myScore = Integer.toString(INSTANCE.getFlipToWinBoardManager().getScore());
-        int myRank = Main.INSTANCE.getFlipToWinScoreBoard().getMyBestRank(myRecord);
 
-        String myScoreToString = "You totally take " + myScore + " steps and your best rank is "
-                + myRank + ".";
 
-        myTextView.setText(myScoreToString);
+//        String myScore = Integer.toString(INSTANCE.getFlipToWinBoardManager().getScore());
+//        int myRank = Main.INSTANCE.getFlipToWinScoreBoard().getMyBestRank(myRecord);
+//        String myScoreToString = "You totally take " + myScore + " steps and your best rank is "
+//                + myRank + ".";
+
+//        String noScore = "You don't have a current score because you have not won the current game " +
+//                "yet.";
+
+        if (Main.INSTANCE.getFlipToWinBoardManager().puzzleSolved()){
+
+            FlipToWinRecord myRecord = new FlipToWinRecord();
+            Main.INSTANCE.getFlipToWinScoreBoard().addNewRecords(myRecord);
+            Main.INSTANCE.saveFlipToWinScoreBoardToFile(this.getApplicationContext());
+            String myScore = Integer.toString(INSTANCE.getFlipToWinBoardManager().getScore());
+            int myRank = Main.INSTANCE.getFlipToWinScoreBoard().getMyBestRank(myRecord);
+            String myScoreToString = "You totally take " + myScore + " steps and your best rank is "
+                    + myRank + ".";
+            myTextView.setText(myScoreToString);
+            System.out.println("run if");
+
+        }
+        else{
+
+            System.out.println("run else");
+            Bundle extras = getIntent().getExtras();
+            int complexity;
+
+            complexity = extras.getInt("complexity");
+              // and get whatever type user account id is
+
+            String noScore = "You don't have a current score because you have not won the current game " +
+                    "yet.";
+            myTextView.setText(noScore);
+            Main.INSTANCE.getFlipToWinScoreBoard().setComplexity(complexity);
+        }
+        myTextView.setTextColor(Color.RED);
+
         myTextView.setTextColor(Color.RED);
 
         //set the TextView for the first five record.
         ArrayList topFive = INSTANCE.getFlipToWinScoreBoard().TopFiveToString();
-
+        String noScore = "You don't have a current score because you have not won the current game " +
+                "yet.";
         TextView no1TextView = findViewById(R.id.ftw_no1Record);
         no1TextView.setText((String) topFive.get(0));
 
@@ -89,8 +127,16 @@ public class FlipToWinScoreBoardActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
-        Intent temp = new Intent(this, SelectGameActivity.class);
-        startActivity(temp);
+        if (Main.INSTANCE.getFlipToWinBoardManager().puzzleSolved()) {
+            System.out.println("solved");
+            finish();
+            Intent temp = new Intent(this, SelectGameActivity.class);
+            startActivity(temp);
+        }else{
+            System.out.println("not solved");
+            finish();
+            Intent temp = new Intent(this, FlipToWinStartingActivity.class);
+            startActivity(temp);
+        }
     }
 }
