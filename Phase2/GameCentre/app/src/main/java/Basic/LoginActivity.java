@@ -13,12 +13,16 @@ import fall2018.csc2017.slidingtiles.R;
 
 public class LoginActivity extends AppCompatActivity {
 
+    /**
+     * The userManager
+     */
+    private UserManager userManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        Main.INSTANCE.newUserManager();
-        Main.INSTANCE.loadUserManagerFromFile(this.getApplicationContext());
+        this.userManager = FileManager.loadUserManager(this.getApplicationContext());
         setupLogInButtonListener();
         setupRegisterButtonListener();
         setupResetPasswordButtonListener();
@@ -35,17 +39,17 @@ public class LoginActivity extends AppCompatActivity {
         TextView messageBox = findViewById(R.id.success);
 
         loginButton.setOnClickListener((v) -> {
-            if (Main.INSTANCE.getUserManager().login(nameInput.getText().toString(), passwordInput.getText().toString()) == null) {
+            if (this.userManager.login(nameInput.getText().toString(), passwordInput.getText().toString()) == null) {
                 messageBox.setTextColor(Color.RED);
                 if (!nameInput.getText().toString().contains("@")) {
                     messageBox.setText("Not a valid email");
-                } else if (Main.INSTANCE.getUserManager().exist(nameInput.getText().toString())) {
+                } else if (this.userManager.exist(nameInput.getText().toString())) {
                     messageBox.setText("Password Incorrect");
                 } else {
                     messageBox.setText("Username does not exist");
                 }
             } else {
-                Main.INSTANCE.saveUserManagerToFile(this.getApplicationContext());
+                DataManager.INSTANCE.setCurrentUserName(nameInput.getText().toString());
                 Intent tmp = new Intent(this, SelectGameActivity.class);
                 startActivity(tmp);
             }

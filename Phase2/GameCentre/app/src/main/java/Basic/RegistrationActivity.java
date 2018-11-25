@@ -9,19 +9,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import Basic.LoginActivity;
-import Basic.Main;
 import fall2018.csc2017.slidingtiles.R;
 
 public class RegistrationActivity extends AppCompatActivity {
 
+    /**
+     * The userManager
+     */
+    private UserManager userManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.userManager = FileManager.loadUserManager(this.getApplicationContext());
         setContentView(R.layout.activity_registration);
         addCheckButtonListener();
         addRegisterButtonListener();
-
     }
 
 
@@ -38,7 +41,7 @@ public class RegistrationActivity extends AppCompatActivity {
             if (!mAccount.getText().toString().contains("@")) {
                 mAccountResult.setTextColor(Color.RED);
                 mAccountResult.setText("Not a valid email");
-            } else if (Main.INSTANCE.getUserManager().exist(mAccount.getText().toString())) {
+            } else if (this.userManager.exist(mAccount.getText().toString())) {
                 mAccountResult.setTextColor(Color.RED);
                 mAccountResult.setText("Email exist");
             } else {
@@ -66,12 +69,12 @@ public class RegistrationActivity extends AppCompatActivity {
                 mRegisterResult.setText("Password too short");
                 //If the username does not exist and the password is long enough, register this account.
             } else if (mAccountResult.getText().toString().equals("OK!")) {
-                Main.INSTANCE.getUserManager().signUp(mAccount.getText().toString(),
+                this.userManager.signUp(mAccount.getText().toString(),
                         mPassword.getText().toString());
                 mRegisterResult.setTextColor(Color.GREEN);
                 mRegisterResult.setText("Success");
                 mAccountResult.setText("");
-                Main.INSTANCE.saveUserManagerToFile(this.getApplicationContext());
+                FileManager.saveToFile(this.getApplicationContext(), this.userManager, "UM");
                 Intent tmp = new Intent(this, LoginActivity.class);
                 startActivity(tmp);
                 //If the user has not check the availability of the username, ask the user to check first.

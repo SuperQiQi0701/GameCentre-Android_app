@@ -46,6 +46,7 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setBackgroundColor(Color.MAGENTA);
         mSliding.setTextColor(Color.YELLOW);
         mSliding.setOnClickListener(v -> {
+            DataManager.INSTANCE.setCurrentGameName("ST");
             Intent slide = new Intent(this, StartingActivity.class);
             startActivity(slide);
         });
@@ -56,6 +57,7 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setBackgroundColor(Color.YELLOW);
         mSliding.setTextColor(Color.BLACK);
         mSliding.setOnClickListener(v -> {
+            DataManager.INSTANCE.setCurrentGameName("CM");
             Intent slide = new Intent(this, ColorMatchingStartActivity.class);
             startActivity(slide);
         });
@@ -67,6 +69,7 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setBackgroundColor(Color.CYAN);
         mSliding.setTextColor(Color.RED);
         mSliding.setOnClickListener(v -> {
+            DataManager.INSTANCE.setCurrentGameName("FTW");
             Intent slide = new Intent(this, FlipToWinStartingActivity.class);
             startActivity(slide);
         });
