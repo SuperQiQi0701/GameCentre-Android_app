@@ -10,7 +10,6 @@ import Basic.SuperRecord;
 
 public class Record extends SuperRecord implements Comparable<Record>, Serializable {
 
-
 //    /**
 //     * The complexity of the game.
 //     */
@@ -42,11 +41,12 @@ public class Record extends SuperRecord implements Comparable<Record>, Serializa
 
     @SuppressLint("DefaultLocale")
     @Override
-    protected String recordToString() {
+    protected String recordToString(String game) {
 //        String temp = "User: %s, took %d steps in game: %s, in level: %d";
 //        String gameName = Board.GAME_NAME;
 //        return String.format(temp, userName, finalScore, gameName, complexity - 2);
-        return super.recordToString();
+//        String gameName = Board.GAME_NAME;
+        return super.recordToString(Board.GAME_NAME);
     }
 
     /**
@@ -59,8 +59,6 @@ public class Record extends SuperRecord implements Comparable<Record>, Serializa
         return super.getUserName();
     }
 
-
-    @Override
     public int compareTo(@NonNull Record anotherRecord) {
 //        return (this.finalScore - anotherRecord.finalScore);
         return(super.getFinalScore() - anotherRecord.getFinalScore());
@@ -85,9 +83,10 @@ public class Record extends SuperRecord implements Comparable<Record>, Serializa
      * @param r is a record of the game.
      * @return true if r has lower final score
      */
-    boolean checkLowerScore(Record r) {
+    @Override
+    protected boolean checkLowerScore(SuperRecord r) {
 //        return this.finalScore >= r.finalScore;
-        return super.getFinalScore() >= r.getFinalScore();
+        return super.checkLowerScore(r);
     }
 
 

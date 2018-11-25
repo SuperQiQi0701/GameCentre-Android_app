@@ -6,28 +6,35 @@ import android.support.annotation.NonNull;
 import java.io.Serializable;
 
 import Basic.Main;
+import Basic.SuperRecord;
 import fall2018.csc2017.slidingtiles.Board;
 
-public class FlipToWinRecord implements Comparable<FlipToWinRecord>, Serializable {
+public class FlipToWinRecord extends SuperRecord implements Comparable<FlipToWinRecord>, Serializable {
 
 
-    /**
-     * The complexity of the game.
-     */
-    private int complexity = Main.INSTANCE.getFlipToWinBoardManager().getGame().getComplexity();
+//    /**
+//     * The complexity of the game.
+//     */
+//    private int complexity = Main.INSTANCE.getFlipToWinBoardManager().getGame().getComplexity();
+//
+//
+//    /**
+//     * The current score of the game.
+//     */
+//    private int finalScore = Main.INSTANCE.getFlipToWinBoardManager().getScore();
+//
+//
+//    /**
+//     * The current username of the game.
+//     */
+//    private String userName = Main.INSTANCE.getUserManager().getCurrentUser();
 
-
-    /**
-     * The current score of the game.
-     */
-    private int finalScore = Main.INSTANCE.getFlipToWinBoardManager().getScore();
-
-
-    /**
-     * The current username of the game.
-     */
-    private String userName = Main.INSTANCE.getUserManager().getCurrentUser();
-
+    public FlipToWinRecord(int complexity, int finalScore, String userName){
+        super(complexity, finalScore, userName);
+        super.setComplexity(Main.INSTANCE.getFlipToWinBoardManager().getGame().getComplexity());
+        super.setFinalScore(Main.INSTANCE.getFlipToWinBoardManager().getScore());
+        super.setUserName(Main.INSTANCE.getUserManager().getCurrentUser());
+    }
 
     /**
      * Return a string type of record.
@@ -35,10 +42,12 @@ public class FlipToWinRecord implements Comparable<FlipToWinRecord>, Serializabl
      * @return a string type of record.
      */
     @SuppressLint("DefaultLocale")
-    String recordToString() {
-        String temp = "User: %s, took %d steps in game: %s, in level: %d";
-        String gameName = FlipToWinBoard.GAME_NAME;
-        return String.format(temp, userName, finalScore, gameName, complexity - 2);
+    @Override
+    protected String recordToString(String name) {
+//        String temp = "User: %s, took %d steps in game: %s, in level: %d";
+//        String gameName = FlipToWinBoard.GAME_NAME;
+//        return String.format(temp, userName, finalScore, gameName, complexity - 2);
+        return super.recordToString(FlipToWinBoard.GAME_NAME);
     }
 
 
@@ -47,13 +56,14 @@ public class FlipToWinRecord implements Comparable<FlipToWinRecord>, Serializabl
      *
      * @return username
      */
-    String getUserName() {
-        return userName;
+    @Override
+    public String getUserName() {
+        return super.getUserName();
     }
 
-    @Override
     public int compareTo(@NonNull FlipToWinRecord anotherRecord) {
-        return (this.finalScore - anotherRecord.finalScore);
+//        return (this.finalScore - anotherRecord.finalScore);
+        return(super.getFinalScore() - anotherRecord.getFinalScore());
     }
 
 
@@ -62,8 +72,9 @@ public class FlipToWinRecord implements Comparable<FlipToWinRecord>, Serializabl
      *
      * @return complexity
      */
-    int getComplexity() {
-        return this.complexity;
+    @Override
+    public int getComplexity() {
+        return super.getComplexity();
     }
 
 
@@ -73,9 +84,10 @@ public class FlipToWinRecord implements Comparable<FlipToWinRecord>, Serializabl
      * @param r is a record of the game.
      * @return true if r has lower final score
      */
-    boolean checkLowerScore(FlipToWinRecord r) {
-        return this.finalScore >= r.finalScore;
+    @Override
+    protected boolean checkLowerScore(SuperRecord r) {
+//        return this.finalScore >= r.finalScore;
+        return super.checkLowerScore(r);
     }
-
 
 }

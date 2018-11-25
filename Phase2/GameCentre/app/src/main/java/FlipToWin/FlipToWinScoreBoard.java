@@ -6,6 +6,7 @@ import java.util.Collections;
 
 public class FlipToWinScoreBoard implements Serializable {
 
+    private String tempName = Character.toString('a');
 
     /**
      * this is a ArrayList of all records of Complexity 1
@@ -110,7 +111,7 @@ public class FlipToWinScoreBoard implements Serializable {
         ArrayList<String> result = new ArrayList<>();
 
         for (FlipToWinRecord r : topFive) {
-            result.add(r.recordToString());
+            result.add(r.recordToString(tempName));
         }
 
         if (result.size() < 5) {

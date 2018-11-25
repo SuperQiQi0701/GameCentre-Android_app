@@ -32,6 +32,10 @@ public class Board extends Observable implements Iterable<Tile>, Serializable, P
      */
     private Tile[][] tiles;
 
+    public String getGameName(){
+        return GAME_NAME;
+    }
+
     /**
      * A new board of tiles in row-major order.
      * Precondition: len(tiles) == NUM_ROWS * NUM_COLS

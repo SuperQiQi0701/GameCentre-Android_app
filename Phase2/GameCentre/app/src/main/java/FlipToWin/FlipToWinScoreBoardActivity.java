@@ -16,13 +16,15 @@ import static Basic.Main.INSTANCE;
 
 public class FlipToWinScoreBoardActivity extends AppCompatActivity {
 
+    private String tempName = Character.toString('a');
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flip_to_win_score_board);
         Main.INSTANCE.newFlipScoreBoard();
         Main.INSTANCE.loadFlipToWinScoreBoardFromFile(this.getApplicationContext());
-        FlipToWinRecord myRecord = new FlipToWinRecord();
+        FlipToWinRecord myRecord = new FlipToWinRecord(1,0, tempName);
         Main.INSTANCE.getFlipToWinScoreBoard().addNewRecords(myRecord);
         Main.INSTANCE.saveFlipToWinScoreBoardToFile(this.getApplicationContext());
 
