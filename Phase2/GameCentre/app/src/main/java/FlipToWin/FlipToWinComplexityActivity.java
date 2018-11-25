@@ -60,7 +60,7 @@ public class FlipToWinComplexityActivity extends AppCompatActivity {
     }
 
     /**
-     * Activate the Level 2 button.
+     * Activate the Level 3 button.
      */
     private void setupComplexity3ButtonListener() {
         Button complexity2Button = findViewById(R.id.fliptowin_complexity3Button);
