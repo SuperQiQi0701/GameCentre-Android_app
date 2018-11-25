@@ -22,7 +22,7 @@ public class FileManager {
      * @param object      the object that will be saved
      * @param type        the type of the object.
      */
-    void saveToFile(Context fileContext, Object object, String type) {
+    static void saveToFile(Context fileContext, Object object, String type) {
         try {
             String fileName = DataManager.INSTANCE.getCurrentGameName();
             if ("UM".equals(type)) {
@@ -45,7 +45,7 @@ public class FileManager {
      * @param fileContext this.getApplicationContext()
      * @return the userManager that loaded from file
      */
-    UserManager loadUserManager(Context fileContext) {
+    static UserManager loadUserManager(Context fileContext) {
         try {
             String fileName = DataManager.INSTANCE.getCurrentGameName() + "_UserManager.ser";
             InputStream inputStream = fileContext.openFileInput(fileName);
@@ -67,7 +67,7 @@ public class FileManager {
      * @param fileContext this.getApplicationContext()
      * @return the scoreBoard that loaded from file
      */
-    ScoreBoard loadScoreBoard(Context fileContext) {
+    static ScoreBoard loadScoreBoard(Context fileContext) {
         try {
             String fileName = DataManager.INSTANCE.getCurrentGameName() + "_ScoreBoard.ser";
             InputStream inputStream = fileContext.openFileInput(fileName);
@@ -89,7 +89,7 @@ public class FileManager {
      * @param fileContext this.getApplicationContext()
      * @param operation   "Save" or "Auto"
      */
-    void saveGame(Context fileContext, String operation) {
+    static void saveGame(Context fileContext, String operation) {
         try {
             String fileName = DataManager.INSTANCE.getCurrentGameName() + "_" +
                     DataManager.INSTANCE.getCurrentUserName() + "_" + operation + ".ser";
@@ -108,7 +108,7 @@ public class FileManager {
      * @param fileContext this.getApplicationContext()
      * @param operation   "Save" or "Auto"
      */
-    void loadGame(Context fileContext, String operation) {
+    static void loadGame(Context fileContext, String operation) {
         try {
             String fileName = DataManager.INSTANCE.getCurrentGameName() + "_" +
                     DataManager.INSTANCE.getCurrentUserName() + "_" + operation + ".ser";
