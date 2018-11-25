@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import Basic.Main;
+import ColorMatching.ColorMatchingActivity;
+import ColorMatching.ColorMatchingStartActivity;
+import FlipToWin.FlipToWinGameActivity;
+import FlipToWin.FlipToWinStartingActivity;
 import fall2018.csc2017.slidingtiles.GameActivity;
 import fall2018.csc2017.slidingtiles.R;
 import fall2018.csc2017.slidingtiles.StartingActivity;
@@ -75,16 +78,31 @@ public class ComplexityActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        String gameName = DataManager.INSTANCE.getCurrentGameName();
+        Intent temp;
+        if ("ST".equals(gameName)) {
+            temp = new Intent(this, StartingActivity.class);
+        } else if ("CM".equals(gameName)) {
+            temp = new Intent(this, ColorMatchingStartActivity.class);
+        } else {
+            temp = new Intent(this, FlipToWinStartingActivity.class);
+        }
         finish();
-        Intent temp = new Intent(this, StartingActivity.class);
         startActivity(temp);
     }
 
     private void setUpGame(int complexity) {
-        Main.INSTANCE.startNewGame(complexity);
-        String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-        Main.INSTANCE.saveBoardManagerToFile(this.getApplicationContext(), fileName);
-        Intent temp = new Intent(this, GameActivity.class);
+        DataManager.INSTANCE.startNewGame(complexity);
+        FileManager.saveGame(this.getApplicationContext(), "Auto");
+        String gameName = DataManager.INSTANCE.getCurrentGameName();
+        Intent temp;
+        if ("ST".equals(gameName)) {
+            temp = new Intent(this, GameActivity.class);
+        } else if ("CM".equals(gameName)) {
+            temp = new Intent(this, ColorMatchingActivity.class);
+        } else {
+            temp = new Intent(this, FlipToWinGameActivity.class);
+        }
         startActivity(temp);
         finish();
     }
