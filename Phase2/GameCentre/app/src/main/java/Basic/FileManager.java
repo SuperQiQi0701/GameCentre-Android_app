@@ -24,11 +24,11 @@ public class FileManager {
      */
     static void saveToFile(Context fileContext, Object object, String type) {
         try {
-            String fileName = DataManager.INSTANCE.getCurrentGameName();
+            String fileName;
             if ("UM".equals(type)) {
-                fileName = fileName + "_UserManager.ser";
+                fileName = "UserManager.ser";
             } else {
-                fileName = fileName + "_ScoreBoard.ser";
+                fileName = DataManager.INSTANCE.getCurrentGameName() + "_ScoreBoard.ser";
             }
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
