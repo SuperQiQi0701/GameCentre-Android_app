@@ -89,7 +89,7 @@ public class FileManager {
      * @param fileContext this.getApplicationContext()
      * @param operation   "Save" or "Auto"
      */
-    static void saveGame(Context fileContext, String operation) {
+    public static void saveGame(Context fileContext, String operation) {
         try {
             String fileName = DataManager.INSTANCE.getCurrentGameName() + "_" +
                     DataManager.INSTANCE.getCurrentUserName() + "_" + operation + ".ser";
@@ -106,12 +106,10 @@ public class FileManager {
      * Load boardManager of the current game related to current user from file
      *
      * @param fileContext this.getApplicationContext()
-     * @param operation   "Save" or "Auto"
+     * @param fileName    the file that will be load
      */
-    static void loadGame(Context fileContext, String operation) {
+    public static void loadGame(Context fileContext, String fileName) {
         try {
-            String fileName = DataManager.INSTANCE.getCurrentGameName() + "_" +
-                    DataManager.INSTANCE.getCurrentUserName() + "_" + operation + ".ser";
             InputStream inputStream = fileContext.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
