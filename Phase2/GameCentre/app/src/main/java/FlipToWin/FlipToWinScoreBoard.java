@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import Basic.Main;
+
 public class FlipToWinScoreBoard implements Serializable {
 
 
@@ -54,22 +56,24 @@ public class FlipToWinScoreBoard implements Serializable {
      * @param record a record
      */
     void addNewRecords(FlipToWinRecord record) {
-        int complexity = record.getComplexity();
-        updateComplexity(complexity);
+        if (Main.INSTANCE.getFlipToWinBoardManager().puzzleSolved()){
+            int complexity = record.getComplexity();
+            updateComplexity(complexity);
 
-        // get the ArrayList records which corresponding to the current game
-        // complexity(add a record)
-        ArrayList<FlipToWinRecord> currentRecords = getComplexityRecords(currComplexity);
+            // get the ArrayList records which corresponding to the current game
+            // complexity(add a record)
+            ArrayList<FlipToWinRecord> currentRecords = getComplexityRecords(currComplexity);
 
-        // add or replace the record
-        int temp = checkRecordIndex(record);
-        if (temp == -1) {
-            currentRecords.add(record);
-        } else if (currentRecords.get(temp).checkLowerScore(record)) {
-            currentRecords.remove(temp);
-            currentRecords.add(record);
+            // add or replace the record
+            int temp = checkRecordIndex(record);
+            if (temp == -1) {
+                currentRecords.add(record);
+            } else if (currentRecords.get(temp).checkLowerScore(record)) {
+                currentRecords.remove(temp);
+                currentRecords.add(record);
+            }
+            sortRecords();
         }
-        sortRecords();
     }
 
 
@@ -154,6 +158,10 @@ public class FlipToWinScoreBoard implements Serializable {
             i++;
         }
         return result;
+    }
+
+    public void setComplexity(int complexity){
+        this.currComplexity = complexity;
     }
 
 
