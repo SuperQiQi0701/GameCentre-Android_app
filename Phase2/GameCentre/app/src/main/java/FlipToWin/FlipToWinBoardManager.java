@@ -61,19 +61,12 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable{
     }
 
     /**
-     * Return the current board.
-     */
-    public FlipToWinBoard getGame() {
-        return board;
-    }
-
-    /**
      * Return whether the tiles are in row-major order.
      *
      * @return whether the tiles are in row-major order
      */
     @Override
-    protected boolean puzzleSolved() {
+    public boolean puzzleSolved() {
         Iterator<FlipToWinTile> iter = this.board.iterator();
         FlipToWinTile temp = iter.next();
         while (iter.hasNext()) {
@@ -107,7 +100,7 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable{
      * @param position the position
      */
     @Override
-    protected void makeChange(int position) {
+    public void makeChange(int position) {
         //position:点击的图片
         int row = position / board.getColNum();
         int col = position % board.getColNum();

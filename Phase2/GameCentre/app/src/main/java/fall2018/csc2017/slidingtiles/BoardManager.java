@@ -112,7 +112,7 @@ public class BoardManager extends SuperManager implements Serializable{
      * @return whether the tiles are in row-major order
      */
     @Override
-    protected boolean puzzleSolved() {
+    public boolean puzzleSolved() {
         Iterator<Tile> iter = this.board.iterator();
         Tile temp = iter.next();
         while (iter.hasNext()) {
@@ -152,7 +152,7 @@ public class BoardManager extends SuperManager implements Serializable{
      * @param position the position
      */
     @Override
-    protected void makeChange(int position) {
+    public void makeChange(int position) {
 
         int row = position / board.getComplexity();
         int col = position % board.getComplexity();

@@ -35,7 +35,7 @@ public class ColorBoard extends SuperBoard implements Serializable{
     }
 
     @Override
-    protected int numGrids() {
+    public int numGrids() {
         return complexity * complexity * 20;
     }
 
@@ -56,7 +56,6 @@ public class ColorBoard extends SuperBoard implements Serializable{
      * @param row the tile row
      * @param col the tile column
      */
-    @Override
     public void setGrid(int row, int col) {
         tiles[row][col] = new ColorTile(row, col);
     }
