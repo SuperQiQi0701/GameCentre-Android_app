@@ -6,54 +6,64 @@ import android.support.annotation.NonNull;
 import java.io.Serializable;
 
 import Basic.Main;
+import Basic.SuperRecord;
 
-public class Record implements Comparable<Record>, Serializable {
-
-
-    /**
-     * The complexity of the game.
-     */
-    private int complexity = Main.INSTANCE.getBoardManager().getGame().getComplexity();
+public class Record extends SuperRecord implements Comparable<Record>, Serializable {
 
 
-    /**
-     * The current score of the game.
-     */
-    private int finalScore = Main.INSTANCE.getBoardManager().getScore();
+//    /**
+//     * The complexity of the game.
+//     */
+//    private int complexity = Main.INSTANCE.getBoardManager().getGame().getComplexity();
+//
+//
+//    /**
+//     * The current score of the game.
+//     */
+//    private int finalScore = Main.INSTANCE.getBoardManager().getScore();
+//
+//
+//    /**
+//     * The current username of the game.
+//     */
+//    private String userName = Main.INSTANCE.getUserManager().getCurrentUser();
 
-
-    /**
-     * The current username of the game.
-     */
-    private String userName = Main.INSTANCE.getUserManager().getCurrentUser();
-
-
+    public Record(int complexity, int finalScore, String userName){
+        super(complexity, finalScore, userName);
+        super.setComplexity(Main.INSTANCE.getBoardManager().getGame().getComplexity());
+        super.setFinalScore(Main.INSTANCE.getBoardManager().getScore());
+        super.setUserName(Main.INSTANCE.getUserManager().getCurrentUser());
+    }
     /**
      * Return a string type of record.
      *
      * @return a string type of record.
      */
-    @SuppressLint("DefaultLocale")
-    String recordToString() {
-        String temp = "User: %s, took %d steps in game: %s, in level: %d";
-        String gameName = Board.GAME_NAME;
-        return String.format(temp, userName, finalScore, gameName, complexity - 2);
-    }
 
+    @SuppressLint("DefaultLocale")
+    @Override
+    protected String recordToString() {
+//        String temp = "User: %s, took %d steps in game: %s, in level: %d";
+//        String gameName = Board.GAME_NAME;
+//        return String.format(temp, userName, finalScore, gameName, complexity - 2);
+        return super.recordToString();
+    }
 
     /**
      * Return username
      *
      * @return username
      */
-    String getUserName() {
-        return userName;
+    @Override
+    public String getUserName() {
+        return super.getUserName();
     }
 
 
     @Override
     public int compareTo(@NonNull Record anotherRecord) {
-        return (this.finalScore - anotherRecord.finalScore);
+//        return (this.finalScore - anotherRecord.finalScore);
+        return(super.getFinalScore() - anotherRecord.getFinalScore());
     }
 
 
@@ -62,8 +72,10 @@ public class Record implements Comparable<Record>, Serializable {
      *
      * @return complexity
      */
-    int getComplexity() {
-        return this.complexity;
+    @Override
+    public int getComplexity() {
+//        return this.complexity;
+        return super.getComplexity();
     }
 
 
@@ -74,7 +86,8 @@ public class Record implements Comparable<Record>, Serializable {
      * @return true if r has lower final score
      */
     boolean checkLowerScore(Record r) {
-        return this.finalScore >= r.finalScore;
+//        return this.finalScore >= r.finalScore;
+        return super.getFinalScore() >= r.getFinalScore();
     }
 
 

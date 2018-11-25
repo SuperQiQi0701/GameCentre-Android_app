@@ -6,8 +6,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6fde6d7-47f8-4b6e-9483-3a8e37b165d6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9fc28f4a-15df-431a-afaf-32aba978b438" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -22,9 +21,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="122" />
+    <option name="x" value="89" />
     <option name="y" value="23" />
-    <option name="width" value="1018" />
+    <option name="width" value="1280" />
     <option name="height" value="820" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -33,15 +32,16 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -107,16 +107,16 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d6fde6d7-47f8-4b6e-9483-3a8e37b165d6" name="Default" comment="" />
-      <created>1542904104309</created>
+      <changelist id="9fc28f4a-15df-431a-afaf-32aba978b438" name="Default" comment="" />
+      <created>1543100411719</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1542904104309</updated>
+      <updated>1543100411719</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="122" y="23" width="1018" height="820" extended-state="0" />
+    <frame x="89" y="23" width="1280" height="820" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -124,7 +124,7 @@
       <window_info id="Image Layers" order="4" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50212765" side_tool="true" visible="true" weight="0.17842324" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="9" sideWeight="0.50212765" side_tool="true" visible="true" weight="0.17842324" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49957448" weight="0.3297587" />
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.6587234" weight="0.0" />
       <window_info anchor="bottom" id="Terminal" order="12" />
@@ -132,7 +132,7 @@
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.35143444" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.35218093" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Device File Explorer" order="5" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="8" />
