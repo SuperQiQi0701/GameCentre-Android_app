@@ -10,14 +10,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import Basic.Playable;
 
 /**
  * The sliding tiles board.
  */
 
-public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile>, Serializable,
-        Playable<FlipToWinTile> {
+public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile>, Serializable{
 
 
     public static final String GAME_NAME = "Flip To Win";
@@ -61,7 +59,7 @@ public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile
      *
      * @return the number of tiles on the board
      */
-    public int numGrids() {
+    private int numGrids() {
 
         return this.rowNum* this.colNum;
     }

@@ -27,7 +27,7 @@ public class Record extends SuperRecord implements Comparable<Record>, Serializa
 //     */
 //    private String userName = Main.INSTANCE.getUserManager().getCurrentUser();
 
-    public Record(int complexity, int finalScore, String userName){
+    Record(int complexity, int finalScore, String userName){
         super(complexity, finalScore, userName);
         super.setComplexity(Main.INSTANCE.getBoardManager().getGame().getComplexity());
         super.setFinalScore(Main.INSTANCE.getBoardManager().getScore());
@@ -46,7 +46,7 @@ public class Record extends SuperRecord implements Comparable<Record>, Serializa
 //        String gameName = Board.GAME_NAME;
 //        return String.format(temp, userName, finalScore, gameName, complexity - 2);
 //        String gameName = Board.GAME_NAME;
-        return super.recordToString(Board.GAME_NAME);
+        return super.recordToString(Board.getGameName());
     }
 
     /**
@@ -88,6 +88,5 @@ public class Record extends SuperRecord implements Comparable<Record>, Serializa
 //        return this.finalScore >= r.finalScore;
         return super.checkLowerScore(r);
     }
-
 
 }

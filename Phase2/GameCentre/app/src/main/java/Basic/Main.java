@@ -358,7 +358,7 @@ public enum Main {
      */
     public void loadScoreBoardFromFile(Context fileContext) {
         try {
-            String fileName = Board.GAME_NAME + "_ScoreBoard.ser";
+            String fileName = Board.getGameName() + "_ScoreBoard.ser";
             InputStream inputStream = fileContext.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
@@ -382,7 +382,7 @@ public enum Main {
      */
     public void saveScoreBoardToFile(Context fileContext) {
         try {
-            String fileName = Board.GAME_NAME + "_ScoreBoard.ser";
+            String fileName = Board.getGameName() + "_ScoreBoard.ser";
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
             outputStream.writeObject(scoreBoard);
@@ -400,7 +400,7 @@ public enum Main {
      */
     void loadUserManagerFromFile(Context fileContext) {
         try {
-            String fileName = Board.GAME_NAME + "_UserManager.ser";
+            String fileName = Board.getGameName() + "_UserManager.ser";
             InputStream inputStream = fileContext.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
@@ -424,7 +424,7 @@ public enum Main {
      */
     public void saveUserManagerToFile(Context fileContext) {
         try {
-            String fileName = Board.GAME_NAME + "_UserManager.ser";
+            String fileName = Board.getGameName() + "_UserManager.ser";
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
             outputStream.writeObject(userManager);

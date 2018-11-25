@@ -27,7 +27,7 @@ public class ColorMatchingRecord extends SuperRecord implements Comparable<Color
 //     */
 //    private String userName = Main.INSTANCE.getUserManager().getCurrentUser();
 
-    public ColorMatchingRecord(int complexity, int finalScore, String userName){
+    ColorMatchingRecord(int complexity, int finalScore, String userName){
         super(complexity, finalScore, userName);
         super.setComplexity(Main.INSTANCE.getColorBoardManager().getGame().getComplexity());
         super.setFinalScore(Main.INSTANCE.getColorBoardManager().getScore());

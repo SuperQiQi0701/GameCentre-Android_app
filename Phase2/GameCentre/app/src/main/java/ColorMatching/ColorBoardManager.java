@@ -3,7 +3,6 @@ package ColorMatching;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import Basic.GameManageable;
 import Basic.SuperManager;
 
 public class ColorBoardManager extends SuperManager implements Serializable{

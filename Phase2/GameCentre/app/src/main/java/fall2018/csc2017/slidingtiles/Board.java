@@ -10,18 +10,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import Basic.Playable;
-
 /**
  * The sliding tiles board.
  */
 
-public class Board extends Observable implements Iterable<Tile>, Serializable, Playable<Tile> {
+public class Board extends Observable implements Iterable<Tile>, Serializable {
 
     /**
      * The game name for current board
      */
-    public static final String GAME_NAME = "Sliding_Tiles";
+    private static final String GAME_NAME = "Sliding_Tiles";
     /**
      * The number of row and col
      */
@@ -32,7 +30,7 @@ public class Board extends Observable implements Iterable<Tile>, Serializable, P
      */
     private Tile[][] tiles;
 
-    public String getGameName(){
+    public static String getGameName(){
         return GAME_NAME;
     }
 
@@ -59,7 +57,7 @@ public class Board extends Observable implements Iterable<Tile>, Serializable, P
      *
      * @return the number of tiles on the board
      */
-    public int numGrids() {
+    int numGrids() {
         return this.complexity * this.complexity;
     }
 
@@ -93,7 +91,7 @@ public class Board extends Observable implements Iterable<Tile>, Serializable, P
      * @param row2 the second tile row
      * @param col2 the second tile col
      */
-    public void makeMove(int row1, int col1, int row2, int col2) {
+    void makeMove(int row1, int col1, int row2, int col2) {
         Tile temp = tiles[row1][col1];
         tiles[row1][col1] = tiles[row2][col2];
         tiles[row2][col2] = temp;

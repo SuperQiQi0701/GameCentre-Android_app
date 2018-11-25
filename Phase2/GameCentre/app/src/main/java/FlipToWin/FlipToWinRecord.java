@@ -29,7 +29,7 @@ public class FlipToWinRecord extends SuperRecord implements Comparable<FlipToWin
 //     */
 //    private String userName = Main.INSTANCE.getUserManager().getCurrentUser();
 
-    public FlipToWinRecord(int complexity, int finalScore, String userName){
+    FlipToWinRecord(int complexity, int finalScore, String userName){
         super(complexity, finalScore, userName);
         super.setComplexity(Main.INSTANCE.getFlipToWinBoardManager().getGame().getComplexity());
         super.setFinalScore(Main.INSTANCE.getFlipToWinBoardManager().getScore());
