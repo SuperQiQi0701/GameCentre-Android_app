@@ -12,21 +12,6 @@ import fall2018.csc2017.slidingtiles.Board;
 public class ColorMatchingRecord extends SuperRecord implements Comparable<ColorMatchingRecord>, Serializable {
 
 
-//    /**
-//     * The complexity of the game.
-//     */
-//    private int complexity = Main.INSTANCE.getColorBoardManager().getGame().getComplexity();
-//
-//    /**
-//     * The current score of the game.
-//     */
-//    private int finalScore = Main.INSTANCE.getColorBoardManager().getScore();
-//
-//    /**
-//     * The current username of the game.
-//     */
-//    private String userName = Main.INSTANCE.getUserManager().getCurrentUser();
-
     ColorMatchingRecord(int complexity, int finalScore, String userName){
         super(complexity, finalScore, userName);
         super.setComplexity(Main.INSTANCE.getColorBoardManager().getGame().getComplexity());
@@ -42,9 +27,6 @@ public class ColorMatchingRecord extends SuperRecord implements Comparable<Color
     @SuppressLint("DefaultLocale")
     @Override
     protected String recordToString(String name) {
-//        String temp = "User: %s, took %d steps in game: %s, in level: %d";
-//        String gameName = ColorBoard.getGameName();
-//        return String.format(temp, userName, finalScore, gameName, complexity);
         return super.recordToString(ColorBoard.getGameName());
     }
 

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.TextView;
 
 import Basic.Main;
 
@@ -28,10 +27,6 @@ public class ColorMatchingComplexityActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        /*TextView tv = findViewById(R.id.complexityTitle);
-        tv.setText("Choose A Level!");
-        tv.setTextColor(Color.BLACK);*/
     }
 
 

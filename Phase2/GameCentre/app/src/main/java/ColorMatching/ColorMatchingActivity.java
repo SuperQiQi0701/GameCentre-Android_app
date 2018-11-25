@@ -15,19 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
-
-import Basic.CustomAdapter;
 import Basic.Main;
 import fall2018.csc2017.slidingtiles.R;
-import fall2018.csc2017.slidingtiles.ScoreBoardActivity;
 
 public class ColorMatchingActivity extends AppCompatActivity {
 
     int width, height;
     ColorBoardManager colorBoardManager = Main.INSTANCE.getColorBoardManager();
     ColorView colorView;
-
-//    private ColorMatchingGestureDetectGridView colorGridView;
 
 
     @Override

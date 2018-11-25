@@ -11,9 +11,6 @@ import java.io.File;
 
 import Basic.Main;
 import Basic.SelectGameActivity;
-import FlipToWin.FlipToWinComplexityActivity;
-import FlipToWin.FlipToWinGameActivity;
-import FlipToWin.FlipToWinStartingActivity;
 import fall2018.csc2017.slidingtiles.R;
 
 public class ColorMatchingStartActivity extends AppCompatActivity {

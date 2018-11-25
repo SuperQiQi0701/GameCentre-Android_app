@@ -60,4 +60,8 @@ public class ColorBoard extends SuperBoard implements Serializable{
     public void setGrid(int row, int col) {
         tiles[row][col] = new ColorTile(row, col);
     }
+
+    public void setComplexity(int complexity) {
+        this.complexity = complexity;
+    }
 }

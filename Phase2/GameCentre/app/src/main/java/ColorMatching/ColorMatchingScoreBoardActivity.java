@@ -16,35 +16,19 @@ import static Basic.Main.INSTANCE;
 
 public class ColorMatchingScoreBoardActivity extends AppCompatActivity {
 
+    String name = ColorBoard.getGameName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_matching_score_board);
         Main.INSTANCE.newColorMatchingScoreBoard();
         Main.INSTANCE.loadColorMatchingScoreBoardFromFile(this.getApplicationContext());
-
-
-//        ColorMatchingRecord myRecord = new ColorMatchingRecord();
-//        Main.INSTANCE.getColorScoreBoard().addNewRecords(myRecord);
-//
-//
-//        Main.INSTANCE.saveColorMatchingScoreBoardToFile(this.getApplicationContext());
-
-        //modify the TextView of the myScore
         TextView myTextView = findViewById(R.id.cm_myScore);
-
-//        String myScore = Integer.toString(INSTANCE.getColorBoardManager().getScore());
-
-//        int myRank = Main.INSTANCE.getColorScoreBoard().getMyBestRank(myRecord);
-//        String myScoreToString = "You totally take "
-//                + myScore + " steps and your best rank is "
-//                + myRank + ".";
-//        String noScore = "You don't have a current score because you have not won the current game " +
-//                "yet.";
 
         if (Main.INSTANCE.getColorBoardManager().puzzleSolved()){
             
-            ColorMatchingRecord myRecord = new ColorMatchingRecord();
+            ColorMatchingRecord myRecord = new ColorMatchingRecord(0,0, name);
             Main.INSTANCE.getColorScoreBoard().addNewRecords(myRecord);
             Main.INSTANCE.saveColorMatchingScoreBoardToFile(this.getApplicationContext());
             String myScore = Integer.toString(INSTANCE.getColorBoardManager().getScore());
