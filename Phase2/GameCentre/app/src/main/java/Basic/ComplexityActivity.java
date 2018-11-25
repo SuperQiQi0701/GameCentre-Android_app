@@ -14,7 +14,6 @@ import FlipToWin.FlipToWinGameActivity;
 import FlipToWin.FlipToWinStartingActivity;
 import fall2018.csc2017.slidingtiles.GameActivity;
 import fall2018.csc2017.slidingtiles.R;
-import fall2018.csc2017.slidingtiles.StartingActivity;
 
 public class ComplexityActivity extends AppCompatActivity {
 

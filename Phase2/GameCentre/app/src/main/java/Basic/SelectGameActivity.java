@@ -8,13 +8,9 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import Basic.LoginActivity;
 import ColorMatching.ColorMatchingStartActivity;
-import ColorMatching.ColorMatchingActivity;
-import ColorMatching.ColorMatchingComplexityActivity;
 import FlipToWin.FlipToWinStartingActivity;
 import fall2018.csc2017.slidingtiles.R;
-import fall2018.csc2017.slidingtiles.StartingActivity;
 
 
 public class SelectGameActivity extends AppCompatActivity {

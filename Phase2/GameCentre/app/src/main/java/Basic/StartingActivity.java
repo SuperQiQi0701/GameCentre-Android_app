@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package Basic;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,8 +9,10 @@ import android.widget.Toast;
 
 import java.io.File;
 
-import Basic.Main;
-import Basic.SelectGameActivity;
+import ColorMatching.ColorMatchingActivity;
+import FlipToWin.FlipToWinGameActivity;
+import fall2018.csc2017.slidingtiles.GameActivity;
+import fall2018.csc2017.slidingtiles.R;
 
 /**
  * The initial activity for the sliding puzzle tile game.
@@ -44,11 +46,11 @@ public class StartingActivity extends AppCompatActivity {
         loadButton.setBackgroundColor(Color.DKGRAY);
         loadButton.setTextColor(Color.WHITE);
         loadButton.setOnClickListener(v -> {
-            String fileName = Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
+            String fileName = DataManager.INSTANCE.getCurrentGameName() + "_" +
+                    DataManager.INSTANCE.getCurrentUserName() + "_Save.ser";
             if (new File(StartingActivity.this.getFilesDir() + "/" + fileName).exists()) {
-                Main.INSTANCE.loadBoardManagerFromFile(StartingActivity.this.getApplicationContext(), fileName);
-                Main.INSTANCE.saveBoardManagerToFile(StartingActivity.this.getApplicationContext(),
-                        "Auto_" + fileName);
+                FileManager.loadGame(this.getApplicationContext(), "Save");
+                FileManager.saveGame(this.getApplicationContext(), "Auto");
                 makeToastLoadedText();
                 switchToGame();
             } else {
@@ -80,12 +82,12 @@ public class StartingActivity extends AppCompatActivity {
         resume.setBackgroundColor(Color.DKGRAY);
         resume.setTextColor(Color.WHITE);
         resume.setOnClickListener((v) -> {
-            String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
+            String fileName = DataManager.INSTANCE.getCurrentGameName() + "_" +
+                    DataManager.INSTANCE.getCurrentUserName() + "_Auto.ser";
             if (new File(StartingActivity.this.getFilesDir() + "/" + fileName).exists()) {
-                Main.INSTANCE.loadBoardManagerFromFile(this.getApplicationContext(), fileName);
+                FileManager.loadGame(this.getApplicationContext(), fileName);
                 makeToastResumeText();
-                Intent temp = new Intent(this, GameActivity.class);
-                startActivity(temp);
+                switchToGame();
             } else {
                 makeToastResumeFailText();
             }
@@ -117,13 +119,20 @@ public class StartingActivity extends AppCompatActivity {
     }
 
     /**
-     * Switch to the GameActivity view to play the game.
+     * Switch to the Activity class of current game to play the game.
      */
     private void switchToGame() {
-        Intent tmp = new Intent(this, GameActivity.class);
-        String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-        Main.INSTANCE.saveBoardManagerToFile(this.getApplicationContext(), fileName);
-        startActivity(tmp);
+        FileManager.saveGame(this.getApplicationContext(), "Auto");
+        String gameName = DataManager.INSTANCE.getCurrentGameName();
+        Intent temp;
+        if ("ST".equals(gameName)) {
+            temp = new Intent(this, GameActivity.class);
+        } else if ("CM".equals(gameName)) {
+            temp = new Intent(this, ColorMatchingActivity.class);
+        } else {
+            temp = new Intent(this, FlipToWinGameActivity.class);
+        }
+        startActivity(temp);
     }
 
     /**
