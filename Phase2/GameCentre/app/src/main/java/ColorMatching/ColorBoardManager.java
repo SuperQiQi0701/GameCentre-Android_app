@@ -49,9 +49,8 @@ public class ColorBoardManager extends SuperManager implements Serializable{
      *
      * @return the current score
      */
-    @Override
     public int getScore() {
-        return super.getScore();
+        return score;
     }
 
     public ColorTile getRight(ColorTile tile){

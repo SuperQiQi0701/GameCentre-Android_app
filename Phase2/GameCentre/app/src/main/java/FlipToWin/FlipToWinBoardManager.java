@@ -58,9 +58,8 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable{
      *
      * @return the current score
      */
-    @Override
     public int getScore() {
-        return super.getScore();
+        return score;
     }
 
     /**
