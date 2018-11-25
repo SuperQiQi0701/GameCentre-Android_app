@@ -84,7 +84,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
 
 
     @Override
-    protected void makeChange(int newColor) {
+    public void makeChange(int newColor) {
         allState = new ArrayList<>();
         ArrayList<ColorTile> arr =  new ArrayList<>();
         ColorTile tile = colorBoard.getGrid(0, 0);
@@ -133,7 +133,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
     }
 
     @Override
-    protected boolean puzzleSolved() {
+    public boolean puzzleSolved() {
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {
                 if (colorBoard.getGrid(x, y).getColor() != colorBoard.getGrid(0, 0).getColor()){

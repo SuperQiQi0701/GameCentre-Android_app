@@ -4,6 +4,8 @@ public abstract class SuperManager {
 
     private int complexity;
 
+    private int score;
+
     public SuperManager(int complexity) {
         this.complexity = complexity;
     }
@@ -12,8 +14,15 @@ public abstract class SuperManager {
         return complexity;
     }
 
-    protected abstract void makeChange(int newColor);
+    public abstract void makeChange(int newColor);
 
-    protected abstract boolean puzzleSolved();
+    public abstract boolean puzzleSolved();
 
+    public int getScore() {
+        return this.score;
+    }
+
+    public void setSocre(int num) {
+        this.score += num;
+    }
 }
