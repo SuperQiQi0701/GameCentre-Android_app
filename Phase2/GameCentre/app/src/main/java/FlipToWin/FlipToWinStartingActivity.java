@@ -25,7 +25,9 @@ public class FlipToWinStartingActivity extends AppCompatActivity {
         addStartButtonListener();
         addLoadButtonListener();
         addResumeButtonListener();
+        viewScoreBoardButtonListener();
     }
+
 
     /**
      * Activate the start button.
@@ -35,6 +37,17 @@ public class FlipToWinStartingActivity extends AppCompatActivity {
         startButton.setBackgroundColor(Color.DKGRAY);
         startButton.setTextColor(Color.WHITE);
         startButton.setOnClickListener(v -> switchToComplexity());
+    }
+
+    private void viewScoreBoardButtonListener() {
+        Button startButton = findViewById(R.id.fliptowin_scoreBoard);
+        startButton.setBackgroundColor(Color.DKGRAY);
+        startButton.setTextColor(Color.WHITE);
+        startButton.setOnClickListener(v -> {
+            Intent temp = new Intent(this, FlipToTileViewScoreBoardActivity.class);
+            startActivity(temp);
+            finish();
+        });
     }
 
     /**
