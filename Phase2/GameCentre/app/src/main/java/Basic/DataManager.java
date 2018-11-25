@@ -80,62 +80,20 @@ public enum DataManager {
         this.boardManager = boardManager;
     }
 
-//    /**
-//     * This will create a new instance of FlipToWinBoardManager for new game function
-//     */
-//    void startNewGame(int complexity) {
-//        if (currentGameName.equals("ST")) {
-//            this.boardManager = new BoardManager(complexity);
-//        } else if (currentGameName.equals("CM")) {
-//            this.boardManager = new ColorBoardManager(complexity);
-//        } else {
-//            this.boardManager = new FlipToWinBoardManager(complexity);
-//        }
-//    }
-
-
-//    /**
-//     * Return the boardManager
-//     */
-//    public BoardManager getBoardManager() {
-//        return slideTileBoardManager;
-//        switch (currentGameName){
-//            case "ST":
-//                return slideTileBoardManager;
-//            case "Color":
-//                return colorBoardManager;
-//            case "FTW":
-//                return flipToWinBoardManager;
-//        }
-//    }
-//
-//
-//    /**
-//     * Set the boardManager for loading function.
-//     *
-//     * @param object the FlipToWinBoardManager instance will be loaded
-//     */
-//    public void setBoardManager(Object object) {
-//        switch (currentGameName){
-//            case "ST":
-//                this.slideTileBoardManager = (BoardManager) object;
-//                break;
-//            case "Color":
-//                this.colorBoardManager = (ColorBoardManager) object;
-//                break;
-//            case "FTW":
-//                this.flipToWinBoardManager = (FlipToWinBoardManager) object;
-//                break;
-//        }
-//    }
-
-
-//    /**
-//     * This will create a new instance of FlipToWinBoardManager for new game function
-//     */
-//    void startNewGame(int complexity) {
-//        this.slideTileBoardManager = new BoardManager(complexity);
-//    }
-
-
+    /**
+     * This will create a new boardManager according to the currentGameName
+     */
+    void startNewGame(int complexity) {
+        switch (currentGameName) {
+            case "ST":
+                this.boardManager = new BoardManager(complexity);
+                break;
+            case "CM":
+                this.boardManager = new ColorBoardManager(complexity);
+                break;
+            case "FTW":
+                this.boardManager = new FlipToWinBoardManager(complexity);
+                break;
+        }
+    }
 }
