@@ -16,13 +16,15 @@ import static Basic.Main.INSTANCE;
 
 public class ColorMatchingScoreBoardActivity extends AppCompatActivity {
 
+    private String tempName = Character.toString('a');
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_matching_score_board);
         Main.INSTANCE.newColorMatchingScoreBoard();
         Main.INSTANCE.loadColorMatchingScoreBoardFromFile(this.getApplicationContext());
-        ColorMatchingRecord myRecord = new ColorMatchingRecord();
+        ColorMatchingRecord myRecord = new ColorMatchingRecord(1,0, tempName);
         Main.INSTANCE.getColorScoreBoard().addNewRecords(myRecord);
         Main.INSTANCE.saveColorMatchingScoreBoardToFile(this.getApplicationContext());
 
@@ -91,7 +93,6 @@ public class ColorMatchingScoreBoardActivity extends AppCompatActivity {
         TextView05.setText(the5);
         TextView05.setTextColor(Color.MAGENTA);
     }
-
 
     @Override
     public void onBackPressed() {

@@ -2,10 +2,6 @@ package Basic;
 
 import android.annotation.SuppressLint;
 
-import FlipToWin.FlipToWinRecord;
-import fall2018.csc2017.slidingtiles.Board;
-import fall2018.csc2017.slidingtiles.Record;
-
 public abstract class SuperRecord {
 
     private int complexity;

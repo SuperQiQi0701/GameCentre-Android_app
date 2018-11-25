@@ -6,25 +6,33 @@ import android.support.annotation.NonNull;
 import java.io.Serializable;
 
 import Basic.Main;
+import Basic.SuperRecord;
 import fall2018.csc2017.slidingtiles.Board;
 
-public class ColorMatchingRecord implements Comparable<ColorMatchingRecord>, Serializable {
+public class ColorMatchingRecord extends SuperRecord implements Comparable<ColorMatchingRecord>, Serializable {
 
 
-    /**
-     * The complexity of the game.
-     */
-    private int complexity = Main.INSTANCE.getColorBoardManager().getGame().getComplexity();
+//    /**
+//     * The complexity of the game.
+//     */
+//    private int complexity = Main.INSTANCE.getColorBoardManager().getGame().getComplexity();
+//
+//    /**
+//     * The current score of the game.
+//     */
+//    private int finalScore = Main.INSTANCE.getColorBoardManager().getScore();
+//
+//    /**
+//     * The current username of the game.
+//     */
+//    private String userName = Main.INSTANCE.getUserManager().getCurrentUser();
 
-    /**
-     * The current score of the game.
-     */
-    private int finalScore = Main.INSTANCE.getColorBoardManager().getScore();
-
-    /**
-     * The current username of the game.
-     */
-    private String userName = Main.INSTANCE.getUserManager().getCurrentUser();
+    public ColorMatchingRecord(int complexity, int finalScore, String userName){
+        super(complexity, finalScore, userName);
+        super.setComplexity(Main.INSTANCE.getColorBoardManager().getGame().getComplexity());
+        super.setFinalScore(Main.INSTANCE.getColorBoardManager().getScore());
+        super.setUserName(Main.INSTANCE.getUserManager().getCurrentUser());
+    }
 
     /**
      * Return a string type of record.
@@ -32,10 +40,12 @@ public class ColorMatchingRecord implements Comparable<ColorMatchingRecord>, Ser
      * @return a string type of record.
      */
     @SuppressLint("DefaultLocale")
-    String recordToString() {
-        String temp = "User: %s, took %d steps in game: %s, in level: %d";
-        String gameName = ColorBoard.getGameName();
-        return String.format(temp, userName, finalScore, gameName, complexity);
+    @Override
+    protected String recordToString(String name) {
+//        String temp = "User: %s, took %d steps in game: %s, in level: %d";
+//        String gameName = ColorBoard.getGameName();
+//        return String.format(temp, userName, finalScore, gameName, complexity);
+        return super.recordToString(ColorBoard.getGameName());
     }
 
     /**
@@ -43,14 +53,13 @@ public class ColorMatchingRecord implements Comparable<ColorMatchingRecord>, Ser
      *
      * @return username
      */
-    String getUserName() {
-        return userName;
+    @Override
+    public String getUserName() {
+        return super.getUserName();
     }
 
-
-    @Override
     public int compareTo(@NonNull ColorMatchingRecord anotherRecord) {
-        return (this.finalScore - anotherRecord.finalScore);
+        return (super.getFinalScore() - anotherRecord.getFinalScore());
     }
 
     /**
@@ -58,8 +67,9 @@ public class ColorMatchingRecord implements Comparable<ColorMatchingRecord>, Ser
      *
      * @return complexity
      */
-    int getComplexity() {
-        return this.complexity;
+    @Override
+    public int getComplexity() {
+        return super.getComplexity();
     }
 
     /**
@@ -68,8 +78,8 @@ public class ColorMatchingRecord implements Comparable<ColorMatchingRecord>, Ser
      * @param r is a record of the game.
      * @return true if r has lower final score
      */
-    boolean checkLowerScore(ColorMatchingRecord r) {
-        return this.finalScore >= r.finalScore;
+    @Override
+    protected boolean checkLowerScore(SuperRecord r) {
+        return super.checkLowerScore(r);
     }
-
 }
