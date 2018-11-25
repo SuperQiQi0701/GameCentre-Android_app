@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import Basic.GameManageable;
+import Basic.SuperManager;
 
-public class ColorBoardManager implements Serializable, GameManageable {
+public class ColorBoardManager extends SuperManager implements Serializable{
     /**
      * The board being managed.
      */
@@ -25,6 +26,7 @@ public class ColorBoardManager implements Serializable, GameManageable {
     ArrayList arr;
 
     public ColorBoardManager(int complexity) {
+        super(complexity);
         this.colorBoard = new ColorBoard(complexity);
         board = new boolean[(complexity - 2) * 4][ (complexity - 2) * 5];
         allMove = new ArrayList<>();
@@ -47,8 +49,9 @@ public class ColorBoardManager implements Serializable, GameManageable {
      *
      * @return the current score
      */
+    @Override
     public int getScore() {
-        return this.score;
+        return super.getScore();
     }
 
     public ColorTile getRight(ColorTile tile){
@@ -65,7 +68,7 @@ public class ColorBoardManager implements Serializable, GameManageable {
         return null;
     }
 
-    public ColorTile getBottom(ColorTile tile){
+    private ColorTile getBottom(ColorTile tile){
         if((tile.y)+1 < board.length*5/4){
             return colorBoard.getGrid(tile.x, (tile.y)+1);
         }
@@ -110,7 +113,8 @@ public class ColorBoardManager implements Serializable, GameManageable {
     }
 
 
-    void changeColor(int newColor) {
+    @Override
+    protected void makeChange(int newColor) {
         allState = new ArrayList<ColorTile>();
         ArrayList<ColorTile> arr =  new ArrayList<ColorTile>();
         ColorTile tile = colorBoard.getGrid(0, 0);
@@ -178,7 +182,7 @@ public class ColorBoardManager implements Serializable, GameManageable {
     /**
      * Undo the previous move
      */
-    public void undo(){
+    void undo(){
         if(undoAvailable()){
             ArrayList<ColorTile> whatever = allMove.remove(allMove.size()-1);
             int color = colors.remove(colors.size()-1);
@@ -195,7 +199,7 @@ public class ColorBoardManager implements Serializable, GameManageable {
     }
 
     @Override
-    public boolean puzzleSolved() {
+    protected boolean puzzleSolved() {
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {
                 if (colorBoard.getGrid(x, y).getColor() != colorBoard.getGrid(0, 0).getColor()){

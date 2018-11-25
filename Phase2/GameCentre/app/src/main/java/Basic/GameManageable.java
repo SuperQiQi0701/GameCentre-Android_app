@@ -1,5 +1,7 @@
 package Basic;
 
+import FlipToWin.FlipToWinBoard;
+
 /**
  * Implementing this interface allows you to manage a playable game, including winning the game,
  * getting the score and making move.
@@ -11,7 +13,7 @@ public interface GameManageable {
      *
      * @return the game.
      */
-    Playable getGame();
+    FlipToWinBoard getGame();
 
 
     /**

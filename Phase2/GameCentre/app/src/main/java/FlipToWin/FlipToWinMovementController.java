@@ -23,7 +23,7 @@ class FlipToWinMovementController {
 
         if (Main.INSTANCE.getFlipToWinBoardManager().isValidTap(position)) {
 //            Toast.makeText(context, "is valid", Toast.LENGTH_SHORT).show();
-            Main.INSTANCE.getFlipToWinBoardManager().touchMove(position);
+            Main.INSTANCE.getFlipToWinBoardManager().makeChange(position);
 //            Toast.makeText(context, "does move", Toast.LENGTH_SHORT).show();
             if (Main.INSTANCE.getFlipToWinBoardManager().decisionMaking == -1) {
                 Toast.makeText(context, "Wrong Decision !", Toast.LENGTH_SHORT).show();

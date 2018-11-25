@@ -182,7 +182,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
     private void addRedButtonListener() {
         Button redButton = findViewById(R.id.red);
         redButton.setOnClickListener((v) -> {
-            Main.INSTANCE.getColorBoardManager().changeColor(Color.RED);
+            Main.INSTANCE.getColorBoardManager().makeChange(Color.RED);
             colorView.view.invalidate();
             getScore();
             checkWin();
@@ -192,7 +192,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
     private void addYellowButtonListener() {
         Button redButton = findViewById(R.id.yellow);
         redButton.setOnClickListener((v) -> {
-            Main.INSTANCE.getColorBoardManager().changeColor(Color.YELLOW);
+            Main.INSTANCE.getColorBoardManager().makeChange(Color.YELLOW);
             colorView.view.invalidate();
             getScore();
             checkWin();
@@ -202,7 +202,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
     private void addBlueButtonListener() {
         Button redButton = findViewById(R.id.blue);
         redButton.setOnClickListener((v) -> {
-            Main.INSTANCE.getColorBoardManager().changeColor(Color.BLUE);
+            Main.INSTANCE.getColorBoardManager().makeChange(Color.BLUE);
             colorView.view.invalidate();
             getScore();
             checkWin();
@@ -212,7 +212,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
     private void addGREENButtonListener() {
         Button redButton = findViewById(R.id.green);
         redButton.setOnClickListener((v) -> {
-            Main.INSTANCE.getColorBoardManager().changeColor(Color.GREEN);
+            Main.INSTANCE.getColorBoardManager().makeChange(Color.GREEN);
             colorView.view.invalidate();
             getScore();
             checkWin();
@@ -222,7 +222,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
     private void addGreyButtonListener() {
         Button redButton = findViewById(R.id.grey);
         redButton.setOnClickListener((v) -> {
-            Main.INSTANCE.getColorBoardManager().changeColor(Color.GRAY);
+            Main.INSTANCE.getColorBoardManager().makeChange(Color.GRAY);
             colorView.view.invalidate();
             getScore();
             checkWin();

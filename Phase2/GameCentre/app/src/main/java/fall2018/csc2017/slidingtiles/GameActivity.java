@@ -15,6 +15,7 @@ import java.util.Observer;
 
 import Basic.CustomAdapter;
 import Basic.Main;
+import FlipToWin.FlipToWinBoard;
 
 /**
  * The game activity.

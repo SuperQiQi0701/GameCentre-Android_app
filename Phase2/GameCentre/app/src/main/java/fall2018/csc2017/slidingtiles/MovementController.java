@@ -17,7 +17,7 @@ class MovementController {
      */
     void processTapMovement(Context context, int position, boolean display) {
         if (Main.INSTANCE.getBoardManager().isValidTap(position)) {
-            Main.INSTANCE.getBoardManager().touchMove(position);
+            Main.INSTANCE.getBoardManager().makeChange(position);
             if (Main.INSTANCE.getBoardManager().puzzleSolved()) {
                 Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
                 Intent temp = new Intent(context, ScoreBoardActivity.class);

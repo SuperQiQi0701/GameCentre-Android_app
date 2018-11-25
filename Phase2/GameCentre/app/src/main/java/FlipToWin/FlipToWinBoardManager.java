@@ -10,11 +10,12 @@ import java.util.List;
 import java.util.Observable;
 
 import Basic.GameManageable;
+import Basic.SuperManager;
 
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
  */
-public class FlipToWinBoardManager extends Observable implements Serializable, GameManageable {
+public class FlipToWinBoardManager extends SuperManager implements Serializable{
 
     /**
      * The board being managed.
@@ -40,6 +41,7 @@ public class FlipToWinBoardManager extends Observable implements Serializable, G
      * Manage a new shuffled board.
      */
     public FlipToWinBoardManager(int complexity) {
+        super(complexity);
         List<FlipToWinTile> fTiles = new ArrayList<>();
         final int numTiles = complexity * (complexity + 1);
         for (int tileNum = 0; tileNum != numTiles / 2; tileNum++) {
@@ -56,8 +58,9 @@ public class FlipToWinBoardManager extends Observable implements Serializable, G
      *
      * @return the current score
      */
+    @Override
     public int getScore() {
-        return this.score;
+        return super.getScore();
     }
 
     /**
@@ -72,7 +75,8 @@ public class FlipToWinBoardManager extends Observable implements Serializable, G
      *
      * @return whether the tiles are in row-major order
      */
-    public boolean puzzleSolved() {
+    @Override
+    protected boolean puzzleSolved() {
         Iterator<FlipToWinTile> iter = this.board.iterator();
         FlipToWinTile temp = iter.next();
         while (iter.hasNext()) {
@@ -105,7 +109,8 @@ public class FlipToWinBoardManager extends Observable implements Serializable, G
      *
      * @param position the position
      */
-    public void touchMove(int position) {
+    @Override
+    protected void makeChange(int position) {
         //position:点击的图片
         int row = position / board.getColNum();
         int col = position % board.getColNum();

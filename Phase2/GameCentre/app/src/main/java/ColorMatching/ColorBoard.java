@@ -1,38 +1,41 @@
 package ColorMatching;
 
 import java.io.Serializable;
+import Basic.SuperBoard;
 
-import Basic.Playable;
-
-public class ColorBoard implements Serializable, Playable<ColorTile> {
+public class ColorBoard extends SuperBoard implements Serializable{
 
     /**
      * The name of this game.
      */
-    public static final String GAME_NAME = "Color Matching";
+    private static final String GAME_NAME = "Color Matching";
 
     private int complexity;
 
     /**
      * The color tiles on the board in row-major order.
      */
-    public ColorTile[][] tiles;
+    private ColorTile[][] tiles;
 
     /**
      * A new color board of tiles in row major order, and contains 10 rows and 8 columns.
      */
     ColorBoard( int complexity) {
+        super(complexity);
         this.tiles = new ColorTile[(complexity - 2) * 4][(complexity - 2)  * 5];
-        this.complexity = complexity;
+    }
+
+    public static String getGameName() {
+        return GAME_NAME;
     }
 
     @Override
     public int getComplexity() {
-        return complexity;
+        return super.getComplexity();
     }
 
     @Override
-    public int numGrids() {
+    protected int numGrids() {
         return complexity * complexity * 20;
     }
 
@@ -53,9 +56,8 @@ public class ColorBoard implements Serializable, Playable<ColorTile> {
      * @param row the tile row
      * @param col the tile column
      */
-    void setGrid(int row, int col) {
+    @Override
+    public void setGrid(int row, int col) {
         tiles[row][col] = new ColorTile(row, col);
     }
-
-
 }

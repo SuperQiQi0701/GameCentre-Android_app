@@ -483,7 +483,7 @@ public enum Main {
      */
     public void loadColorMatchingScoreBoardFromFile(Context fileContext) {
         try {
-            String fileName = ColorBoard.GAME_NAME + "_ScoreBoard.ser";
+            String fileName = ColorBoard.getGameName() + "_ScoreBoard.ser";
             InputStream inputStream = fileContext.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
@@ -506,7 +506,7 @@ public enum Main {
      */
     public void saveColorMatchingScoreBoardToFile(Context fileContext) {
         try {
-            String fileName = ColorBoard.GAME_NAME + "_ScoreBoard.ser";
+            String fileName = ColorBoard.getGameName() + "_ScoreBoard.ser";
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
             outputStream.writeObject(colorScoreBoard);
