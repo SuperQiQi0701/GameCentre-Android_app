@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package Basic;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import Basic.Main;
+import fall2018.csc2017.slidingtiles.GameActivity;
+import fall2018.csc2017.slidingtiles.R;
+import fall2018.csc2017.slidingtiles.StartingActivity;
 
 public class ComplexityActivity extends AppCompatActivity {
 
