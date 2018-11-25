@@ -298,6 +298,7 @@ public enum Main {
      * @param fileName    the name of the file
      */
     public void saveFlipToWinBoardManagerToFile(@NonNull Context fileContext, String fileName) {
+        System.out.println("try to save bm");
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
