@@ -14,9 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".StartingActivity" />
+        <activity android:name="Basic.StartingActivity" />
         <activity android:name=".GameActivity" />
-        <activity android:name=".ComplexityActivity" />
+        <activity android:name="Basic.ComplexityActivity" />
         <activity android:name="Basic.RegistrationActivity" />
         <activity android:name=".ScoreBoardActivity" />
         <activity android:name="Basic.LoginActivity">

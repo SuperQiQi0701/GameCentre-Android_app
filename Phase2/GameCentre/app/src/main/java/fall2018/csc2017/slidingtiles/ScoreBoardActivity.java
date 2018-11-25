@@ -8,10 +8,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import Basic.Main;
+import Basic.DataManager;
+import Basic.FileManager;
 import Basic.SelectGameActivity;
-
-import static Basic.Main.INSTANCE;
 
 public class ScoreBoardActivity extends AppCompatActivity {
 
@@ -21,16 +20,15 @@ public class ScoreBoardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_board);
-        Main.INSTANCE.newScoreBoard();
-        Main.INSTANCE.loadScoreBoardFromFile(this.getApplicationContext());
+        ScoreBoard scoreBoard = FileManager.loadScoreBoard(this.getApplicationContext());
         Record myRecord = new Record(1,0, tempName);
-        Main.INSTANCE.getScoreBoard().addNewRecords(myRecord);
-        Main.INSTANCE.saveScoreBoardToFile(this.getApplicationContext());
+        scoreBoard.addNewRecords(myRecord);
+        FileManager.saveToFile(this.getApplicationContext(), scoreBoard, "SB");
 
         //modify the TextView of the myScore
         TextView myTextView = findViewById(R.id.myScore);
-        String myScore = Integer.toString(INSTANCE.getBoardManager().getScore());
-        int myRank = Main.INSTANCE.getScoreBoard().getMyBestRank(myRecord);
+        String myScore = Integer.toString(DataManager.INSTANCE.getBoardManager().getScore());
+        int myRank = scoreBoard.getMyBestRank(myRecord);
 
         String myScoreToString = "You totally take " + myScore + " steps and your best rank is "
                 + myRank + ".";
@@ -39,7 +37,7 @@ public class ScoreBoardActivity extends AppCompatActivity {
         myTextView.setTextColor(Color.RED);
 
         //set the TextView for the first five record.
-        ArrayList topFive = INSTANCE.getScoreBoard().TopFiveToString();
+        ArrayList topFive = scoreBoard.TopFiveToString();
 
         TextView no1TextView = findViewById(R.id.no1Record);
         no1TextView.setText((String) topFive.get(0));

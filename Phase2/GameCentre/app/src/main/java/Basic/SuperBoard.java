@@ -1,6 +1,8 @@
 package Basic;
 
-public abstract class SuperBoard {
+import java.util.Observable;
+
+public abstract class SuperBoard extends Observable {
     private int complexity;
 
     public SuperBoard(int complexity){
@@ -11,8 +13,6 @@ public abstract class SuperBoard {
         return complexity;
     }
 
-    protected abstract int numGrids();
-
-    public abstract void setGrid(int row, int col);
+    public abstract int numGrids();
 
 }

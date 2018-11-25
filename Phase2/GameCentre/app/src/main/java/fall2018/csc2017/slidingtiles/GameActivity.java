@@ -14,7 +14,9 @@ import java.util.Observable;
 import java.util.Observer;
 
 import Basic.CustomAdapter;
-import Basic.Main;
+import Basic.DataManager;
+import Basic.FileManager;
+import Basic.StartingActivity;
 
 /**
  * The game activity.
@@ -43,14 +45,12 @@ public class GameActivity extends AppCompatActivity implements Observer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-        Main.INSTANCE.loadBoardManagerFromFile(this.getApplicationContext(), fileName);
         createTileButtons(this);
         setContentView(R.layout.activity_main);
         // Add View to activity
         gridView = findViewById(R.id.grid);
-        gridView.setNumColumns(Main.INSTANCE.getBoardManager().getGame().getComplexity());
-        Main.INSTANCE.getBoardManager().getGame().addObserver(this);
+        gridView.setNumColumns(DataManager.INSTANCE.getBoardManager().getComplexity());
+        DataManager.INSTANCE.getBoardManager().getGame().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -61,8 +61,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
                         int displayWidth = gridView.getMeasuredWidth();
                         int displayHeight = gridView.getMeasuredHeight();
 
-                        columnWidth = displayWidth / Main.INSTANCE.getBoardManager().getGame().getComplexity();
-                        columnHeight = displayHeight / Main.INSTANCE.getBoardManager().getGame().getComplexity();
+                        columnWidth = displayWidth / DataManager.INSTANCE.getBoardManager().getComplexity();
+                        columnHeight = displayHeight / DataManager.INSTANCE.getBoardManager().getComplexity();
 
                         display();
                     }
@@ -77,10 +77,10 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * @param context the context
      */
     private void createTileButtons(Context context) {
-        Board board = Main.INSTANCE.getBoardManager().getGame();
+        Board board = (Board) DataManager.INSTANCE.getBoardManager().getGame();
         tileButtons = new ArrayList<>();
-        for (int row = 0; row != Main.INSTANCE.getBoardManager().getGame().getComplexity(); row++) {
-            for (int col = 0; col != Main.INSTANCE.getBoardManager().getGame().getComplexity(); col++) {
+        for (int row = 0; row != DataManager.INSTANCE.getBoardManager().getComplexity(); row++) {
+            for (int col = 0; col != DataManager.INSTANCE.getBoardManager().getComplexity(); col++) {
                 Button tmp = new Button(context);
                 tmp.setBackgroundResource(board.getGrid(row, col).getBackground());
                 this.tileButtons.add(tmp);
@@ -94,9 +94,9 @@ public class GameActivity extends AppCompatActivity implements Observer {
     private void updateTileButtons() {
         int nextPos = 0;
         for (Button b : tileButtons) {
-            int row = nextPos / Main.INSTANCE.getBoardManager().getGame().getComplexity();
-            int col = nextPos % Main.INSTANCE.getBoardManager().getGame().getComplexity();
-            b.setBackgroundResource(Main.INSTANCE.getBoardManager().getGame().getGrid(row, col).getBackground());
+            int row = nextPos / DataManager.INSTANCE.getBoardManager().getComplexity();
+            int col = nextPos % DataManager.INSTANCE.getBoardManager().getComplexity();
+            b.setBackgroundResource(((Board) DataManager.INSTANCE.getBoardManager().getGame()).getGrid(row, col).getBackground());
             nextPos++;
         }
         getScore();
@@ -108,8 +108,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     @Override
     protected void onPause() {
         super.onPause();
-        String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-        Main.INSTANCE.saveBoardManagerToFile(this.getApplicationContext(), fileName);
+        FileManager.saveGame(this.getApplicationContext(), "Auto");
     }
 
     /**
@@ -118,8 +117,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     @Override
     protected void onStop() {
         super.onStop();
-        String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-        Main.INSTANCE.saveBoardManagerToFile(this.getApplicationContext(), fileName);
+        FileManager.saveGame(this.getApplicationContext(), "Auto");
     }
 
     @Override
@@ -139,7 +137,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      */
     void getScore() {
         TextView currScoreTextView = findViewById(R.id.currScoreText);
-        String score = Integer.toString(Main.INSTANCE.getBoardManager().getScore());
+        String score = Integer.toString(DataManager.INSTANCE.getBoardManager().getScore());
         currScoreTextView.setText(score);
     }
 
@@ -149,9 +147,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
     private void addSaveGameButtonListener() {
         Button save = findViewById(R.id.saveGameButton);
         save.setOnClickListener(v -> {
-            String fileName = Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-            Main.INSTANCE.saveBoardManagerToFile(GameActivity.this.getApplicationContext(), fileName);
-            Main.INSTANCE.saveBoardManagerToFile(GameActivity.this.getApplicationContext(), "Auto_" + fileName);
+            FileManager.saveGame(this.getApplicationContext(), "Save");
+            FileManager.saveGame(this.getApplicationContext(), "Auto");
             makeToastSavedText();
         });
     }
@@ -162,14 +159,13 @@ public class GameActivity extends AppCompatActivity implements Observer {
     private void addUndoButtonListener() {
         Button undo = findViewById(R.id.undoButton);
         undo.setOnClickListener((v) -> {
-            if (Main.INSTANCE.getBoardManager().undoAvailable()) {
-                Main.INSTANCE.getBoardManager().undo();
+            if (((BoardManager) DataManager.INSTANCE.getBoardManager()).undoAvailable()) {
+                ((BoardManager) DataManager.INSTANCE.getBoardManager()).undo();
                 makeToastUndoSuccessText();
             } else {
                 makeToastUndoFailText();
             }
-            String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-            Main.INSTANCE.saveBoardManagerToFile(this.getApplicationContext(), fileName);
+            FileManager.saveGame(this.getApplicationContext(), "Auto");
             getScore();
         });
     }

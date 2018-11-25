@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 
-import Basic.Main;
+import Basic.DataManager;
 import Basic.SuperRecord;
 
 public class Record extends SuperRecord implements Comparable<Record>, Serializable {
@@ -29,9 +29,9 @@ public class Record extends SuperRecord implements Comparable<Record>, Serializa
 
     Record(int complexity, int finalScore, String userName){
         super(complexity, finalScore, userName);
-        super.setComplexity(Main.INSTANCE.getBoardManager().getGame().getComplexity());
-        super.setFinalScore(Main.INSTANCE.getBoardManager().getScore());
-        super.setUserName(Main.INSTANCE.getUserManager().getCurrentUser());
+        super.setComplexity(DataManager.INSTANCE.getBoardManager().getComplexity());
+        super.setFinalScore(DataManager.INSTANCE.getBoardManager().getScore());
+        super.setUserName(DataManager.INSTANCE.getCurrentUserName());
     }
     /**
      * Return a string type of record.

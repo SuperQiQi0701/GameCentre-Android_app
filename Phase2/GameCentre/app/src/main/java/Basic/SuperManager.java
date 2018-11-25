@@ -6,7 +6,7 @@ public abstract class SuperManager {
 
     private int score;
 
-    private SuperManager board;
+    private SuperBoard board;
 
     public SuperManager(int complexity) {
         this.complexity = complexity;
@@ -28,11 +28,11 @@ public abstract class SuperManager {
         this.score += num;
     }
 
-    public SuperManager getBoard() {
+    public SuperBoard getGame() {
         return board;
     }
 
-    public void setBoard(SuperManager board) {
+    public void setBoard(SuperBoard board) {
         this.board = board;
     }
 }

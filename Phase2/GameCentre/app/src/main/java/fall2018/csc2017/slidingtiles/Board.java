@@ -10,11 +10,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import Basic.SuperBoard;
+
 /**
  * The sliding tiles board.
  */
 
-public class Board extends Observable implements Iterable<Tile>, Serializable {
+public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
 
     /**
      * The game name for current board
@@ -41,8 +43,8 @@ public class Board extends Observable implements Iterable<Tile>, Serializable {
      * @param tiles the tiles for the board
      */
     Board(List<Tile> tiles, int complexity) {
+        super(complexity);
         Iterator<Tile> iter = tiles.iterator();
-        this.complexity = complexity;
         this.tiles = new Tile[this.complexity][this.complexity];
 
         for (int row = 0; row != this.complexity; row++) {
@@ -57,7 +59,7 @@ public class Board extends Observable implements Iterable<Tile>, Serializable {
      *
      * @return the number of tiles on the board
      */
-    int numGrids() {
+    public int numGrids() {
         return this.complexity * this.complexity;
     }
 
