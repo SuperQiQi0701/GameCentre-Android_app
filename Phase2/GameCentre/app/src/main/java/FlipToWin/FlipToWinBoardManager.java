@@ -7,9 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Observable;
 
-import Basic.GameManageable;
 import Basic.SuperManager;
 
 /**
@@ -21,7 +19,7 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable{
      * The board being managed.
      */
     private FlipToWinBoard board;
-    public int decisionMaking;
+    int decisionMaking;
 
 //    /**
 //     * An ArrayList that store all the previous moves for undo function.

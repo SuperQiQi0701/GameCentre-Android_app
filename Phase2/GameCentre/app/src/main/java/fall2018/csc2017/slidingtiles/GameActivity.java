@@ -15,7 +15,6 @@ import java.util.Observer;
 
 import Basic.CustomAdapter;
 import Basic.Main;
-import FlipToWin.FlipToWinBoard;
 
 /**
  * The game activity.
@@ -36,7 +35,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * of positions, and then call the adapter to set the view.
      */
     // Display
-    public void display() {
+    void display() {
         updateTileButtons();
         gridView.setAdapter(new CustomAdapter(tileButtons, columnWidth, columnHeight));
     }

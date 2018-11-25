@@ -15,13 +15,15 @@ import static Basic.Main.INSTANCE;
 
 public class ScoreBoardActivity extends AppCompatActivity {
 
+    private String tempName = Character.toString('a');
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_board);
         Main.INSTANCE.newScoreBoard();
         Main.INSTANCE.loadScoreBoardFromFile(this.getApplicationContext());
-        Record myRecord = new Record();
+        Record myRecord = new Record(1,0, tempName);
         Main.INSTANCE.getScoreBoard().addNewRecords(myRecord);
         Main.INSTANCE.saveScoreBoardToFile(this.getApplicationContext());
 

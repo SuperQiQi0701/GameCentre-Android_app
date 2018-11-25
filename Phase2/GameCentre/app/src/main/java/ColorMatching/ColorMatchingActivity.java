@@ -46,7 +46,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
         addSaveGameButtonListener();
     }
 
-    public void checkWin(){
+    private void checkWin(){
         if (Main.INSTANCE.getColorBoardManager().puzzleSolved()){
             Toast.makeText(this, "YOU WIN!", Toast.LENGTH_SHORT).show();
             Intent temp = new Intent(this, ColorMatchingScoreBoardActivity.class);
@@ -54,7 +54,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
         }
     }
 
-    public void draw(){
+    private void draw(){
         colorView.view = new View(this) {
             protected void onDraw(Canvas canvas) {
                 if (Main.INSTANCE.getColorBoardManager().colorBoard.getGrid(1, 1) == null){
@@ -69,7 +69,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
         getScore();
     }
 
-    public void initData(){
+    private void initData(){
         int complexity = Main.INSTANCE.getColorBoardManager().getGame().getComplexity();
         int width = getScreenWidth(this);
         this.width = width;
@@ -82,12 +82,12 @@ public class ColorMatchingActivity extends AppCompatActivity {
         colorView.setBoxSize(this.width / Main.INSTANCE.getColorBoardManager().board.length);
     }
 
-    public void initView(){
+    private void initView(){
         FrameLayout layoutGame = findViewById(R.id.layoutGame);
         draw();
         layoutGame.addView(colorView.view); }
 
-    public static int getScreenWidth(Context context){
+    private static int getScreenWidth(Context context){
         WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         assert wm != null;
@@ -95,7 +95,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
         return outMetrics.widthPixels;
     }
 
-    public void drawNewBoard(Canvas canvas){
+    private void drawNewBoard(Canvas canvas){
         for (int x = 0; x < Main.INSTANCE.getColorBoardManager().board.length; x++) {
             for (int y = 0; y < Main.INSTANCE.getColorBoardManager().board[x].length; y++) {
                 int color = randomColor();
@@ -108,7 +108,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
         getScore();
     }
 
-    public void uploadBoard(Canvas canvas){
+    private void uploadBoard(Canvas canvas){
         for (int x = 0; x < Main.INSTANCE.getColorBoardManager().board.length; x++) {
             for (int y = 0; y < Main.INSTANCE.getColorBoardManager().board[x].length; y++) {
                 int color = Main.INSTANCE.getColorBoardManager().colorBoard.getGrid(x, y).getColor();
@@ -237,7 +237,7 @@ public class ColorMatchingActivity extends AppCompatActivity {
         });
     }
 
-    public int randomColor(){
+    private int randomColor(){
         Random random = new Random();
         int color = random.nextInt(5);
         switch(color){

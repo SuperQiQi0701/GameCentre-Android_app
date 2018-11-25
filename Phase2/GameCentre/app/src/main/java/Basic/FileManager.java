@@ -115,7 +115,7 @@ public class FileManager {
             InputStream inputStream = fileContext.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
-                DataManager.INSTANCE.setBoardManager((GridBoardManager) input.readObject());
+                DataManager.INSTANCE.setBoardManager((SuperManager) input.readObject());
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {
