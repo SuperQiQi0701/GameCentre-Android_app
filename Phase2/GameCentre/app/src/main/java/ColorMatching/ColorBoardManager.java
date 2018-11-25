@@ -35,12 +35,12 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         arr = new ArrayList();
     }
 
-    private ColorTile getLeft(ColorTile tile){
-        if((tile.x)-1 >= 0){
-            return colorBoard.getGrid((tile.x)-1, tile.y);
-        }
-        return null;
-    }
+//    private ColorTile getLeft(ColorTile tile){
+//        if((tile.x)-1 >= 0){
+//            return colorBoard.getGrid((tile.x)-1, tile.y);
+//        }
+//        return null;
+//    }
 
     /**
      * Return the current score of the game
@@ -51,53 +51,32 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         return score;
     }
 
-    private ColorTile getRight(ColorTile tile){
-        if((tile.x)+1 < board.length){
-            return colorBoard.getGrid((tile.x)+1, tile.y);
-        }
-        return null;
-    }
-
-    private ColorTile getTop(ColorTile tile){
-        if((tile.y)-1 >= 0){
-            return colorBoard.getGrid(tile.x, (tile.y)-1);
-        }
-        return null;
-    }
-
-    private ColorTile getBottom(ColorTile tile){
-        if((tile.y)+1 < board.length*5/4){
-            return colorBoard.getGrid(tile.x, (tile.y)+1);
-        }
-        return null;
-    }
-
     private void neighbour(ColorTile tile, int initColor){
-        if(getLeft(tile)!= null){
-            if(Objects.requireNonNull(getLeft(tile)).getColor() == initColor){
-                if(! allState.contains(getLeft(tile)) && ! arr.contains(getLeft(tile))){
-                    allState.add(getLeft(tile));
+        if(colorBoard.getLeft(tile)!= null){
+            if(Objects.requireNonNull(colorBoard.getLeft(tile)).getColor() == initColor){
+                if(! allState.contains(colorBoard.getLeft(tile)) && ! arr.contains(colorBoard.getLeft(tile))){
+                    allState.add(colorBoard.getLeft(tile));
                 }
             }
         }
-        if(getRight(tile)!= null){
-            if(Objects.requireNonNull(getRight(tile)).getColor() == initColor){
-                if(! allState.contains(getRight(tile)) && ! arr.contains(getRight(tile))){
-                    allState.add(getRight(tile));
+        if(colorBoard.getRight(tile)!= null){
+            if(Objects.requireNonNull(colorBoard.getRight(tile)).getColor() == initColor){
+                if(! allState.contains(colorBoard.getRight(tile)) && ! arr.contains(colorBoard.getRight(tile))){
+                    allState.add(colorBoard.getRight(tile));
                 }
             }
         }
-        if(getTop(tile)!= null){
-            if(Objects.requireNonNull(getTop(tile)).getColor() == initColor){
-                if(! allState.contains(getTop(tile)) && ! arr.contains(getTop(tile))){
-                    allState.add(getTop(tile));
+        if(colorBoard.getTop(tile)!= null){
+            if(Objects.requireNonNull(colorBoard.getTop(tile)).getColor() == initColor){
+                if(! allState.contains(colorBoard.getTop(tile)) && ! arr.contains(colorBoard.getTop(tile))){
+                    allState.add(colorBoard.getTop(tile));
                 }
             }
         }
-        if(getBottom(tile)!= null){
-            if(Objects.requireNonNull(getBottom(tile)).getColor() == initColor){
-                if(! allState.contains(getBottom(tile)) && ! arr.contains(getBottom(tile))){
-                    allState.add(getBottom(tile));
+        if(colorBoard.getBottom(tile)!= null){
+            if(Objects.requireNonNull(colorBoard.getBottom(tile)).getColor() == initColor){
+                if(! allState.contains(colorBoard.getBottom(tile)) && ! arr.contains(colorBoard.getBottom(tile))){
+                    allState.add(colorBoard.getBottom(tile));
                 }
             }
         }

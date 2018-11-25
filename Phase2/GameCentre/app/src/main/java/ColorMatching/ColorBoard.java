@@ -64,4 +64,34 @@ public class ColorBoard extends SuperBoard implements Serializable{
     public void setComplexity(int complexity) {
         this.complexity = complexity;
     }
+
+    public ColorTile getLeft(ColorTile tile){
+        if((tile.x)-1 >= 0){
+            return getGrid((tile.x)-1, tile.y);
+        }
+        return null;
+    }
+
+    public ColorTile getRight(ColorTile tile){
+        if((tile.x)+1 < tiles.length){
+            return getGrid((tile.x)+1, tile.y);
+        }
+        return null;
+    }
+
+    public ColorTile getTop(ColorTile tile){
+        if((tile.y)-1 >= 0){
+            return getGrid(tile.x, (tile.y)-1);
+        }
+        return null;
+    }
+
+    public ColorTile getBottom(ColorTile tile){
+        if((tile.y)+1 < tiles.length*5/4){
+            return getGrid(tile.x, (tile.y)+1);
+        }
+        return null;
+    }
+
+
 }

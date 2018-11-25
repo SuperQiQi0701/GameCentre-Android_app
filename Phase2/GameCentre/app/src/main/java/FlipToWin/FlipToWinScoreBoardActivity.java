@@ -45,7 +45,7 @@ public class FlipToWinScoreBoardActivity extends AppCompatActivity {
 
         if (Main.INSTANCE.getFlipToWinBoardManager().puzzleSolved()){
 
-            FlipToWinRecord myRecord = new FlipToWinRecord();
+            FlipToWinRecord myRecord = new FlipToWinRecord(0, 0, FlipToWinBoard.GAME_NAME);
             Main.INSTANCE.getFlipToWinScoreBoard().addNewRecords(myRecord);
             Main.INSTANCE.saveFlipToWinScoreBoardToFile(this.getApplicationContext());
             String myScore = Integer.toString(INSTANCE.getFlipToWinBoardManager().getScore());
