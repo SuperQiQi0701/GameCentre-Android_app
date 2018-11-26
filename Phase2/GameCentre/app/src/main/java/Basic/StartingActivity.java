@@ -49,8 +49,8 @@ public class StartingActivity extends AppCompatActivity {
             String fileName = DataManager.INSTANCE.getCurrentGameName() + "_" +
                     DataManager.INSTANCE.getCurrentUserName() + "_Save.ser";
             if (new File(StartingActivity.this.getFilesDir() + "/" + fileName).exists()) {
-                FileManager.loadGame(this.getApplicationContext(), "Save");
-                FileManager.saveGame(this.getApplicationContext(), "Auto");
+                FileManager.loadGame(StartingActivity.this.getApplicationContext(), fileName);
+                FileManager.saveGame(StartingActivity.this.getApplicationContext(), "Auto");
                 makeToastLoadedText();
                 switchToGame();
             } else {
@@ -85,7 +85,7 @@ public class StartingActivity extends AppCompatActivity {
             String fileName = DataManager.INSTANCE.getCurrentGameName() + "_" +
                     DataManager.INSTANCE.getCurrentUserName() + "_Auto.ser";
             if (new File(StartingActivity.this.getFilesDir() + "/" + fileName).exists()) {
-                FileManager.loadGame(this.getApplicationContext(), fileName);
+                FileManager.loadGame(StartingActivity.this.getApplicationContext(), fileName);
                 makeToastResumeText();
                 switchToGame();
             } else {

@@ -1,6 +1,8 @@
 package Basic;
 
-public abstract class SuperManager {
+import java.io.Serializable;
+
+public abstract class SuperManager implements Serializable {
 
     private int complexity;
 

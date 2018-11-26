@@ -1,10 +1,11 @@
 package Basic;
 
+import java.io.Serializable;
 import java.util.Observable;
 
 import ColorMatching.ColorTile;
 
-public abstract class SuperBoard<T> extends Observable {
+public abstract class SuperBoard<T> extends Observable implements Serializable {
     private int complexity;
 
     public SuperBoard(int complexity){
