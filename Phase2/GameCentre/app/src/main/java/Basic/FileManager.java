@@ -45,7 +45,7 @@ public class FileManager {
      */
     static UserManager loadUserManager(Context fileContext) {
         try {
-            String fileName = DataManager.INSTANCE.getCurrentGameName() + "_UserManager.ser";
+            String fileName = "UserManager.ser";
             InputStream inputStream = fileContext.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);

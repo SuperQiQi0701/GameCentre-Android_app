@@ -22,7 +22,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        this.userManager = FileManager.loadUserManager(this.getApplicationContext());
         setupLogInButtonListener();
         setupRegisterButtonListener();
         setupResetPasswordButtonListener();
@@ -37,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText nameInput = findViewById(R.id.name);
         EditText passwordInput = findViewById(R.id.password);
         TextView messageBox = findViewById(R.id.success);
+        this.userManager = FileManager.loadUserManager(this.getApplicationContext());
 
         loginButton.setOnClickListener((v) -> {
             if (this.userManager.login(nameInput.getText().toString(), passwordInput.getText().toString()) == null) {
