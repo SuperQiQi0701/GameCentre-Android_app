@@ -22,10 +22,7 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
     /**
      * The number of row and col
      */
-    private int complexity;
-
     private int rowNum;
-
     private int colNum;
 
 
@@ -43,9 +40,8 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
     FlipToWinBoard(List<FlipToWinTile> ftiles, int complexity) {
         super(complexity);
         Iterator<FlipToWinTile> iter = ftiles.iterator();
-        this.complexity = complexity;
-        this.rowNum = complexity;
-        this.colNum = complexity + 1;
+        this.rowNum = getComplexity();
+        this.colNum = getComplexity() + 1;
         this.ftiles = new FlipToWinTile[this.rowNum][this.colNum];
 
         for (int row = 0; row != this.rowNum; row++) {
@@ -65,22 +61,12 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
         return this.rowNum* this.colNum;
     }
 
-    public int getColNum() {
+    int getColNum() {
         return this.colNum;
     }
 
-    public int getRowNum() {
+    int getRowNum() {
         return this.rowNum;
-    }
-
-    /**
-     * Return the complexity of current board
-     *
-     * @return the complexity of current board
-     */
-    public int getComplexity() {
-
-        return this.complexity;
     }
 
 

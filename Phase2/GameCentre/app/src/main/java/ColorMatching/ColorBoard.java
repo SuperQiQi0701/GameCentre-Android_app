@@ -10,7 +10,7 @@ public class ColorBoard extends SuperBoard implements Serializable{
      */
     private static final String GAME_NAME = "Color Matching";
 
-    private int complexity;
+    private int complexity = getComplexity();
 
     /**
      * The color tiles on the board in row-major order.
@@ -27,11 +27,6 @@ public class ColorBoard extends SuperBoard implements Serializable{
 
     public static String getGameName() {
         return GAME_NAME;
-    }
-
-    @Override
-    public int getComplexity() {
-        return super.getComplexity();
     }
 
     @Override

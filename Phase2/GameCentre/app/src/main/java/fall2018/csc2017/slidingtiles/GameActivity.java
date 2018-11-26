@@ -78,9 +78,6 @@ public class GameActivity extends AppCompatActivity implements Observer {
      */
     private void createTileButtons(Context context) {
         Board board = (Board) DataManager.INSTANCE.getBoardManager().getGame();
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println(board);
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@");
         tileButtons = new ArrayList<>();
         for (int row = 0; row < DataManager.INSTANCE.getBoardManager().getComplexity(); row++) {
             for (int col = 0; col < DataManager.INSTANCE.getBoardManager().getComplexity(); col++) {
@@ -150,8 +147,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
     private void addSaveGameButtonListener() {
         Button save = findViewById(R.id.saveGameButton);
         save.setOnClickListener(v -> {
-            FileManager.saveGame(this.getApplicationContext(), "Save");
-            FileManager.saveGame(this.getApplicationContext(), "Auto");
+            FileManager.saveGame(GameActivity.this.getApplicationContext(), "Save");
+            FileManager.saveGame(GameActivity.this.getApplicationContext(), "Auto");
             makeToastSavedText();
         });
     }

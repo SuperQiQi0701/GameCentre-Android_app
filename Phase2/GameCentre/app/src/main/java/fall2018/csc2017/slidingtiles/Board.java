@@ -25,16 +25,13 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
     /**
      * The number of row and col
      */
-    private int complexity;
+    private int complexity = getComplexity();
+    ;
 
     /**
      * The tiles on the board in row-major order.
      */
     private Tile[][] tiles;
-
-    public static String getGameName(){
-        return GAME_NAME;
-    }
 
     /**
      * A new board of tiles in row-major order.
@@ -45,8 +42,6 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
     Board(List<Tile> tiles, int complexity) {
         super(complexity);
         Iterator<Tile> iter = tiles.iterator();
-        System.out.print(this.complexity);
-        System.out.println("boardcomplexity22222222222222222222222");
         this.tiles = new Tile[this.complexity][this.complexity];
 
         for (int row = 0; row != this.complexity; row++) {
@@ -63,16 +58,6 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
      */
     public int numGrids() {
         return this.complexity * this.complexity;
-    }
-
-
-    /**
-     * Return the complexity of current board
-     *
-     * @return the complexity of current board
-     */
-    public int getComplexity() {
-        return this.complexity;
     }
 
 

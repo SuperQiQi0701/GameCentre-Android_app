@@ -35,8 +35,7 @@ public class BoardManager extends SuperManager implements Serializable{
     public BoardManager(int complexity) {
         super(complexity);
         List<Tile> tiles = new ArrayList<>();
-        System.out.print(complexity);
-        System.out.println("11111111111111111111111111111111111111111111111111111");
+
         final int numTiles = complexity * complexity;
         for (int tileNum = 0; tileNum != numTiles; tileNum++) {
             tiles.add(new Tile(tileNum, complexity));
