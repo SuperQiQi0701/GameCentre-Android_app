@@ -23,10 +23,12 @@ public abstract class SuperManager implements Serializable {
     public abstract boolean puzzleSolved();
 
     public int getScore() {
+
         return this.score;
     }
 
-    public void setSocre(int num) {
+    public void addingScore(int num)
+    {
         this.score += num;
     }
 
