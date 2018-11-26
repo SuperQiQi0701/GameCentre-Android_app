@@ -3,7 +3,6 @@ package Basic;
 import ColorMatching.ColorBoardManager;
 import FlipToWin.FlipToWinBoardManager;
 import fall2018.csc2017.slidingtiles.BoardManager;
-import fall2018.csc2017.slidingtiles.ScoreBoard;
 
 public enum DataManager {
     INSTANCE;
@@ -83,7 +82,7 @@ public enum DataManager {
     /**
      * This will create a new boardManager according to the currentGameName
      */
-    void startNewGame(int complexity) {
+    public void startNewGame(int complexity) {
         switch (currentGameName) {
             case "ST":
                 this.boardManager = new BoardManager(complexity);

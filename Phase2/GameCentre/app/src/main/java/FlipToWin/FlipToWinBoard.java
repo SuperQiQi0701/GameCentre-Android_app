@@ -2,20 +2,20 @@ package FlipToWin;
 
 import android.support.annotation.NonNull;
 
-import java.util.Observable;
-
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import Basic.SuperBoard;
+
 
 /**
  * The sliding tiles board.
  */
 
-public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile>, Serializable{
+public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile>, Serializable{
 
 
     public static final String GAME_NAME = "Flip To Win";
@@ -41,6 +41,7 @@ public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile
      * @param ftiles the tiles for the board
      */
     FlipToWinBoard(List<FlipToWinTile> ftiles, int complexity) {
+        super(complexity);
         Iterator<FlipToWinTile> iter = ftiles.iterator();
         this.complexity = complexity;
         this.rowNum = complexity;
@@ -59,7 +60,7 @@ public class FlipToWinBoard extends Observable implements Iterable<FlipToWinTile
      *
      * @return the number of tiles on the board
      */
-    private int numGrids() {
+    public int numGrids() {
 
         return this.rowNum* this.colNum;
     }

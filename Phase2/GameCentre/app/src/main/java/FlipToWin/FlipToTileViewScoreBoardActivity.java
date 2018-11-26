@@ -8,10 +8,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.FileNotFoundException;
 
-import Basic.Main;
+import Basic.DataManager;
+import Basic.StartingActivity;
 import fall2018.csc2017.slidingtiles.R;
+import Basic.ScoreBoardActivity;
 
 public class FlipToTileViewScoreBoardActivity extends AppCompatActivity {
 
@@ -68,14 +69,13 @@ public class FlipToTileViewScoreBoardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent temp = new Intent(this, FlipToWinStartingActivity.class);
+        Intent temp = new Intent(this, StartingActivity.class);
         startActivity(temp);
     }
 
     private void setUpScoreBoard(int complexity) {
-        Main.INSTANCE.startNewFlipToWinGame(complexity);
-        Main.INSTANCE.loadFlipToWinScoreBoardFromFile(this.getApplicationContext());
-        Intent temp = new Intent(this, FlipToWinScoreBoardActivity.class);
+        DataManager.INSTANCE.startNewGame(complexity);
+        Intent temp = new Intent(this, ScoreBoardActivity.class);
         temp.putExtra("complexity", complexity);
         startActivity(temp);
         finish();

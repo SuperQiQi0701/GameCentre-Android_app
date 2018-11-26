@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package Basic;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,6 +27,14 @@ public class ScoreBoard implements Serializable {
      * get the current complexity  the game.
      */
     private int currComplexity;
+
+    /** Set this.currComplexity to the given complexity
+     *
+     * @param complexity the complexity of the record
+     */
+    public void setComplexity(int complexity){
+        this.currComplexity = complexity;
+    }
 
 
     /**
@@ -110,7 +118,7 @@ public class ScoreBoard implements Serializable {
         ArrayList<String> result = new ArrayList<>();
 
         for (Record r : topFive) {
-            result.add(r.recordToString(tempName));
+            result.add(r.recordToString());
         }
 
         if (result.size() < 5) {

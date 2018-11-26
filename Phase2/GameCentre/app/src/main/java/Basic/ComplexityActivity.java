@@ -9,9 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import ColorMatching.ColorMatchingActivity;
-import ColorMatching.ColorMatchingStartActivity;
 import FlipToWin.FlipToWinGameActivity;
-import FlipToWin.FlipToWinStartingActivity;
 import fall2018.csc2017.slidingtiles.GameActivity;
 import fall2018.csc2017.slidingtiles.R;
 
@@ -78,14 +76,7 @@ public class ComplexityActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         String gameName = DataManager.INSTANCE.getCurrentGameName();
-        Intent temp;
-        if ("ST".equals(gameName)) {
-            temp = new Intent(this, StartingActivity.class);
-        } else if ("CM".equals(gameName)) {
-            temp = new Intent(this, ColorMatchingStartActivity.class);
-        } else {
-            temp = new Intent(this, FlipToWinStartingActivity.class);
-        }
+        Intent temp = new Intent(this, StartingActivity.class);;
         finish();
         startActivity(temp);
     }

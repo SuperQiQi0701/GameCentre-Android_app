@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import ColorMatching.ColorMatchingStartActivity;
-import FlipToWin.FlipToWinStartingActivity;
 import fall2018.csc2017.slidingtiles.R;
 
 
@@ -54,7 +52,7 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setTextColor(Color.BLACK);
         mSliding.setOnClickListener(v -> {
             DataManager.INSTANCE.setCurrentGameName("CM");
-            Intent slide = new Intent(this, ColorMatchingStartActivity.class);
+            Intent slide = new Intent(this, StartingActivity.class);
             startActivity(slide);
         });
     }
@@ -66,7 +64,7 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setTextColor(Color.RED);
         mSliding.setOnClickListener(v -> {
             DataManager.INSTANCE.setCurrentGameName("FTW");
-            Intent slide = new Intent(this, FlipToWinStartingActivity.class);
+            Intent slide = new Intent(this, StartingActivity.class);
             startActivity(slide);
         });
     }

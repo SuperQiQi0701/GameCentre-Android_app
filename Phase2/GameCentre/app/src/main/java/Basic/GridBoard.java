@@ -6,9 +6,13 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public abstract class GridBoard implements Iterable, Serializable {
+public abstract class GridBoard extends SuperBoard implements Iterable, Serializable {
 
     private int complexity;
+
+    public GridBoard(int complexity) {
+        super(complexity);
+    }
 
     abstract public MovableTile getGrid(int row, int col);
 
@@ -20,7 +24,7 @@ public abstract class GridBoard implements Iterable, Serializable {
         return this.complexity;
     }
 
-    abstract void makeMove();
+    protected abstract void makeMove();
 
     @Override
     abstract public String toString();

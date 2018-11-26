@@ -14,8 +14,10 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import Basic.Main;
+import Basic.DataManager;
+import Basic.FileManager;
 import Basic.CustomAdapter;
+import Basic.StartingActivity;
 import fall2018.csc2017.slidingtiles.R;
 
 /**
@@ -57,14 +59,12 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-        Main.INSTANCE.loadFlipToWinBoardManagerFromFile(this.getApplicationContext(), fileName);
         createTileButtons(this);
         setContentView(R.layout.activity_flip_to_win_game);
         // Add View to activity
         flipGridView = findViewById(R.id.fliptowingrid);
-        flipGridView.setNumColumns(Main.INSTANCE.getFlipToWinBoardManager().getGame().getColNum());
-        Main.INSTANCE.getFlipToWinBoardManager().getGame().addObserver(this);
+        flipGridView.setNumColumns(((FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getGame()).getColNum());
+        DataManager.INSTANCE.getBoardManager().getGame().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
         flipGridView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -74,9 +74,9 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
                                 this);
                         int displayWidth = flipGridView.getMeasuredWidth();
                         int displayHeight = flipGridView.getMeasuredHeight();
-
-                        columnWidth2 = displayWidth / Main.INSTANCE.getFlipToWinBoardManager().getGame().getColNum();
-                        columnHeight2 = displayHeight / Main.INSTANCE.getFlipToWinBoardManager().getGame().getRowNum();
+                        FlipToWinBoard board = (FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getGame();
+                        columnWidth2 = displayWidth / board.getColNum();
+                        columnHeight2 = displayHeight / board.getRowNum();
 
                         display();
                     }
@@ -92,16 +92,16 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
      * @param context the context
      */
     private void createTileButtons(Context context) {
-        FlipToWinBoard flipToWinBoard = Main.INSTANCE.getFlipToWinBoardManager().getGame();
         fTileButtons = new ArrayList<>();
 //        ArrayList<String> emojiChosen = new ArrayList<>();
-        int rowNum = Main.INSTANCE.getFlipToWinBoardManager().getGame().getRowNum();
-        int colNum = Main.INSTANCE.getFlipToWinBoardManager().getGame().getColNum();
+        FlipToWinBoard board = (FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getGame();
+        int rowNum = board.getRowNum();
+        int colNum = board.getColNum();
         getEmojiList((rowNum * colNum) / 2, emojiChosen);
         for (int row = 0; row != rowNum; row++) {
             for (int col = 0; col != colNum; col++) {
                 Button tmp = new Button(context);
-                tmp.setText(emojiChosen.get(flipToWinBoard.getGrid(row, col).getId() - 1 ));
+                tmp.setText(emojiChosen.get(board.getGrid(row, col).getId() - 1 ));
                 tmp.setTextSize(40);
                 this.fTileButtons.add(tmp);
             }
@@ -116,9 +116,10 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
     private void updateTileButtons() {
         int nextPos = 0;
         for (Button b : fTileButtons) {
-            int row = nextPos /  Main.INSTANCE.getFlipToWinBoardManager().getGame().getColNum();
-            int col = nextPos %  Main.INSTANCE.getFlipToWinBoardManager().getGame().getColNum();
-            FlipToWinTile tile = Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col);
+            FlipToWinBoard board = (FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getGame();
+            int row = nextPos /  board.getColNum();
+            int col = nextPos %  board.getColNum();
+            FlipToWinTile tile = board.getGrid(row, col);
 //            int emojiIndex = Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col).flipStatus();
 
             if (!(tile.facedUpStatus())) {
@@ -160,8 +161,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
     @Override
     protected void onPause() {
         super.onPause();
-        String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-        Main.INSTANCE.saveFlipToWinBoardManagerToFile(this.getApplicationContext(), fileName);
+        FileManager.saveGame(this.getApplicationContext(), "Auto");
     }
 
     /**
@@ -170,8 +170,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
     @Override
     protected void onStop() {
         super.onStop();
-        String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-        Main.INSTANCE.saveFlipToWinBoardManagerToFile(this.getApplicationContext(), fileName);
+        FileManager.saveGame(this.getApplicationContext(), "Auto");
     }
 
     @Override
@@ -183,7 +182,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
     @Override
     public void onBackPressed() {
         finish();
-        Intent temp = new Intent(this, FlipToWinStartingActivity.class);
+        Intent temp = new Intent(this, StartingActivity.class);
         startActivity(temp);
     }
 
@@ -192,7 +191,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
      */
     void getScore() {
         TextView currScoreTextView = findViewById(R.id.fliptowin_currScoreText);
-        String score = Integer.toString(Main.INSTANCE.getFlipToWinBoardManager().getScore());
+        String score = Integer.toString(DataManager.INSTANCE.getBoardManager().getScore());
         currScoreTextView.setText(score);
     }
 
@@ -202,9 +201,8 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
     private void addSaveGameButtonListener() {
         Button save = findViewById(R.id.fliptowin_saveGameButton);
         save.setOnClickListener(v -> {
-            String fileName = Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-            Main.INSTANCE.saveFlipToWinBoardManagerToFile(FlipToWinGameActivity.this.getApplicationContext(), fileName);
-            Main.INSTANCE.saveFlipToWinBoardManagerToFile(FlipToWinGameActivity.this.getApplicationContext(), "Auto_" + fileName);
+            FileManager.saveGame(this.getApplicationContext(), "Auto");
+            FileManager.saveGame(this.getApplicationContext(), "Save");
             makeToastSavedText();
         });
     }
