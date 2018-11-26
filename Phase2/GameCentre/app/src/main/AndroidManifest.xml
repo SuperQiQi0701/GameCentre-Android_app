@@ -28,14 +28,14 @@
         </activity>
         <activity android:name="Basic.SelectGameActivity" />
         <activity android:name="Basic.ResetPasswordActivity" />
-        <activity android:name="ColorMatching.ColorMatchingActivity" />
+        <activity android:name="ColorMatching.ColorMatchingGameActivity" />
         <activity android:name="FlipToWin.FlipToWinGameActivity" />
-        <activity android:name="FlipToWin.FlipToWinStartingActivity" />
-        <activity android:name="FlipToWin.FlipToWinComplexityActivity" />
-        <activity android:name="FlipToWin.FlipToWinScoreBoardActivity" />
-        <activity android:name="ColorMatching.ColorMatchingScoreBoardActivity" />
-        <activity android:name="ColorMatching.ColorMatchingComplexityActivity" />
-        <activity android:name="ColorMatching.ColorMatchingStartActivity" />
+        <!--<activity android:name="FlipToWin.FlipToWinStartingActivity" />-->
+        <!--<activity android:name="FlipToWin.FlipToWinComplexityActivity" />-->
+        <!--<activity android:name="FlipToWin.FlipToWinScoreBoardActivity" />-->
+        <!--<activity android:name="ColorMatching.ColorMatchingScoreBoardActivity" />-->
+        <!--<activity android:name="ColorMatching.ColorMatchingComplexityActivity" />-->
+        <!--<activity android:name="ColorMatching.ColorMatchingStartActivity" />-->
         <activity android:name="FlipToWin.FlipToTileViewScoreBoardActivity"></activity>
     </application>
 

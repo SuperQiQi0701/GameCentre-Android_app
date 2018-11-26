@@ -10,14 +10,22 @@ public class ColorBoardManager extends SuperManager implements Serializable{
     /**
      * The board being managed.
      */
-    ColorBoard colorBoard;
+    private ColorBoard colorBoard;
 
     /**
      * An integer that keep track the score of the current game
      */
     private int score = 0;
 
-    boolean[][] board;
+    public boolean[][] getBoard() {
+        return board;
+    }
+
+    public void setBoard(boolean[][] board) {
+        this.board = board;
+    }
+
+    private boolean[][] board;
     private ArrayList<ArrayList<ColorTile>> allMove;
     private ArrayList<ColorTile> current;
     private ArrayList<Integer> colors;

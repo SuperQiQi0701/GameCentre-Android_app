@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import java.io.File;
 
-import ColorMatching.ColorMatchingActivity;
+import ColorMatching.ColorMatchingGameActivity;
 import FlipToWin.FlipToWinGameActivity;
 import fall2018.csc2017.slidingtiles.GameActivity;
 import fall2018.csc2017.slidingtiles.R;
@@ -128,7 +128,7 @@ public class StartingActivity extends AppCompatActivity {
         if ("ST".equals(gameName)) {
             temp = new Intent(this, GameActivity.class);
         } else if ("CM".equals(gameName)) {
-            temp = new Intent(this, ColorMatchingActivity.class);
+            temp = new Intent(this, ColorMatchingGameActivity.class);
         } else {
             temp = new Intent(this, FlipToWinGameActivity.class);
         }
