@@ -28,11 +28,9 @@ public abstract class SuperManager {
         this.score += num;
     }
 
-    public SuperBoard getGame() {
-        return board;
-    }
+    public abstract SuperBoard getGame();
 
-    public void setBoard(SuperBoard board) {
-        this.board = board;
-    }
+//    public void setBoard(SuperBoard board) {
+//        this.board = board;
+//    }
 }

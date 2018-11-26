@@ -45,6 +45,8 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
     Board(List<Tile> tiles, int complexity) {
         super(complexity);
         Iterator<Tile> iter = tiles.iterator();
+        System.out.print(this.complexity);
+        System.out.println("boardcomplexity22222222222222222222222");
         this.tiles = new Tile[this.complexity][this.complexity];
 
         for (int row = 0; row != this.complexity; row++) {

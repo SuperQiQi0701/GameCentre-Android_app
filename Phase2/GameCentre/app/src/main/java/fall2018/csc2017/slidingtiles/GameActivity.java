@@ -78,9 +78,12 @@ public class GameActivity extends AppCompatActivity implements Observer {
      */
     private void createTileButtons(Context context) {
         Board board = (Board) DataManager.INSTANCE.getBoardManager().getGame();
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println(board);
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@");
         tileButtons = new ArrayList<>();
-        for (int row = 0; row != DataManager.INSTANCE.getBoardManager().getComplexity(); row++) {
-            for (int col = 0; col != DataManager.INSTANCE.getBoardManager().getComplexity(); col++) {
+        for (int row = 0; row < DataManager.INSTANCE.getBoardManager().getComplexity(); row++) {
+            for (int col = 0; col < DataManager.INSTANCE.getBoardManager().getComplexity(); col++) {
                 Button tmp = new Button(context);
                 tmp.setBackgroundResource(board.getGrid(row, col).getBackground());
                 this.tileButtons.add(tmp);

@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import Basic.SuperBoard;
 import Basic.SuperManager;
 
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
  */
-public class FlipToWinBoardManager extends SuperManager implements Serializable{
+public class FlipToWinBoardManager extends SuperManager implements Serializable {
 
     /**
      * The board being managed.
@@ -58,6 +59,11 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable{
      */
     public int getScore() {
         return score;
+    }
+
+    @Override
+    public SuperBoard getGame() {
+        return this.board;
     }
 
     /**
@@ -111,8 +117,7 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable{
                 positionTileOneFaceUp = position;
                 decisionMaking = 0;
                 board.makeMove(row, col);
-            }
-            else if (positionTileTwoFaceUp == -1) {
+            } else if (positionTileTwoFaceUp == -1) {
 
                 int rowTileOne = positionTileOneFaceUp / board.getColNum();
                 int colTileOne = positionTileOneFaceUp % board.getColNum();
@@ -125,8 +130,7 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable{
                     tileCurrFaceUp.setPaired();
                     decisionMaking = 1;
                     board.makeMove(row, col);
-                }
-                else {
+                } else {
                     positionTileTwoFaceUp = position;
                     decisionMaking = -1;
                     board.makeMove(row, col);
@@ -149,172 +153,6 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable{
 
                 }, 1200); // 延时1秒
             }
-
-
-
-//            Timer timer = new Timer();
-//            timer.schedule(new TimerTask() {
-//                @Override
-//                public void run() {
-//
-//                    System.out.println("delaying");
-//
-//                }
-//            },1000); // 延时1秒
-
-//            new Thread(() -> {
-//
-//                try {
-//                    Thread.sleep(1000); // 休眠1秒
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                if ((positionTileOneFaceUp != -1) & (positionTileTwoFaceUp != -1)) {
-//                    int rowTileOne = positionTileOneFaceUp / board.getColNum();
-//                    int colTileOne = positionTileOneFaceUp % board.getColNum();
-//                    int rowTileTwo = positionTileTwoFaceUp / board.getColNum();
-//                    int colTileTwo = positionTileTwoFaceUp % board.getColNum();
-//
-//                    board.makeMove(rowTileOne, colTileOne);
-//                    board.makeMove(rowTileTwo, colTileTwo);
-//                    positionTileOneFaceUp = -1;
-//                    positionTileTwoFaceUp = -1;
-//                }
-//
-//            }).start();
-
-
-//            if ((positionTileOneFaceUp != -1) & (positionTileTwoFaceUp != -1)) {
-//                int rowTileOne = positionTileOneFaceUp / board.getColNum();
-//                int colTileOne = positionTileOneFaceUp % board.getColNum();
-//                int rowTileTwo = positionTileTwoFaceUp / board.getColNum();
-//                int colTileTwo = positionTileTwoFaceUp % board.getColNum();
-//
-//                board.makeMove(rowTileOne, colTileOne);
-//                board.makeMove(rowTileTwo, colTileTwo);
-//                positionTileOneFaceUp = -1;
-//                positionTileTwoFaceUp = -1;
-//            }
-
-
-
-
-
-
         }
-//            if (positionTileOneFaceUp == -1) {
-//                positionTileOneFaceUp = position;
-//                board.makeMove(row, col);
-////                System.out.println("first tap");
-//            }
-//            else {
-//                int matchPosition = positionTileOneFaceUp;
-//                int matchRow = matchPosition / board.getColNum();
-//                int matchCol = matchPosition % board.getColNum();
-//                if (matchPosition != position) {
-//                    if (board.getGrid(row, col).getId() == board.getGrid(matchRow, matchCol).getId()) {
-//                        board.getGrid(row, col).setPaired();
-//                        board.getGrid(matchRow, matchCol).setPaired();
-//                    }
-//
-//                    board.makeMove(row, col);
-////                    System.out.println("second tap");
-//                    positionTileOneFaceUp = -1;
-//                }
-//                for (FlipToWinTile ft : board) {
-//                    if (!(ft.isPaired()) & ft.facedUpStatus()) {
-//
-//                        ft.setFlipped();
-//                    }
-//                }
-//            }
-//        }
-
-
-
-
-//                int acc = 0;
-//                for (FlipToWinTile ft: board) {
-//                    if (!(ft.isPaired()) & ft.flipStatus() != 0) {
-//                        int flipRow = acc / board.getComplexity();
-//                        int flipCol = acc % board.getComplexity();
-//                        board.makeMove(flipRow, flipCol);
-//                        try {
-//                            Thread.currentThread().sleep(1000);//毫秒
-//                        } catch (Exception e) {
-//                        }
-//                        System.out.println("delay finish");
-//                        }
-//                    acc++ ;
-                }
-            }
-//
-//                int acc = 0;
-//                for (FlipToWinTile ft : board) {
-//                    if (!(ft.isPaired()) & ft.flipStatus() != 0) {
-//
-//                        ft.setFlipped();
-//                        System.out.println("fliped over");
-
-//                        try {
-//                            Thread.currentThread().sleep(1000);//毫秒
-//                        } catch (Exception e) {
-//                        }
-//                        System.out.println("delayed");
-
-//                for (FlipToWinTile ft: board) {
-//                    if (!(ft.isPaired()) & ft.flipStatus() != 0) {
-//                        int flipRow = acc / board.getComplexity();
-//                        int flipCol = acc % board.getComplexity();
-//                        board.makeMove(flipRow, flipCol);
-//                        }
-//                    acc++ ;
-
-
-//
-//        if (!(board.getGrid(row, col).isPaired())) {
-//            int matchPosition = positionOneAndOnlyOneTileFaceUp;
-//            int matchRow = matchPosition / board.getComplexity();
-//            int matchCol = matchPosition % board.getComplexity();
-//            if (matchPosition != position) {
-//                if (board.getGrid(row, col).getId() == board.getGrid(matchRow, matchCol).getId()) {
-//                    board.getGrid(row, col).setPaired();
-//                    board.getGrid(matchRow, matchCol).setPaired();
-//                }
-//                board.makeMove(row, col);
-//                positionOneAndOnlyOneTileFaceUp = 0;
-//            }
-//            for (FlipToWinTile ft: board) {
-//                if (ft.flipStatus() != 0) {
-//                    ft.setFlipped();
-//                }
-//            }
-//            board.makeMove(row, col);
-//            positionOneAndOnlyOneTileFaceUp = board.getGrid(row, col).getId();
-//        }
-
-
-
-    //    /**
-//     * Return true if the undo function is available, false otherwise.
-//     *
-//     * @return if the undo function is available
-//     */
-//    boolean undoAvailable() {
-//        return this.previousMoves.size() >= 1;
-//    }
-
-
-//    /**
-//     * Undo the previous move
-//     */
-//    void undo() {
-//        if (undoAvailable()) {
-//            int saved[] = this.previousMoves.get(this.previousMoves.size() - 1);
-//            this.previousMoves.remove(this.previousMoves.size() - 1);
-//            this.board.makeMove(saved[0], saved[1], saved[2], saved[3]);
-//            ++this.score;  //penalty for using undo
-//            ++this.score;
-//        }
-//    }}
+    }
+}
