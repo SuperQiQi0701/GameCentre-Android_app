@@ -97,8 +97,8 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
                 int color = randomColor();
                 colorView.drawBox(canvas, color, x, y);
                 //存color
-                (DataManager.INSTANCE.getBoardManager().getGame()).setGrid(1, 1);
-                ((ColorTile) (DataManager.INSTANCE.getBoardManager().getGame()).getGrid(x, y)).setColor(color);
+                DataManager.INSTANCE.getBoardManager().getGame().setGrid(x, y);
+                ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getGrid(x, y).setColor(color);
             }
         }
         getScore();

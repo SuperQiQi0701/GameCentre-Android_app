@@ -44,8 +44,6 @@ public class ScoreBoardActivity extends AppCompatActivity {
             System.out.println("run if");
 
         } else {
-
-            System.out.println("run else");
             Bundle extras = getIntent().getExtras();
             int complexity;
 

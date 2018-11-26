@@ -6,8 +6,6 @@ import java.util.Collections;
 
 public class ScoreBoard implements Serializable {
 
-    private String tempName = Character.toString('a');
-
     /**
      * this is a ArrayList of all records of Complexity 1
      */
@@ -176,7 +174,7 @@ public class ScoreBoard implements Serializable {
     private int checkRecordIndex(Record record) {
         ArrayList<Record> tempRecord = getComplexityRecords(currComplexity);
         for (Record r : tempRecord) {
-            if (r.getUserName().equals(record.getUserName())) {
+            if (record.getUserName().equals(r.getUserName())) {
                 return tempRecord.indexOf(r);
             }
         }
