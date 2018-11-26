@@ -95,6 +95,11 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
         return ftiles[row][col];
     }
 
+    @Override
+    public void setGrid(int i, int i1) {
+
+    }
+
     /**
      * FLip the tile
      *

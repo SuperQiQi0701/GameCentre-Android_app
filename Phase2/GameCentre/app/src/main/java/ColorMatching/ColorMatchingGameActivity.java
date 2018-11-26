@@ -98,7 +98,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
                 colorView.drawBox(canvas, color, x, y);
                 //存color
                 (DataManager.INSTANCE.getBoardManager().getGame()).setGrid(1, 1);
-                (DataManager.INSTANCE.getBoardManager().getGame()).getGrid(x, y).setColor(color);
+                ((ColorTile) (DataManager.INSTANCE.getBoardManager().getGame()).getGrid(x, y)).setColor(color);
             }
         }
         getScore();
@@ -107,7 +107,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     private void uploadBoard(Canvas canvas){
         for (int x = 0; x < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getBoard().length; x++) {
             for (int y = 0; y < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getBoard()[x].length; y++) {
-                int color = DataManager.INSTANCE.getBoardManager().getGame().getGrid(x, y).getColor();
+                int color = ((ColorTile) DataManager.INSTANCE.getBoardManager().getGame().getGrid(x, y)).getColor();
                 colorView.drawBox(canvas, color, x, y);
             }
         }
