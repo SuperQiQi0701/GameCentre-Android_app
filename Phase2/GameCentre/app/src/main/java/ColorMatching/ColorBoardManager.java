@@ -99,6 +99,9 @@ public class ColorBoardManager extends SuperManager implements Serializable{
             }
             allMove.add(arr);
             colors.add(initColor);
+        }else{
+            allMove.add(allMove.get(allMove.size()-1));
+            colors.add(initColor);
         }
         ++this.score;
     }
