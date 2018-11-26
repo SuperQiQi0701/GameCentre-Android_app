@@ -25,8 +25,12 @@ import fall2018.csc2017.slidingtiles.R;
 public class ColorMatchingGameActivity extends AppCompatActivity {
 
     int width, height;
-    ColorView colorView;
+    static ColorView colorView;
+    ColorBoard colorBoard;
 
+    public static ColorView getColorView(){
+        return colorView;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_color_matching_game);
         initData();
         initView();
+        colorBoard = new ColorBoard(3);
         addRedButtonListener();
         addYellowButtonListener();
         addBlueButtonListener();
@@ -56,7 +61,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         colorView.view = new View(this) {
             protected void onDraw(Canvas canvas) {
                 if ((DataManager.INSTANCE.getBoardManager().getGame()).getGrid(1, 1) == null){
-                    drawNewBoard(canvas);
+                    colorBoard.createNewBoard(canvas);
                 }else{uploadBoard(canvas);}
                 //draw line
                 colorView.drawLine(canvas);
@@ -89,19 +94,6 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         assert wm != null;
         wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.widthPixels;
-    }
-
-    private void drawNewBoard(Canvas canvas){
-        for (int x = 0; x < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getBoard().length; x++) {
-            for (int y = 0; y < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getBoard()[x].length; y++) {
-                int color = randomColor();
-                colorView.drawBox(canvas, color, x, y);
-                //存color
-                DataManager.INSTANCE.getBoardManager().getGame().setGrid(x, y);
-                ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getGrid(x, y).setColor(color);
-            }
-        }
-        getScore();
     }
 
     private void uploadBoard(Canvas canvas){
@@ -230,29 +222,6 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
             Intent temp = new Intent(this, ScoreBoardActivity.class);
             startActivity(temp);
         });
-    }
-
-    private int randomColor(){
-        Random random = new Random();
-        int color = random.nextInt(5);
-        switch(color){
-            case 0:
-                color =  Color.RED;
-                break;
-            case 1:
-                color = Color.GREEN;
-                break;
-            case 2:
-                color = Color.YELLOW;
-                break;
-            case 3:
-                color = Color.BLUE;
-                break;
-            case 4:
-                color = Color.GRAY;
-                break;
-        }
-        return color;
     }
 
     @Override

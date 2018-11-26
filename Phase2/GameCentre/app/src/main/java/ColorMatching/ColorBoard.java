@@ -1,6 +1,12 @@
 package ColorMatching;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+
 import java.io.Serializable;
+import java.util.Random;
+
+import Basic.DataManager;
 import Basic.SuperBoard;
 
 public class ColorBoard extends SuperBoard implements Serializable{
@@ -85,6 +91,41 @@ public class ColorBoard extends SuperBoard implements Serializable{
             return getGrid(tile.x, (tile.y)+1);
         }
         return null;
+    }
+
+    void createNewBoard(Canvas canvas){
+        for (int x = 0; x < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getBoard().length; x++) {
+            for (int y = 0; y < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getBoard()[x].length; y++) {
+                int color = randomColor();
+                ColorMatchingGameActivity.getColorView().drawBox(canvas, color, x, y);
+                //存color
+                DataManager.INSTANCE.getBoardManager().getGame().setGrid(x, y);
+                ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getGrid(x, y).setColor(color);
+            }
+        }
+    }
+
+    private int randomColor(){
+        Random random = new Random();
+        int color = random.nextInt(5);
+        switch(color){
+            case 0:
+                color =  Color.RED;
+                break;
+            case 1:
+                color = Color.GREEN;
+                break;
+            case 2:
+                color = Color.YELLOW;
+                break;
+            case 3:
+                color = Color.BLUE;
+                break;
+            case 4:
+                color = Color.GRAY;
+                break;
+        }
+        return color;
     }
 
 

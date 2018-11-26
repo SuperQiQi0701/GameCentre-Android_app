@@ -43,13 +43,6 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         arr = new ArrayList();
     }
 
-//    private ColorTile getLeft(ColorTile tile){
-//        if((tile.x)-1 >= 0){
-//            return colorBoard.getGrid((tile.x)-1, tile.y);
-//        }
-//        return null;
-//    }
-
     /**
      * Return the current score of the game
      *
