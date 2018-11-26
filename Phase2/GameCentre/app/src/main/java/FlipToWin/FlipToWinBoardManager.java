@@ -20,7 +20,10 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
      * The board being managed.
      */
     private FlipToWinBoard board;
-    int decisionMaking;
+
+    private boolean flippingTiles = false;
+
+    private boolean chosenTilesMatched;
 
 //    /**
 //     * An ArrayList that store all the previous moves for undo function.
@@ -30,11 +33,9 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
     /**
      * An integer that keep track the score of the current game
      */
-    private int score = 0;
+//    private int score = 0;
 
     private int positionTileOneFaceUp = -1;
-
-    private int positionTileTwoFaceUp = -1;
 
     /**
      * Manage a new shuffled board.
@@ -52,14 +53,14 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
         this.board = new FlipToWinBoard(fTiles, complexity);
     }
 
-    /**
-     * Return the current score of the game
-     *
-     * @return the current score
-     */
-    public int getScore() {
-        return score;
-    }
+//    /**
+//     * Return the current score of the game
+//     *
+//     * @return the current score
+//     */
+//    public int getScore() {
+//        return score;
+//    }
 
     @Override
     public SuperBoard getGame() {
@@ -85,6 +86,14 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
         return true;
     }
 
+    public boolean isFlippingTiles() {
+        return flippingTiles;
+    }
+
+    public boolean isChosenTilesMatched() {
+        return chosenTilesMatched;
+    }
+
     /**
      * Return whether True iff it is isPaired and facedUp.
      *
@@ -96,9 +105,9 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
         int col = position % board.getColNum();
 
         return (!(board.getGrid(row, col).isPaired())
-                & (!board.getGrid(row, col).facedUpStatus()));
+                & (!board.getGrid(row, col).facedUpStatus())
+                & (!flippingTiles));
     }
-
 
     /**
      * Process a touch at position in the board.
@@ -111,48 +120,46 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
         int row = position / board.getColNum();
         int col = position % board.getColNum();
 
+        chosenTilesMatched = false;
+
         if (isValidTap(position)) {
-            ++this.score;
+            addingScore(1);
             if (positionTileOneFaceUp == -1) {
                 positionTileOneFaceUp = position;
-                decisionMaking = 0;
                 board.makeMove(row, col);
-            } else if (positionTileTwoFaceUp == -1) {
+
+            } else {
 
                 int rowTileOne = positionTileOneFaceUp / board.getColNum();
                 int colTileOne = positionTileOneFaceUp % board.getColNum();
                 FlipToWinTile tileOwoFaceUp = board.getGrid(rowTileOne, colTileOne);
-                FlipToWinTile tileCurrFaceUp = board.getGrid(row, col);
+                FlipToWinTile tileCurrChosen = board.getGrid(row, col);
 
-                if (tileOwoFaceUp.getId() == tileCurrFaceUp.getId()) {
+                if (tileOwoFaceUp.getId() == tileCurrChosen.getId()) {
                     positionTileOneFaceUp = -1;
                     tileOwoFaceUp.setPaired();
-                    tileCurrFaceUp.setPaired();
-                    decisionMaking = 1;
+                    tileCurrChosen.setPaired();
+                    chosenTilesMatched = true;
                     board.makeMove(row, col);
+
                 } else {
-                    positionTileTwoFaceUp = position;
-                    decisionMaking = -1;
+                    positionTileOneFaceUp = -1;
                     board.makeMove(row, col);
+                    this.flippingTiles = true;
+
+                    new Handler().postDelayed(() -> {
+
+                        board.makeMove(rowTileOne, colTileOne);
+                        board.makeMove(row, col);
+
+                        this.flippingTiles = false;
+                    }, 800); // delay 1 second
+
 
                 }
             }
-
-            if ((positionTileOneFaceUp != -1) & (positionTileTwoFaceUp != -1)) {
-                int rowTileOne = positionTileOneFaceUp / board.getColNum();
-                int colTileOne = positionTileOneFaceUp % board.getColNum();
-                int rowTileTwo = positionTileTwoFaceUp / board.getColNum();
-                int colTileTwo = positionTileTwoFaceUp % board.getColNum();
-
-                new Handler().postDelayed(() -> {
-
-                    board.makeMove(rowTileOne, colTileOne);
-                    board.makeMove(rowTileTwo, colTileTwo);
-                    positionTileOneFaceUp = -1;
-                    positionTileTwoFaceUp = -1;
-
-                }, 1200); // 延时1秒
-            }
         }
+
     }
+
 }

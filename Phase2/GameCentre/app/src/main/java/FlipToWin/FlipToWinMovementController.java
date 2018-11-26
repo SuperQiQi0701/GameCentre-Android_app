@@ -26,12 +26,11 @@ class FlipToWinMovementController {
 //            Toast.makeText(context, "is valid", Toast.LENGTH_SHORT).show();
             boardManager.makeChange(position);
 //            Toast.makeText(context, "does move", Toast.LENGTH_SHORT).show();
-            if (boardManager.decisionMaking == -1) {
-                Toast.makeText(context, "Wrong Decision !", Toast.LENGTH_SHORT).show();
-            }
-            else if (boardManager.decisionMaking == 1){
+
+            if (boardManager.isChosenTilesMatched()) {
                 Toast.makeText(context, "Correct Decision !", Toast.LENGTH_SHORT).show();
             }
+
             if (boardManager.puzzleSolved()) {
                 Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
                 Intent temp = new Intent(context, ScoreBoardActivity.class);
@@ -39,8 +38,11 @@ class FlipToWinMovementController {
                 context.startActivity(temp);
             }
         }
-        else if (((FlipToWinBoard)boardManager.getGame()).getGrid(row, col).isPaired()){
+        else if (((FlipToWinBoard) boardManager.getGame()).getGrid(row, col).isPaired()){
             Toast.makeText(context, "Already Solved", Toast.LENGTH_SHORT).show();
+        }
+        else if (boardManager.isFlippingTiles()) {
+            Toast.makeText(context, "Flipping cards Right Now", Toast.LENGTH_SHORT).show();
         }
         else {
             Toast.makeText(context, "Already FaceUp", Toast.LENGTH_SHORT).show();
