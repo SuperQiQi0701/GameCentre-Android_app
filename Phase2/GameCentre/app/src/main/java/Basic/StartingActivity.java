@@ -26,6 +26,7 @@ public class StartingActivity extends AppCompatActivity {
         addStartButtonListener();
         addLoadButtonListener();
         addResumeButtonListener();
+        addScoreBoardButtonListener();
     }
 
     /**
@@ -35,7 +36,11 @@ public class StartingActivity extends AppCompatActivity {
         Button startButton = findViewById(R.id.StartButton);
         startButton.setBackgroundColor(Color.DKGRAY);
         startButton.setTextColor(Color.WHITE);
-        startButton.setOnClickListener(v -> switchToComplexity());
+        startButton.setOnClickListener(v -> {
+            Intent temp = new Intent(this, ComplexityActivity.class);
+            startActivity(temp);
+            finish();
+        });
     }
 
     /**
@@ -95,6 +100,29 @@ public class StartingActivity extends AppCompatActivity {
         });
     }
 
+    private void addScoreBoardButtonListener() {
+        Button resume = findViewById(R.id.scoreboardButton);
+        resume.setBackgroundColor(Color.DKGRAY);
+        resume.setTextColor(Color.WHITE);
+        resume.setOnClickListener((v) -> {
+            Intent temp = new Intent(this, ComplexityActivity.class);
+
+            Intent preIntent = getIntent();
+            Bundle bundle = preIntent.getExtras();
+            if (bundle != null) {
+
+                temp.putExtra("currGameName", bundle.getString("currGameName"));
+
+                System.out.println("put extra successfully in StartingActivity");
+
+            }
+
+            startActivity(temp);
+            finish();
+
+        });
+    }
+
     /**
      * Display that a game was resumed successfully.
      */
@@ -135,14 +163,14 @@ public class StartingActivity extends AppCompatActivity {
         startActivity(temp);
     }
 
-    /**
-     * Switch to the ComplexityActivity view to choose a game level.
-     */
-    private void switchToComplexity() {
-        Intent temp = new Intent(this, ComplexityActivity.class);
-        startActivity(temp);
-        finish();
-    }
+//    /**
+//     * Switch to the ComplexityActivity view to choose a game level.
+//     */
+//    private void switchToComplexity() {
+//        Intent temp = new Intent(this, ComplexityActivity.class);
+//        startActivity(temp);
+//        finish();
+//    }
 
     /**
      * Override onBackPressed method, so that when touch back button it goes back to the

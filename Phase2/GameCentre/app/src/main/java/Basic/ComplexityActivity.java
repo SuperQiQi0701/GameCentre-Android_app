@@ -82,16 +82,44 @@ public class ComplexityActivity extends AppCompatActivity {
     }
 
     private void setUpGame(int complexity) {
-        DataManager.INSTANCE.startNewGame(complexity);
-        FileManager.saveGame(this.getApplicationContext(), "Auto");
-        String gameName = DataManager.INSTANCE.getCurrentGameName();
+//        DataManager.INSTANCE.startNewGame(complexity);
+//        FileManager.saveGame(this.getApplicationContext(), "Auto");
+//        String gameName = DataManager.INSTANCE.getCurrentGameName();
+//        Intent temp;
+//        if ("ST".equals(gameName)) {
+//            temp = new Intent(this, GameActivity.class);
+//        } else if ("CM".equals(gameName)) {
+//            temp = new Intent(this, ColorMatchingGameActivity.class);
+//        } else {
+//            temp = new Intent(this, FlipToWinGameActivity.class);
+//        }
+
         Intent temp;
-        if ("ST".equals(gameName)) {
-            temp = new Intent(this, GameActivity.class);
-        } else if ("CM".equals(gameName)) {
-            temp = new Intent(this, ColorMatchingGameActivity.class);
-        } else {
-            temp = new Intent(this, FlipToWinGameActivity.class);
+
+        Intent preIntent = getIntent();
+        Bundle bundle = preIntent.getExtras();
+        if (bundle != null) {
+
+            temp = new Intent(this, ScoreBoardActivity.class);
+
+            temp.putExtra("currGameName", bundle.getString("currGameName"));
+//            temp.putExtra("visit", bundle.getString("visit"));
+            temp.putExtra("complexity", complexity);
+
+            System.out.println("put extra successfully in ComplexityActivity");
+        }
+
+        else {
+            DataManager.INSTANCE.startNewGame(complexity);
+            FileManager.saveGame(this.getApplicationContext(), "Auto");
+            String gameName = DataManager.INSTANCE.getCurrentGameName();
+            if ("ST".equals(gameName)) {
+                temp = new Intent(this, GameActivity.class);
+            } else if ("CM".equals(gameName)) {
+                temp = new Intent(this, ColorMatchingGameActivity.class);
+            } else {
+                temp = new Intent(this, FlipToWinGameActivity.class);
+            }
         }
         startActivity(temp);
         finish();

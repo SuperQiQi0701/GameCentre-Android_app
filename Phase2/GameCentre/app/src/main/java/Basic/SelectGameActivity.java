@@ -42,6 +42,10 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setOnClickListener(v -> {
             DataManager.INSTANCE.setCurrentGameName("ST");
             Intent slide = new Intent(this, StartingActivity.class);
+            slide.putExtra("currGameName", "ST");
+
+            System.out.println("put extra successfully in SelectGameActivity");
+
             startActivity(slide);
         });
     }
@@ -53,6 +57,10 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setOnClickListener(v -> {
             DataManager.INSTANCE.setCurrentGameName("CM");
             Intent slide = new Intent(this, StartingActivity.class);
+            slide.putExtra("currGameName", "CM");
+
+            System.out.println("put extra successfully in SelectGameActivity");
+
             startActivity(slide);
         });
     }
@@ -65,6 +73,10 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setOnClickListener(v -> {
             DataManager.INSTANCE.setCurrentGameName("FTW");
             Intent slide = new Intent(this, StartingActivity.class);
+            slide.putExtra("currGameName", "FTW");
+
+            System.out.println("put extra successfully in SelectGameActivity");
+
             startActivity(slide);
         });
     }

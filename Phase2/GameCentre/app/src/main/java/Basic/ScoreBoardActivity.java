@@ -13,14 +13,17 @@ import fall2018.csc2017.slidingtiles.R;
 
 public class ScoreBoardActivity extends AppCompatActivity {
 
+    private boolean isOnlyViewScoreBoard;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_board);
-        ScoreBoard scoreBoard = FileManager.loadScoreBoard(this.getApplicationContext());
 
         //modify the TextView of the myScore
         TextView myTextView = findViewById(R.id.myScore);
+
+        ScoreBoard scoreBoard;
 
 
 //        String myScore = Integer.toString(INSTANCE.getFlipToWinBoardManager().getScore());
@@ -31,7 +34,44 @@ public class ScoreBoardActivity extends AppCompatActivity {
 //        String noScore = "You don't have a current score because you have not won the current game " +
 //                "yet.";
 
-        if (DataManager.INSTANCE.getBoardManager().puzzleSolved()) {
+//        if (DataManager.INSTANCE.getBoardManager().puzzleSolved()) {
+//
+//            scoreBoard = FileManager.loadScoreBoard(this.getApplicationContext());
+//
+//            Record myRecord = new Record();
+//            scoreBoard.addNewRecords(myRecord);
+//            FileManager.saveToFile(this.getApplicationContext(), scoreBoard, "SB");
+//            String myScore = Integer.toString(DataManager.INSTANCE.getBoardManager().getScore());
+//            int myRank = scoreBoard.getMyBestRank(myRecord);
+//            String myScoreToString = "You totally take " + myScore + " steps and your best rank is "
+//                    + myRank + ".";
+//            myTextView.setText(myScoreToString);
+//            System.out.println("run if");
+//
+//        } else {
+
+
+        Intent preIntent = getIntent();
+        Bundle bundle = preIntent.getExtras();
+        if (bundle != null) {
+
+            String currGameName = bundle.getString("currGameName");
+            int complexity = bundle.getInt("complexity");
+
+            DataManager.INSTANCE.setCurrentGameName(currGameName);
+            scoreBoard = FileManager.loadScoreBoard(this.getApplicationContext());
+
+            String noScore = "You don't have a current score because you have not won the current game " +
+                    "yet.";
+            myTextView.setText(noScore);
+            scoreBoard.setComplexity(complexity);
+
+            isOnlyViewScoreBoard = true;
+        }
+
+        else {
+
+            scoreBoard = FileManager.loadScoreBoard(this.getApplicationContext());
 
             Record myRecord = new Record();
             scoreBoard.addNewRecords(myRecord);
@@ -41,20 +81,17 @@ public class ScoreBoardActivity extends AppCompatActivity {
             String myScoreToString = "You totally take " + myScore + " steps and your best rank is "
                     + myRank + ".";
             myTextView.setText(myScoreToString);
-            System.out.println("run if");
 
-        } else {
-            Bundle extras = getIntent().getExtras();
-            int complexity;
+            isOnlyViewScoreBoard = false;
+        }
 
-            complexity = extras.getInt("complexity");
             // and get whatever type user account id is
 
-            String noScore = "You don't have a current score because you have not won the current game " +
-                    "yet.";
-            myTextView.setText(noScore);
-            scoreBoard.setComplexity(complexity);
-        }
+//            String noScore = "You don't have a current score because you have not won the current game " +
+//                    "yet.";
+//            myTextView.setText(noScore);
+//            scoreBoard.setComplexity(complexity);
+//        }
         myTextView.setTextColor(Color.RED);
 
         myTextView.setTextColor(Color.RED);
@@ -112,15 +149,22 @@ public class ScoreBoardActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (DataManager.INSTANCE.getBoardManager().puzzleSolved()) {
-            System.out.println("solved");
+        if (!this.isOnlyViewScoreBoard) {
             finish();
             Intent temp = new Intent(this, SelectGameActivity.class);
             startActivity(temp);
         } else {
-            System.out.println("not solved");
             finish();
             Intent temp = new Intent(this, StartingActivity.class);
+
+            Intent preIntent = getIntent();
+            Bundle bundle = preIntent.getExtras();
+            if (bundle != null) {
+                temp.putExtra("currGameName", bundle.getString("currGameName"));
+
+                System.out.println("put extra successfully in ScoreBoardActivity");
+
+            }
             startActivity(temp);
         }
     }
