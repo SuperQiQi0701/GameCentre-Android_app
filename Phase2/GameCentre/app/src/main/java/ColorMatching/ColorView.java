@@ -32,12 +32,10 @@ public class ColorView implements Serializable {
         linePaint.setColor(Color.BLACK);
         linePaint.setAntiAlias(true);
 
-        for (int x = 0; x < colorBoardManager.getBoard().length; x++) {
-//        for (int x = 0; x < colorBoardManager.board.length; x++) {
+        for (int x = 0; x < colorBoardManager.getGame().getTiles().length; x++) {
             canvas.drawLine(x * boxSize, 0, x * boxSize, view.getHeight(), linePaint);
         }
-//        for (int y = 0; y < colorBoardManager.board[0].length; y++) {
-        for (int y = 0; y < colorBoardManager.getBoard()[0].length; y++) {
+        for (int y = 0; y < colorBoardManager.getGame().getTiles()[0].length; y++) {
             canvas.drawLine(0, y * boxSize, view.getWidth(), y * boxSize, linePaint);
         }
     }

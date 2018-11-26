@@ -17,30 +17,26 @@ public class ColorBoardManager extends SuperManager implements Serializable{
      */
     private int score = 0;
 
-    public boolean[][] getBoard() {
-        return board;
-    }
-
-    public void setBoard(boolean[][] board) {
-        this.board = board;
-    }
-
-    private boolean[][] board;
     private ArrayList<ArrayList<ColorTile>> allMove;
     private ArrayList<ColorTile> current;
     private ArrayList<Integer> colors;
     private ArrayList<ColorTile> allState;
     private ArrayList arr;
 
+
     public ColorBoardManager(int complexity) {
         super(complexity);
         this.colorBoard = new ColorBoard(complexity);
-        board = new boolean[(complexity - 2) * 4][ (complexity - 2) * 5];
+        colorBoard = new ColorBoard(complexity);
         allMove = new ArrayList<>();
         current = new ArrayList<>();
         colors = new ArrayList<>();
         allState = new ArrayList<>();
         arr = new ArrayList();
+    }
+
+    public void setBoard(int complexity) {
+        this.colorBoard = new ColorBoard(complexity);
     }
 
     /**
@@ -137,8 +133,8 @@ public class ColorBoardManager extends SuperManager implements Serializable{
 
     @Override
     public boolean puzzleSolved() {
-        for (int x = 0; x < board.length; x++) {
-            for (int y = 0; y < board[x].length; y++) {
+        for (int x = 0; x < colorBoard.getTiles().length; x++) {
+            for (int y = 0; y < colorBoard.getTiles()[x].length; y++) {
                 if (colorBoard.getGrid(x, y).getColor() != colorBoard.getGrid(0, 0).getColor()){
                     return false;
                 }

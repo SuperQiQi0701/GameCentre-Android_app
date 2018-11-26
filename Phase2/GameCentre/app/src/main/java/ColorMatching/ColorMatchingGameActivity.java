@@ -27,6 +27,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     int width, height;
     static ColorView colorView;
     ColorBoard colorBoard;
+    int complexity;
 
     public static ColorView getColorView(){
         return colorView;
@@ -38,7 +39,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_color_matching_game);
         initData();
         initView();
-        colorBoard = new ColorBoard(3);
+        colorBoard = new ColorBoard(complexity);
         addRedButtonListener();
         addYellowButtonListener();
         addBlueButtonListener();
@@ -73,14 +74,14 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     }
 
     private void initData(){
-            int complexity = DataManager.INSTANCE.getBoardManager().getComplexity();
+        complexity = DataManager.INSTANCE.getBoardManager().getComplexity();
         int width = getScreenWidth(this);
         this.width = width;
         height = width * 5 / 4;
         DataManager.INSTANCE.startNewGame(complexity);
         colorView = new ColorView();
-        ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).setBoard(new boolean[(complexity - 2) * 4 ][(complexity - 2) * 5 ]);
-        colorView.setBoxSize(this.width / ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getBoard().length);
+        ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).setBoard(complexity);
+        colorView.setBoxSize(this.width / ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getTiles().length);
     }
 
     private void initView(){
@@ -97,8 +98,8 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     }
 
     private void uploadBoard(Canvas canvas){
-        for (int x = 0; x < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getBoard().length; x++) {
-            for (int y = 0; y < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getBoard()[x].length; y++) {
+        for (int x = 0; x < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getTiles().length; x++) {
+            for (int y = 0; y < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getTiles()[x].length; y++) {
                 int color = ((ColorTile) DataManager.INSTANCE.getBoardManager().getGame().getGrid(x, y)).getColor();
                 colorView.drawBox(canvas, color, x, y);
             }

@@ -23,6 +23,10 @@ public class ColorBoard extends SuperBoard implements Serializable{
      */
     private ColorTile[][] tiles;
 
+    public ColorTile[][] getTiles(){
+        return tiles;
+    }
+
     /**
      * A new color board of tiles in row major order, and contains 10 rows and 8 columns.
      */
@@ -94,8 +98,8 @@ public class ColorBoard extends SuperBoard implements Serializable{
     }
 
     void createNewBoard(Canvas canvas){
-        for (int x = 0; x < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getBoard().length; x++) {
-            for (int y = 0; y < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getBoard()[x].length; y++) {
+        for (int x = 0; x < tiles.length; x++) {
+            for (int y = 0; y < tiles[x].length; y++) {
                 int color = randomColor();
                 ColorMatchingGameActivity.getColorView().drawBox(canvas, color, x, y);
                 //存color
