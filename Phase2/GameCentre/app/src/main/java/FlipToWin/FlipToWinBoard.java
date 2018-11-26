@@ -94,7 +94,6 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
         ftiles[row][col].setFlipped();
         setChanged();
         notifyObservers();
-        System.out.println("update");
     }
 
     @Override
