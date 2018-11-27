@@ -17,9 +17,9 @@ public class SelectGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_game);
-        addSlidingButtonListener();
-        addColorMatchingListener();
-        addFlipToWinListener();
+        addGameListener(R.id.enter_sliding_button, Color.MAGENTA, Color.YELLOW ,"ST");
+        addGameListener(R.id.enter_colormatching_button, Color.YELLOW, Color.BLACK ,"CM");
+        addGameListener(R.id.enter_flipToTile_button, Color.CYAN, Color.RED ,"FTW");
     }
 
     @SuppressLint("SetTextI18n")
@@ -32,48 +32,18 @@ public class SelectGameActivity extends AppCompatActivity {
         tv.setTextColor(Color.BLACK);
     }
 
+
     /**
-     * Activate the SlidingTile button.
+     * Activate the Game button.
      */
-    private void addSlidingButtonListener() {
-        Button mSliding = findViewById(R.id.enter_sliding_button);
-        mSliding.setBackgroundColor(Color.MAGENTA);
-        mSliding.setTextColor(Color.YELLOW);
+    private void addGameListener(int button, int backgroundColor, int textColor, String game){
+        Button mSliding = findViewById(button);
+        mSliding.setBackgroundColor(backgroundColor);
+        mSliding.setTextColor(textColor);
         mSliding.setOnClickListener(v -> {
-            DataManager.INSTANCE.setCurrentGameName("ST");
+            DataManager.INSTANCE.setCurrentGameName(game);
             Intent slide = new Intent(this, StartingActivity.class);
-            slide.putExtra("currGameName", "ST");
-
-            System.out.println("put extra successfully in SelectGameActivity");
-
-            startActivity(slide);
-        });
-    }
-
-    private void addColorMatchingListener() {
-        Button mSliding = findViewById(R.id.enter_colormatching_button);
-        mSliding.setBackgroundColor(Color.YELLOW);
-        mSliding.setTextColor(Color.BLACK);
-        mSliding.setOnClickListener(v -> {
-            DataManager.INSTANCE.setCurrentGameName("CM");
-            Intent slide = new Intent(this, StartingActivity.class);
-            slide.putExtra("currGameName", "CM");
-
-            System.out.println("put extra successfully in SelectGameActivity");
-
-            startActivity(slide);
-        });
-    }
-
-
-    private void addFlipToWinListener() {
-        Button mSliding = findViewById(R.id.enter_flipToTile_button);
-        mSliding.setBackgroundColor(Color.CYAN);
-        mSliding.setTextColor(Color.RED);
-        mSliding.setOnClickListener(v -> {
-            DataManager.INSTANCE.setCurrentGameName("FTW");
-            Intent slide = new Intent(this, StartingActivity.class);
-            slide.putExtra("currGameName", "FTW");
+            slide.putExtra("currGameName", game);
 
             System.out.println("put extra successfully in SelectGameActivity");
 
