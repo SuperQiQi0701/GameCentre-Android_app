@@ -41,10 +41,10 @@ public class BoardManager extends SuperManager implements Serializable{
             tiles.add(new Tile(tileNum, complexity));
         }
 
-//        Collections.shuffle(tiles);
-//        while (!checkSolvable(tiles, complexity)){
-//            Collections.shuffle(tiles);
-//        }
+        Collections.shuffle(tiles);
+        while (!checkSolvable(tiles, complexity)){
+            Collections.shuffle(tiles);
+        }
         this.board = new Board(tiles, complexity);
         this.previousMoves = new ArrayList<>();
     }

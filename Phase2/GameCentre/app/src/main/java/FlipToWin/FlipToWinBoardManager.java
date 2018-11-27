@@ -5,6 +5,7 @@ import android.os.Handler;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
             fTiles.add(new FlipToWinTile(tileNum));
         }
 
-//        Collections.shuffle(fTiles);
+        Collections.shuffle(fTiles);
         this.board = new FlipToWinBoard(fTiles, complexity);
     }
 
