@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Basic.ScoreBoardActivity">
+    tools:context="Basic.ScoreBoardActivity"
+    android:background="@drawable/scoreboard">
 
     <TextView
         android:id="@+id/no5Record"
