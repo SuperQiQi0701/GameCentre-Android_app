@@ -18,7 +18,7 @@ import Basic.SuperBoard;
 public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile>, Serializable{
 
 
-    public static final String GAME_NAME = "Flip To Win";
+//    public static final String GAME_NAME = "Flip To Win";
     /**
      * The number of row and col
      */
@@ -58,7 +58,7 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
      */
     public int numGrids() {
 
-        return this.rowNum* this.colNum;
+        return this.rowNum * this.colNum;
     }
 
     int getColNum() {

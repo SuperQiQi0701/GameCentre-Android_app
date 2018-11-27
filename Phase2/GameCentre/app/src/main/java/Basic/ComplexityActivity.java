@@ -75,24 +75,12 @@ public class ComplexityActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        String gameName = DataManager.INSTANCE.getCurrentGameName();
         Intent temp = new Intent(this, StartingActivity.class);
         finish();
         startActivity(temp);
     }
 
     private void setUpGame(int complexity) {
-//        DataManager.INSTANCE.startNewGame(complexity);
-//        FileManager.saveGame(this.getApplicationContext(), "Auto");
-//        String gameName = DataManager.INSTANCE.getCurrentGameName();
-//        Intent temp;
-//        if ("ST".equals(gameName)) {
-//            temp = new Intent(this, GameActivity.class);
-//        } else if ("CM".equals(gameName)) {
-//            temp = new Intent(this, ColorMatchingGameActivity.class);
-//        } else {
-//            temp = new Intent(this, FlipToWinGameActivity.class);
-//        }
 
         Intent temp;
 

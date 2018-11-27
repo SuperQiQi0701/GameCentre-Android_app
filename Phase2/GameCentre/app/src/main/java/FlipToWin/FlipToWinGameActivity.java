@@ -52,7 +52,6 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
     // Display
     public void display() {
         updateTileButtons();
-//        flipGridView.invalidate();
         flipGridView.setAdapter(new CustomAdapter(fTileButtons, columnWidth2, columnHeight2));
     }
 

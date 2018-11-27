@@ -21,7 +21,7 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
     /**
      * The game name for current board
      */
-    private static final String GAME_NAME = "Sliding_Tiles";
+//    private static final String GAME_NAME = "Sliding_Tiles";
     /**
      * The number of row and col
      */
