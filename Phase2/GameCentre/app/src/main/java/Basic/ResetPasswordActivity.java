@@ -18,6 +18,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
      * The userManager
      */
     private UserManager userManager;
+    private String checked_account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 message.setText("Not a valid email");
             } else if (this.userManager.login(account.getText().toString(),
                     oldPassword.getText().toString()) != null) {
+                checked_account = account.getText().toString();
                 message.setTextColor(Color.GREEN);
                 message.setText("OK!");
             } else {
@@ -72,13 +74,17 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 ResetResult.setTextColor(Color.RED);
                 ResetResult.setText("Password too short");
                 //if user input his name and password correctly, then he can reset a new password now.
-            } else if (message.getText().toString().equals("OK!")) {
+            } else if (message.getText().toString().equals("OK!") &&
+                    checked_account.equals(Account.getText().toString())) {
                 this.userManager.getUser(Account.getText().toString()).setPassword(Password.getText().toString());
                 message.setTextColor(Color.GREEN);
                 message.setText("Reset Success");
                 FileManager.saveToFile(this.getApplicationContext(), this.userManager, "UM");
                 Intent tmp = new Intent(this, LoginActivity.class);
                 startActivity(tmp);
+            } else {
+                ResetResult.setTextColor(Color.RED);
+                ResetResult.setText("Please check your username and password again");
             }
         });
     }
