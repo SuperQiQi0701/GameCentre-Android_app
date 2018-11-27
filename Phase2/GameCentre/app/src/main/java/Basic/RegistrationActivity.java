@@ -13,6 +13,8 @@ import fall2018.csc2017.slidingtiles.R;
 
 public class RegistrationActivity extends AppCompatActivity {
 
+    private String account;
+
     /**
      * The userManager
      */
@@ -47,6 +49,7 @@ public class RegistrationActivity extends AppCompatActivity {
             } else {
                 mAccountResult.setTextColor(Color.GREEN);
                 mAccountResult.setText("OK!");
+                account = mAccount.getText().toString();
             }
         });
     }
@@ -68,7 +71,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 mRegisterResult.setTextColor(Color.RED);
                 mRegisterResult.setText("Password too short");
                 //If the username does not exist and the password is long enough, register this account.
-            } else if (mAccountResult.getText().toString().equals("OK!")) {
+            } else if (mAccountResult.getText().toString().equals("OK!") &&
+                    mAccount.getText().toString().equals(account) ) {
                 this.userManager.signUp(mAccount.getText().toString(),
                         mPassword.getText().toString());
                 mRegisterResult.setTextColor(Color.GREEN);
@@ -77,6 +81,10 @@ public class RegistrationActivity extends AppCompatActivity {
                 FileManager.saveToFile(this.getApplicationContext(), this.userManager, "UM");
                 Intent tmp = new Intent(this, LoginActivity.class);
                 startActivity(tmp);
+                // If the user change the account after checking the availability, ask the user to check again.
+            }else if (!mAccount.getText().toString().equals(account)){
+                mRegisterResult.setTextColor(Color.RED);
+                mRegisterResult.setText("Please check your username after change");
                 //If the user has not check the availability of the username, ask the user to check first.
             } else {
                 mRegisterResult.setTextColor(Color.RED);
