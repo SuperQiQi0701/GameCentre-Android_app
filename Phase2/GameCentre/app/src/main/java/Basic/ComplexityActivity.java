@@ -20,10 +20,9 @@ public class ComplexityActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complexity);
-
-        setupComplexity1ButtonListener();
-        setupComplexity2ButtonListener();
-        setupComplexity3ButtonListener();
+        setupComplexityButtonListener(R.id.complexity1Button, Color.GREEN, 3);
+        setupComplexityButtonListener(R.id.complexity2Button, Color.YELLOW, 4);
+        setupComplexityButtonListener(R.id.complexity3Button, Color.RED, 5);
 
     }
 
@@ -40,36 +39,14 @@ public class ComplexityActivity extends AppCompatActivity {
 
 
     /**
-     * Activate the Level 1 button.
+     * Activate the Level button.
      */
-    private void setupComplexity1ButtonListener() {
-        Button complexity1Button = findViewById(R.id.complexity1Button);
-        complexity1Button.setBackgroundColor(Color.GREEN);
+    private void setupComplexityButtonListener(int button, int color, int level) {
+        Button complexity1Button = findViewById(button);
+        complexity1Button.setBackgroundColor(color);
         complexity1Button.setTextColor(Color.BLACK);
-        complexity1Button.setOnClickListener((v) -> setUpGame(3));
+        complexity1Button.setOnClickListener((v) -> setUpGame(level));
 
-    }
-
-
-    /**
-     * Activate the Level 2 button.
-     */
-    private void setupComplexity2ButtonListener() {
-        Button complexity2Button = findViewById(R.id.complexity2Button);
-        complexity2Button.setBackgroundColor(Color.YELLOW);
-        complexity2Button.setTextColor(Color.BLACK);
-        complexity2Button.setOnClickListener((v) -> setUpGame(4));
-    }
-
-
-    /**
-     * Activate the Level 1 button.
-     */
-    private void setupComplexity3ButtonListener() {
-        Button complexity3Button = findViewById(R.id.complexity3Button);
-        complexity3Button.setBackgroundColor(Color.RED);
-        complexity3Button.setTextColor(Color.BLACK);
-        complexity3Button.setOnClickListener((v) -> setUpGame(5));
     }
 
 
