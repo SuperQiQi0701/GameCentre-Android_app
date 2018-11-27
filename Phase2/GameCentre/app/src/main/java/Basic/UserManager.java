@@ -12,10 +12,10 @@ public class UserManager implements Serializable {
      */
     private ArrayList<User> users = new ArrayList<>();
 
-    /**
-     * The user's name for current user.
-     */
-    private String currUser;
+//    /**
+//     * The user's name for current user.
+//     */
+//    private String currUser;
 
     /**
      * Return the user's name of the current user.
@@ -27,7 +27,7 @@ public class UserManager implements Serializable {
     public User login(String username, String password) {
         for (User u : users) {
             if (u.userName.equals(username) && u.getPassword().equals(password)) {
-                currUser = u.userName;
+//                currUser = u.userName;
                 return u;
             }
         }
@@ -55,7 +55,7 @@ public class UserManager implements Serializable {
      * @param username the username of the current user.
      * @param password the password of the current user.
      */
-    public void signUp(String username, String password) {
+    void signUp(String username, String password) {
         User tempuser = new User(username);
         tempuser.setPassword(password);
         users.add(tempuser);
@@ -67,7 +67,7 @@ public class UserManager implements Serializable {
      * @param username the username of the current user.
      * @return the user with username in the users's Array List.
      */
-    public User getUser(String username) {
+    User getUser(String username) {
         for (User u : users) {
             if (u.getUserName().equals(username)) {
                 return u;
@@ -76,12 +76,12 @@ public class UserManager implements Serializable {
         return null;
     }
 
-    /**
-     * Return the current user of the game
-     *
-     * @return the current user of the game
-     */
-    public String getCurrentUser() {
-        return currUser;
-    }
+//    /**
+//     * Return the current user of the game
+//     *
+//     * @return the current user of the game
+//     */
+//    public String getCurrentUser() {
+//        return currUser;
+//    }
 }

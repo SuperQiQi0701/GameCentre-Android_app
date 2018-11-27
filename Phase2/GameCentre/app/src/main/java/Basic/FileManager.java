@@ -9,8 +9,6 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import fall2018.csc2017.slidingtiles.ScoreBoard;
-
 public class FileManager {
 
     /**
@@ -22,13 +20,13 @@ public class FileManager {
      * @param object      the object that will be saved
      * @param type        the type of the object.
      */
-    void saveToFile(Context fileContext, Object object, String type) {
+    public static void saveToFile(Context fileContext, Object object, String type) {
         try {
-            String fileName = DataManager.INSTANCE.getCurrentGameName();
+            String fileName;
             if ("UM".equals(type)) {
-                fileName = fileName + "_UserManager.ser";
+                fileName = "UserManager.ser";
             } else {
-                fileName = fileName + "_ScoreBoard.ser";
+                fileName = DataManager.INSTANCE.getCurrentGameName() + "_ScoreBoard.ser";
             }
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     fileContext.openFileOutput(fileName, Context.MODE_PRIVATE));
@@ -45,9 +43,9 @@ public class FileManager {
      * @param fileContext this.getApplicationContext()
      * @return the userManager that loaded from file
      */
-    UserManager loadUserManager(Context fileContext) {
+    static UserManager loadUserManager(Context fileContext) {
         try {
-            String fileName = DataManager.INSTANCE.getCurrentGameName() + "_UserManager.ser";
+            String fileName = "UserManager.ser";
             InputStream inputStream = fileContext.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
@@ -67,7 +65,7 @@ public class FileManager {
      * @param fileContext this.getApplicationContext()
      * @return the scoreBoard that loaded from file
      */
-    ScoreBoard loadScoreBoard(Context fileContext) {
+    public static ScoreBoard loadScoreBoard(Context fileContext) {
         try {
             String fileName = DataManager.INSTANCE.getCurrentGameName() + "_ScoreBoard.ser";
             InputStream inputStream = fileContext.openFileInput(fileName);
@@ -89,7 +87,7 @@ public class FileManager {
      * @param fileContext this.getApplicationContext()
      * @param operation   "Save" or "Auto"
      */
-    void saveGame(Context fileContext, String operation) {
+    public static void saveGame(Context fileContext, String operation) {
         try {
             String fileName = DataManager.INSTANCE.getCurrentGameName() + "_" +
                     DataManager.INSTANCE.getCurrentUserName() + "_" + operation + ".ser";
@@ -106,16 +104,14 @@ public class FileManager {
      * Load boardManager of the current game related to current user from file
      *
      * @param fileContext this.getApplicationContext()
-     * @param operation   "Save" or "Auto"
+     * @param fileName    the file that will be load
      */
-    void loadGame(Context fileContext, String operation) {
+    public static void loadGame(Context fileContext, String fileName) {
         try {
-            String fileName = DataManager.INSTANCE.getCurrentGameName() + "_" +
-                    DataManager.INSTANCE.getCurrentUserName() + "_" + operation + ".ser";
             InputStream inputStream = fileContext.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
-                DataManager.INSTANCE.setBoardManager((GridBoardManager) input.readObject());
+                DataManager.INSTANCE.setBoardManager((SuperManager) input.readObject());
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {

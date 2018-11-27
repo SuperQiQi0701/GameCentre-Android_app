@@ -9,19 +9,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import Basic.LoginActivity;
-import Basic.Main;
 import fall2018.csc2017.slidingtiles.R;
 
 @SuppressLint("Registered")
 public class ResetPasswordActivity extends AppCompatActivity {
 
+    /**
+     * The userManager
+     */
+    private UserManager userManager;
+    private String checked_account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resetpassword);
-
+        this.userManager = FileManager.loadUserManager(this.getApplicationContext());
         addCheckButtonListener();
         addResetPasswordButtonListener();
     }
@@ -41,8 +44,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
             if (!account.getText().toString().contains("@")) {
                 message.setTextColor(Color.RED);
                 message.setText("Not a valid email");
-            } else if (Main.INSTANCE.getUserManager().login(account.getText().toString(),
+            } else if (this.userManager.login(account.getText().toString(),
                     oldPassword.getText().toString()) != null) {
+                checked_account = account.getText().toString();
                 message.setTextColor(Color.GREEN);
                 message.setText("OK!");
             } else {
@@ -70,13 +74,17 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 ResetResult.setTextColor(Color.RED);
                 ResetResult.setText("Password too short");
                 //if user input his name and password correctly, then he can reset a new password now.
-            } else if (message.getText().toString().equals("OK!")) {
-                Main.INSTANCE.getUserManager().getUser(Account.getText().toString()).setPassword(Password.getText().toString());
+            } else if (message.getText().toString().equals("OK!") &&
+                    checked_account.equals(Account.getText().toString())) {
+                this.userManager.getUser(Account.getText().toString()).setPassword(Password.getText().toString());
                 message.setTextColor(Color.GREEN);
                 message.setText("Reset Success");
-                Main.INSTANCE.saveUserManagerToFile(this.getApplicationContext());
+                FileManager.saveToFile(this.getApplicationContext(), this.userManager, "UM");
                 Intent tmp = new Intent(this, LoginActivity.class);
                 startActivity(tmp);
+            } else {
+                ResetResult.setTextColor(Color.RED);
+                ResetResult.setText("Please check your username and password again");
             }
         });
     }

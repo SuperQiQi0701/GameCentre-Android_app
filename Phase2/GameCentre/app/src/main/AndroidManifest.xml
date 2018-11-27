@@ -14,11 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".StartingActivity" />
+        <activity android:name="Basic.StartingActivity" />
         <activity android:name=".GameActivity" />
-        <activity android:name=".ComplexityActivity" />
+        <activity android:name="Basic.ComplexityActivity" />
         <activity android:name="Basic.RegistrationActivity" />
-        <activity android:name=".ScoreBoardActivity" />
+        <activity android:name="Basic.ScoreBoardActivity" />
         <activity android:name="Basic.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,13 +28,15 @@
         </activity>
         <activity android:name="Basic.SelectGameActivity" />
         <activity android:name="Basic.ResetPasswordActivity" />
-        <activity android:name="ColorMatching.ColorMatchingActivity" />
+        <activity android:name="ColorMatching.ColorMatchingGameActivity" />
         <activity android:name="FlipToWin.FlipToWinGameActivity" />
-        <activity android:name="FlipToWin.FlipToWinStartingActivity" />
-        <activity android:name="FlipToWin.FlipToWinComplexityActivity" />
-        <activity android:name="FlipToWin.FlipToWinScoreBoardActivity" />
-        <activity android:name="ColorMatching.ColorMatchingScoreBoardActivity" />
-        <activity android:name="ColorMatching.ColorMatchingStartActivity"></activity>
+        <!--<activity android:name="FlipToWin.FlipToWinStartingActivity" />-->
+        <!--<activity android:name="FlipToWin.FlipToWinComplexityActivity" />-->
+        <!--<activity android:name="FlipToWin.FlipToWinScoreBoardActivity" />-->
+        <!--<activity android:name="ColorMatching.ColorMatchingScoreBoardActivity" />-->
+        <!--<activity android:name="ColorMatching.ColorMatchingComplexityActivity" />-->
+        <!--<activity android:name="ColorMatching.ColorMatchingStartActivity" />-->
+        <activity android:name="FlipToWin.FlipToTileViewScoreBoardActivity"></activity>
     </application>
 
 </manifest>

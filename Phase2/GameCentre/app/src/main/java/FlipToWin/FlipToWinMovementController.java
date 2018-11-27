@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import Basic.Main;
-import FlipToWin.FlipToWinScoreBoardActivity;
+import Basic.DataManager;
+import Basic.ScoreBoardActivity;
 
 
 class FlipToWinMovementController {
@@ -18,28 +18,31 @@ class FlipToWinMovementController {
      */
     void processTapMovement(Context context, int position, boolean display) {
 
-        int row = position /  Main.INSTANCE.getFlipToWinBoardManager().getGame().getColNum();
-        int col = position %  Main.INSTANCE.getFlipToWinBoardManager().getGame().getColNum();
+        FlipToWinBoardManager boardManager = (FlipToWinBoardManager) DataManager.INSTANCE.getBoardManager();
+        int row = position /  ((FlipToWinBoard)boardManager.getGame()).getColNum();
+        int col = position %  ((FlipToWinBoard)boardManager.getGame()).getColNum();
 
-        if (Main.INSTANCE.getFlipToWinBoardManager().isValidTap(position)) {
+        if (boardManager.isValidTap(position)) {
 //            Toast.makeText(context, "is valid", Toast.LENGTH_SHORT).show();
-            Main.INSTANCE.getFlipToWinBoardManager().touchMove(position);
+            boardManager.makeChange(position);
 //            Toast.makeText(context, "does move", Toast.LENGTH_SHORT).show();
-            if (Main.INSTANCE.getFlipToWinBoardManager().decisionMaking == -1) {
-                Toast.makeText(context, "Wrong Decision !", Toast.LENGTH_SHORT).show();
-            }
-            else if (Main.INSTANCE.getFlipToWinBoardManager().decisionMaking == 1){
+
+            if (boardManager.isChosenTilesMatched()) {
                 Toast.makeText(context, "Correct Decision !", Toast.LENGTH_SHORT).show();
             }
-            if (Main.INSTANCE.getFlipToWinBoardManager().puzzleSolved()) {
+
+            if (boardManager.puzzleSolved()) {
                 Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
-                Intent temp = new Intent(context, FlipToWinScoreBoardActivity.class);
+                Intent temp = new Intent(context, ScoreBoardActivity.class);
                 temp.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(temp);
             }
         }
-        else if (Main.INSTANCE.getFlipToWinBoardManager().getGame().getGrid(row, col).isPaired()){
+        else if (((FlipToWinBoard) boardManager.getGame()).getGrid(row, col).isPaired()){
             Toast.makeText(context, "Already Solved", Toast.LENGTH_SHORT).show();
+        }
+        else if (boardManager.isFlippingTiles()) {
+            Toast.makeText(context, "Flipping cards Right Now", Toast.LENGTH_SHORT).show();
         }
         else {
             Toast.makeText(context, "Already FaceUp", Toast.LENGTH_SHORT).show();

@@ -4,7 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import Basic.Main;
+import Basic.DataManager;
+import Basic.ScoreBoardActivity;
 
 
 class MovementController {
@@ -16,9 +17,9 @@ class MovementController {
      * Process a tapMovement, change to ScoreBoardActivity view when the game is won
      */
     void processTapMovement(Context context, int position, boolean display) {
-        if (Main.INSTANCE.getBoardManager().isValidTap(position)) {
-            Main.INSTANCE.getBoardManager().touchMove(position);
-            if (Main.INSTANCE.getBoardManager().puzzleSolved()) {
+        if (((BoardManager) DataManager.INSTANCE.getBoardManager()).isValidTap(position)) {
+            DataManager.INSTANCE.getBoardManager().makeChange(position);
+            if (DataManager.INSTANCE.getBoardManager().puzzleSolved()) {
                 Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
                 Intent temp = new Intent(context, ScoreBoardActivity.class);
                 temp.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

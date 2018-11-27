@@ -7,12 +7,12 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import Basic.GameManageable;
+import Basic.SuperManager;
 
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
  */
-public class BoardManager implements Serializable, GameManageable {
+public class BoardManager extends SuperManager implements Serializable{
 
     /**
      * The board being managed.
@@ -33,16 +33,18 @@ public class BoardManager implements Serializable, GameManageable {
      * Manage a new shuffled board.
      */
     public BoardManager(int complexity) {
+        super(complexity);
         List<Tile> tiles = new ArrayList<>();
+
         final int numTiles = complexity * complexity;
         for (int tileNum = 0; tileNum != numTiles; tileNum++) {
             tiles.add(new Tile(tileNum, complexity));
         }
 
-        Collections.shuffle(tiles);
-        while (!checkSolvable(tiles, complexity)){
-            Collections.shuffle(tiles);
-        }
+//        Collections.shuffle(tiles);
+//        while (!checkSolvable(tiles, complexity)){
+//            Collections.shuffle(tiles);
+//        }
         this.board = new Board(tiles, complexity);
         this.previousMoves = new ArrayList<>();
     }
@@ -95,7 +97,7 @@ public class BoardManager implements Serializable, GameManageable {
      * @return the current score
      */
     public int getScore() {
-        return this.score;
+        return score;
     }
 
     /**
@@ -110,6 +112,7 @@ public class BoardManager implements Serializable, GameManageable {
      *
      * @return whether the tiles are in row-major order
      */
+    @Override
     public boolean puzzleSolved() {
         Iterator<Tile> iter = this.board.iterator();
         Tile temp = iter.next();
@@ -149,7 +152,8 @@ public class BoardManager implements Serializable, GameManageable {
      *
      * @param position the position
      */
-    public void touchMove(int position) {
+    @Override
+    public void makeChange(int position) {
 
         int row = position / board.getComplexity();
         int col = position % board.getComplexity();

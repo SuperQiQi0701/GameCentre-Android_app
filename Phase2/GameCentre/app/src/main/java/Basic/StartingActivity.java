@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package Basic;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,8 +9,10 @@ import android.widget.Toast;
 
 import java.io.File;
 
-import Basic.Main;
-import Basic.SelectGameActivity;
+import ColorMatching.ColorMatchingGameActivity;
+import FlipToWin.FlipToWinGameActivity;
+import fall2018.csc2017.slidingtiles.GameActivity;
+import fall2018.csc2017.slidingtiles.R;
 
 /**
  * The initial activity for the sliding puzzle tile game.
@@ -24,6 +26,7 @@ public class StartingActivity extends AppCompatActivity {
         addStartButtonListener();
         addLoadButtonListener();
         addResumeButtonListener();
+        addScoreBoardButtonListener();
     }
 
     /**
@@ -33,7 +36,11 @@ public class StartingActivity extends AppCompatActivity {
         Button startButton = findViewById(R.id.StartButton);
         startButton.setBackgroundColor(Color.DKGRAY);
         startButton.setTextColor(Color.WHITE);
-        startButton.setOnClickListener(v -> switchToComplexity());
+        startButton.setOnClickListener(v -> {
+            Intent temp = new Intent(this, ComplexityActivity.class);
+            startActivity(temp);
+            finish();
+        });
     }
 
     /**
@@ -44,11 +51,11 @@ public class StartingActivity extends AppCompatActivity {
         loadButton.setBackgroundColor(Color.DKGRAY);
         loadButton.setTextColor(Color.WHITE);
         loadButton.setOnClickListener(v -> {
-            String fileName = Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
+            String fileName = DataManager.INSTANCE.getCurrentGameName() + "_" +
+                    DataManager.INSTANCE.getCurrentUserName() + "_Save.ser";
             if (new File(StartingActivity.this.getFilesDir() + "/" + fileName).exists()) {
-                Main.INSTANCE.loadBoardManagerFromFile(StartingActivity.this.getApplicationContext(), fileName);
-                Main.INSTANCE.saveBoardManagerToFile(StartingActivity.this.getApplicationContext(),
-                        "Auto_" + fileName);
+                FileManager.loadGame(StartingActivity.this.getApplicationContext(), fileName);
+                FileManager.saveGame(StartingActivity.this.getApplicationContext(), "Auto");
                 makeToastLoadedText();
                 switchToGame();
             } else {
@@ -80,15 +87,38 @@ public class StartingActivity extends AppCompatActivity {
         resume.setBackgroundColor(Color.DKGRAY);
         resume.setTextColor(Color.WHITE);
         resume.setOnClickListener((v) -> {
-            String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
+            String fileName = DataManager.INSTANCE.getCurrentGameName() + "_" +
+                    DataManager.INSTANCE.getCurrentUserName() + "_Auto.ser";
             if (new File(StartingActivity.this.getFilesDir() + "/" + fileName).exists()) {
-                Main.INSTANCE.loadBoardManagerFromFile(this.getApplicationContext(), fileName);
+                FileManager.loadGame(StartingActivity.this.getApplicationContext(), fileName);
                 makeToastResumeText();
-                Intent temp = new Intent(this, GameActivity.class);
-                startActivity(temp);
+                switchToGame();
             } else {
                 makeToastResumeFailText();
             }
+
+        });
+    }
+
+    private void addScoreBoardButtonListener() {
+        Button resume = findViewById(R.id.scoreboardButton);
+        resume.setBackgroundColor(Color.DKGRAY);
+        resume.setTextColor(Color.WHITE);
+        resume.setOnClickListener((v) -> {
+            Intent temp = new Intent(this, ComplexityActivity.class);
+
+            Intent preIntent = getIntent();
+            Bundle bundle = preIntent.getExtras();
+            if (bundle != null) {
+
+                temp.putExtra("currGameName", bundle.getString("currGameName"));
+
+                System.out.println("put extra successfully in StartingActivity");
+
+            }
+
+            startActivity(temp);
+            finish();
 
         });
     }
@@ -117,23 +147,30 @@ public class StartingActivity extends AppCompatActivity {
     }
 
     /**
-     * Switch to the GameActivity view to play the game.
+     * Switch to the Activity class of current game to play the game.
      */
     private void switchToGame() {
-        Intent tmp = new Intent(this, GameActivity.class);
-        String fileName = "Auto_" + Main.INSTANCE.getUserManager().getCurrentUser() + ".ser";
-        Main.INSTANCE.saveBoardManagerToFile(this.getApplicationContext(), fileName);
-        startActivity(tmp);
+        FileManager.saveGame(this.getApplicationContext(), "Auto");
+        String gameName = DataManager.INSTANCE.getCurrentGameName();
+        Intent temp;
+        if ("ST".equals(gameName)) {
+            temp = new Intent(this, GameActivity.class);
+        } else if ("CM".equals(gameName)) {
+            temp = new Intent(this, ColorMatchingGameActivity.class);
+        } else {
+            temp = new Intent(this, FlipToWinGameActivity.class);
+        }
+        startActivity(temp);
     }
 
-    /**
-     * Switch to the ComplexityActivity view to choose a game level.
-     */
-    private void switchToComplexity() {
-        Intent temp = new Intent(this, ComplexityActivity.class);
-        startActivity(temp);
-        finish();
-    }
+//    /**
+//     * Switch to the ComplexityActivity view to choose a game level.
+//     */
+//    private void switchToComplexity() {
+//        Intent temp = new Intent(this, ComplexityActivity.class);
+//        startActivity(temp);
+//        finish();
+//    }
 
     /**
      * Override onBackPressed method, so that when touch back button it goes back to the

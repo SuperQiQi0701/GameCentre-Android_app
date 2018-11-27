@@ -1,11 +1,9 @@
-package fall2018.csc2017.slidingtiles;
+package Basic;
 
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
-
-import Basic.Main;
 
 public class Record implements Comparable<Record>, Serializable {
 
@@ -13,19 +11,24 @@ public class Record implements Comparable<Record>, Serializable {
     /**
      * The complexity of the game.
      */
-    private int complexity = Main.INSTANCE.getBoardManager().getGame().getComplexity();
+    private int complexity = DataManager.INSTANCE.getBoardManager().getComplexity();
 
 
     /**
      * The current score of the game.
      */
-    private int finalScore = Main.INSTANCE.getBoardManager().getScore();
+    private int finalScore = DataManager.INSTANCE.getBoardManager().getScore();
 
 
     /**
      * The current username of the game.
      */
-    private String userName = Main.INSTANCE.getUserManager().getCurrentUser();
+    private String userName = DataManager.INSTANCE.getCurrentUserName();
+
+    /**
+     * The current name of the game.
+     */
+    private String gameName = DataManager.INSTANCE.getCurrentGameName();
 
 
     /**
@@ -35,8 +38,7 @@ public class Record implements Comparable<Record>, Serializable {
      */
     @SuppressLint("DefaultLocale")
     String recordToString() {
-        String temp = "User: %s, took %d steps in game: %s, in level: %d";
-        String gameName = Board.GAME_NAME;
+        String temp = "User: %s, got score %d in game: %s, in level: %d";
         return String.format(temp, userName, finalScore, gameName, complexity - 2);
     }
 
@@ -48,6 +50,15 @@ public class Record implements Comparable<Record>, Serializable {
      */
     String getUserName() {
         return userName;
+    }
+
+    /**
+     * Return the game name for this record
+     *
+     * @return the game name for this record
+     */
+    public String getGameName() {
+        return gameName;
     }
 
 

@@ -10,22 +10,23 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import Basic.Playable;
+import Basic.SuperBoard;
 
 /**
  * The sliding tiles board.
  */
 
-public class Board extends Observable implements Iterable<Tile>, Serializable, Playable<Tile> {
+public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
 
     /**
      * The game name for current board
      */
-    public static final String GAME_NAME = "Sliding_Tiles";
+    private static final String GAME_NAME = "Sliding_Tiles";
     /**
      * The number of row and col
      */
-    private int complexity;
+    private int complexity = getComplexity();
+    ;
 
     /**
      * The tiles on the board in row-major order.
@@ -39,8 +40,8 @@ public class Board extends Observable implements Iterable<Tile>, Serializable, P
      * @param tiles the tiles for the board
      */
     Board(List<Tile> tiles, int complexity) {
+        super(complexity);
         Iterator<Tile> iter = tiles.iterator();
-        this.complexity = complexity;
         this.tiles = new Tile[this.complexity][this.complexity];
 
         for (int row = 0; row != this.complexity; row++) {
@@ -61,16 +62,6 @@ public class Board extends Observable implements Iterable<Tile>, Serializable, P
 
 
     /**
-     * Return the complexity of current board
-     *
-     * @return the complexity of current board
-     */
-    public int getComplexity() {
-        return this.complexity;
-    }
-
-
-    /**
      * Return the tile at (row, col)
      *
      * @param row the tile row
@@ -81,6 +72,11 @@ public class Board extends Observable implements Iterable<Tile>, Serializable, P
         return tiles[row][col];
     }
 
+    @Override
+    public void setGrid(int i, int i1) {
+
+    }
+
     /**
      * Swap the tiles at (row1, col1) and (row2, col2)
      *
@@ -89,7 +85,7 @@ public class Board extends Observable implements Iterable<Tile>, Serializable, P
      * @param row2 the second tile row
      * @param col2 the second tile col
      */
-    public void makeMove(int row1, int col1, int row2, int col2) {
+    void makeMove(int row1, int col1, int row2, int col2) {
         Tile temp = tiles[row1][col1];
         tiles[row1][col1] = tiles[row2][col2];
         tiles[row2][col2] = temp;

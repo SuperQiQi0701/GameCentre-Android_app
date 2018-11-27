@@ -8,11 +8,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import Basic.LoginActivity;
-import ColorMatching.ColorMatchingStartActivity;
-import FlipToWin.FlipToWinStartingActivity;
 import fall2018.csc2017.slidingtiles.R;
-import fall2018.csc2017.slidingtiles.StartingActivity;
 
 
 public class SelectGameActivity extends AppCompatActivity {
@@ -44,7 +40,12 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setBackgroundColor(Color.MAGENTA);
         mSliding.setTextColor(Color.YELLOW);
         mSliding.setOnClickListener(v -> {
+            DataManager.INSTANCE.setCurrentGameName("ST");
             Intent slide = new Intent(this, StartingActivity.class);
+            slide.putExtra("currGameName", "ST");
+
+            System.out.println("put extra successfully in SelectGameActivity");
+
             startActivity(slide);
         });
     }
@@ -54,7 +55,12 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setBackgroundColor(Color.YELLOW);
         mSliding.setTextColor(Color.BLACK);
         mSliding.setOnClickListener(v -> {
-            Intent slide = new Intent(this, ColorMatchingStartActivity.class);
+            DataManager.INSTANCE.setCurrentGameName("CM");
+            Intent slide = new Intent(this, StartingActivity.class);
+            slide.putExtra("currGameName", "CM");
+
+            System.out.println("put extra successfully in SelectGameActivity");
+
             startActivity(slide);
         });
     }
@@ -65,7 +71,12 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setBackgroundColor(Color.CYAN);
         mSliding.setTextColor(Color.RED);
         mSliding.setOnClickListener(v -> {
-            Intent slide = new Intent(this, FlipToWinStartingActivity.class);
+            DataManager.INSTANCE.setCurrentGameName("FTW");
+            Intent slide = new Intent(this, StartingActivity.class);
+            slide.putExtra("currGameName", "FTW");
+
+            System.out.println("put extra successfully in SelectGameActivity");
+
             startActivity(slide);
         });
     }

@@ -4,18 +4,18 @@ import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 
-import Basic.SuperTile;
+import Basic.MovableTile;
 
 /**
  * A Tile in a sliding tiles puzzle.
  */
-public class Tile extends SuperTile implements Comparable<Tile>, Serializable {
+public class Tile extends MovableTile implements Comparable<Tile>, Serializable {
 
 //    /**
 //     * The background id to find the tile image.
 //     */
 //    private int background;
-//
+
     /**
      * The unique id.
      */
@@ -26,9 +26,9 @@ public class Tile extends SuperTile implements Comparable<Tile>, Serializable {
      *
      * @return the background id
      */
-    public int getBackground() {
-        return super.getBackground();
-    }
+//    public int getBackground() {
+//        return super.getBackground();
+//    }
 
     /**
      * Return the tile id.

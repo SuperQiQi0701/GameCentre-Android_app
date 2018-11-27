@@ -2,44 +2,41 @@ package ColorMatching;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
-import Basic.GameManageable;
+import Basic.SuperManager;
 
-public class ColorBoardManager implements Serializable, GameManageable {
+public class ColorBoardManager extends SuperManager implements Serializable{
     /**
      * The board being managed.
      */
-    ColorBoard colorBoard;
+    private ColorBoard colorBoard;
 
     /**
      * An integer that keep track the score of the current game
      */
     private int score = 0;
 
-    boolean[][] board;
     private ArrayList<ArrayList<ColorTile>> allMove;
     private ArrayList<ColorTile> current;
     private ArrayList<Integer> colors;
-    ColorTile curTile;
     private ArrayList<ColorTile> allState;
-    ArrayList arr;
+    private ArrayList arr;
+
 
     public ColorBoardManager(int complexity) {
-        this.colorBoard = new ColorBoard();
-        board = new boolean[8][10];
+        super(complexity);
+        this.colorBoard = new ColorBoard(complexity);
+        colorBoard = new ColorBoard(complexity);
         allMove = new ArrayList<>();
         current = new ArrayList<>();
         colors = new ArrayList<>();
-        curTile = colorBoard.getGrid(0, 0);
-        allState = new ArrayList<ColorTile>();
+        allState = new ArrayList<>();
         arr = new ArrayList();
     }
 
-    private ColorTile getLeft(ColorTile tile){
-        if((tile.x)-1 >= 0){
-            return colorBoard.getGrid((tile.x)-1, tile.y);
-        }
-        return null;
+    public void setBoard(int complexity) {
+        this.colorBoard = new ColorBoard(complexity);
     }
 
     /**
@@ -48,123 +45,66 @@ public class ColorBoardManager implements Serializable, GameManageable {
      * @return the current score
      */
     public int getScore() {
-        return this.score;
+        return score;
     }
-
-    private ColorTile getRight(ColorTile tile){
-        if((tile.x)+1 < 8){
-            return colorBoard.getGrid((tile.x)+1, tile.y);
-        }
-        return null;
-    }
-
-    private ColorTile getTop(ColorTile tile){
-        if((tile.y)-1 >= 0){
-            return colorBoard.getGrid(tile.x, (tile.y)-1);
-        }
-        return null;
-    }
-
-    private ColorTile getBottom(ColorTile tile){
-        if((tile.y)+1 < 10){
-            return colorBoard.getGrid(tile.x, (tile.y)+1);
-        }
-        return null;
-    }
-
-//    void changeColor(int newColor) {
-////        if(! puzzleSolved()){
-////            changeOriColor(newColor);
-////        }
-////    }
 
     private void neighbour(ColorTile tile, int initColor){
-        if(getLeft(tile)!= null){
-            if(getLeft(tile).getColor() == initColor){
-                if(! allState.contains(getLeft(tile)) && ! arr.contains(getLeft(tile))){
-                    allState.add(getLeft(tile));
+        if(colorBoard.getLeft(tile)!= null){
+            if(Objects.requireNonNull(colorBoard.getLeft(tile)).getColor() == initColor){
+                if(! allState.contains(colorBoard.getLeft(tile)) && ! arr.contains(colorBoard.getLeft(tile))){
+                    allState.add(colorBoard.getLeft(tile));
                 }
             }
         }
-        if(getRight(tile)!= null){
-            if(getRight(tile).getColor() == initColor){
-                if(! allState.contains(getRight(tile)) && ! arr.contains(getRight(tile))){
-                    allState.add(getRight(tile));
+        if(colorBoard.getRight(tile)!= null){
+            if(Objects.requireNonNull(colorBoard.getRight(tile)).getColor() == initColor){
+                if(! allState.contains(colorBoard.getRight(tile)) && ! arr.contains(colorBoard.getRight(tile))){
+                    allState.add(colorBoard.getRight(tile));
                 }
             }
         }
-        if(getTop(tile)!= null){
-            if(getTop(tile).getColor() == initColor){
-                if(! allState.contains(getTop(tile)) && ! arr.contains(getTop(tile))){
-                    allState.add(getTop(tile));
+        if(colorBoard.getTop(tile)!= null){
+            if(Objects.requireNonNull(colorBoard.getTop(tile)).getColor() == initColor){
+                if(! allState.contains(colorBoard.getTop(tile)) && ! arr.contains(colorBoard.getTop(tile))){
+                    allState.add(colorBoard.getTop(tile));
                 }
             }
         }
-        if(getBottom(tile)!= null){
-            if(getBottom(tile).getColor() == initColor){
-                if(! allState.contains(getBottom(tile)) && ! arr.contains(getBottom(tile))){
-                    allState.add(getBottom(tile));
+        if(colorBoard.getBottom(tile)!= null){
+            if(Objects.requireNonNull(colorBoard.getBottom(tile)).getColor() == initColor){
+                if(! allState.contains(colorBoard.getBottom(tile)) && ! arr.contains(colorBoard.getBottom(tile))){
+                    allState.add(colorBoard.getBottom(tile));
                 }
             }
         }
     }
 
 
-    void changeColor(int newColor) {
-        allState = new ArrayList<ColorTile>();
-        ArrayList<ColorTile> arr =  new ArrayList<ColorTile>();
+    @Override
+    public void makeChange(int newColor) {
+        allState = new ArrayList<>();
+        ArrayList<ColorTile> arr =  new ArrayList<>();
         ColorTile tile = colorBoard.getGrid(0, 0);
         int initColor = tile.getColor();
-        tile.setColor(newColor);
-        arr.add(tile);
-        neighbour(tile, initColor);
-        while(allState.size() != 0){
-            tile = allState.get(0);
-            neighbour(tile, initColor);
+        if(newColor != initColor){
             tile.setColor(newColor);
             arr.add(tile);
-            allState.remove(0);
+            neighbour(tile, initColor);
+            while(allState.size() != 0){
+                tile = allState.get(0);
+                neighbour(tile, initColor);
+                tile.setColor(newColor);
+                arr.add(tile);
+                allState.remove(0);
+            }
+            allMove.add(arr);
+            colors.add(initColor);
+        }else{
+            allMove.add(allMove.get(allMove.size()-1));
+            colors.add(initColor);
         }
-        allMove.add(arr);
-        colors.add(initColor);
         ++this.score;
     }
-
-
-//    private void changeOriColor(int newColor) {
-//        current = new ArrayList<>();
-//        int initColor = colorBoard.getGrid(0, 0).getColor();
-//        int x = 0;
-//        int y = 0;
-//        //当前坐标x,y
-//        while(y < board[x].length && x < board.length && colorBoard.getGrid(x, y).getColor() == initColor){
-//            colorBoard.getGrid(x, y).setColor(newColor);
-//            current.add(colorBoard.getGrid(x, y));
-//            //当前下方
-//            int temp = y+1;
-//            while(temp < board[x].length && colorBoard.getGrid(x, temp).getColor() == initColor){
-//                colorBoard.getGrid(x, temp).setColor(newColor);
-//                current.add(colorBoard.getGrid(x, temp));
-//                temp++;
-//            }
-//            while(x+1 < board.length && colorBoard.getGrid(x+1, y).getColor() == initColor) {
-//                colorBoard.getGrid(x+1, y).setColor(newColor);
-//                current.add(colorBoard.getGrid(x+1, y));
-//                int temp2 = y+1;
-//                while(temp2 < board[x].length && colorBoard.getGrid(x+1, temp2).getColor() == initColor){
-//                    colorBoard.getGrid(x+1, temp2).setColor(newColor);
-//                    current.add(colorBoard.getGrid(x+1, temp2));
-//                    temp2++;
-//                }
-//                x++;
-//            }
-//            y++;
-//            x = 0;
-//        }
-//        score++;
-//        allMove.add(current);
-//        colors.add(initColor);
-//    }
 
     /**
      * Return true if the undo function is available, false otherwise.
@@ -178,7 +118,7 @@ public class ColorBoardManager implements Serializable, GameManageable {
     /**
      * Undo the previous move
      */
-    public void undo(){
+    void undo(){
         if(undoAvailable()){
             ArrayList<ColorTile> whatever = allMove.remove(allMove.size()-1);
             int color = colors.remove(colors.size()-1);
@@ -196,8 +136,8 @@ public class ColorBoardManager implements Serializable, GameManageable {
 
     @Override
     public boolean puzzleSolved() {
-        for (int x = 0; x < board.length; x++) {
-            for (int y = 0; y < board[x].length; y++) {
+        for (int x = 0; x < colorBoard.getTiles().length; x++) {
+            for (int y = 0; y < colorBoard.getTiles()[x].length; y++) {
                 if (colorBoard.getGrid(x, y).getColor() != colorBoard.getGrid(0, 0).getColor()){
                     return false;
                 }
@@ -207,4 +147,11 @@ public class ColorBoardManager implements Serializable, GameManageable {
     }
 
 
+    public ArrayList<ColorTile> getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(ArrayList<ColorTile> current) {
+        this.current = current;
+    }
 }
