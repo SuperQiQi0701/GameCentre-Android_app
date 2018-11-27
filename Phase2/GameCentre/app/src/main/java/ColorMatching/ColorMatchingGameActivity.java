@@ -13,9 +13,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Random;
-
 import Basic.DataManager;
 import Basic.FileManager;
 import Basic.ScoreBoardActivity;
@@ -26,7 +23,6 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
 
     int width, height;
     static ColorView colorView;
-    ColorBoard colorBoard;
     int complexity;
 
     public static ColorView getColorView(){
@@ -39,7 +35,6 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_color_matching_game);
         initData();
         initView();
-        colorBoard = new ColorBoard(complexity);
         addRedButtonListener();
         addYellowButtonListener();
         addBlueButtonListener();
@@ -60,9 +55,12 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     private void draw(){
         colorView.view = new View(this) {
             protected void onDraw(Canvas canvas) {
-                if ((DataManager.INSTANCE.getBoardManager().getGame()).getGrid(1, 1) == null){
-                    colorBoard.createNewBoard(canvas);
-                }else{uploadBoard(canvas);}
+//                if ((DataManager.INSTANCE.getBoardManager().getGame()).getGrid(1, 1) == null){
+//                    colorBoard.createNewBoard(canvas);
+//                }else{uploadBoard(canvas);}
+
+                createTiles(canvas);
+
                 //draw line
                 colorView.drawLine(canvas);
             }
@@ -72,14 +70,26 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         getScore();
     }
 
+    void createTiles(Canvas canvas) {
+        ColorBoard board = (ColorBoard) DataManager.INSTANCE.getBoardManager().getGame();
+        for (int row = 0; row < board.getRowNum(); row++) {
+            for (int col = 0; col < board.getColNum(); col++) {
+                int color = board.getGrid(row, col).getColor();
+                ColorMatchingGameActivity.getColorView().drawBox(canvas, color, row, col);
+                //存color
+//                board.getGrid(row, col).setColor(color);
+            }
+        }
+    }
+
     private void initData(){
         complexity = DataManager.INSTANCE.getBoardManager().getComplexity();
         int width = getScreenWidth(this);
         this.width = width;
         height = width * 5 / 4;
-        DataManager.INSTANCE.startNewGame(complexity);
+//        DataManager.INSTANCE.startNewGame(complexity);
         colorView = new ColorView();
-        ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).setBoard(complexity);
+//        ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).setBoard(complexity);
         colorView.setBoxSize(this.width / ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getTiles().length);
     }
 
@@ -96,15 +106,15 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         return outMetrics.widthPixels;
     }
 
-    private void uploadBoard(Canvas canvas){
-        for (int x = 0; x < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getTiles().length; x++) {
-            for (int y = 0; y < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getTiles()[x].length; y++) {
-                int color = ((ColorTile) DataManager.INSTANCE.getBoardManager().getGame().getGrid(x, y)).getColor();
-                colorView.drawBox(canvas, color, x, y);
-            }
-        }
-        getScore();
-    }
+//    private void uploadBoard(Canvas canvas){
+//        for (int x = 0; x < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getTiles().length; x++) {
+//            for (int y = 0; y < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getTiles()[x].length; y++) {
+//                int color = ((ColorTile) DataManager.INSTANCE.getBoardManager().getGame().getGrid(x, y)).getColor();
+//                colorView.drawBox(canvas, color, x, y);
+//            }
+//        }
+//        getScore();
+//    }
 
     private void addUndoButtonListener(){
         Button undo = findViewById(R.id.undo);
@@ -166,6 +176,8 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         currScoreTextView.setText(score);
     }
 
+    //这里也有smell
+
     private void addRedButtonListener() {
         Button redButton = findViewById(R.id.red);
         redButton.setOnClickListener((v) -> {
@@ -221,4 +233,23 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         Intent temp = new Intent(this, StartingActivity.class);
         startActivity(temp);
     }
+
+    /**
+     * Dispatch onPause() to fragments.
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        FileManager.saveGame(this.getApplicationContext(), "Auto");
+    }
+
+    /**
+     * Dispatch onStop() to fragments.
+     */
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FileManager.saveGame(this.getApplicationContext(), "Auto");
+    }
+
 }

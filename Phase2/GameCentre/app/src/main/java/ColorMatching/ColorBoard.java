@@ -2,21 +2,27 @@ package ColorMatching;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Random;
+import java.util.List;
+
 
 import Basic.DataManager;
 import Basic.SuperBoard;
 
-public class ColorBoard extends SuperBoard implements Serializable{
+public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Serializable{
 
     /**
      * The name of this game.
      */
-    private static final String GAME_NAME = "Color Matching";
+//    private static final String GAME_NAME = "Color Matching";
 
-    private int complexity = getComplexity();
+//    private int complexity = getComplexity();
 
     /**
      * The color tiles on the board in row-major order.
@@ -27,21 +33,31 @@ public class ColorBoard extends SuperBoard implements Serializable{
         return tiles;
     }
 
+    private int rowNum;
+
+    private int colNum;
+
     /**
      * A new color board of tiles in row major order, and contains 10 rows and 8 columns.
      */
-    ColorBoard( int complexity) {
+    ColorBoard(List<ColorTile> tiles, int complexity) {
         super(complexity);
-        this.tiles = new ColorTile[(complexity - 2) * 4][(complexity - 2)  * 5];
-    }
+        Iterator<ColorTile> iter = tiles.iterator();
+        this.rowNum = (getComplexity() - 2) * 4;
+        this.colNum = (getComplexity() - 2) * 5;
 
-    public static String getGameName() {
-        return GAME_NAME;
+        this.tiles = new ColorTile[this.rowNum][this.colNum];
+        for (int row = 0; row != this.rowNum; row++) {
+            for (int col = 0; col != this.colNum; col++) {
+                this.tiles[row][col] = iter.next();
+            }
+        }
     }
 
     @Override
     public int numGrids() {
-        return complexity * complexity * 20;
+
+        return this.rowNum * this.colNum;
     }
 
     /**
@@ -62,75 +78,141 @@ public class ColorBoard extends SuperBoard implements Serializable{
      * @param col the tile column
      */
     public void setGrid(int row, int col) {
+
         tiles[row][col] = new ColorTile(row, col);
     }
 
-    public void setComplexity(int complexity) {
-        this.complexity = complexity;
-    }
+//    public void setComplexity(int complexity) {
+//        this.complexity = complexity;
+//    }
 
-    public ColorTile getLeft(ColorTile tile){
+
+
+    // 这里有code smell！！！！！！！！！！！！！
+
+    ColorTile getLeft(ColorTile tile){
         if((tile.x)-1 >= 0){
             return getGrid((tile.x)-1, tile.y);
         }
         return null;
     }
 
-    public ColorTile getRight(ColorTile tile){
+    ColorTile getRight(ColorTile tile){
         if((tile.x)+1 < tiles.length){
             return getGrid((tile.x)+1, tile.y);
         }
         return null;
     }
 
-    public ColorTile getTop(ColorTile tile){
+    ColorTile getTop(ColorTile tile){
         if((tile.y)-1 >= 0){
             return getGrid(tile.x, (tile.y)-1);
         }
         return null;
     }
 
-    public ColorTile getBottom(ColorTile tile){
+    ColorTile getBottom(ColorTile tile){
         if((tile.y)+1 < tiles.length*5/4){
             return getGrid(tile.x, (tile.y)+1);
         }
         return null;
     }
 
-    void createNewBoard(Canvas canvas){
-        for (int x = 0; x < tiles.length; x++) {
-            for (int y = 0; y < tiles[x].length; y++) {
-                int color = randomColor();
-                ColorMatchingGameActivity.getColorView().drawBox(canvas, color, x, y);
-                //存color
-                DataManager.INSTANCE.getBoardManager().getGame().setGrid(x, y);
-                ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getGrid(x, y).setColor(color);
+//    void createNewBoard(Canvas canvas){
+//        for (int x = 0; x < tiles.length; x++) {
+//            for (int y = 0; y < tiles[x].length; y++) {
+//                int color = randomColor();
+//                ColorMatchingGameActivity.getColorView().drawBox(canvas, color, x, y);
+//                //存color
+//                DataManager.INSTANCE.getBoardManager().getGame().setGrid(x, y);
+//                ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getGrid(x, y).setColor(color);
+//            }
+//        }
+//    }
+
+//    private int randomColor(){
+//        Random random = new Random();
+//        int color = random.nextInt(5);
+//        switch(color){
+//            case 0:
+//                color =  Color.RED;
+//                break;
+//            case 1:
+//                color = Color.GREEN;
+//                break;
+//            case 2:
+//                color = Color.YELLOW;
+//                break;
+//            case 3:
+//                color = Color.BLUE;
+//                break;
+//            case 4:
+//                color = Color.GRAY;
+//                break;
+//        }
+//        return color;
+//    }
+
+    @Override
+    public String toString() {
+        return "FlipToWinBoard{" +
+                "tiles=" + Arrays.toString(tiles) +
+                '}';
+    }
+
+
+    /**
+     * Return a new BoardIterator.
+     *
+     * @return a new BoardIterator
+     */
+    @NonNull
+    @Override
+    public Iterator<ColorTile> iterator() {
+
+        return new ColorBoardIterator();
+    }
+
+    /**
+     * Iterate over tiles in a range of total number of tiles.
+     */
+    private class ColorBoardIterator implements Iterator<ColorTile> {
+
+        /**
+         * The row number of the tile.
+         */
+        private int row;
+        /**
+         * The column number of the tile.
+         */
+        private int col;
+
+        @Override
+        public boolean hasNext() {
+            return row < ColorBoard.this.rowNum &&
+                    col < ColorBoard.this.colNum;
+        }
+
+        @Override
+        public ColorTile next() {
+            if (hasNext()) {
+                if (ColorBoard.this.colNum - 1 == col) {
+                    ColorTile temp = getGrid(row, col);
+                    row++;
+                    col = 0;
+                    return temp;
+                }
+                return getGrid(row, col++);
             }
+            throw new NoSuchElementException();
         }
     }
 
-    private int randomColor(){
-        Random random = new Random();
-        int color = random.nextInt(5);
-        switch(color){
-            case 0:
-                color =  Color.RED;
-                break;
-            case 1:
-                color = Color.GREEN;
-                break;
-            case 2:
-                color = Color.YELLOW;
-                break;
-            case 3:
-                color = Color.BLUE;
-                break;
-            case 4:
-                color = Color.GRAY;
-                break;
-        }
-        return color;
+    int getColNum() {
+        return this.colNum;
     }
 
-
+    int getRowNum() {
+        return this.rowNum;
+    }
 }

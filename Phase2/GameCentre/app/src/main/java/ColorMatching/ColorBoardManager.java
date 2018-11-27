@@ -2,6 +2,7 @@ package ColorMatching;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import Basic.SuperManager;
@@ -26,8 +27,17 @@ public class ColorBoardManager extends SuperManager implements Serializable{
 
     public ColorBoardManager(int complexity) {
         super(complexity);
-        this.colorBoard = new ColorBoard(complexity);
-        colorBoard = new ColorBoard(complexity);
+        List<ColorTile> tiles = new ArrayList<>();
+        int rowNum = (getComplexity() - 2) * 4;
+        int colNum = (getComplexity() - 2) * 5;
+
+        for (int row = 0; row != rowNum; row++) {
+            for (int col = 0; col != colNum; col++) {
+                tiles.add(new ColorTile(row, col));
+            }
+        }
+        this.colorBoard = new ColorBoard(tiles, complexity);
+//        colorBoard = new ColorBoard(complexity);
         allMove = new ArrayList<>();
         current = new ArrayList<>();
         colors = new ArrayList<>();
@@ -35,8 +45,8 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         arr = new ArrayList();
     }
 
-    public void setBoard(int complexity) {
-        this.colorBoard = new ColorBoard(complexity);
+    public void setBoard(List<ColorTile> tiles, int complexity) {
+        this.colorBoard = new ColorBoard(tiles, complexity);
     }
 
     /**
@@ -48,6 +58,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         return score;
     }
 
+    // 这里有code smell！！！！！！！！！！！！！
     private void neighbour(ColorTile tile, int initColor){
         if(colorBoard.getLeft(tile)!= null){
             if(Objects.requireNonNull(colorBoard.getLeft(tile)).getColor() == initColor){
@@ -79,7 +90,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         }
     }
 
-
+    //这个可以考虑优化一下
     @Override
     public void makeChange(int newColor) {
         allState = new ArrayList<>();
@@ -99,9 +110,10 @@ public class ColorBoardManager extends SuperManager implements Serializable{
             }
             allMove.add(arr);
             colors.add(initColor);
-        }else{
+        }else if (allMove.size() != 0) {
             allMove.add(allMove.get(allMove.size()-1));
             colors.add(initColor);
+
         }
         ++this.score;
     }
