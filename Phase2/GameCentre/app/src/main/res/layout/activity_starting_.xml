@@ -14,9 +14,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="76dp"
         android:gravity="center"
-        android:text="@string/introduction"
         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <Button
@@ -33,9 +32,11 @@
         android:id="@+id/LoadButton"
         android:layout_width="165dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/GameText"
-        android:layout_marginTop="172dp"
+        android:layout_below="@+id/StartButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="-128dp"
+        android:layout_marginBottom="242dp"
         android:layout_toStartOf="@+id/StartButton"
         android:text="@string/load_game" />
 

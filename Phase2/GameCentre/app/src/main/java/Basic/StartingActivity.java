@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -27,6 +28,33 @@ public class StartingActivity extends AppCompatActivity {
         addLoadButtonListener();
         addResumeButtonListener();
         addScoreBoardButtonListener();
+        setGameInfo();
+    }
+
+    private void setGameInfo(){
+        String intro = "";
+        TextView gameTextView = findViewById(R.id.GameText);
+        switch (DataManager.INSTANCE.getCurrentGameName()) {
+            case "ST":
+                intro = "Welcome To Sliding Tiles.  \n A Puzzle Game where you must arrange " +
+                        "the numbers in the correct order. If you undo, you got a penalty of adding 1" +
+                        "extra score. The player who took lower steps got higher rank.";
+                break;
+            case "CM":
+                intro = "Welcome to Color Matching. \n A Grid Game where need to unify the color of all" +
+                        "the grids. You can change grid colors from the top left corner by clicking " +
+                        "color buttons at the bottom. The grids you can change would increase as you " +
+                        "unify more grids. If you undo, you got a penalty of adding 1 extra score. The " +
+                        "player who took lower steps got higher rank.";
+                break;
+            case "FTW":
+                intro = "Welcome to Flip To Win. \n A Memory Game where you need to match pairs of tiles." +
+                        "Once you click a tile, an emoji would expose for 0.8 seconds. If you flip two " +
+                        "identical emoji, they got matched and will cancel out. The player who took " +
+                        "less flips got higher rank. ";
+                break;
+        }
+        gameTextView.setText(intro);
     }
 
     /**
