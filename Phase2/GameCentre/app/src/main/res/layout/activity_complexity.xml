@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Basic.ComplexityActivity">
+    tools:context="Basic.ComplexityActivity"
+    android:background="@drawable/complexity">
 
     <Button
         android:id="@+id/complexity2Button"
