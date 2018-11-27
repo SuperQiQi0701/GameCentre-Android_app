@@ -24,6 +24,8 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     int width, height;
     static ColorView colorView;
     int complexity;
+    int[] color_button = {R.id.red, R.id.yellow, R.id.blue, R.id.green, R.id.grey};
+    int[] colors = {Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.GRAY};
 
     public static ColorView getColorView(){
         return colorView;
@@ -35,11 +37,11 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_color_matching_game);
         initData();
         initView();
-        addRedButtonListener();
-        addYellowButtonListener();
-        addBlueButtonListener();
-        addGREENButtonListener();
-        addGreyButtonListener();
+        int position = 0;
+        while (position < 5){
+            addColorButtonListener(position);
+            position++;
+        }
         addUndoButtonListener();
         addSaveGameButtonListener();
     }
@@ -176,52 +178,11 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         currScoreTextView.setText(score);
     }
 
-    //这里也有smell
 
-    private void addRedButtonListener() {
-        Button redButton = findViewById(R.id.red);
-        redButton.setOnClickListener((v) -> {
-            DataManager.INSTANCE.getBoardManager().makeChange(Color.RED);
-            colorView.view.invalidate();
-            getScore();
-            checkWin();
-        });
-    }
-
-    private void addYellowButtonListener() {
-        Button redButton = findViewById(R.id.yellow);
-        redButton.setOnClickListener((v) -> {
-            DataManager.INSTANCE.getBoardManager().makeChange(Color.YELLOW);
-            colorView.view.invalidate();
-            getScore();
-            checkWin();
-        });
-    }
-
-    private void addBlueButtonListener() {
-        Button redButton = findViewById(R.id.blue);
-        redButton.setOnClickListener((v) -> {
-            DataManager.INSTANCE.getBoardManager().makeChange(Color.BLUE);
-            colorView.view.invalidate();
-            getScore();
-            checkWin();
-        });
-    }
-
-    private void addGREENButtonListener() {
-        Button redButton = findViewById(R.id.green);
-        redButton.setOnClickListener((v) -> {
-            DataManager.INSTANCE.getBoardManager().makeChange(Color.GREEN);
-            colorView.view.invalidate();
-            getScore();
-            checkWin();
-        });
-    }
-
-    private void addGreyButtonListener() {
-        Button redButton = findViewById(R.id.grey);
-        redButton.setOnClickListener((v) -> {
-            DataManager.INSTANCE.getBoardManager().makeChange(Color.GRAY);
+    private void addColorButtonListener(int color){
+        Button colorButton = findViewById(color_button[color]);
+        colorButton.setOnClickListener((v) -> {
+            DataManager.INSTANCE.getBoardManager().makeChange(colors[color]);
             colorView.view.invalidate();
             getScore();
             checkWin();
