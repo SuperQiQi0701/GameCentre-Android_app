@@ -46,7 +46,6 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         addGREENButtonListener();
         addGreyButtonListener();
         addUndoButtonListener();
-        addScoreBoardListener();
         addSaveGameButtonListener();
     }
 
@@ -163,7 +162,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
      */
     void getScore() {
         TextView currScoreTextView = findViewById(R.id.color_match_currScoreText);
-        String score = "          " + Integer.toString(DataManager.INSTANCE.getBoardManager().getScore());
+        String score = "          " + "Score:   "+ Integer.toString(DataManager.INSTANCE.getBoardManager().getScore());
         currScoreTextView.setText(score);
     }
 
@@ -214,14 +213,6 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
             colorView.view.invalidate();
             getScore();
             checkWin();
-        });
-    }
-
-    private void addScoreBoardListener(){
-        Button scoreboard = findViewById(R.id.scoreboard);
-        scoreboard.setOnClickListener((v) -> {
-            Intent temp = new Intent(this, ScoreBoardActivity.class);
-            startActivity(temp);
         });
     }
 
