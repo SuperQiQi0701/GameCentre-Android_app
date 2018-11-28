@@ -22,84 +22,45 @@ public class ScoreBoardActivity extends AppCompatActivity {
 
         //modify the TextView of the myScore
         TextView myTextView = findViewById(R.id.myScore);
-
-        ScoreBoard scoreBoard;
-
-
-//        String myScore = Integer.toString(INSTANCE.getFlipToWinBoardManager().getScore());
-//        int myRank = Main.INSTANCE.getFlipToWinScoreBoard().getMyBestRank(myRecord);
-//        String myScoreToString = "You totally take " + myScore + " steps and your best rank is "
-//                + myRank + ".";
-
-//        String noScore = "You don't have a current score because you have not won the current game " +
-//                "yet.";
-
-//        if (DataManager.INSTANCE.getBoardManager().puzzleSolved()) {
-//
-//            scoreBoard = FileManager.loadScoreBoard(this.getApplicationContext());
-//
-//            Record myRecord = new Record();
-//            scoreBoard.addNewRecords(myRecord);
-//            FileManager.saveToFile(this.getApplicationContext(), scoreBoard, "SB");
-//            String myScore = Integer.toString(DataManager.INSTANCE.getBoardManager().getScore());
-//            int myRank = scoreBoard.getMyBestRank(myRecord);
-//            String myScoreToString = "You totally take " + myScore + " steps and your best rank is "
-//                    + myRank + ".";
-//            myTextView.setText(myScoreToString);
-//            System.out.println("run if");
-//
-//        } else {
-
+        ScoreBoard scoreBoard = FileManager.loadScoreBoard(this.getApplicationContext());
 
         Intent preIntent = getIntent();
         Bundle bundle = preIntent.getExtras();
-        if (bundle != null) {
 
+        // if there is Extra message passed.
+        if (bundle != null) {
             String currGameName = bundle.getString("currGameName");
             int complexity = bundle.getInt("complexity");
 
             DataManager.INSTANCE.setCurrentGameName(currGameName);
-            scoreBoard = FileManager.loadScoreBoard(this.getApplicationContext());
-
             String noScore = "You don't have a current score because you have not won the current game " +
                     "yet.";
+
             myTextView.setText(noScore);
             scoreBoard.setComplexity(complexity);
-
-            isOnlyViewScoreBoard = true;
+            this.isOnlyViewScoreBoard = true;
         }
 
+        // when user won the game.
         else {
-
-            scoreBoard = FileManager.loadScoreBoard(this.getApplicationContext());
-
             Record myRecord = new Record();
             scoreBoard.addNewRecords(myRecord);
             FileManager.saveToFile(this.getApplicationContext(), scoreBoard, "SB");
+
             String myScore = Integer.toString(DataManager.INSTANCE.getBoardManager().getScore());
             int myRank = scoreBoard.getMyBestRank(myRecord);
             String myScoreToString = "You totally take " + myScore + " steps and your best rank is "
                     + myRank + ".";
+
             myTextView.setText(myScoreToString);
-
-            isOnlyViewScoreBoard = false;
+            this.isOnlyViewScoreBoard = false;
         }
-
-            // and get whatever type user account id is
-
-//            String noScore = "You don't have a current score because you have not won the current game " +
-//                    "yet.";
-//            myTextView.setText(noScore);
-//            scoreBoard.setComplexity(complexity);
-//        }
-        myTextView.setTextColor(Color.RED);
 
         myTextView.setTextColor(Color.RED);
 
         //set the TextView for the first five record.
         ArrayList topFive = scoreBoard.TopFiveToString();
-//        String noScore = "You don't have a current score because you have not won the current game " +
-//                "yet.";
+
         TextView no1TextView = findViewById(R.id.no1Record);
         no1TextView.setText((String) topFive.get(0));
 
