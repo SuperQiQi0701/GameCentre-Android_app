@@ -23,9 +23,7 @@ class FlipToWinMovementController {
         int col = position %  ((FlipToWinBoard)boardManager.getGame()).getColNum();
 
         if (boardManager.isValidTap(position)) {
-//            Toast.makeText(context, "is valid", Toast.LENGTH_SHORT).show();
             boardManager.makeChange(position);
-//            Toast.makeText(context, "does move", Toast.LENGTH_SHORT).show();
 
             if (boardManager.isChosenTilesMatched()) {
                 Toast.makeText(context, "Correct Decision !", Toast.LENGTH_SHORT).show();
