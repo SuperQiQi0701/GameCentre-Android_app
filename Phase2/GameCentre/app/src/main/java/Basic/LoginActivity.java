@@ -43,12 +43,7 @@ public class LoginActivity extends AppCompatActivity {
             String password = passwordInput.getText().toString();
             if (this.userManager.login(name, password) == null) {
                 messageBox.setTextColor(Color.RED);
-                String nameValidity = this.userManager.checkUserNameValidity(name);
-                if (nameValidity.equals("E-mail exist")) {
-                    messageBox.setText("Password Incorrect");
-                } else {
-                    messageBox.setText("Username does not exist");
-                }
+                messageBox.setText("Incorrect username or password!");
             } else {
                 DataManager.INSTANCE.setCurrentUserName(name);
                 Intent tmp = new Intent(this, SelectGameActivity.class);
