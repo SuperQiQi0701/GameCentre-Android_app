@@ -70,10 +70,10 @@ public class RegistrationActivity extends AppCompatActivity {
             if (!(this.userManager.isValidPassword(mPassword.getText().toString()))) {
                 mRegisterResult.setTextColor(Color.RED);
                 mRegisterResult.setText("Password too short");
-            //If the username does not exist and the password is long enough, register this account.
             } else if (mAccountResult.getText().toString().equals("OK!") &&
                     mAccount.getText().toString().equals(account)) {
 
+                //If the username does not exist and the password is long enough, register this account.
                 this.userManager.signUp(mAccount.getText().toString(), mPassword.getText().toString());
 
                 mRegisterResult.setTextColor(Color.GREEN);
@@ -83,14 +83,12 @@ public class RegistrationActivity extends AppCompatActivity {
                 FileManager.saveToFile(this.getApplicationContext(), this.userManager, "UM");
                 Intent tmp = new Intent(this, LoginActivity.class);
                 startActivity(tmp);
-
-            // If the user change the account after checking the availability, ask the user to check again.
-            }else if (!mAccount.getText().toString().equals(account)){
-
+            } else if (!mAccount.getText().toString().equals(account)) {
+                // If the user change the account after checking the availability, ask the user to check again.
                 mRegisterResult.setTextColor(Color.RED);
                 mRegisterResult.setText("Please check your username after change");
-            //If the user has not check the availability of the username, ask the user to check first.
             } else {
+                //If the user has not check the availability of the username, ask the user to check first.
                 mRegisterResult.setTextColor(Color.RED);
                 mRegisterResult.setText("Check your username first");
             }

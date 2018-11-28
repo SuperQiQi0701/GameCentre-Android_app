@@ -54,18 +54,6 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 message.setTextColor(Color.GREEN);
                 message.setText("OK!");
             }
-//            if (!account.getText().toString().contains("@")) {
-//                message.setTextColor(Color.RED);
-//                message.setText("Not a valid email");
-//            } else if (this.userManager.login(account.getText().toString(),
-//                    oldPassword.getText().toString()) != null) {
-//                checked_account = account.getText().toString();
-//                message.setTextColor(Color.GREEN);
-//                message.setText("OK!");
-//            } else {
-//                message.setTextColor(Color.RED);
-//                message.setText("try again");
-//            }
         });
     }
 

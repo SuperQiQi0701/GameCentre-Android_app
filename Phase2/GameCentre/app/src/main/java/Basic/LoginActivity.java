@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
             String password = passwordInput.getText().toString();
             if (this.userManager.login(name, password) == null) {
                 messageBox.setTextColor(Color.RED);
-                messageBox.setText("Incorrect username or password!");
+                messageBox.setText("Please check your username and password");
             } else {
                 DataManager.INSTANCE.setCurrentUserName(name);
                 Intent tmp = new Intent(this, SelectGameActivity.class);
