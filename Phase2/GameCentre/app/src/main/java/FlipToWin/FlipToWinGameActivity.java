@@ -66,6 +66,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
                     }
                 });
         addSaveGameButtonListener();
+        addScoreTextViewListener();
     }
 
     /**
@@ -108,7 +109,6 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
             }
             nextPos++;
         }
-
     }
 
     /**

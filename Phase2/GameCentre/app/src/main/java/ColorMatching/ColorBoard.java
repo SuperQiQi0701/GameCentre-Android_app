@@ -71,16 +71,16 @@ public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Seria
         return tiles[row][col];
     }
 
-    /**
-     * Set a color tile at (row, col)
-     *
-     * @param row the tile row
-     * @param col the tile column
-     */
-    public void setGrid(int row, int col) {
-
-        tiles[row][col] = new ColorTile(row, col);
-    }
+//    /**
+//     * Set a color tile at (row, col)
+//     *
+//     * @param row the tile row
+//     * @param col the tile column
+//     */
+//    public void setGrid(int row, int col) {
+//
+//        tiles[row][col] = new ColorTile(row, col);
+//    }
 
 //    public void setComplexity(int complexity) {
 //        this.complexity = complexity;

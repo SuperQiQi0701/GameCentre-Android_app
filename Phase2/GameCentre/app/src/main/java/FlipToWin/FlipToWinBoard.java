@@ -17,8 +17,6 @@ import Basic.SuperBoard;
 
 public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile>, Serializable{
 
-
-//    public static final String GAME_NAME = "Flip To Win";
     /**
      * The number of row and col
      */
@@ -29,24 +27,24 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
     /**
      * The tiles on the board in row-major order.
      */
-    private FlipToWinTile[][] ftiles;
+    private FlipToWinTile[][] tiles;
 
     /**
      * A new board of tiles in row-major order.
      * Precondition: len(tiles) == NUM_ROWS * NUM_COLS
      *
-     * @param ftiles the tiles for the board
+     * @param tiles the tiles for the board
      */
-    FlipToWinBoard(List<FlipToWinTile> ftiles, int complexity) {
+    FlipToWinBoard(List<FlipToWinTile> tiles, int complexity) {
         super(complexity);
-        Iterator<FlipToWinTile> iter = ftiles.iterator();
+        Iterator<FlipToWinTile> iter = tiles.iterator();
         this.rowNum = getComplexity();
         this.colNum = getComplexity() + 1;
-        this.ftiles = new FlipToWinTile[this.rowNum][this.colNum];
+        this.tiles = new FlipToWinTile[this.rowNum][this.colNum];
 
         for (int row = 0; row != this.rowNum; row++) {
             for (int col = 0; col != this.colNum; col++) {
-                this.ftiles[row][col] = iter.next();
+                this.tiles[row][col] = iter.next();
             }
         }
     }
@@ -78,20 +76,20 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
      * @return the tile at (row, col)
      */
     public FlipToWinTile getGrid(int row, int col) {
-        return ftiles[row][col];
+        return tiles[row][col];
     }
 
-    @Override
-    public void setGrid(int i, int i1) {
-
-    }
+//    @Override
+//    public void setGrid(int i, int i1) {
+//
+//    }
 
     /**
      * FLip the tile
      *
      */
     void makeMove(int row, int col) {
-        ftiles[row][col].setFlipped();
+        tiles[row][col].setFlipped();
         setChanged();
         notifyObservers();
     }
@@ -99,20 +97,9 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
     @Override
     public String toString() {
         return "FlipToWinBoard{" +
-                "tiles=" + Arrays.toString(ftiles) +
+                "tiles=" + Arrays.toString(tiles) +
                 '}';
     }
-
-//    public void flipBack() {
-//        for (FlipToWinTile temp : this) {
-//            if (!(temp.isPaired()) & temp.flipStatus() != 0) {
-//                temp.setFlipped();
-//            }
-//        }
-//        setChanged();
-//        notifyObservers();
-//    }
-
 
     /**
      * Return a new BoardIterator.

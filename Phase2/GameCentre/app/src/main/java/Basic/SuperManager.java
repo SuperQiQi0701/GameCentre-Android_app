@@ -8,8 +8,6 @@ public abstract class SuperManager implements Serializable {
 
     private int score;
 
-    private SuperBoard board;
-
     public SuperManager(int complexity) {
         this.complexity = complexity;
     }
@@ -27,7 +25,7 @@ public abstract class SuperManager implements Serializable {
         return this.score;
     }
 
-    public void addingScore(int num)
+    public void addScoreBy(int num)
     {
         this.score += num;
     }

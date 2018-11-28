@@ -38,7 +38,7 @@ public class Record implements Comparable<Record>, Serializable {
      */
     @SuppressLint("DefaultLocale")
     String recordToString() {
-        String temp = "User: %s, got score %d in game: %s, in level: %d";
+        String temp = "User: %s, got %d steps in game: %s, in level: %d";
         return String.format(temp, userName, finalScore, gameName, complexity - 2);
     }
 
@@ -50,15 +50,6 @@ public class Record implements Comparable<Record>, Serializable {
      */
     String getUserName() {
         return userName;
-    }
-
-    /**
-     * Return the game name for this record
-     *
-     * @return the game name for this record
-     */
-    public String getGameName() {
-        return gameName;
     }
 
 

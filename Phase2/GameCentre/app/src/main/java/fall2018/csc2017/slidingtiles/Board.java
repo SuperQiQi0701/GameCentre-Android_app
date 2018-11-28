@@ -18,15 +18,9 @@ import Basic.SuperBoard;
 
 public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
 
-    /**
-     * The game name for current board
-     */
-//    private static final String GAME_NAME = "Sliding_Tiles";
-    /**
-     * The number of row and col
-     */
-    private int complexity = getComplexity();
-    ;
+    private int rowNum;
+
+    private int colNum;
 
     /**
      * The tiles on the board in row-major order.
@@ -41,11 +35,13 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
      */
     Board(List<Tile> tiles, int complexity) {
         super(complexity);
+        this.rowNum = getComplexity();
+        this.colNum = getComplexity();
         Iterator<Tile> iter = tiles.iterator();
-        this.tiles = new Tile[this.complexity][this.complexity];
+        this.tiles = new Tile[this.rowNum][this.colNum];
 
-        for (int row = 0; row != this.complexity; row++) {
-            for (int col = 0; col != this.complexity; col++) {
+        for (int row = 0; row != this.rowNum; row++) {
+            for (int col = 0; col != this.colNum; col++) {
                 this.tiles[row][col] = iter.next();
             }
         }
@@ -57,7 +53,7 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
      * @return the number of tiles on the board
      */
     public int numGrids() {
-        return this.complexity * this.complexity;
+        return this.rowNum * this.colNum;
     }
 
 
@@ -72,10 +68,10 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
         return tiles[row][col];
     }
 
-    @Override
-    public void setGrid(int i, int i1) {
-
-    }
+//    @Override
+//    public void setGrid(int i, int i2) {
+//
+//    }
 
     /**
      * Swap the tiles at (row1, col1) and (row2, col2)
@@ -128,13 +124,13 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
 
         @Override
         public boolean hasNext() {
-            return row < Board.this.getComplexity() && col < Board.this.getComplexity();
+            return row < Board.this.rowNum && col < Board.this.colNum;
         }
 
         @Override
         public Tile next() {
             if (hasNext()) {
-                if (Board.this.getComplexity() - 1 == col) {
+                if (Board.this.colNum - 1 == col) {
                     Tile temp = getGrid(row, col);
                     row++;
                     col = 0;

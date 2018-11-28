@@ -124,7 +124,7 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
         chosenTilesMatched = false;
 
         if (isValidTap(position)) {
-            addingScore(1);
+            addScoreBy(1);
             if (positionTileOneFaceUp == -1) {
                 positionTileOneFaceUp = position;
                 board.makeMove(row, col);
@@ -152,9 +152,9 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
 
                         board.makeMove(rowTileOne, colTileOne);
                         board.makeMove(row, col);
-
                         this.flippingTiles = false;
-                    }, 800); // delay 1 second
+
+                    }, 800); // delay 0.8 second
 
 
                 }

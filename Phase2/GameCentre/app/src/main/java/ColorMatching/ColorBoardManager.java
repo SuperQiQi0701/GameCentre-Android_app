@@ -16,7 +16,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
     /**
      * An integer that keep track the score of the current game
      */
-    private int score = 0;
+//    private int score = 0;
 
     private ArrayList<ArrayList<ColorTile>> allMove;
     private ArrayList<ColorTile> current;
@@ -45,18 +45,18 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         arr = new ArrayList();
     }
 
-    public void setBoard(List<ColorTile> tiles, int complexity) {
-        this.colorBoard = new ColorBoard(tiles, complexity);
-    }
+//    public void setBoard(List<ColorTile> tiles, int complexity) {
+//        this.colorBoard = new ColorBoard(tiles, complexity);
+//    }
 
-    /**
-     * Return the current score of the game
-     *
-     * @return the current score
-     */
-    public int getScore() {
-        return score;
-    }
+//    /**
+//     * Return the current score of the game
+//     *
+//     * @return the current score
+//     */
+//    public int getScore() {
+//        return getScore();
+//    }
 
     private void helpFindNeighbour(ColorTile tile, int initColor, String direction ){
         if(colorBoard.getNeighbour(tile, direction)!= null
@@ -67,7 +67,6 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         }
     }
 
-    // 这里有code smell！！！！！！！！！！！！！
     private void neighbour(ColorTile tile, int initColor){
         helpFindNeighbour(tile, initColor, "top");
         helpFindNeighbour(tile, initColor, "bottom");
@@ -129,7 +128,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
             colors.add(initColor);
 
         }
-        ++this.score;
+        addScoreBy(1);
     }
 
     /**
@@ -152,8 +151,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
                 cur.setColor(color);
             }
         }
-        ++this.score;
-        ++this.score;
+        addScoreBy(2);
     }
 
     public ColorBoard getGame(){

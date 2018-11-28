@@ -46,7 +46,9 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         addSaveGameButtonListener();
     }
 
-    private void checkWin(){
+
+    //checkWin 不能在这里！！！但是不知道怎么改，好难过 😫 ！！！！
+    private void checkWin() {
         if (DataManager.INSTANCE.getBoardManager().puzzleSolved()){
             Toast.makeText(this, "YOU WIN!", Toast.LENGTH_SHORT).show();
             Intent temp = new Intent(this, ScoreBoardActivity.class);
@@ -61,7 +63,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
 //                    colorBoard.createNewBoard(canvas);
 //                }else{uploadBoard(canvas);}
 
-                createTiles(canvas);
+                setUpTiles(canvas);
 
                 //draw line
                 colorView.drawLine(canvas);
@@ -69,10 +71,10 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         };
         colorView.view.setLayoutParams(new FrameLayout.LayoutParams(width,height));
         colorView.view.setBackgroundColor(0x10000000);
-        getScore();
+        addScoreTextViewListener();
     }
 
-    void createTiles(Canvas canvas) {
+    void setUpTiles(Canvas canvas) {
         ColorBoard board = (ColorBoard) DataManager.INSTANCE.getBoardManager().getGame();
         for (int row = 0; row < board.getRowNum(); row++) {
             for (int col = 0; col < board.getColNum(); col++) {
@@ -132,7 +134,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
                 makeToastUndoFailText();
             }
             FileManager.saveGame(this.getApplicationContext(), "Auto");
-            getScore();
+            addScoreTextViewListener();
         });
     }
 
@@ -172,7 +174,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     /**
      * GetScore of the state.
      */
-    void getScore() {
+    void addScoreTextViewListener() {
         TextView currScoreTextView = findViewById(R.id.color_match_currScoreText);
         String score = "          " + "Score:   "+ Integer.toString(DataManager.INSTANCE.getBoardManager().getScore());
         currScoreTextView.setText(score);
@@ -184,7 +186,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         colorButton.setOnClickListener((v) -> {
             DataManager.INSTANCE.getBoardManager().makeChange(colors[color]);
             colorView.view.invalidate();
-            getScore();
+            addScoreTextViewListener();
             checkWin();
         });
     }

@@ -27,7 +27,7 @@ public class BoardManager extends SuperManager implements Serializable{
     /**
      * An integer that keep track the score of the current game
      */
-    private int score = 0;
+//    private int score = 0;
 
     /**
      * Manage a new shuffled board.
@@ -53,7 +53,7 @@ public class BoardManager extends SuperManager implements Serializable{
         int num = getInvNumber(tiles);
         if (tiles.size() % 2 == 1){
             return num % 2 == 0;
-        } else{
+        } else {
             int blank_pos = findBlank(tiles, complexity);
             if (blank_pos % 2 == 1){
                 return num % 2 == 0;
@@ -96,9 +96,9 @@ public class BoardManager extends SuperManager implements Serializable{
      *
      * @return the current score
      */
-    public int getScore() {
-        return score;
-    }
+//    public int getScore() {
+//        return getScore();
+//    }
 
     /**
      * Return the current board.
@@ -137,6 +137,10 @@ public class BoardManager extends SuperManager implements Serializable{
         int col = position % board.getComplexity();
         int blankId = board.numGrids();
         // Are any of the 4 the blank tile?
+
+        System.out.println("row: "+row);
+        System.out.println("\n");
+        System.out.println("col: "+col);
         Tile above = row == 0 ? null : board.getGrid(row - 1, col);
         Tile below = row == board.getComplexity() - 1 ? null : board.getGrid(row + 1, col);
         Tile left = col == 0 ? null : board.getGrid(row, col - 1);
@@ -165,7 +169,7 @@ public class BoardManager extends SuperManager implements Serializable{
                 for (int j = 0; j != board.getComplexity(); j++) {
                     if (this.board.getGrid(i, j).getId() == blankId) {
                         int save[] = {row, col, i, j};
-                        ++this.score;
+                        addScoreBy(1);
                         this.board.makeMove(row, col, i, j);
                         previousMoves.add(save);
                         done = true;
@@ -197,8 +201,7 @@ public class BoardManager extends SuperManager implements Serializable{
             int saved[] = this.previousMoves.get(this.previousMoves.size() - 1);
             this.previousMoves.remove(this.previousMoves.size() - 1);
             this.board.makeMove(saved[0], saved[1], saved[2], saved[3]);
-            ++this.score;  //penalty for using undo
-            ++this.score;
+            addScoreBy(2);  //penalty for using undo
         }
     }
 }

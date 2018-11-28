@@ -20,5 +20,5 @@ public abstract class SuperBoard<T> extends Observable implements Serializable {
 
     public abstract T getGrid(int i, int i1);
 
-    public abstract void setGrid(int i, int i1);
+//    public abstract void setGrid(int i, int i1);
 }

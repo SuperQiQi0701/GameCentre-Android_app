@@ -69,6 +69,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
                 });
         addSaveGameButtonListener();
         addUndoButtonListener();
+        addScoreTextViewListener();
     }
 
     /**
@@ -99,7 +100,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
             b.setBackgroundResource(((Board) DataManager.INSTANCE.getBoardManager().getGame()).getGrid(row, col).getBackground());
             nextPos++;
         }
-        getScore();
+//        addScoreTextViewListener();
     }
 
     /**
@@ -123,6 +124,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         display();
+        addScoreTextViewListener();
     }
 
     @Override
@@ -135,7 +137,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     /**
      * GetScore of the state.
      */
-    void getScore() {
+    void addScoreTextViewListener() {
         TextView currScoreTextView = findViewById(R.id.currScoreText);
         String score = Integer.toString(DataManager.INSTANCE.getBoardManager().getScore());
         currScoreTextView.setText(score);
@@ -166,7 +168,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
                 makeToastUndoFailText();
             }
             FileManager.saveGame(this.getApplicationContext(), "Auto");
-            getScore();
+            addScoreTextViewListener();
         });
     }
 
