@@ -58,9 +58,23 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         return score;
     }
 
+    private void helpFindNeighbour(ColorTile tile, int initColor, String direction ){
+        if(colorBoard.getNeighbour(tile, direction)!= null
+                && Objects.requireNonNull(colorBoard.getNeighbour(tile, direction)).getColor() ==
+                initColor && ! allState.contains(colorBoard.getNeighbour(tile, direction))
+                && ! arr.contains(colorBoard.getNeighbour(tile, direction)) ){
+            allState.add(colorBoard.getNeighbour(tile, direction));
+        }
+    }
+
     // 这里有code smell！！！！！！！！！！！！！
     private void neighbour(ColorTile tile, int initColor){
-        if(colorBoard.getLeft(tile)!= null){
+        helpFindNeighbour(tile, initColor, "top");
+        helpFindNeighbour(tile, initColor, "bottom");
+        helpFindNeighbour(tile, initColor, "right");
+        helpFindNeighbour(tile, initColor, "left");
+    }
+        /*if(colorBoard.getLeft(tile)!= null){
             if(Objects.requireNonNull(colorBoard.getLeft(tile)).getColor() == initColor){
                 if(! allState.contains(colorBoard.getLeft(tile)) && ! arr.contains(colorBoard.getLeft(tile))){
                     allState.add(colorBoard.getLeft(tile));
@@ -88,7 +102,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
                 }
             }
         }
-    }
+    }*/
 
     //这个可以考虑优化一下
     @Override
