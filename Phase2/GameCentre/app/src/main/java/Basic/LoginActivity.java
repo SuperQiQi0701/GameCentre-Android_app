@@ -39,17 +39,24 @@ public class LoginActivity extends AppCompatActivity {
         this.userManager = FileManager.loadUserManager(this.getApplicationContext());
 
         loginButton.setOnClickListener((v) -> {
-            if (this.userManager.login(nameInput.getText().toString(), passwordInput.getText().toString()) == null) {
+            String name = nameInput.getText().toString();
+            String password = passwordInput.getText().toString();
+            if (this.userManager.login(name, password) == null) {
                 messageBox.setTextColor(Color.RED);
-                if (!nameInput.getText().toString().contains("@")) {
-                    messageBox.setText("Not a valid email");
-                } else if (this.userManager.exist(nameInput.getText().toString())) {
-                    messageBox.setText("Password Incorrect");
-                } else {
-                    messageBox.setText("Username does not exist");
+                String nameValidity = this.userManager.checkUserNameValidity(name);
+                switch (nameValidity) {
+                    case "E-mail exist":
+                        messageBox.setText("Password Incorrect");
+                        break;
+                    case "OK!":
+                        messageBox.setText("Username does not exist");
+                        break;
+                    default:
+                        messageBox.setText(nameValidity);
+                        break;
                 }
             } else {
-                DataManager.INSTANCE.setCurrentUserName(nameInput.getText().toString());
+                DataManager.INSTANCE.setCurrentUserName(name);
                 Intent tmp = new Intent(this, SelectGameActivity.class);
                 startActivity(tmp);
             }

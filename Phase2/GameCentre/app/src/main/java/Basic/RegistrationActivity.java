@@ -13,6 +13,9 @@ import fall2018.csc2017.slidingtiles.R;
 
 public class RegistrationActivity extends AppCompatActivity {
 
+    /**
+     * The account name that has already been checked
+     */
     private String account;
 
     /**
@@ -40,17 +43,14 @@ public class RegistrationActivity extends AppCompatActivity {
         TextView mAccountResult = findViewById(R.id.account_exist);
 
         mCheckButton.setOnClickListener((v) -> {
-            if (!mAccount.getText().toString().contains("@")) {
-                mAccountResult.setTextColor(Color.RED);
-                mAccountResult.setText("Not a valid email");
-            } else if (this.userManager.exist(mAccount.getText().toString())) {
-                mAccountResult.setTextColor(Color.RED);
-                mAccountResult.setText("Email exist");
-            } else {
+            String validity = this.userManager.checkUserNameValidity(mAccount.getText().toString());
+            if (validity.equals("OK!")) {
                 mAccountResult.setTextColor(Color.GREEN);
-                mAccountResult.setText("OK!");
                 account = mAccount.getText().toString();
+            } else {
+                mAccountResult.setTextColor(Color.RED);
             }
+            mAccountResult.setText(validity);
         });
     }
 

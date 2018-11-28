@@ -25,15 +25,15 @@ public class UserTest {
     }
 
     @Test
-    public void getPassword() {
-        assertEquals("123456", myUser.getPassword());
+    public void checkPassword() {
+        assertTrue(myUser.checkPassword("123456"));
     }
 
     @Test
     public void setPassword() {
         String newPassword = "111111";
         myUser.setPassword(newPassword);
-        assertEquals(newPassword, myUser.getPassword());
+        assertTrue(myUser.checkPassword(newPassword));
     }
 
     @Test

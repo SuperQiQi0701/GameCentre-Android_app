@@ -41,18 +41,31 @@ public class ResetPasswordActivity extends AppCompatActivity {
         TextView message = findViewById(R.id.textView);
 
         CheckButton.setOnClickListener((v) -> {
-            if (!account.getText().toString().contains("@")) {
+            String name = account.getText().toString();
+            String password = oldPassword.getText().toString();
+            if (this.userManager.login(name, password) == null) {
                 message.setTextColor(Color.RED);
-                message.setText("Not a valid email");
-            } else if (this.userManager.login(account.getText().toString(),
-                    oldPassword.getText().toString()) != null) {
-                checked_account = account.getText().toString();
+                if (this.userManager.checkUserNameValidity(name).equals("E-mail exist")) {
+                    message.setText("Password Incorrect");
+                } else {
+                    message.setText("Username does not exist(valid)");
+                }
+            } else {
                 message.setTextColor(Color.GREEN);
                 message.setText("OK!");
-            } else {
-                message.setTextColor(Color.RED);
-                message.setText("try again");
             }
+//            if (!account.getText().toString().contains("@")) {
+//                message.setTextColor(Color.RED);
+//                message.setText("Not a valid email");
+//            } else if (this.userManager.login(account.getText().toString(),
+//                    oldPassword.getText().toString()) != null) {
+//                checked_account = account.getText().toString();
+//                message.setTextColor(Color.GREEN);
+//                message.setText("OK!");
+//            } else {
+//                message.setTextColor(Color.RED);
+//                message.setText("try again");
+//            }
         });
     }
 

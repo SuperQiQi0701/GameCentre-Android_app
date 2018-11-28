@@ -26,8 +26,7 @@ public class UserManager implements Serializable {
      */
     public User login(String username, String password) {
         for (User u : users) {
-            if (u.userName.equals(username) && u.getPassword().equals(password)) {
-//                currUser = u.userName;
+            if (u.userName.equals(username) && u.checkPassword(password)) {
                 return u;
             }
         }
@@ -76,12 +75,20 @@ public class UserManager implements Serializable {
         return null;
     }
 
-//    /**
-//     * Return the current user of the game
-//     *
-//     * @return the current user of the game
-//     */
-//    public String getCurrentUser() {
-//        return currUser;
-//    }
+
+    /**
+     * Return the validity of given name during Registration
+     *
+     * @param name the given user name
+     * @return the validity of given name
+     */
+    String checkUserNameValidity(String name) {
+        if (name == null || !name.contains("@")) {
+            return "Please enter a valid e-mail";
+        } else if (exist(name)) {
+            return "E-mail exist";
+        } else {
+            return "OK!";
+        }
+    }
 }

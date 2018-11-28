@@ -22,12 +22,13 @@ class User implements Serializable {
     }
 
     /**
-     * Return the password of the current user.
+     * Return if the given password matched the current password.
      *
-     * @return the password of the current user.
+     * @param password  the given checkPassword
+     * @return if the given password matched this.password
      */
-    public String getPassword() {
-        return password;
+    boolean checkPassword(String password) {
+        return this.password.equals(password);
     }
 
     /**
@@ -47,4 +48,6 @@ class User implements Serializable {
     String getUserName() {
         return this.userName;
     }
+
+
 }
