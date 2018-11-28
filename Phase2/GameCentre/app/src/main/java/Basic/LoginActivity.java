@@ -44,16 +44,10 @@ public class LoginActivity extends AppCompatActivity {
             if (this.userManager.login(name, password) == null) {
                 messageBox.setTextColor(Color.RED);
                 String nameValidity = this.userManager.checkUserNameValidity(name);
-                switch (nameValidity) {
-                    case "E-mail exist":
-                        messageBox.setText("Password Incorrect");
-                        break;
-                    case "OK!":
-                        messageBox.setText("Username does not exist");
-                        break;
-                    default:
-                        messageBox.setText(nameValidity);
-                        break;
+                if (nameValidity.equals("E-mail exist")) {
+                    messageBox.setText("Password Incorrect");
+                } else {
+                    messageBox.setText("Username does not exist");
                 }
             } else {
                 DataManager.INSTANCE.setCurrentUserName(name);
