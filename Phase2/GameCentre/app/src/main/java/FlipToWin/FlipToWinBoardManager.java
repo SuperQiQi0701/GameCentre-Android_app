@@ -38,7 +38,7 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
     public FlipToWinBoardManager(int complexity) {
         super(complexity);
         List<FlipToWinTile> fTiles = new ArrayList<>();
-        final int numTiles = complexity * (complexity + 1);
+        int numTiles = complexity * (complexity + 1);
         for (int tileNum = 0; tileNum != numTiles / 2; tileNum++) {
             fTiles.add(new FlipToWinTile(tileNum));
             fTiles.add(new FlipToWinTile(tileNum));

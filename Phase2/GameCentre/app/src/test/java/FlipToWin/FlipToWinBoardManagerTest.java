@@ -8,6 +8,8 @@ import static org.junit.Assert.*;
 
 public class FlipToWinBoardManagerTest {
 
+
+
     @Before
     public void setUp() throws Exception {
     }
@@ -17,7 +19,7 @@ public class FlipToWinBoardManagerTest {
     }
 
     @Test
-    public void getGame() {
+    public void getBoard() {
     }
 
     @Test
@@ -26,10 +28,6 @@ public class FlipToWinBoardManagerTest {
 
     @Test
     public void isFlippingTiles() {
-    }
-
-    @Test
-    public void isChosenTilesMatched() {
     }
 
     @Test
