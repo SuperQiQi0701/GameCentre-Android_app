@@ -22,13 +22,17 @@ class FlipToWinMovementController {
         int row = position /  ((FlipToWinBoard)boardManager.getGame()).getColNum();
         int col = position %  ((FlipToWinBoard)boardManager.getGame()).getColNum();
 
+
+        // if position is a valid tap
         if (boardManager.isValidTap(position)) {
             boardManager.makeChange(position);
 
-            if (boardManager.isChosenTilesMatched()) {
+            // if the curr tile is paired
+            if (((FlipToWinTile) boardManager.getGame().getGrid(row, col)).isPaired()) {
                 Toast.makeText(context, "Correct Decision !", Toast.LENGTH_SHORT).show();
             }
 
+            // if game is over
             if (boardManager.puzzleSolved()) {
                 Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
                 Intent temp = new Intent(context, ScoreBoardActivity.class);
@@ -36,12 +40,15 @@ class FlipToWinMovementController {
                 context.startActivity(temp);
             }
         }
+        // if not valid tap and the tile on the position is paired.
         else if (((FlipToWinBoard) boardManager.getGame()).getGrid(row, col).isPaired()){
             Toast.makeText(context, "Already Solved", Toast.LENGTH_SHORT).show();
         }
+        // if not valid tap and the tile is flipping.
         else if (boardManager.isFlippingTiles()) {
             Toast.makeText(context, "Flipping cards Right Now", Toast.LENGTH_SHORT).show();
         }
+        // if not valid tap and the tile on the position is faced up.
         else {
             Toast.makeText(context, "Already FaceUp", Toast.LENGTH_SHORT).show();
         }

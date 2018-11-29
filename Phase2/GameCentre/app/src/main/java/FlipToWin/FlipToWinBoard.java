@@ -18,9 +18,13 @@ import Basic.SuperBoard;
 public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile>, Serializable{
 
     /**
-     * The number of row and col
+     * The number of row
      */
     private int rowNum;
+
+    /**
+     * The number of col
+     */
     private int colNum;
 
 
@@ -31,7 +35,7 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
 
     /**
      * A new board of tiles in row-major order.
-     * Precondition: len(tiles) == NUM_ROWS * NUM_COLS
+     * Precondition: len(tiles) == rowNum * colNum
      *
      * @param tiles the tiles for the board
      */
@@ -59,10 +63,20 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
         return this.rowNum * this.colNum;
     }
 
+    /**
+     * return the number of the col number of the board.
+     *
+     * @return the number of the col number of the board.
+     */
     int getColNum() {
         return this.colNum;
     }
 
+    /**
+     * return the number of the row number of the board.
+     *
+     * @return the number of the row number of the board.
+     */
     int getRowNum() {
         return this.rowNum;
     }
@@ -80,8 +94,7 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
     }
 
     /**
-     * FLip the tile
-     *
+     * Flip the tile
      */
     void makeMove(int row, int col) {
         tiles[row][col].setFlipped();
@@ -97,9 +110,9 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
     }
 
     /**
-     * Return a new BoardIterator.
+     * Return a new FlipToWinBoardIterator.
      *
-     * @return a new BoardIterator
+     * @return a new FlipToWinBoardIterator
      */
     @NonNull
     @Override
@@ -117,6 +130,7 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
          * The row number of the tile.
          */
         private int row;
+
         /**
          * The column number of the tile.
          */

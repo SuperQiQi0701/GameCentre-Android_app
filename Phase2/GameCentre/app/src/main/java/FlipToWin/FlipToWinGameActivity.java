@@ -88,7 +88,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
 
 
     /**
-     * Update the background or frontpage on the buttons to match the tiles.
+     * Update the background or front page on the buttons to match the tiles.
      */
     private void updateTileButtons() {
         int nextPos = 0;
@@ -98,10 +98,12 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
             int col = nextPos %  board.getColNum();
             FlipToWinTile tile = board.getGrid(row, col);
 
+            // showing the background
             if (!(tile.facedUpStatus())) {
                 b.setBackgroundResource(tile.getBackground());
                 b.setText("");
             }
+            // showing the front page.
             else {
                 b.setText(tile.getFrontPage());
                 b.setTextSize(40);
@@ -142,8 +144,8 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
         startActivity(temp);
     }
 
-    /**display
-     * GetScore of the state.
+    /**
+     * display and get score of the state.
      */
     void addScoreTextViewListener() {
         TextView currScoreTextView = findViewById(R.id.fliptowin_currScoreText);
