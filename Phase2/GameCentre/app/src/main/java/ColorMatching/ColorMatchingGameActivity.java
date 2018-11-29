@@ -76,7 +76,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     private void draw(){
         colorView.view = new View(this) {
             protected void onDraw(Canvas canvas) {
-//                if ((DataManager.INSTANCE.getBoardManager().getGame()).getGrid(1, 1) == null){
+//                if ((DataManager.INSTANCE.getBoardManager().getBoard()).getGrid(1, 1) == null){
 //                    colorBoard.createNewBoard(canvas);
 //                }else{uploadBoard(canvas);}
 
@@ -92,7 +92,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     }
 
     void setUpTiles(Canvas canvas) {
-        ColorBoard board = (ColorBoard) DataManager.INSTANCE.getBoardManager().getGame();
+        ColorBoard board = (ColorBoard) DataManager.INSTANCE.getBoardManager().getBoard();
         for (int row = 0; row < board.getRowNum(); row++) {
             for (int col = 0; col < board.getColNum(); col++) {
                 int color = board.getGrid(row, col).getColor();
@@ -111,7 +111,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
 //        DataManager.INSTANCE.startNewGame(complexity);
         colorView = new ColorView();
 //        ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).setBoard(complexity);
-        colorView.setBoxSize(this.width / ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getTiles().length);
+        colorView.setBoxSize(this.width / ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getBoard().getTiles().length);
     }
 
     private void initView(){

@@ -49,7 +49,7 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
     }
 
     @Override
-    public SuperBoard getGame() {
+    public SuperBoard getBoard() {
         return this.board;
     }
 

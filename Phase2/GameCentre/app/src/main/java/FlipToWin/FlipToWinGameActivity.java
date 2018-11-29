@@ -47,8 +47,8 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
         setContentView(R.layout.activity_flip_to_win_game);
         // Add View to activity
         flipGridView = findViewById(R.id.fliptowingrid);
-        flipGridView.setNumColumns(((FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getGame()).getColNum());
-        DataManager.INSTANCE.getBoardManager().getGame().addObserver(this);
+        flipGridView.setNumColumns(((FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getBoard()).getColNum());
+        DataManager.INSTANCE.getBoardManager().getBoard().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
         flipGridView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -58,7 +58,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
                                 this);
                         int displayWidth = flipGridView.getMeasuredWidth();
                         int displayHeight = flipGridView.getMeasuredHeight();
-                        FlipToWinBoard board = (FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getGame();
+                        FlipToWinBoard board = (FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getBoard();
                         columnWidth2 = displayWidth / board.getColNum();
                         columnHeight2 = displayHeight / board.getRowNum();
 
@@ -77,7 +77,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
     private void createTileButtons(Context context) {
         fTileButtons = new ArrayList<>();
 
-        FlipToWinBoard board = (FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getGame();
+        FlipToWinBoard board = (FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getBoard();
 
         for (int i = 0; i != board.numGrids(); i++) {
                 Button tmp = new Button(context);
@@ -93,7 +93,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
     private void updateTileButtons() {
         int nextPos = 0;
         for (Button b : fTileButtons) {
-            FlipToWinBoard board = (FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getGame();
+            FlipToWinBoard board = (FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getBoard();
             int row = nextPos /  board.getColNum();
             int col = nextPos %  board.getColNum();
             FlipToWinTile tile = board.getGrid(row, col);

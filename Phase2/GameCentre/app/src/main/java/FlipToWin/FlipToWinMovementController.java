@@ -19,8 +19,8 @@ class FlipToWinMovementController {
     void processTapMovement(Context context, int position, boolean display) {
 
         FlipToWinBoardManager boardManager = (FlipToWinBoardManager) DataManager.INSTANCE.getBoardManager();
-        int row = position /  ((FlipToWinBoard)boardManager.getGame()).getColNum();
-        int col = position %  ((FlipToWinBoard)boardManager.getGame()).getColNum();
+        int row = position /  ((FlipToWinBoard)boardManager.getBoard()).getColNum();
+        int col = position %  ((FlipToWinBoard)boardManager.getBoard()).getColNum();
 
 
         // if position is a valid tap
@@ -28,7 +28,7 @@ class FlipToWinMovementController {
             boardManager.makeChange(position);
 
             // if the curr tile is paired
-            if (((FlipToWinTile) boardManager.getGame().getGrid(row, col)).isPaired()) {
+            if (((FlipToWinTile) boardManager.getBoard().getGrid(row, col)).isPaired()) {
                 Toast.makeText(context, "Correct Decision !", Toast.LENGTH_SHORT).show();
             }
 
@@ -41,7 +41,7 @@ class FlipToWinMovementController {
             }
         }
         // if not valid tap and the tile on the position is paired.
-        else if (((FlipToWinBoard) boardManager.getGame()).getGrid(row, col).isPaired()){
+        else if (((FlipToWinBoard) boardManager.getBoard()).getGrid(row, col).isPaired()){
             Toast.makeText(context, "Already Solved", Toast.LENGTH_SHORT).show();
         }
         // if not valid tap and the tile is flipping.
