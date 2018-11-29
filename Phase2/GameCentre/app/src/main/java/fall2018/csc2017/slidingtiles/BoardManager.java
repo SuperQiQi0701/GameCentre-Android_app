@@ -49,6 +49,13 @@ public class BoardManager extends SuperManager implements Serializable{
         this.previousMoves = new ArrayList<>();
     }
 
+    /**
+     * Return whether the tiles are solvable.
+     * Adapted from: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/.
+     * @param tiles the tiles to check
+     * @param complexity the complexity of tiles
+     * @return whether the tiles are solvable or not.
+     */
     private boolean checkSolvable(List<Tile> tiles, int complexity){
         int num = getInvNumber(tiles);
         if (tiles.size() % 2 == 1){
@@ -64,6 +71,14 @@ public class BoardManager extends SuperManager implements Serializable{
 
     }
 
+
+    /**
+     * Return the number of rows counting from bottom that the blank is on.
+     * Adapted from: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/.
+     * @param tiles the tiles to check
+     * @param complexity the complexity of tiles
+     * @return the number of rows counting from bottom that the blank is on.
+     */
     private int findBlank(List<Tile> tiles, int complexity){
         for (int row = complexity - 1; row >= 0; row--){
             for (int col = complexity - 1; col >= 0; col--){
@@ -76,6 +91,12 @@ public class BoardManager extends SuperManager implements Serializable{
     }
 
 
+    /**
+     * Return the number of inversions in tiles.
+     * Adapted from: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/.
+     * @param tiles the tiles to check
+     * @return the number of inversions in tiles.
+     */
     private int getInvNumber(List<Tile> tiles){
         int sum = 0;
         for (int first = 0; first < tiles.size() - 1; first++){
