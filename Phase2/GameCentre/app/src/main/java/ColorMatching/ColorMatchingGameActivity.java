@@ -21,10 +21,27 @@ import fall2018.csc2017.slidingtiles.R;
 
 public class ColorMatchingGameActivity extends AppCompatActivity {
 
+    /**
+     * The width and height of the game board.
+     */
     int width, height;
+
+
     static ColorView colorView;
+
+    /**
+     * The complexity of the current game.
+     */
     int complexity;
+
+    /**
+     * The color buttons to display.
+     */
     int[] color_button = {R.id.red, R.id.yellow, R.id.blue, R.id.green, R.id.grey};
+
+    /**
+     * The colors to display.
+     */
     int[] colors = {Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.GRAY};
 
     public static ColorView getColorView(){
@@ -110,16 +127,10 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         return outMetrics.widthPixels;
     }
 
-//    private void uploadBoard(Canvas canvas){
-//        for (int x = 0; x < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getTiles().length; x++) {
-//            for (int y = 0; y < ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getTiles()[x].length; y++) {
-//                int color = ((ColorTile) DataManager.INSTANCE.getBoardManager().getGame().getGrid(x, y)).getColor();
-//                colorView.drawBox(canvas, color, x, y);
-//            }
-//        }
-//        getScore();
-//    }
 
+    /**
+     * Activate Undo button.
+     */
     private void addUndoButtonListener(){
         Button undo = findViewById(R.id.undo);
         undo.setOnClickListener((v) -> {
@@ -180,7 +191,9 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         currScoreTextView.setText(score);
     }
 
-
+    /**
+     * Activate Color buttons.
+     */
     private void addColorButtonListener(int color){
         Button colorButton = findViewById(color_button[color]);
         colorButton.setOnClickListener((v) -> {
