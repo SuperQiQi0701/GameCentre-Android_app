@@ -68,11 +68,6 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
         return tiles[row][col];
     }
 
-//    @Override
-//    public void setGrid(int i, int i2) {
-//
-//    }
-
     /**
      * Swap the tiles at (row1, col1) and (row2, col2)
      *

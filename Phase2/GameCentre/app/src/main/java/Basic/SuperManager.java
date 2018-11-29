@@ -31,8 +31,4 @@ public abstract class SuperManager implements Serializable {
     }
 
     public abstract SuperBoard getGame();
-
-//    public void setBoard(SuperBoard board) {
-//        this.board = board;
-//    }
 }
