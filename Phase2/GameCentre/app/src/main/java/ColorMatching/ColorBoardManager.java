@@ -12,12 +12,6 @@ public class ColorBoardManager extends SuperManager implements Serializable{
      * The board being managed.
      */
     private ColorBoard colorBoard;
-
-    /**
-     * An integer that keep track the score of the current game
-     */
-//    private int score = 0;
-
     private ArrayList<ArrayList<ColorTile>> allMove;
     private ArrayList<ColorTile> current;
     private ArrayList<Integer> colors;
@@ -37,7 +31,6 @@ public class ColorBoardManager extends SuperManager implements Serializable{
             }
         }
         this.colorBoard = new ColorBoard(tiles, complexity);
-//        colorBoard = new ColorBoard(complexity);
         allMove = new ArrayList<>();
         current = new ArrayList<>();
         colors = new ArrayList<>();
@@ -45,18 +38,6 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         arr = new ArrayList();
     }
 
-//    public void setBoard(List<ColorTile> tiles, int complexity) {
-//        this.colorBoard = new ColorBoard(tiles, complexity);
-//    }
-
-//    /**
-//     * Return the current score of the game
-//     *
-//     * @return the current score
-//     */
-//    public int getScore() {
-//        return getScore();
-//    }
 
     private void helpFindNeighbour(ColorTile tile, int initColor, String direction ){
         if(colorBoard.getNeighbour(tile, direction)!= null
@@ -73,35 +54,6 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         helpFindNeighbour(tile, initColor, "right");
         helpFindNeighbour(tile, initColor, "left");
     }
-        /*if(colorBoard.getLeft(tile)!= null){
-            if(Objects.requireNonNull(colorBoard.getLeft(tile)).getColor() == initColor){
-                if(! allState.contains(colorBoard.getLeft(tile)) && ! arr.contains(colorBoard.getLeft(tile))){
-                    allState.add(colorBoard.getLeft(tile));
-                }
-            }
-        }
-        if(colorBoard.getRight(tile)!= null){
-            if(Objects.requireNonNull(colorBoard.getRight(tile)).getColor() == initColor){
-                if(! allState.contains(colorBoard.getRight(tile)) && ! arr.contains(colorBoard.getRight(tile))){
-                    allState.add(colorBoard.getRight(tile));
-                }
-            }
-        }
-        if(colorBoard.getTop(tile)!= null){
-            if(Objects.requireNonNull(colorBoard.getTop(tile)).getColor() == initColor){
-                if(! allState.contains(colorBoard.getTop(tile)) && ! arr.contains(colorBoard.getTop(tile))){
-                    allState.add(colorBoard.getTop(tile));
-                }
-            }
-        }
-        if(colorBoard.getBottom(tile)!= null){
-            if(Objects.requireNonNull(colorBoard.getBottom(tile)).getColor() == initColor){
-                if(! allState.contains(colorBoard.getBottom(tile)) && ! arr.contains(colorBoard.getBottom(tile))){
-                    allState.add(colorBoard.getBottom(tile));
-                }
-            }
-        }
-    }*/
 
     //这个可以考虑优化一下
     @Override
