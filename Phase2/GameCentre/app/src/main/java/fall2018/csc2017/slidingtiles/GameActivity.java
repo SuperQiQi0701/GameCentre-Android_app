@@ -100,7 +100,6 @@ public class GameActivity extends AppCompatActivity implements Observer {
             b.setBackgroundResource(((Board) DataManager.INSTANCE.getBoardManager().getBoard()).getGrid(row, col).getBackground());
             nextPos++;
         }
-//        addScoreTextViewListener();
     }
 
     /**
