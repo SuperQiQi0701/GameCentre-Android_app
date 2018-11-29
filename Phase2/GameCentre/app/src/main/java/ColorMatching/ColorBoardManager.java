@@ -29,11 +29,6 @@ public class ColorBoardManager extends SuperManager implements Serializable{
      */
     private ArrayList<ColorTile> allState;
 
-    /**
-     * A temporary arrayList used for record the color tiles which are the neighbour of a specific
-     * color tile and is not repeatedly added.
-     */
-    private ArrayList arr;
 
     /**
      * A new ColorBoardManager with complexity.
@@ -57,7 +52,6 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         allMove = new ArrayList<>();
         colors = new ArrayList<>();
         allState = new ArrayList<>();
-        arr = new ArrayList();
     }
 
     /**
@@ -68,7 +62,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
      * @param initColor the Color which are the same as the color of ColorTile(0, 0)
      * @param direction the direction of neighbour being checked.
      */
-    private void helpFindNeighbour(ColorTile tile, int initColor, String direction ){
+    private void helpFindNeighbour(ArrayList arr, ColorTile tile, int initColor, String direction ){
         if(colorBoard.getNeighbour(tile, direction)!= null
                 && Objects.requireNonNull(colorBoard.getNeighbour(tile, direction)).getColor() ==
                 initColor && ! allState.contains(colorBoard.getNeighbour(tile, direction)) &&
@@ -84,11 +78,11 @@ public class ColorBoardManager extends SuperManager implements Serializable{
      * @param tile the ColorTile whose neighbours are being checked.
      * @param initColor the Color which are the same as the color of ColorTile(0, 0)
      */
-    private void neighbour(ColorTile tile, int initColor){
-        helpFindNeighbour(tile, initColor, "top");
-        helpFindNeighbour(tile, initColor, "bottom");
-        helpFindNeighbour(tile, initColor, "right");
-        helpFindNeighbour(tile, initColor, "left");
+    private void neighbour(ArrayList arr, ColorTile tile, int initColor){
+        helpFindNeighbour(arr, tile, initColor, "top");
+        helpFindNeighbour(arr, tile, initColor, "bottom");
+        helpFindNeighbour(arr, tile, initColor, "right");
+        helpFindNeighbour(arr, tile, initColor, "left");
     }
 
 
@@ -107,10 +101,10 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         if (newColor != initColor){
             tile.setColor(newColor);
             arr.add(tile);
-            neighbour(tile, initColor);
+            neighbour(arr, tile, initColor);
             while(allState.size() != 0){
                 tile = allState.get(0);
-                neighbour(tile, initColor);
+                neighbour(arr, tile, initColor);
                 tile.setColor(newColor);
                 arr.add(tile);
                 allState.remove(0);
@@ -122,7 +116,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
             colors.add(initColor);
         }else{
             arr.add(tile);
-            neighbour(tile, initColor);
+            neighbour(arr, tile, initColor);
             allMove.add(arr);
             colors.add(initColor);
         }
@@ -161,7 +155,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         return colorBoard;
     }
 
-    public void setColorBoard(ColorBoard colorBoard){
+    void setColorBoard(ColorBoard colorBoard){
         this.colorBoard = colorBoard;
     }
 
