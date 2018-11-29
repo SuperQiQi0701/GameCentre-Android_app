@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import Basic.DataManager;
 import Basic.FileManager;
 import Basic.ScoreBoardActivity;
@@ -26,7 +27,9 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
      */
     int width, height;
 
-
+    /**
+     * The view of this ColorView.
+     */
     static ColorView colorView;
 
     /**
@@ -44,6 +47,11 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
      */
     int[] colors = {Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.GRAY};
 
+    /**
+     * Return the view of this ColorView.
+     *
+     * @return the view of this ColorView.
+     */
     public static ColorView getColorView(){
         return colorView;
     }
@@ -63,8 +71,10 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         addSaveGameButtonListener();
     }
 
-
-    //checkWin 不能在这里！！！但是不知道怎么改，好难过 😫 ！！！！
+    /**
+     * Check if the game is win, this game will win when all the tiles has the same color on the
+     * ColorBoard.
+     */
     private void checkWin() {
         if (DataManager.INSTANCE.getBoardManager().puzzleSolved()){
             Toast.makeText(this, "YOU WIN!", Toast.LENGTH_SHORT).show();
@@ -73,16 +83,13 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Set the view for this game, and draw lines and color tiles on the canvas.
+     */
     private void draw(){
         colorView.view = new View(this) {
             protected void onDraw(Canvas canvas) {
-//                if ((DataManager.INSTANCE.getBoardManager().getBoard()).getGrid(1, 1) == null){
-//                    colorBoard.createNewBoard(canvas);
-//                }else{uploadBoard(canvas);}
-
                 setUpTiles(canvas);
-
-                //draw line
                 colorView.drawLine(canvas);
             }
         };
@@ -91,34 +98,47 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         addScoreTextViewListener();
     }
 
+    /**
+     * Set tiles' features for this game on the ColorBoard, and draw this tiles on canvas.
+     *
+     * @param canvas The canvas for this game.
+     */
     void setUpTiles(Canvas canvas) {
         ColorBoard board = (ColorBoard) DataManager.INSTANCE.getBoardManager().getBoard();
         for (int row = 0; row < board.getRowNum(); row++) {
             for (int col = 0; col < board.getColNum(); col++) {
                 int color = board.getGrid(row, col).getColor();
                 ColorMatchingGameActivity.getColorView().drawBox(canvas, color, row, col);
-                //存color
-//                board.getGrid(row, col).setColor(color);
             }
         }
     }
 
+    /**
+     * Initialize some data features of this game, including the width and height for the layout,
+     * complexity and tiles' size on canvas.
+     */
     private void initData(){
         complexity = DataManager.INSTANCE.getBoardManager().getComplexity();
         int width = getScreenWidth(this);
         this.width = width;
         height = width * 5 / 4;
-//        DataManager.INSTANCE.startNewGame(complexity);
         colorView = new ColorView();
-//        ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).setBoard(complexity);
         colorView.setBoxSize(this.width / ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getBoard().getTiles().length);
     }
 
+    /**
+     * Initialize view for this game, draw lines and color tiles, and add them to this layout.
+     */
     private void initView(){
         FrameLayout layoutGame = findViewById(R.id.layoutGame);
         draw();
         layoutGame.addView(colorView.view); }
 
+    /**
+     * Adapted from:
+     * https://stackoverflow.com/questions/4743116/get-screen-width-and-height
+     * This method is used to get the screen's width.
+     */
     private static int getScreenWidth(Context context){
         WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
