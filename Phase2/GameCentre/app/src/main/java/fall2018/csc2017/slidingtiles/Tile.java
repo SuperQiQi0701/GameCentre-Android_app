@@ -11,34 +11,6 @@ import Basic.MovableTile;
  */
 public class Tile extends MovableTile implements Comparable<Tile>, Serializable {
 
-//    /**
-//     * The background id to find the tile image.
-//     */
-//    private int background;
-
-    /**
-     * The unique id.
-     */
-    private int id;
-
-    /**
-     * Return the background id.
-     *
-     * @return the background id
-     */
-//    public int getBackground() {
-//        return super.getBackground();
-//    }
-
-    /**
-     * Return the tile id.
-     *
-     * @return the tile id
-     */
-    public int getId() {
-        return id;
-    }
-
     /**
      * A tile with a background id; look up and set the id.
      *
@@ -46,8 +18,7 @@ public class Tile extends MovableTile implements Comparable<Tile>, Serializable 
      * @param complexity   the complexity of the game
      */
     Tile(int backgroundId, int complexity) {
-        super(backgroundId, complexity);
-        id = backgroundId + 1;
+        super(backgroundId + 1);
         switch (backgroundId + 1) {
             case 1:
                 super.setBackground(R.drawable.tile_1);
@@ -139,6 +110,6 @@ public class Tile extends MovableTile implements Comparable<Tile>, Serializable 
 
     @Override
     public int compareTo(@NonNull Tile o) {
-        return o.id - this.id;
+        return o.getId() - this.getId();
     }
 }

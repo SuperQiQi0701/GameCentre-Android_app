@@ -10,30 +10,40 @@ import fall2018.csc2017.slidingtiles.R;
  */
 public class FlipToWinTile extends MovableTile implements Serializable {
 
+
+    /**
+     * faceUp is true iff the tile is faced up
+     */
     private boolean facedUp = false;
 
+    /**
+     * faceUp is true iff the tile is paired.
+     */
     private boolean paired = false;
 
     /**
-     * The unique id.
-     */
-    private int id;
-
-    /**
-     * The background id to find the tile image.
+     * The background id to find the tile background.
      */
     private int backGround;
 
+    /**
+     * the string that is shown on the front page of a tile.
+     */
     private String frontPage;
 
+    /**
+     * A tile with a background id and set the id.
+     * @param num num + 1 is the id of tile.
+     */
     FlipToWinTile(int num) {
-        this.id = num + 1;
+        super(num + 1);
         this.backGround = R.drawable.back_of_tile4;
 
+        // the empji array is an array of the strings that is shown on the front page of tiles
         String emoji[] = {"🐶", "🐻", "🌝", "🌚", "🍑", "🐱", "❤️", "🍭️",
                 "💻", "💊", "🚗", "🗿", "🍗", "🍩", "🍺"};
 
-        this.frontPage = emoji[this.id - 1];
+        this.frontPage = emoji[getId() - 1];
     }
 
     /**
@@ -45,36 +55,43 @@ public class FlipToWinTile extends MovableTile implements Serializable {
         return backGround;
     }
 
-    public String getFrontPage() {
+    /**
+     * Return the front page string
+     * @return the front page string
+     */
+    String getFrontPage() {
         return this.frontPage;
     }
 
-
-
-
     /**
-     * Return the tile id.
-     *
-     * @return the tile id
+     * flip the tile.
      */
-    public int getId() {
-        return id;
-    }
-
     void setFlipped() {
 
         this.facedUp = !(this.facedUp);
     }
 
+    /**
+     * return true iff tile is faced up
+     * @return true iff tile is faced up
+     */
     boolean facedUpStatus() {
         return facedUp;
     }
 
+    /**
+     * set the tile to be paired.
+     */
     void setPaired() {
 
         this.paired = true;
     }
 
+
+    /**
+     * return true iff the tile is paired
+     * @return true iff the tile is paired
+     */
     boolean isPaired() {
 
         return (this.paired);

@@ -153,7 +153,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
      *
      * @return the current ColorBoard.
      */
-    public ColorBoard getGame(){
+    public ColorBoard getBoard(){
         return colorBoard;
     }
 

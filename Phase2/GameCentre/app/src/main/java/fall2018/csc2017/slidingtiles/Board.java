@@ -18,8 +18,15 @@ import Basic.SuperBoard;
 
 public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
 
+
+    /**
+     * the row numbers
+     */
     private int rowNum;
 
+    /**
+     * the col numbers
+     */
     private int colNum;
 
     /**

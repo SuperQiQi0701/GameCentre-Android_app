@@ -50,7 +50,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         // Add View to activity
         gridView = findViewById(R.id.grid);
         gridView.setNumColumns(DataManager.INSTANCE.getBoardManager().getComplexity());
-        DataManager.INSTANCE.getBoardManager().getGame().addObserver(this);
+        DataManager.INSTANCE.getBoardManager().getBoard().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -78,7 +78,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * @param context the context
      */
     private void createTileButtons(Context context) {
-        Board board = (Board) DataManager.INSTANCE.getBoardManager().getGame();
+        Board board = (Board) DataManager.INSTANCE.getBoardManager().getBoard();
         tileButtons = new ArrayList<>();
         for (int row = 0; row < DataManager.INSTANCE.getBoardManager().getComplexity(); row++) {
             for (int col = 0; col < DataManager.INSTANCE.getBoardManager().getComplexity(); col++) {
@@ -97,10 +97,9 @@ public class GameActivity extends AppCompatActivity implements Observer {
         for (Button b : tileButtons) {
             int row = nextPos / DataManager.INSTANCE.getBoardManager().getComplexity();
             int col = nextPos % DataManager.INSTANCE.getBoardManager().getComplexity();
-            b.setBackgroundResource(((Board) DataManager.INSTANCE.getBoardManager().getGame()).getGrid(row, col).getBackground());
+            b.setBackgroundResource(((Board) DataManager.INSTANCE.getBoardManager().getBoard()).getGrid(row, col).getBackground());
             nextPos++;
         }
-//        addScoreTextViewListener();
     }
 
     /**

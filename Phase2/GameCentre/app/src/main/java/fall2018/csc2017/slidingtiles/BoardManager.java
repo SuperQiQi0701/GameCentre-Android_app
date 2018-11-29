@@ -111,7 +111,7 @@ public class BoardManager extends SuperManager implements Serializable{
     /**
      * Return the current board.
      */
-    public Board getGame() {
+    public Board getBoard() {
 
         return board;
     }

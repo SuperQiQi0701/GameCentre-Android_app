@@ -30,5 +30,5 @@ public abstract class SuperManager implements Serializable {
         this.score += num;
     }
 
-    public abstract SuperBoard getGame();
+    public abstract SuperBoard getBoard();
 }
