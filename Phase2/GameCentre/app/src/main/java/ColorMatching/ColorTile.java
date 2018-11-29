@@ -8,14 +8,30 @@ import java.util.Random;
 public class ColorTile implements Serializable {
 
     /**
-     * The x position of Tile.
+     * The x position of ColorTile.
      */
-    int x;
+    private int x;
 
     /**
-     * The y position of Tile.
+     * The y position of ColorTile.
      */
-    int y;
+    private int y;
+
+    /**
+     * Get the x position of ColorTile.
+     * @return x, which is the x position of ColorTile.
+     */
+    public int getX() {
+        return x;
+    }
+
+    /**
+     * Get the y position of ColorTile.
+     * @return y, which is the y position of ColorTile.
+     */
+    public int getY() {
+        return y;
+    }
 
     /**
      * The color of the current Tile.
@@ -31,7 +47,7 @@ public class ColorTile implements Serializable {
     ColorTile(int x, int y){
         this.x = x;
         this.y = y;
-        this.currColor = this.randomColor();
+//        this.currColor = -1;
     }
 
     /**
@@ -53,7 +69,7 @@ public class ColorTile implements Serializable {
     /**
      * Set the current Tile's color to a random color from 5 colors.
      */
-    private int randomColor(){
+    int randomColor(){
         Random random = new Random();
         int color = random.nextInt(5);
         switch(color){
