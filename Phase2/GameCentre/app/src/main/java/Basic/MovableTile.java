@@ -9,18 +9,18 @@ public abstract class MovableTile implements Serializable {
      */
     private int background;
 
-    private int complexity;
+    private int id;
 
-    public MovableTile(){
+
+//    protected MovableTile(){
+//    }
+//
+    public MovableTile(int num) {
+        this.id = num;
     }
 
-    public MovableTile(int background, int complexity) {
-        this.background = background;
-        this.complexity = complexity;
-    }
-
-    public int getComplexity() {
-        return complexity;
+    public int getId() {
+        return this.id;
     }
 
     public int getBackground() {

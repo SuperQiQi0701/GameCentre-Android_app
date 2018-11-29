@@ -46,8 +46,7 @@ public class Tile extends MovableTile implements Comparable<Tile>, Serializable 
      * @param complexity   the complexity of the game
      */
     Tile(int backgroundId, int complexity) {
-        super(backgroundId, complexity);
-        id = backgroundId + 1;
+        super(backgroundId + 1);
         switch (backgroundId + 1) {
             case 1:
                 super.setBackground(R.drawable.tile_1);

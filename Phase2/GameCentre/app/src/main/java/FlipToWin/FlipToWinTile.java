@@ -14,10 +14,10 @@ public class FlipToWinTile extends MovableTile implements Serializable {
 
     private boolean paired = false;
 
-    /**
-     * The unique id.
-     */
-    private int id;
+//    /**
+//     * The unique id.
+//     */
+//    private int id;
 
     /**
      * The background id to find the tile image.
@@ -27,13 +27,13 @@ public class FlipToWinTile extends MovableTile implements Serializable {
     private String frontPage;
 
     FlipToWinTile(int num) {
-        this.id = num + 1;
+        super(num + 1);
         this.backGround = R.drawable.back_of_tile4;
 
         String emoji[] = {"🐶", "🐻", "🌝", "🌚", "🍑", "🐱", "❤️", "🍭️",
                 "💻", "💊", "🚗", "🗿", "🍗", "🍩", "🍺"};
 
-        this.frontPage = emoji[this.id - 1];
+        this.frontPage = emoji[getId() - 1];
     }
 
     /**
@@ -45,20 +45,8 @@ public class FlipToWinTile extends MovableTile implements Serializable {
         return backGround;
     }
 
-    public String getFrontPage() {
+    String getFrontPage() {
         return this.frontPage;
-    }
-
-
-
-
-    /**
-     * Return the tile id.
-     *
-     * @return the tile id
-     */
-    public int getId() {
-        return id;
     }
 
     void setFlipped() {
