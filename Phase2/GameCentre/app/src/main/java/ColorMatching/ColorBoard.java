@@ -1,44 +1,38 @@
 package ColorMatching;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Random;
 import java.util.List;
+import java.util.NoSuchElementException;
 
-
-import Basic.DataManager;
 import Basic.SuperBoard;
 
 public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Serializable{
-
-    /**
-     * The name of this game.
-     */
-//    private static final String GAME_NAME = "Color Matching";
-
-//    private int complexity = getComplexity();
 
     /**
      * The color tiles on the board in row-major order.
      */
     private ColorTile[][] tiles;
 
-    public ColorTile[][] getTiles(){
-        return tiles;
-    }
-
+    /**
+     * The total number of rows of this ColorBoard.
+     */
     private int rowNum;
 
+    /**
+     * The total number of columns of this ColorBoard.
+     */
     private int colNum;
 
     /**
-     * A new color board of tiles in row major order, and contains 10 rows and 8 columns.
+     * A new ColorBoard of tiles in row-major order.
+     * Precondition: rowNum * 5 = colNum * 4
+     *
+     * @param tiles the tiles for the ColorBoard
+     * @param complexity the complexity for the ColorBoard
      */
     ColorBoard(List<ColorTile> tiles, int complexity) {
         super(complexity);
@@ -54,41 +48,41 @@ public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Seria
         }
     }
 
+    /**
+     * Return the color tiles of this ColorBoard.
+     */
+    public ColorTile[][] getTiles() {
+        return tiles;
+    }
+
+    /**
+     * Return the number of tiles on the ColorBoard.
+     *
+     * @return the number of tiles on the ColorBoard.
+     */
     @Override
     public int numGrids() {
-
         return this.rowNum * this.colNum;
     }
 
     /**
      * Return the color tile at (row, col)
      *
-     * @param row the tile row
-     * @param col the tile column
-     * @return the tile at (row, col)
+     * @param row the color tile row
+     * @param col the color tile column
+     * @return the color tile at (row, col)
      */
     public ColorTile getGrid(int row, int col) {
         return tiles[row][col];
     }
 
-//    /**
-//     * Set a color tile at (row, col)
-//     *
-//     * @param row the tile row
-//     * @param col the tile column
-//     */
-//    public void setGrid(int row, int col) {
-//
-//        tiles[row][col] = new ColorTile(row, col);
-//    }
-
-//    public void setComplexity(int complexity) {
-//        this.complexity = complexity;
-//    }
-
-
-
-    // 这里有code smell！！！！！！！！！！！！！
+    /**
+     * Return the neighbour of a ColorTile tile.
+     *
+     * @param tile      a color tile
+     * @param direction the direction of the ColorTile tile's neighbour.
+     * @return a ColorTile if there exist a ColorTile on the direction of the ColorTile tile, else return null.
+     */
     ColorTile getNeighbour(ColorTile tile, String direction){
         switch (direction){
             case "top":
@@ -116,69 +110,6 @@ public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Seria
         return null;
     }
 
-/*    ColorTile getLeft(ColorTile tile){
-        if((tile.x)-1 >= 0){
-            return getGrid((tile.x)-1, tile.y);
-        }
-        return null;
-    }
-
-    ColorTile getRight(ColorTile tile){
-        if((tile.x)+1 < tiles.length){
-            return getGrid((tile.x)+1, tile.y);
-        }
-        return null;
-    }
-
-    ColorTile getTop(ColorTile tile){
-        if((tile.y)-1 >= 0){
-            return getGrid(tile.x, (tile.y)-1);
-        }
-        return null;
-    }
-
-    ColorTile getBottom(ColorTile tile){
-        if((tile.y)+1 < tiles.length*5/4){
-            return getGrid(tile.x, (tile.y)+1);
-        }
-        return null;
-    }*/
-
-//    void createNewBoard(Canvas canvas){
-//        for (int x = 0; x < tiles.length; x++) {
-//            for (int y = 0; y < tiles[x].length; y++) {
-//                int color = randomColor();
-//                ColorMatchingGameActivity.getColorView().drawBox(canvas, color, x, y);
-//                //存color
-//                DataManager.INSTANCE.getBoardManager().getGame().setGrid(x, y);
-//                ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getGame().getGrid(x, y).setColor(color);
-//            }
-//        }
-//    }
-
-//    private int randomColor(){
-//        Random random = new Random();
-//        int color = random.nextInt(5);
-//        switch(color){
-//            case 0:
-//                color =  Color.RED;
-//                break;
-//            case 1:
-//                color = Color.GREEN;
-//                break;
-//            case 2:
-//                color = Color.YELLOW;
-//                break;
-//            case 3:
-//                color = Color.BLUE;
-//                break;
-//            case 4:
-//                color = Color.GRAY;
-//                break;
-//        }
-//        return color;
-//    }
-
     @Override
     public String toString() {
         return "FlipToWinBoard{" +
@@ -186,11 +117,10 @@ public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Seria
                 '}';
     }
 
-
     /**
-     * Return a new BoardIterator.
+     * Return a new ColorBoardIterator.
      *
-     * @return a new BoardIterator
+     * @return a new ColorBoardIterator
      */
     @NonNull
     @Override
@@ -200,16 +130,16 @@ public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Seria
     }
 
     /**
-     * Iterate over tiles in a range of total number of tiles.
+     * Iterate over color tiles in a range of total number of tiles.
      */
     private class ColorBoardIterator implements Iterator<ColorTile> {
 
         /**
-         * The row number of the tile.
+         * The row number of the color tile.
          */
         private int row;
         /**
-         * The column number of the tile.
+         * The column number of the color tile.
          */
         private int col;
 
@@ -234,10 +164,20 @@ public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Seria
         }
     }
 
+    /**
+     * Return the total number of columns of this ColorBoard.
+     *
+     * @return the total number of columns of this ColorBoard.
+     */
     int getColNum() {
         return this.colNum;
     }
 
+    /**
+     * Return the total number of rows of this ColorBoard.
+     *
+     * @return the total number of rows of this ColorBoard.
+     */
     int getRowNum() {
         return this.rowNum;
     }
