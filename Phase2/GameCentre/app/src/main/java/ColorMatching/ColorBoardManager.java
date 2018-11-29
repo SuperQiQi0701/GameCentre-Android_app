@@ -71,7 +71,6 @@ public class ColorBoardManager extends SuperManager implements Serializable{
                 && Objects.requireNonNull(colorBoard.getNeighbour(tile, direction)).getColor() ==
                 initColor && ! allState.contains(colorBoard.getNeighbour(tile, direction))
                 && ! arr.contains(colorBoard.getNeighbour(tile, direction)) ){
-
             allState.add(colorBoard.getNeighbour(tile, direction));
         }
     }
@@ -103,22 +102,24 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         ArrayList<ColorTile> arr =  new ArrayList<>();
         ColorTile tile = colorBoard.getGrid(0, 0);
         int initColor = tile.getColor();
-
-        tile.setColor(newColor);
-        arr.add(tile);
-        // find all neighbour tiles that with initColor
-        neighbour(tile, initColor);
-
-        while(allState.size() != 0){
-            tile = allState.get(0);
-            // find all tiles that with initColor
-            neighbour(tile, initColor);
+        if(newColor != initColor){
             tile.setColor(newColor);
             arr.add(tile);
-            allState.remove(0);
+            neighbour(tile, initColor);
+            while(allState.size() != 0){
+                tile = allState.get(0);
+                neighbour(tile, initColor);
+                tile.setColor(newColor);
+                arr.add(tile);
+                allState.remove(0);
+            }
+            allMove.add(arr);
+            colors.add(initColor);
+        }else if (allMove.size() != 0) {
+            allMove.add(allMove.get(allMove.size()-1));
+            colors.add(initColor);
+
         }
-        allMove.add(arr);
-        colors.add(initColor);
         addScoreBy(1);
     }
 
