@@ -25,11 +25,6 @@ public class BoardManager extends SuperManager implements Serializable{
     private ArrayList<int[]> previousMoves;
 
     /**
-     * An integer that keep track the score of the current game
-     */
-//    private int score = 0;
-
-    /**
      * Manage a new shuffled board.
      */
     public BoardManager(int complexity) {
@@ -112,19 +107,12 @@ public class BoardManager extends SuperManager implements Serializable{
         return sum;
     }
 
-    /**
-     * Return the current score of the game
-     *
-     * @return the current score
-     */
-//    public int getScore() {
-//        return getScore();
-//    }
 
     /**
      * Return the current board.
      */
     public Board getGame() {
+
         return board;
     }
 
@@ -210,6 +198,7 @@ public class BoardManager extends SuperManager implements Serializable{
      * @return if the undo function is available
      */
     boolean undoAvailable() {
+
         return this.previousMoves.size() >= 1;
     }
 

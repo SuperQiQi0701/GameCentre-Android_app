@@ -26,16 +26,6 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
 
     private boolean chosenTilesMatched;
 
-//    /**
-//     * An ArrayList that store all the previous moves for undo function.
-//     */
-//    private ArrayList<int[]> previousMoves;
-
-    /**
-     * An integer that keep track the score of the current game
-     */
-//    private int score = 0;
-
     private int positionTileOneFaceUp = -1;
 
     /**
@@ -53,15 +43,6 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
         Collections.shuffle(fTiles);
         this.board = new FlipToWinBoard(fTiles, complexity);
     }
-
-//    /**
-//     * Return the current score of the game
-//     *
-//     * @return the current score
-//     */
-//    public int getScore() {
-//        return score;
-//    }
 
     @Override
     public SuperBoard getGame() {
@@ -87,11 +68,11 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
         return true;
     }
 
-    public boolean isFlippingTiles() {
+    boolean isFlippingTiles() {
         return flippingTiles;
     }
 
-    public boolean isChosenTilesMatched() {
+    boolean isChosenTilesMatched() {
         return chosenTilesMatched;
     }
 
