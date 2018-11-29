@@ -86,23 +86,23 @@ public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Seria
     ColorTile getNeighbour(ColorTile tile, String direction){
         switch (direction){
             case "top":
-                if((tile.y)-1 >= 0){
-                    return getGrid(tile.x, (tile.y)-1);
+                if(tile.getY() -1 >= 0){
+                    return getGrid(tile.getX(), tile.getY()-1);
                 }
                 return null;
             case "bottom":
-                if((tile.y)+1 < tiles.length*5/4){
-                    return getGrid(tile.x, (tile.y)+1);
+                if(tile.getY() +1 < tiles.length*5/4){
+                    return getGrid(tile.getX(), tile.getY()+1);
                 }
                 return null;
             case "right":
-                if((tile.x)+1 < tiles.length){
-                    return getGrid((tile.x)+1, tile.y);
+                if(tile.getX() +1 < tiles.length){
+                    return getGrid(tile.getX()+1, tile.getY());
                 }
                 return null;
             case "left":
-                if((tile.x)-1 >= 0){
-                    return getGrid((tile.x)-1, tile.y);
+                if(tile.getX()-1 >= 0){
+                    return getGrid(tile.getX()-1, tile.getY());
                 }
                 return null;
 

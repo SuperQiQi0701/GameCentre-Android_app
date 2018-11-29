@@ -48,7 +48,9 @@ public class ColorBoardManager extends SuperManager implements Serializable{
 
         for (int row = 0; row != rowNum; row++) {
             for (int col = 0; col != colNum; col++) {
-                tiles.add(new ColorTile(row, col));
+                ColorTile colorTiles = new ColorTile(row, col);
+                colorTiles.setColor(colorTiles.randomColor());
+                tiles.add(colorTiles);
             }
         }
         this.colorBoard = new ColorBoard(tiles, complexity);
@@ -126,7 +128,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
     /**
      * Return true if the undo function is available, false otherwise.
      *
-     * @return if the undo function is available
+     * @return true if the undo function is available
      */
     boolean undoAvailable(){
         return (this.allMove.size() >= 1);
@@ -155,6 +157,10 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         return colorBoard;
     }
 
+    public void setColorBoard(ColorBoard colorBoard){
+        this.colorBoard = colorBoard;
+    }
+
     /**
      * Return true if all the color tiles in this ColorBoard have the same color, else return False.
      *
@@ -162,13 +168,14 @@ public class ColorBoardManager extends SuperManager implements Serializable{
      */
     @Override
     public boolean puzzleSolved() {
+        boolean result = true;
         for (int x = 0; x < colorBoard.getTiles().length; x++) {
             for (int y = 0; y < colorBoard.getTiles()[x].length; y++) {
                 if (colorBoard.getGrid(x, y).getColor() != colorBoard.getGrid(0, 0).getColor()){
-                    return false;
+                    result = false;
                 }
             }
         }
-        return true;
+        return result;
     }
 }
