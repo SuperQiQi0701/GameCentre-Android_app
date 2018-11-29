@@ -7,17 +7,38 @@ import android.view.View;
 
 import java.io.Serializable;
 
-public class ColorView implements Serializable {
+class ColorView implements Serializable {
 
+    /**
+     * The view of this game.
+     */
     View view;
+
+    /**
+     * The size of each color tile on canvas.
+     */
     private int boxSize;
+
+    /**
+     * The ColorBoardManager colorBoardManager.
+     */
     private ColorBoardManager colorBoardManager;
 
+    /**
+     * The constructor of ColorBoardManager with a non-set complexity 5.
+     */
     ColorView(){
         colorBoardManager = new ColorBoardManager(5);
     }
 
-
+    /**
+     * Draw color tiles at (x, y) with color on canvas.
+     *
+     * @param canvas the canvas of this game
+     * @param color the color of the color tile going to be draw
+     * @param x the x position of the color tile going to be draw
+     * @param y the y position of the color tile going to be draw
+     */
     void drawBox(Canvas canvas, int color, int x, int y){
         Paint boxPaint = new Paint();
         boxPaint.setAntiAlias(true);
@@ -27,6 +48,11 @@ public class ColorView implements Serializable {
         canvas.drawRect(x * boxSize, y * boxSize, x * boxSize + boxSize, y * boxSize + boxSize, boxPaint);
     }
 
+    /**
+     * Draw lines on the canvas.
+     *
+     * @param canvas the canvas of this game
+     */
     void drawLine(Canvas canvas){
         Paint linePaint = new Paint();
         linePaint.setColor(Color.BLACK);
@@ -40,6 +66,11 @@ public class ColorView implements Serializable {
         }
     }
 
+    /**
+     * Set the size of each color tile.
+     *
+     * @param size the size of each color tile.
+     */
     void setBoxSize(int size){
         boxSize = size;
     }
