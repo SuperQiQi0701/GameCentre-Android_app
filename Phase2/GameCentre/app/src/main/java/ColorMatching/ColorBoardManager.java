@@ -71,7 +71,8 @@ public class ColorBoardManager extends SuperManager implements Serializable{
     private void helpFindNeighbour(ColorTile tile, int initColor, String direction ){
         if(colorBoard.getNeighbour(tile, direction)!= null
                 && Objects.requireNonNull(colorBoard.getNeighbour(tile, direction)).getColor() ==
-                initColor && ! arr.contains(colorBoard.getNeighbour(tile, direction)) ){
+                initColor && ! allState.contains(colorBoard.getNeighbour(tile, direction)) &&
+                ! arr.contains(colorBoard.getNeighbour(tile, direction)) ){
             allState.add(colorBoard.getNeighbour(tile, direction));
         }
     }
