@@ -8,17 +8,38 @@ import java.util.Objects;
 import Basic.SuperManager;
 
 public class ColorBoardManager extends SuperManager implements Serializable{
+
     /**
-     * The board being managed.
+     * The ColorBoard being managed.
      */
     private ColorBoard colorBoard;
+
+    /**
+     * The arrayList of arrayList of all color tiles being changed.
+     */
     private ArrayList<ArrayList<ColorTile>> allMove;
-    private ArrayList<ColorTile> current;
+
+    /**
+     * The arrayList of all colors being set before.
+     */
     private ArrayList<Integer> colors;
+
+    /**
+     * A temporary arrayList used for record which color tiles has been set colors for each time doing color change.
+     */
     private ArrayList<ColorTile> allState;
+
+    /**
+     * A temporary arrayList used for record the color tiles which are the neighbour of a specific
+     * color tile and is not repeatedly added.
+     */
     private ArrayList arr;
 
-
+    /**
+     * A new ColorBoardManager with complexity.
+     *
+     * @param complexity the complexity for the ColorMatching Game.
+     */
     public ColorBoardManager(int complexity) {
         super(complexity);
         List<ColorTile> tiles = new ArrayList<>();
@@ -32,13 +53,19 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         }
         this.colorBoard = new ColorBoard(tiles, complexity);
         allMove = new ArrayList<>();
-        current = new ArrayList<>();
         colors = new ArrayList<>();
         allState = new ArrayList<>();
         arr = new ArrayList();
     }
 
-
+    /**
+     * Add color tiles which are the neighbour at specific direction of the specific ColorTile
+     * tile and have color initColor.
+     *
+     * @param tile      the ColorTile whose neighbours are being checked.
+     * @param initColor the Color which are the same as the color of ColorTile(0, 0)
+     * @param direction the direction of neighbour being checked.
+     */
     private void helpFindNeighbour(ColorTile tile, int initColor, String direction ){
         if(colorBoard.getNeighbour(tile, direction)!= null
                 && Objects.requireNonNull(colorBoard.getNeighbour(tile, direction)).getColor() ==
@@ -48,6 +75,13 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         }
     }
 
+    /**
+     * Add color tiles which are the neighbour at all directions of the specific ColorTile
+     * tile and have color initColor.
+     *
+     * @param tile the ColorTile whose neighbours are being checked.
+     * @param initColor the Color which are the same as the color of ColorTile(0, 0)
+     */
     private void neighbour(ColorTile tile, int initColor){
         helpFindNeighbour(tile, initColor, "top");
         helpFindNeighbour(tile, initColor, "bottom");
@@ -55,7 +89,13 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         helpFindNeighbour(tile, initColor, "left");
     }
 
-    //这个可以考虑优化一下
+
+    /**
+     * Change the ColorTiles lined with the ColorTile at (0, 0) with the same color to the new color
+     * newColor.
+     *
+     * @param newColor the newColor to be set to eligible ColorTiles.
+     */
     @Override
     public void makeChange(int newColor) {
         allState = new ArrayList<>();
@@ -106,10 +146,20 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         addScoreBy(2);
     }
 
+    /**
+     * Return the current ColorBoard colorBoard.
+     *
+     * @return the current ColorBoard.
+     */
     public ColorBoard getGame(){
         return colorBoard;
     }
 
+    /**
+     * Return true if all the color tiles in this ColorBoard have the same color, else return False.
+     *
+     * @return if all the color tiles in this ColorBoard have the same color.
+     */
     @Override
     public boolean puzzleSolved() {
         for (int x = 0; x < colorBoard.getTiles().length; x++) {
@@ -120,14 +170,5 @@ public class ColorBoardManager extends SuperManager implements Serializable{
             }
         }
         return true;
-    }
-
-
-    public ArrayList<ColorTile> getCurrent() {
-        return current;
-    }
-
-    public void setCurrent(ArrayList<ColorTile> current) {
-        this.current = current;
     }
 }
