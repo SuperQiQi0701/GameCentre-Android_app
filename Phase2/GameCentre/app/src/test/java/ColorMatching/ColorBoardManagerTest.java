@@ -11,24 +11,10 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class ColorBoardManagerTest1 {
+public class ColorBoardManagerTest {
 
-    ColorBoardManager colorBoardManager;
-    int complexity1 = 3;
-
-//    private List<ColorTile> makeRandomColorTiles(){
-//        List<ColorTile> tiles = new ArrayList<>();
-//        int rowNum = (complexity1 - 2) * 4;
-//        int colNum = (complexity1 - 2) * 5;
-//        for (int row = 0; row != rowNum; row++) {
-//            for (int col = 0; col != colNum; col++) {
-//                ColorTile colorTiles = new ColorTile(row, col);
-//                colorTiles.currColor = colorTiles.randomColor();
-//                tiles.add(colorTiles);
-//            }
-//        }
-//        return tiles;
-//    }
+    private ColorBoardManager colorBoardManager;
+    private int complexity1 = 3;
 
     private void setUpCorrect(){
 //        List<ColorTile> tiles = makeRandomColorTiles();
@@ -69,11 +55,11 @@ public class ColorBoardManagerTest1 {
     public void testMakeChange() {
         setUpCorrect();
         colorBoardManager.makeChange(-65536);
-        assertEquals(-65536, colorBoardManager.getGame().getGrid(0, 0).getColor());
+        assertEquals(-65536, colorBoardManager.getBoard().getGrid(0, 0).getColor());
         colorBoardManager.makeChange(-16711936);
-        assertEquals(-16711936, colorBoardManager.getGame().getGrid(0, 0).getColor());
+        assertEquals(-16711936, colorBoardManager.getBoard().getGrid(0, 0).getColor());
         colorBoardManager.makeChange(-16711936);
-        assertEquals(-16711936, colorBoardManager.getGame().getGrid(0, 0).getColor());
+        assertEquals(-16711936, colorBoardManager.getBoard().getGrid(0, 0).getColor());
     }
 
     @Test
@@ -82,7 +68,7 @@ public class ColorBoardManagerTest1 {
         assertFalse(colorBoardManager.undoAvailable());
         colorBoardManager.makeChange(-65536);
         colorBoardManager.makeChange(-16711936);
-        assertEquals(true, colorBoardManager.undoAvailable());
+        assertTrue(colorBoardManager.undoAvailable());
     }
 
     @Test
@@ -91,20 +77,20 @@ public class ColorBoardManagerTest1 {
         colorBoardManager.makeChange(-65536);
         colorBoardManager.makeChange(-16711936);
         colorBoardManager.undo();
-        assertEquals(-65536, colorBoardManager.getGame().getGrid(0, 0).getColor());
+        assertEquals(-65536, colorBoardManager.getBoard().getGrid(0, 0).getColor());
     }
 
     @Test
     public void testGetGame() {
         setUpCorrect();
-        assertEquals(3, colorBoardManager.getGame().getComplexity());
+        assertEquals(3, colorBoardManager.getBoard().getComplexity());
     }
 
     @Test
     public void testPuzzleSolved() {
         setUpCorrect();
-        assertEquals(false, colorBoardManager.puzzleSolved());
+        assertFalse(colorBoardManager.puzzleSolved());
         setUpSameColor();
-        assertEquals(true, colorBoardManager.puzzleSolved());
+        assertTrue(colorBoardManager.puzzleSolved());
     }
 }
