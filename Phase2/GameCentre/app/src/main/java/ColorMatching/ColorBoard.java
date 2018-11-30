@@ -10,7 +10,10 @@ import java.util.NoSuchElementException;
 
 import Basic.SuperBoard;
 
-public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Serializable{
+/**
+ * This is a ColorBoard that will create a ColorBoard object
+ */
+public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Serializable {
 
     /**
      * The color tiles on the board in row-major order.
@@ -41,7 +44,7 @@ public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Seria
      * A new ColorBoard of tiles in row-major order.
      * Precondition: rowNum * 5 = colNum * 4
      *
-     * @param tiles the tiles for the ColorBoard
+     * @param tiles      the tiles for the ColorBoard
      * @param complexity the complexity for the ColorBoard
      */
     ColorBoard(List<ColorTile> tiles, int complexity) {
@@ -93,26 +96,26 @@ public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Seria
      * @param direction the direction of the ColorTile tile's neighbour.
      * @return a ColorTile if there exist a ColorTile on the direction of the ColorTile tile, else return null.
      */
-    ColorTile getNeighbour(ColorTile tile, String direction){
-        switch (direction){
+    ColorTile getNeighbour(ColorTile tile, String direction) {
+        switch (direction) {
             case "top":
-                if(tile.getY() -1 >= 0){
-                    return getGrid(tile.getX(), tile.getY()-1);
+                if (tile.getY() - 1 >= 0) {
+                    return getGrid(tile.getX(), tile.getY() - 1);
                 }
                 return null;
             case "bottom":
-                if(tile.getY() +1 < tiles.length*5/4){
-                    return getGrid(tile.getX(), tile.getY()+1);
+                if (tile.getY() + 1 < tiles.length * 5 / 4) {
+                    return getGrid(tile.getX(), tile.getY() + 1);
                 }
                 return null;
             case "right":
-                if(tile.getX() +1 < tiles.length){
-                    return getGrid(tile.getX()+1, tile.getY());
+                if (tile.getX() + 1 < tiles.length) {
+                    return getGrid(tile.getX() + 1, tile.getY());
                 }
                 return null;
             case "left":
-                if(tile.getX()-1 >= 0){
-                    return getGrid(tile.getX()-1, tile.getY());
+                if (tile.getX() - 1 >= 0) {
+                    return getGrid(tile.getX() - 1, tile.getY());
                 }
                 return null;
 

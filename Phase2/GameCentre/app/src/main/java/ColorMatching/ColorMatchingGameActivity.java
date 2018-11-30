@@ -21,6 +21,9 @@ import Basic.ScoreBoardActivity;
 import Basic.StartingActivity;
 import fall2018.csc2017.slidingtiles.R;
 
+/**
+ * This class is responsible for the game page of ColorMatching
+ */
 public class ColorMatchingGameActivity extends AppCompatActivity {
 
     /**
@@ -64,7 +67,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
      *
      * @return the view of this ColorView.
      */
-    public ColorView getColorView(){
+    public ColorView getColorView() {
         return colorView;
     }
 
@@ -75,7 +78,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         initData();
         initView();
         int position = 0;
-        while (position < numButton){
+        while (position < numButton) {
             addColorButtonListener(position);
             position++;
         }
@@ -88,7 +91,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
      * ColorBoard.
      */
     private void checkWin() {
-        if (DataManager.INSTANCE.getBoardManager().puzzleSolved()){
+        if (DataManager.INSTANCE.getBoardManager().puzzleSolved()) {
             Toast.makeText(this, "YOU WIN!", Toast.LENGTH_SHORT).show();
             Intent temp = new Intent(this, ScoreBoardActivity.class);
             startActivity(temp);
@@ -98,14 +101,14 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     /**
      * Set the view for this game, and draw lines and color tiles on the canvas.
      */
-    private void draw(){
-        colorView.setView(new View(this){
+    private void draw() {
+        colorView.setView(new View(this) {
             protected void onDraw(Canvas canvas) {
                 setUpTiles(canvas);
                 colorView.drawLine(canvas);
             }
         });
-        colorView.getView().setLayoutParams(new FrameLayout.LayoutParams(width,height));
+        colorView.getView().setLayoutParams(new FrameLayout.LayoutParams(width, height));
         colorView.getView().setBackgroundColor(0x10000000);
         addScoreTextViewListener();
     }
@@ -129,7 +132,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
      * Initialize some data features of this game, including the width and height for the layout,
      * complexity and tiles' size on canvas.
      */
-    private void initData(){
+    private void initData() {
         int width = getScreenWidth(this);
         this.width = width;
         height = width * colRatio / rowRatio;
@@ -140,18 +143,19 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     /**
      * Initialize view for this game, draw lines and color tiles, and add them to this layout.
      */
-    private void initView(){
+    private void initView() {
         FrameLayout layoutGame = findViewById(R.id.layoutGame);
         draw();
-        layoutGame.addView(colorView.getView()); }
+        layoutGame.addView(colorView.getView());
+    }
 
     /**
      * Adapted from:
      * https://stackoverflow.com/questions/4743116/get-screen-width-and-height
      * This method is used to get the screen's width.
      */
-    private int getScreenWidth(Context context){
-        WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+    private int getScreenWidth(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         assert wm != null;
         wm.getDefaultDisplay().getMetrics(outMetrics);
@@ -162,7 +166,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     /**
      * Activate Undo button.
      */
-    private void addUndoButtonListener(){
+    private void addUndoButtonListener() {
         Button undo = findViewById(R.id.undo);
         undo.setOnClickListener((v) -> {
             ColorBoardManager boardManager = (ColorBoardManager) DataManager.INSTANCE.getBoardManager();
@@ -171,8 +175,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
                 colorView.getView().invalidate();
 
                 makeToastUndoSuccessText();
-            }
-            else{
+            } else {
                 makeToastUndoFailText();
             }
             FileManager.saveGame(this.getApplicationContext(), "Auto");
@@ -218,14 +221,14 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
      */
     void addScoreTextViewListener() {
         TextView currScoreTextView = findViewById(R.id.color_match_currScoreText);
-        String score = "          " + "Score:   "+ Integer.toString(DataManager.INSTANCE.getBoardManager().getScore());
+        String score = "          " + "Score:   " + Integer.toString(DataManager.INSTANCE.getBoardManager().getScore());
         currScoreTextView.setText(score);
     }
 
     /**
      * Activate Color buttons.
      */
-    private void addColorButtonListener(int color){
+    private void addColorButtonListener(int color) {
         Button colorButton = findViewById(color_button[color]);
         colorButton.setOnClickListener((v) -> {
             DataManager.INSTANCE.getBoardManager().makeChange(colors[color]);
