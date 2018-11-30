@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/gameCentre" />
 
     <Button
-        android:id="@+id/enter_colormatching_button"
+        android:id="@+id/enter_colorMatching_button"
         android:layout_width="178dp"
         android:layout_height="67dp"
         android:layout_marginStart="103dp"
