@@ -54,6 +54,7 @@ public class FlipToWinBoardManagerTest {
 
     @After
     public void tearDown() {
+        this.boardManager = null;
     }
 
     @Test
