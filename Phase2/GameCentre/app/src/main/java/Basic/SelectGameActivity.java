@@ -10,9 +10,7 @@ import android.widget.TextView;
 
 import fall2018.csc2017.slidingtiles.R;
 
-/**
- * this is a SelectGameActivity class that is responsible for he game-select page
- */
+
 public class SelectGameActivity extends AppCompatActivity {
 
     @Override
@@ -22,6 +20,9 @@ public class SelectGameActivity extends AppCompatActivity {
         addGameListener(R.id.enter_sliding_button, Color.MAGENTA, Color.YELLOW, "ST");
         addGameListener(R.id.enter_colormatching_button, Color.YELLOW, Color.BLACK, "CM");
         addGameListener(R.id.enter_flipToTile_button, Color.CYAN, Color.RED, "FTW");
+        addGameListener(R.id.enter_sliding_button, Color.MAGENTA, Color.YELLOW ,"ST");
+        addGameListener(R.id.enter_colorMatching_button, Color.YELLOW, Color.BLACK ,"CM");
+        addGameListener(R.id.enter_flipToTile_button, Color.CYAN, Color.RED ,"FTW");
     }
 
     @SuppressLint("SetTextI18n")
@@ -45,10 +46,6 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setOnClickListener(v -> {
             DataManager.INSTANCE.setCurrentGameName(game);
             Intent slide = new Intent(this, StartingActivity.class);
-            slide.putExtra("currGameName", game);
-
-            System.out.println("put extra successfully in SelectGameActivity");
-
             startActivity(slide);
         });
     }

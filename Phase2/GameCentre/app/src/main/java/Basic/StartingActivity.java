@@ -144,17 +144,7 @@ public class StartingActivity extends AppCompatActivity {
         resume.setTextColor(Color.WHITE);
         resume.setOnClickListener((v) -> {
             Intent temp = new Intent(this, ComplexityActivity.class);
-
-            Intent preIntent = getIntent();
-            Bundle bundle = preIntent.getExtras();
-            if (bundle != null) {
-
-                temp.putExtra("currGameName", bundle.getString("currGameName"));
-
-                System.out.println("put extra successfully in StartingActivity");
-
-            }
-
+            temp.putExtra("scoreboard", "scoreBoard");
             startActivity(temp);
             finish();
 

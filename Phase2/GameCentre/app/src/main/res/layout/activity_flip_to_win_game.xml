@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fliptowin_relative"
+    android:id="@+id/FTW_relative"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <FlipToWin.FlipGestureDetectGridView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/fliptowingrid"
+        android:id="@+id/FTW_GridView"
         android:layout_width="match_parent"
         android:layout_height="600dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="61dp"
-        tools:context="fall2018.csc2017.slidingtiles.FlipToWin.FlipToWinGameActivity">
+        tools:context="FlipToWin.FlipToWinGameActivity">
 
     </FlipToWin.FlipGestureDetectGridView>
 
     <Button
-        android:id="@+id/fliptowin_saveGameButton"
+        android:id="@+id/FTW_saveGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -29,11 +29,11 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="273dp"
-        android:text="@string/savegame"
+        android:text="@string/save_game"
         tools:ignore="RtlHardcoded" />
 
     <TextView
-        android:id="@+id/fliptowin_currScoreText"
+        android:id="@+id/FTW_currScoreText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

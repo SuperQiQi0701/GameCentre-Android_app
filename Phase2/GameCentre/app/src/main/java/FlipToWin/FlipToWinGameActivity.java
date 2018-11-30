@@ -47,7 +47,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
         createTileButtons(this);
         setContentView(R.layout.activity_flip_to_win_game);
         // Add View to activity
-        flipGridView = findViewById(R.id.fliptowingrid);
+        flipGridView = findViewById(R.id.FTW_GridView);
         flipGridView.setNumColumns(((FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getBoard()).getColNum());
         DataManager.INSTANCE.getBoardManager().getBoard().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
@@ -149,7 +149,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
      * display and get score of the state.
      */
     void addScoreTextViewListener() {
-        TextView currScoreTextView = findViewById(R.id.fliptowin_currScoreText);
+        TextView currScoreTextView = findViewById(R.id.FTW_currScoreText);
         String score = Integer.toString(DataManager.INSTANCE.getBoardManager().getScore());
         currScoreTextView.setText(score);
     }
@@ -158,7 +158,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
      * Activate SaveGame button.
      */
     private void addSaveGameButtonListener() {
-        Button save = findViewById(R.id.fliptowin_saveGameButton);
+        Button save = findViewById(R.id.FTW_saveGameButton);
         save.setOnClickListener(v -> {
             FileManager.saveGame(this.getApplicationContext(), "Auto");
             FileManager.saveGame(this.getApplicationContext(), "Save");
