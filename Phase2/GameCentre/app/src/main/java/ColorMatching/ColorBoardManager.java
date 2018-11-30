@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Objects;
 
 import Basic.SuperManager;
+import Basic.Undoable;
 
-public class ColorBoardManager extends SuperManager implements Serializable{
+public class ColorBoardManager extends SuperManager implements Serializable, Undoable {
 
     /**
      * The ColorBoard being managed.
@@ -32,23 +33,12 @@ public class ColorBoardManager extends SuperManager implements Serializable{
     /**
      * The row ratio of this ColorBoard.
      */
-    private static final int rowRatio = 4;
+    private static final int ROW_RATIO = 4;
 
     /**
      * The column ratio of this ColorBoard.
      */
-    private static final int colRatio = 5;
-
-    /**
-     * The score to be added when normally makeChange.
-     */
-    private static final int normalAddScore = 1;
-
-    /**
-     * The score to be added when doing undo.
-     */
-    private static final int punishAddScore = 2;
-
+    private static final int COL_RATIO = 5;
 
     /**
      * A new ColorBoardManager with complexity.
@@ -58,8 +48,8 @@ public class ColorBoardManager extends SuperManager implements Serializable{
     public ColorBoardManager(int complexity) {
         super(complexity);
         List<ColorTile> tiles = new ArrayList<>();
-        int rowNum = (getComplexity() - 2) * rowRatio;
-        int colNum = (getComplexity() - 2) * colRatio;
+        int rowNum = (getComplexity() - 2) * ROW_RATIO;
+        int colNum = (getComplexity() - 2) * COL_RATIO;
 
         for (int row = 0; row != rowNum; row++) {
             for (int col = 0; col != colNum; col++) {
@@ -118,10 +108,13 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         List<ColorTile> arr =  new ArrayList<>();
         ColorTile tile = colorBoard.getGrid(0, 0);
         int initColor = tile.getColor();
+        // if newColor is the different as the color of (0,0) colorTile
         if (newColor != initColor){
             tile.setColor(newColor);
             arr.add(tile);
             neighbour(arr, tile, initColor);
+            //if any of tile's neighbours has the same color, then continue on checking the neighbours
+            //of the current neighbours.
             while(allState.size() != 0){
                 tile = allState.get(0);
                 neighbour(arr, tile, initColor);
@@ -131,16 +124,15 @@ public class ColorBoardManager extends SuperManager implements Serializable{
             }
             allMove.add(arr);
             colors.add(initColor);
-        }else if (allMove.size() != 0){
-            allMove.add(allMove.get(allMove.size()-1));
-            colors.add(initColor);
-        }else{
+        }
+        // if newColor is the same as the color of (0,0) colorTile
+        else{
             arr.add(tile);
             neighbour(arr, tile, initColor);
             allMove.add(arr);
             colors.add(initColor);
         }
-        addScoreBy(normalAddScore);
+        addScoreBy(1);
     }
 
     /**
@@ -148,14 +140,14 @@ public class ColorBoardManager extends SuperManager implements Serializable{
      *
      * @return true if the undo function is available
      */
-    boolean undoAvailable(){
+    public boolean undoAvailable(){
         return (this.allMove.size() >= 1);
     }
 
     /**
      * Undo the previous move
      */
-    void undo(){
+    public void undo(){
         if(undoAvailable()){
             List<ColorTile> whatever = allMove.remove(allMove.size()-1);
             int color = colors.remove(colors.size()-1);
@@ -163,7 +155,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
                 cur.setColor(color);
             }
         }
-        addScoreBy(punishAddScore);
+        addScoreBy(2);
     }
 
     /**

@@ -8,11 +8,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import Basic.SuperManager;
+import Basic.Undoable;
 
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
  */
-public class BoardManager extends SuperManager implements Serializable{
+public class BoardManager extends SuperManager implements Serializable, Undoable {
 
     /**
      * The board being managed.
@@ -208,7 +209,7 @@ public class BoardManager extends SuperManager implements Serializable{
      *
      * @return if the undo function is available
      */
-    boolean undoAvailable() {
+    public boolean undoAvailable() {
 
         return this.previousMoves.size() >= 1;
     }
@@ -217,7 +218,7 @@ public class BoardManager extends SuperManager implements Serializable{
     /**
      * Undo the previous move
      */
-    void undo() {
+    public void undo() {
         if (undoAvailable()) {
             int saved[] = this.previousMoves.get(this.previousMoves.size() - 1);
             this.previousMoves.remove(this.previousMoves.size() - 1);
