@@ -99,7 +99,9 @@ public class FlipToWinBoardManagerTest {
         while (i <= board.numGrids()) {
             try {
                 iterator.next();
-            } catch (NoSuchElementException e) {}
+            } catch (NoSuchElementException e){
+                System.out.println("No more FlipToWinTiles.");
+            }
             i ++;
         }
     }
