@@ -23,10 +23,18 @@ public class ScoreBoardTest {
 
 
         // Add some record with complexity 3
-        DataManager.INSTANCE.setCurrentGameName("ST");
         DataManager.INSTANCE.setCurrentUserName("@u1");
-        DataManager.INSTANCE.startNewGame(3);
+        DataManager.INSTANCE.setCurrentGameName("ST");
+        DataManager.INSTANCE.startNewGame(4);
+        DataManager.INSTANCE.setCurrentGameName("FTW");
+        DataManager.INSTANCE.startNewGame(5);
+        DataManager.INSTANCE.setCurrentGameName("CM");
+        DataManager.INSTANCE.startNewGame(5);
+        DataManager.INSTANCE.setCurrentGameName("ST");
+        DataManager.INSTANCE.setBoardManager(new BoardManager(3));
+        DataManager.INSTANCE.getBoardManager().addScoreBy(1);
         this.scoreBoard.addNewRecords(new Record());
+
         this.scoreBoard.addNewRecords(new Record(3, 10, "@u2", "ST"));
         this.scoreBoard.addNewRecords(new Record(3, 25, "@u3", "ST"));
         this.scoreBoard.addNewRecords(new Record(4, 5, "@u1", "ST"));
@@ -38,6 +46,9 @@ public class ScoreBoardTest {
         this.scoreBoard = null;
     }
 
+    /**
+     * This is a test for SoreBoard.topFiveToString()
+     */
     @Test
     public void topFiveToString() {
         // Complexity 5 -> no record
@@ -51,11 +62,11 @@ public class ScoreBoardTest {
         assertEquals(5, count);
 
 
-        // Complexity3 -> should have 3 records
+        // Complexity 3 -> should have 3 records
         this.scoreBoard.setComplexity(3);
         ArrayList result3 = this.scoreBoard.TopFiveToString();
         ArrayList<String> expected = new ArrayList<>();
-        expected.add("User: @u1, got 0 steps in game: ST, in level: 1");
+        expected.add("User: @u1, got 1 steps in game: ST, in level: 1");
         expected.add("User: @u2, got 10 steps in game: ST, in level: 1");
         expected.add("User: @u3, got 15 steps in game: ST, in level: 1");
         expected.add("Not enough users to get a full rank");
@@ -65,6 +76,9 @@ public class ScoreBoardTest {
         }
     }
 
+    /**
+     * This is a test for SoreBoard.getMyBestRank()
+     */
     @Test
     public void getMyBestRank() {
         int result1 = this.scoreBoard.getMyBestRank(new Record(4, 5, "@u1", "ST"));
