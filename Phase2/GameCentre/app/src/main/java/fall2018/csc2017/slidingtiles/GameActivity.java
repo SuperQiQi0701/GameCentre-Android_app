@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -26,7 +27,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     /**
      * The buttons to display.
      */
-    private ArrayList<Button> tileButtons;
+    private List<Button> tileButtons;
 
     // Grid View and calculated column height and width based on device size
     private GestureDetectGridView gridView;

@@ -47,7 +47,6 @@ public class ColorTile implements Serializable {
     ColorTile(int x, int y){
         this.x = x;
         this.y = y;
-//        this.currColor = -1;
     }
 
     /**

@@ -39,7 +39,7 @@ public class FlipToWinTile extends MovableTile implements Serializable {
         super(num + 1);
         this.backGround = R.drawable.back_of_tile4;
 
-        // the empji array is an array of the strings that is shown on the front page of tiles
+        // the 'emoji' array is an array of the strings that is shown on the front page of tiles
         String emoji[] = {"🐶", "🐻", "🌝", "🌚", "🍑", "🐱", "❤️", "🍭️",
                 "💻", "💊", "🚗", "🗿", "🍗", "🍩", "🍺"};
 

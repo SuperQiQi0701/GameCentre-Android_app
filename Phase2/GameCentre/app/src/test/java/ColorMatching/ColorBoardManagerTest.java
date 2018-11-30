@@ -1,27 +1,41 @@
 package ColorMatching;
 
-import android.graphics.Color;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 
 import static org.junit.Assert.*;
 
+/**
+ * Test ColorBoardManager class.
+ */
 public class ColorBoardManagerTest {
 
+    /** The color board manager for testing. */
     private ColorBoardManager colorBoardManager;
+
+    /** The complexity of board at level 1 */
     private int complexity1 = 3;
 
-    private void setUpCorrect(){
-//        List<ColorTile> tiles = makeRandomColorTiles();
-//        ColorBoard colorBoard = new ColorBoard(tiles,complexity1);
+    /**
+     * Make a random colorBoard.
+     */
+    @Before
+    public void setUpCorrect(){
         colorBoardManager = new ColorBoardManager(complexity1);
     }
 
+    /**
+     * Make a set of colorTiles that are in order.
+     * @return a set of colorTiles that are in order
+     */
     private List<ColorTile> makeSameColorTiles(){
         List<ColorTile> tiles = new ArrayList<>();
         int rowNum = (complexity1 - 2) * 4;
@@ -36,21 +50,29 @@ public class ColorBoardManagerTest {
         return tiles;
     }
 
-    private void setUpSameColor(){
+    /**
+     * Make a solved colorBoard.
+     */
+    @Before
+    public void setUpSameColor(){
         List<ColorTile> tiles = makeSameColorTiles();
         ColorBoard colorBoard = new ColorBoard(tiles, complexity1);
         colorBoardManager = new ColorBoardManager(complexity1);
         colorBoardManager.setColorBoard(colorBoard);
     }
 
-    @Before
-    public void setUp() throws Exception {
-    }
 
+    /**
+     * Set the colorBoardManager to null
+     */
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
+        colorBoardManager = null;
     }
 
+    /**
+     * Test whether makeChange does change the color of the top left grid
+     */
     @Test
     public void testMakeChange() {
         setUpCorrect();
@@ -62,6 +84,9 @@ public class ColorBoardManagerTest {
         assertEquals(-16711936, colorBoardManager.getBoard().getGrid(0, 0).getColor());
     }
 
+    /**
+     * Check whether undoAvailable works after make some changes
+     */
     @Test
     public void testUndoAvailable() {
         setUpCorrect();
@@ -71,6 +96,9 @@ public class ColorBoardManagerTest {
         assertTrue(colorBoardManager.undoAvailable());
     }
 
+    /**
+     * Check whether undoAvailable works after make some changes
+     */
     @Test
     public void testUndo() {
         setUpCorrect();
@@ -80,17 +108,45 @@ public class ColorBoardManagerTest {
         assertEquals(-65536, colorBoardManager.getBoard().getGrid(0, 0).getColor());
     }
 
+    /**
+     * Check whether getBoard works.
+     */
     @Test
-    public void testGetGame() {
+    public void testGetBoard() {
         setUpCorrect();
         assertEquals(3, colorBoardManager.getBoard().getComplexity());
     }
 
+    /**
+     * Check whether the game is not solved after randomly create a colorBoard.
+     */
     @Test
-    public void testPuzzleSolved() {
+    public void testPuzzleUnsolved() {
         setUpCorrect();
         assertFalse(colorBoardManager.puzzleSolved());
+    }
+
+    /**
+     * Check whether the game is solved after setting all the colorTiles the same color.
+     */
+    @Test
+    public void testPuzzleSolved() {
         setUpSameColor();
         assertTrue(colorBoardManager.puzzleSolved());
+    }
+
+    /**
+     * Check whether the colorBoard is Iterable
+     */
+    @Test
+    public void testColorBoardIterable() {
+        Iterator<ColorTile> iterator = colorBoardManager.getBoard().iterator();
+        int i = 0;
+        while (i <= colorBoardManager.getBoard().numGrids()) {
+            try {
+                iterator.next();
+            } catch (NoSuchElementException e) {}
+            i ++;
+        }
     }
 }

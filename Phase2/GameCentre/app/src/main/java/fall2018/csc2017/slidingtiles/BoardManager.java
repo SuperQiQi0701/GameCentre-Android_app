@@ -20,9 +20,9 @@ public class BoardManager extends SuperManager implements Serializable{
     private Board board;
 
     /**
-     * An ArrayList that store all the previous moves for undo function.
+     * An List that store all the previous moves for undo function.
      */
-    private ArrayList<int[]> previousMoves;
+    private List<int[]> previousMoves;
 
     /**
      * Manage a new shuffled board.
@@ -51,7 +51,7 @@ public class BoardManager extends SuperManager implements Serializable{
      * @param complexity the complexity of tiles
      * @return whether the tiles are solvable or not.
      */
-    private boolean checkSolvable(List<Tile> tiles, int complexity){
+    boolean checkSolvable(List<Tile> tiles, int complexity){
         int num = getInvNumber(tiles);
         if (tiles.size() % 2 == 1){
             return num % 2 == 0;
@@ -75,14 +75,15 @@ public class BoardManager extends SuperManager implements Serializable{
      * @return the number of rows counting from bottom that the blank is on.
      */
     private int findBlank(List<Tile> tiles, int complexity){
+        int blank = 0;
         for (int row = complexity - 1; row >= 0; row--){
             for (int col = complexity - 1; col >= 0; col--){
                 if (tiles.get(row * complexity + col).getId() == tiles.size()){
-                    return complexity - row;
+                    blank = complexity - row;
                 }
             }
         }
-        return 0;
+        return blank;
     }
 
 
@@ -110,10 +111,20 @@ public class BoardManager extends SuperManager implements Serializable{
 
     /**
      * Return the current board.
+     *
+     *@return the board.
      */
     public Board getBoard() {
 
         return board;
+    }
+
+
+    /**
+     * Set the board.
+     */
+    public void setBoard(Board board){
+        this.board = board;
     }
 
     /**
@@ -123,10 +134,10 @@ public class BoardManager extends SuperManager implements Serializable{
      */
     @Override
     public boolean puzzleSolved() {
-        Iterator<Tile> iter = this.board.iterator();
-        Tile temp = iter.next();
-        while (iter.hasNext()) {
-            Tile next = iter.next();
+        Iterator<Tile> iterator = this.board.iterator();
+        Tile temp = iterator.next();
+        while (iterator.hasNext()) {
+            Tile next = iterator.next();
             if (temp.compareTo(next) < 0) {
                 return false;
             }

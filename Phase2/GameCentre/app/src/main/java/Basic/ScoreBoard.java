@@ -3,23 +3,24 @@ package Basic;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class ScoreBoard implements Serializable {
 
     /**
-     * this is a ArrayList of all records of Complexity 1
+     * this is a List of all records of Complexity 1
      */
-    private ArrayList<Record> recordsComplexity1 = new ArrayList<>();
+    private List<Record> recordsComplexity1 = new ArrayList<>();
 
     /**
-     * this is a ArrayList of all records of Complexity 2
+     * this is a List of all records of Complexity 2
      */
-    private ArrayList<Record> recordsComplexity2 = new ArrayList<>();
+    private List<Record> recordsComplexity2 = new ArrayList<>();
 
     /**
-     * this is a ArrayList of all records of Complexity 3
+     * this is a List of all records of Complexity 3
      */
-    private ArrayList<Record> recordsComplexity3 = new ArrayList<>();
+    private List<Record> recordsComplexity3 = new ArrayList<>();
 
     /**
      * get the current complexity  the game.
@@ -36,12 +37,12 @@ public class ScoreBoard implements Serializable {
 
 
     /**
-     * Return return a ArrayList records which corresponding to the current game complexity.
+     * Return return a List records which corresponding to the current game complexity.
      *
      * @param complexity the complexity the game
-     * @return return a ArrayList which corresponding to the current game complexity.
+     * @return return a List which corresponding to the current game complexity.
      */
-    private ArrayList<Record> getComplexityRecords(int complexity) {
+    private List<Record> getComplexityRecords(int complexity) {
         if (complexity == 3) {
             return recordsComplexity1;
         }
@@ -54,7 +55,7 @@ public class ScoreBoard implements Serializable {
 
 
     /**
-     * Modify ArrayList records which corresponding to the current game complexity(add a record
+     * Modify List records which corresponding to the current game complexity(add a record
      * in it)
      *
      * @param record a record
@@ -63,9 +64,9 @@ public class ScoreBoard implements Serializable {
         int complexity = record.getComplexity();
         setComplexity(complexity);
 
-        // get the ArrayList records which corresponding to the current game
+        // get the List records which corresponding to the current game
         // complexity(add a record)
-        ArrayList<Record> currentRecords = getComplexityRecords(currComplexity);
+        List<Record> currentRecords = getComplexityRecords(currComplexity);
 
         // add or replace the record
         int temp = checkRecordIndex(record);
@@ -80,7 +81,7 @@ public class ScoreBoard implements Serializable {
 
 
     /**
-     * Modify and sorted the ArrayList records which corresponding to the current game complexity
+     * Modify and sorted the List records which corresponding to the current game complexity
      */
     private void sortRecords() {
         Collections.sort(getComplexityRecords(currComplexity));
@@ -88,13 +89,13 @@ public class ScoreBoard implements Serializable {
 
 
     /**
-     * Return a ArrayList that contains the top five record if possible
+     * Return a List that contains the top five record if possible
      *
-     * @return a ArrayList that contains the top five record if possible
+     * @return a List that contains the top five record if possible
      */
-    private ArrayList<Record> getTopFive() {
+    private List<Record> getTopFive() {
 
-        ArrayList<Record> result = new ArrayList<>();
+        List<Record> result = new ArrayList<>();
 
         int i = 1;
         while (i <= getComplexityRecords(currComplexity).size() && i <= 5) {
@@ -106,14 +107,14 @@ public class ScoreBoard implements Serializable {
 
 
     /**
-     * Return a ArrayList that contains the String type of the top five record if possible.
+     * Return a List that contains the String type of the top five record if possible.
      *
-     * @return Return a ArrayList that contains the String type of the top five record if possible,
+     * @return Return a List that contains the String type of the top five record if possible,
      * if not possible then show "Not enough users to get a fully rank" instead.
      */
-    ArrayList TopFiveToString() {
-        ArrayList<Record> topFive = getTopFive();
-        ArrayList<String> result = new ArrayList<>();
+    List TopFiveToString() {
+        List<Record> topFive = getTopFive();
+        List<String> result = new ArrayList<>();
 
         for (Record r : topFive) {
             result.add(r.recordToString());
@@ -133,14 +134,14 @@ public class ScoreBoard implements Serializable {
 
     /**
      * Return the index of the record's user's best record in the corresponding
-     * complexity records ArrayList.
+     * complexity records List.
      *
      * @param myRecord the current record.
      * @return the index of the record's user's best record in the corresponding
-     * complexity records ArrayList.
+     * complexity records List.
      */
     int getMyBestRank(Record myRecord) {
-        ArrayList<Record> records = getComplexityRecords(myRecord.getComplexity());
+        List<Record> records = getComplexityRecords(myRecord.getComplexity());
         int i = 1;
         int result = 0;
         for (Record r : records) {
@@ -154,15 +155,15 @@ public class ScoreBoard implements Serializable {
 
 
     /**
-     * Return -1 if the record is not in the corresponding complexity records ArrayList, or
+     * Return -1 if the record is not in the corresponding complexity records List, or
      * return the index of the record's user's record.
      *
      * @param record a record
-     * @return -1 if the record is not in the corresponding complexity records ArrayList, or
+     * @return -1 if the record is not in the corresponding complexity records List, or
      * return the index of the record's user's record.
      */
     private int checkRecordIndex(Record record) {
-        ArrayList<Record> tempRecord = getComplexityRecords(currComplexity);
+        List<Record> tempRecord = getComplexityRecords(currComplexity);
         for (Record r : tempRecord) {
             if (record.getUserName().equals(r.getUserName())) {
                 return tempRecord.indexOf(r);

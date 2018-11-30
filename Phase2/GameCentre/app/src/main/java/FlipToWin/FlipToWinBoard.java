@@ -41,14 +41,14 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
      */
     FlipToWinBoard(List<FlipToWinTile> tiles, int complexity) {
         super(complexity);
-        Iterator<FlipToWinTile> iter = tiles.iterator();
+        Iterator<FlipToWinTile> iterator = tiles.iterator();
         this.rowNum = getComplexity();
         this.colNum = getComplexity() + 1;
         this.tiles = new FlipToWinTile[this.rowNum][this.colNum];
 
         for (int row = 0; row != this.rowNum; row++) {
             for (int col = 0; col != this.colNum; col++) {
-                this.tiles[row][col] = iter.next();
+                this.tiles[row][col] = iterator.next();
             }
         }
     }
@@ -104,7 +104,7 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
 
     @Override
     public String toString() {
-        ArrayList<Integer> ids = new ArrayList<>();
+        List<Integer> ids = new ArrayList<>();
         for (FlipToWinTile[] tileList: tiles) {
             for (FlipToWinTile tile: tileList) {
                 ids.add(tile.getId());

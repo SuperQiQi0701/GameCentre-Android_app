@@ -2,13 +2,14 @@ package Basic;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserManager implements Serializable {
 
     /**
-     * An ArrayList that store all the users.
+     * An List that store all the users.
      */
-    private ArrayList<User> users = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
     /**
      * Return the user's name of the current user.
@@ -48,9 +49,9 @@ public class UserManager implements Serializable {
      * @param password the password of the current user.
      */
     void signUp(String username, String password) {
-        User tempuser = new User(username);
-        tempuser.setPassword(password);
-        users.add(tempuser);
+        User tempUser = new User(username);
+        tempUser.setPassword(password);
+        users.add(tempUser);
     }
 
     /**

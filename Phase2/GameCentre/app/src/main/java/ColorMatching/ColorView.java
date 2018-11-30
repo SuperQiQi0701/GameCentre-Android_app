@@ -12,7 +12,7 @@ class ColorView implements Serializable {
     /**
      * The view of this game.
      */
-    View view;
+    private View view;
 
     /**
      * The size of each color tile on canvas.
@@ -29,6 +29,22 @@ class ColorView implements Serializable {
      */
     ColorView(){
         colorBoardManager = new ColorBoardManager(5);
+    }
+
+    /**
+     * Get the view of this game.
+     * @return view of the game
+     */
+    public View getView() {
+        return view;
+    }
+
+    /**
+     * Set the view of the game
+     * @param view the new view of the game.
+     */
+    public void setView(View view) {
+        this.view = view;
     }
 
     /**

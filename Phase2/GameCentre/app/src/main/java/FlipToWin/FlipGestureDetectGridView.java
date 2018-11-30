@@ -17,7 +17,7 @@ import android.widget.GridView;
 public class FlipGestureDetectGridView extends GridView {
     public static final int SWIPE_MIN_DISTANCE = 100;
     private GestureDetector gDetector;
-    private FlipToWinMovementController mController;
+    private FlipToWinTapMessageView mController;
     private boolean mFlingConfirmed = false;
     private float mTouchX;
     private float mTouchY;
@@ -39,7 +39,7 @@ public class FlipGestureDetectGridView extends GridView {
 
 
     private void init(final Context context) {
-        mController = new FlipToWinMovementController();
+        mController = new FlipToWinTapMessageView();
         gDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
 
             @Override
