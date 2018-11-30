@@ -26,7 +26,7 @@ public class BoardManagerTest {
     @Before
     public void setUp() {
         DataManager.INSTANCE.setCurrentGameName("ST");
-        DataManager.INSTANCE.startNewGame(4);
+        DataManager.INSTANCE.startNewGame(5);
         this.boardManager = (BoardManager) DataManager.INSTANCE.getBoardManager();
         List<Tile> tiles = makeTiles(4);
         Board board = new Board(tiles, 4);

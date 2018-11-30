@@ -103,8 +103,6 @@ public class Tile extends MovableTile implements Comparable<Tile>, Serializable 
             case 25:
                 super.setBackground(R.drawable.tile_0);
                 break;
-            default:
-                super.setBackground(R.drawable.tile_0);
         }
     }
 
