@@ -150,7 +150,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
      * https://stackoverflow.com/questions/4743116/get-screen-width-and-height
      * This method is used to get the screen's width.
      */
-    private static int getScreenWidth(Context context){
+    private int getScreenWidth(Context context){
         WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         assert wm != null;
