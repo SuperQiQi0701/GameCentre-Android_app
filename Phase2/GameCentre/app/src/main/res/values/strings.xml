@@ -22,6 +22,7 @@
         the numbers in the correct order. If you undo, you got a penalty of adding 2 extra steps.
         The player who took lower steps has higher rank.</string>
     <string name="new_game_play">New Game</string>
+    <string name="scoreboard">ScoreBoard</string>
     <string name="load_game">Load saved Game</string>
     <string name="resume">resume</string>
     <string name="sliding_tiles">Sliding Tiles</string>
