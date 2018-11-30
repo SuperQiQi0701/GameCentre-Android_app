@@ -43,7 +43,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         CheckButton.setOnClickListener((v) -> {
             String name = account.getText().toString();
             String password = oldPassword.getText().toString();
-            if (this.userManager.login(name, password) == "") {
+            if ("".equals(this.userManager.login(name, password))) {
                 message.setTextColor(Color.RED);
                 if (this.userManager.checkUserNameValidity(name).equals("E-mail exist")) {
                     message.setText("Password Incorrect");
@@ -53,6 +53,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
             } else {
                 message.setTextColor(Color.GREEN);
                 message.setText("OK!");
+                this.checked_account = name;
             }
         });
     }
