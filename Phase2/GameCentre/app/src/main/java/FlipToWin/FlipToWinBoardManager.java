@@ -68,10 +68,10 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
      */
     @Override
     public boolean puzzleSolved() {
-        Iterator<FlipToWinTile> iter = this.board.iterator();
-        FlipToWinTile temp = iter.next();
-        while (iter.hasNext()) {
-            FlipToWinTile next = iter.next();
+        Iterator<FlipToWinTile> iterator = this.board.iterator();
+        FlipToWinTile temp = iterator.next();
+        while (iterator.hasNext()) {
+            FlipToWinTile next = iterator.next();
             if (!(temp.isPaired())) {
                 return false;
             }

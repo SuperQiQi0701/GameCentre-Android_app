@@ -134,10 +134,10 @@ public class BoardManager extends SuperManager implements Serializable{
      */
     @Override
     public boolean puzzleSolved() {
-        Iterator<Tile> iter = this.board.iterator();
-        Tile temp = iter.next();
-        while (iter.hasNext()) {
-            Tile next = iter.next();
+        Iterator<Tile> iterator = this.board.iterator();
+        Tile temp = iterator.next();
+        while (iterator.hasNext()) {
+            Tile next = iterator.next();
             if (temp.compareTo(next) < 0) {
                 return false;
             }
