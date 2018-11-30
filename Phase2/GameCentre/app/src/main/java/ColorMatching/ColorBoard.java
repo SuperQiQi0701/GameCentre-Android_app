@@ -36,14 +36,14 @@ public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Seria
      */
     ColorBoard(List<ColorTile> tiles, int complexity) {
         super(complexity);
-        Iterator<ColorTile> iter = tiles.iterator();
+        Iterator<ColorTile> iterate = tiles.iterator();
         this.rowNum = (getComplexity() - 2) * 4;
         this.colNum = (getComplexity() - 2) * 5;
 
         this.tiles = new ColorTile[this.rowNum][this.colNum];
         for (int row = 0; row != this.rowNum; row++) {
             for (int col = 0; col != this.colNum; col++) {
-                this.tiles[row][col] = iter.next();
+                this.tiles[row][col] = iterate.next();
             }
         }
     }
