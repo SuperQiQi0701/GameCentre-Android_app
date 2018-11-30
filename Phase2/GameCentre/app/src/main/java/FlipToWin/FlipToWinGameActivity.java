@@ -3,8 +3,8 @@ package FlipToWin;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,9 +15,9 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import Basic.CustomAdapter;
 import Basic.DataManager;
 import Basic.FileManager;
-import Basic.CustomAdapter;
 import Basic.StartingActivity;
 import fall2018.csc2017.slidingtiles.R;
 
