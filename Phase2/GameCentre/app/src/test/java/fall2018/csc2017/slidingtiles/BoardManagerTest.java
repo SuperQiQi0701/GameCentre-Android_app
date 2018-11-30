@@ -6,10 +6,11 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import Basic.DataManager;
-
 import static org.junit.Assert.*;
 
 /**
@@ -22,15 +23,39 @@ public class BoardManagerTest {
      */
     private BoardManager boardManager;
 
+    /**
+     * the board for testing.
+     */
+    private Board board;
+
+
+    /**
+     * return the <List> tiles and the ids are in a inorder.
+     * @return the <List> tiles and the ids are in a inorder
+     */
+    private List<Tile> setUpInOrderFlipToWinTiles() {
+        List<Tile> tiles = new ArrayList<>();
+        int numTiles = 5 * 5;
+        for (int tileNum = 0; tileNum != numTiles; tileNum++) {
+            tiles.add(new Tile(tileNum, 5));
+        }
+        return tiles;
+    }
 
     @Before
     public void setUp() {
         DataManager.INSTANCE.setCurrentGameName("ST");
+
+        //test if it is able to init all tiles in complexity 5
         DataManager.INSTANCE.startNewGame(5);
+
+        //test if it is able to init all tiles in complexity 5
+        DataManager.INSTANCE.startNewGame(3);
         this.boardManager = (BoardManager) DataManager.INSTANCE.getBoardManager();
         List<Tile> tiles = makeTiles();
+
         //reset the board to complexity 4
-        Board board = new Board(tiles, 4);
+        board = new Board(tiles, 4);
         boardManager = new BoardManager(4);
         boardManager.setBoard(board);
     }
@@ -69,6 +94,38 @@ public class BoardManagerTest {
 
         return newTiles;
     }
+
+    /**
+     * test if the board that the boardManager manage is a valid board.
+     */
+    @Test
+    public void testBoardToString() {
+
+        List<Tile> tiles = setUpInOrderFlipToWinTiles();
+        Board b = new Board(tiles, 5);
+        BoardManager bm1 = new BoardManager(b, 5);
+        BoardManager bm2 = new BoardManager(b, 5);
+
+        assertEquals(bm1.getBoard().toString(), bm2.getBoard().toString());
+    }
+
+    /**
+     * test the tiles of the board is iterable.
+     */
+    @Test
+    public void testBoardIterable() {
+        Iterator<Tile> iterator = board.iterator();
+        int i = 0;
+        while (i <= board.numGrids()) {
+            try {
+                iterator.next();
+            } catch (NoSuchElementException e){
+                System.out.println("No more FlipToWinTiles.");
+            }
+            i ++;
+        }
+    }
+
 
     /**
      * Shuffle a few tiles.

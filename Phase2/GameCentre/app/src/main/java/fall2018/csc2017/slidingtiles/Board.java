@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -102,8 +102,14 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
 
     @Override
     public String toString() {
-        return "Board{" +
-                "tiles=" + Arrays.toString(tiles) +
+        List<Integer> ids = new ArrayList<>();
+        for (Tile[] tileList: tiles) {
+            for (Tile tile: tileList) {
+                ids.add(tile.getId());
+            }
+        }
+        return "FlipToWinBoard{" +
+                "tiles=" + ids +
                 '}';
     }
 

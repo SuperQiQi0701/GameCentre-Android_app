@@ -157,7 +157,7 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
     }
 
     /**
-     * flip the two tiles which are all faced up and not paired, and set the flipping status to false
+     * helper method, flip the two tiles which are all faced up and not paired, and set the flipping status to false
      * @param rowTileOne row of the tile one
      * @param colTileOne col of the tile one
      * @param row row of the tile two
@@ -173,7 +173,7 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
 
 
     /**
-     * set up before flip the two tiles
+     * helper method, set up before flip the two tiles
      * @param row row of the tile
      * @param col col of the tile
      */

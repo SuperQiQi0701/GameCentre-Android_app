@@ -26,6 +26,16 @@ public class BoardManager extends SuperManager implements Serializable, Undoable
     private List<int[]> previousMoves;
 
     /**
+     * Manage a board that has been pre-populated.
+     * @param board the board
+     * @param complexity the complexity of the game
+     */
+    public BoardManager(Board board, int complexity) {
+        super(complexity);
+        this.board = board;
+    }
+
+    /**
      * Manage a new shuffled board.
      */
     public BoardManager(int complexity) {
