@@ -2,8 +2,6 @@ package fall2018.csc2017.slidingtiles;
 
 import android.support.annotation.NonNull;
 
-import java.util.Observable;
-
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;

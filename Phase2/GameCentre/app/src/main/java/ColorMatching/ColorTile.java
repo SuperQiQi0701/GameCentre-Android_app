@@ -21,7 +21,7 @@ public class ColorTile implements Serializable {
      * Get the x position of ColorTile.
      * @return x, which is the x position of ColorTile.
      */
-    public int getX() {
+    int getX() {
         return x;
     }
 
@@ -29,7 +29,7 @@ public class ColorTile implements Serializable {
      * Get the y position of ColorTile.
      * @return y, which is the y position of ColorTile.
      */
-    public int getY() {
+    int getY() {
         return y;
     }
 

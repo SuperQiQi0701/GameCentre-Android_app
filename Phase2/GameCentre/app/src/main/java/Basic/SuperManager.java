@@ -55,7 +55,7 @@ public abstract class SuperManager implements Serializable {
      * add score by num.
      * @param num the num
      */
-    public void addScoreBy(int num)
+    protected void addScoreBy(int num)
     {
         this.score += num;
     }

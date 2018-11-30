@@ -20,7 +20,7 @@ public class FileManager {
      * @param object      the object that will be saved
      * @param type        the type of the object.
      */
-    public static void saveToFile(Context fileContext, Object object, String type) {
+    static void saveToFile(Context fileContext, Object object, String type) {
         try {
             String fileName;
             if ("UM".equals(type)) {
@@ -65,7 +65,7 @@ public class FileManager {
      * @param fileContext this.getApplicationContext()
      * @return the scoreBoard that loaded from file
      */
-    public static ScoreBoard loadScoreBoard(Context fileContext) {
+    static ScoreBoard loadScoreBoard(Context fileContext) {
         try {
             String fileName = DataManager.INSTANCE.getCurrentGameName() + "_ScoreBoard.ser";
             InputStream inputStream = fileContext.openFileInput(fileName);
@@ -106,7 +106,7 @@ public class FileManager {
      * @param fileContext this.getApplicationContext()
      * @param fileName    the file that will be load
      */
-    public static void loadGame(Context fileContext, String fileName) {
+    static void loadGame(Context fileContext, String fileName) {
         try {
             InputStream inputStream = fileContext.openFileInput(fileName);
             if (inputStream != null) {
