@@ -122,7 +122,7 @@ public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Seria
 
     @Override
     public String toString() {
-        return "FlipToWinBoard{" +
+        return "ColorBoard{" +
                 "tiles=" + Arrays.toString(tiles) +
                 '}';
     }
