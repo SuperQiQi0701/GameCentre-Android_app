@@ -75,14 +75,15 @@ public class BoardManager extends SuperManager implements Serializable{
      * @return the number of rows counting from bottom that the blank is on.
      */
     private int findBlank(List<Tile> tiles, int complexity){
+        int blank = 0;
         for (int row = complexity - 1; row >= 0; row--){
             for (int col = complexity - 1; col >= 0; col--){
                 if (tiles.get(row * complexity + col).getId() == tiles.size()){
-                    return complexity - row;
+                    blank = complexity - row;
                 }
             }
         }
-        return 0;
+        return blank;
     }
 
 
