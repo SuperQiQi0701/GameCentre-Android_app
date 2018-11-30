@@ -5,6 +5,9 @@ import android.graphics.Color;
 import java.io.Serializable;
 import java.util.Random;
 
+/**
+ * This class create a ColorTile object
+ */
 public class ColorTile implements Serializable {
 
     /**
@@ -18,22 +21,6 @@ public class ColorTile implements Serializable {
     private int y;
 
     /**
-     * Get the x position of ColorTile.
-     * @return x, which is the x position of ColorTile.
-     */
-    int getX() {
-        return x;
-    }
-
-    /**
-     * Get the y position of ColorTile.
-     * @return y, which is the y position of ColorTile.
-     */
-    int getY() {
-        return y;
-    }
-
-    /**
      * The color of the current Tile.
      */
     private int currColor;
@@ -44,9 +31,34 @@ public class ColorTile implements Serializable {
      * @param x the x position of Tile.
      * @param y the y position of Tile.
      */
-    ColorTile(int x, int y){
+    ColorTile(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    /**
+     * Get the x position of ColorTile.
+     *
+     * @return x, which is the x position of ColorTile.
+     */
+    int getX() {
+        return x;
+    }
+
+    /**
+     * Get the y position of ColorTile.
+     *
+     * @return y, which is the y position of ColorTile.
+     */
+    int getY() {
+        return y;
+    }
+
+    /**
+     * Get the current Tile's color.
+     */
+    public int getColor() {
+        return this.currColor;
     }
 
     /**
@@ -54,26 +66,19 @@ public class ColorTile implements Serializable {
      *
      * @param color the color to be set to the current Tile.
      */
-    public void setColor(int color){
+    public void setColor(int color) {
         this.currColor = color;
-    }
-
-    /**
-     * Get the current Tile's color.
-     */
-    public int getColor(){
-        return this.currColor;
     }
 
     /**
      * Set the current Tile's color to a random color from 5 colors.
      */
-    int randomColor(){
+    int randomColor() {
         Random random = new Random();
         int color = random.nextInt(5);
-        switch(color){
+        switch (color) {
             case 0:
-                color =  Color.RED;
+                color = Color.RED;
                 break;
             case 1:
                 color = Color.GREEN;

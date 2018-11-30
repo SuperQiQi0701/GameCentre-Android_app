@@ -11,7 +11,10 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import Basic.DataManager;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Test BoardManager class.
@@ -31,6 +34,7 @@ public class BoardManagerTest {
 
     /**
      * return the <List> tiles and the ids are in a inorder.
+     *
      * @return the <List> tiles and the ids are in a inorder
      */
     private List<Tile> setUpInOrderFlipToWinTiles() {
@@ -119,10 +123,10 @@ public class BoardManagerTest {
         while (i <= board.numGrids()) {
             try {
                 iterator.next();
-            } catch (NoSuchElementException e){
+            } catch (NoSuchElementException e) {
                 System.out.println("No more FlipToWinTiles.");
             }
-            i ++;
+            i++;
         }
     }
 

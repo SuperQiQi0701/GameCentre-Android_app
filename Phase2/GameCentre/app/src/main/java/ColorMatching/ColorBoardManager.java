@@ -8,6 +8,9 @@ import java.util.Objects;
 import Basic.SuperManager;
 import Basic.Undoable;
 
+/**
+ * This is a ColorBoardManager that will manage the ColorBoard
+ */
 public class ColorBoardManager extends SuperManager implements Serializable, Undoable {
 
     /**
@@ -72,11 +75,11 @@ public class ColorBoardManager extends SuperManager implements Serializable, Und
      * @param initColor the Color which are the same as the color of ColorTile(0, 0)
      * @param direction the direction of neighbour being checked.
      */
-    private void helpFindNeighbour(List arr, ColorTile tile, int initColor, String direction ){
-        if(colorBoard.getNeighbour(tile, direction)!= null
+    private void helpFindNeighbour(List arr, ColorTile tile, int initColor, String direction) {
+        if (colorBoard.getNeighbour(tile, direction) != null
                 && Objects.requireNonNull(colorBoard.getNeighbour(tile, direction)).getColor() ==
-                initColor && ! allState.contains(colorBoard.getNeighbour(tile, direction)) &&
-                ! arr.contains(colorBoard.getNeighbour(tile, direction)) ){
+                initColor && !allState.contains(colorBoard.getNeighbour(tile, direction)) &&
+                !arr.contains(colorBoard.getNeighbour(tile, direction))) {
             allState.add(colorBoard.getNeighbour(tile, direction));
         }
     }
@@ -85,10 +88,10 @@ public class ColorBoardManager extends SuperManager implements Serializable, Und
      * Add color tiles which are the neighbour at all directions of the specific ColorTile
      * tile and have color initColor.
      *
-     * @param tile the ColorTile whose neighbours are being checked.
+     * @param tile      the ColorTile whose neighbours are being checked.
      * @param initColor the Color which are the same as the color of ColorTile(0, 0)
      */
-    private void neighbour(List arr, ColorTile tile, int initColor){
+    private void neighbour(List arr, ColorTile tile, int initColor) {
         helpFindNeighbour(arr, tile, initColor, "top");
         helpFindNeighbour(arr, tile, initColor, "bottom");
         helpFindNeighbour(arr, tile, initColor, "right");
@@ -105,17 +108,17 @@ public class ColorBoardManager extends SuperManager implements Serializable, Und
     @Override
     public void makeChange(int newColor) {
         allState = new ArrayList<>();
-        List<ColorTile> arr =  new ArrayList<>();
+        List<ColorTile> arr = new ArrayList<>();
         ColorTile tile = colorBoard.getGrid(0, 0);
         int initColor = tile.getColor();
         // if newColor is the different as the color of (0,0) colorTile
-        if (newColor != initColor){
+        if (newColor != initColor) {
             tile.setColor(newColor);
             arr.add(tile);
             neighbour(arr, tile, initColor);
             //if any of tile's neighbours has the same color, then continue on checking the neighbours
             //of the current neighbours.
-            while(allState.size() != 0){
+            while (allState.size() != 0) {
                 tile = allState.get(0);
                 neighbour(arr, tile, initColor);
                 tile.setColor(newColor);
@@ -126,7 +129,7 @@ public class ColorBoardManager extends SuperManager implements Serializable, Und
             colors.add(initColor);
         }
         // if newColor is the same as the color of (0,0) colorTile
-        else{
+        else {
             arr.add(tile);
             neighbour(arr, tile, initColor);
             allMove.add(arr);
@@ -140,18 +143,18 @@ public class ColorBoardManager extends SuperManager implements Serializable, Und
      *
      * @return true if the undo function is available
      */
-    public boolean undoAvailable(){
+    public boolean undoAvailable() {
         return (this.allMove.size() >= 1);
     }
 
     /**
      * Undo the previous move
      */
-    public void undo(){
-        if(undoAvailable()){
-            List<ColorTile> whatever = allMove.remove(allMove.size()-1);
-            int color = colors.remove(colors.size()-1);
-            for(ColorTile cur: whatever){
+    public void undo() {
+        if (undoAvailable()) {
+            List<ColorTile> whatever = allMove.remove(allMove.size() - 1);
+            int color = colors.remove(colors.size() - 1);
+            for (ColorTile cur : whatever) {
                 cur.setColor(color);
             }
         }
@@ -163,15 +166,16 @@ public class ColorBoardManager extends SuperManager implements Serializable, Und
      *
      * @return the current ColorBoard.
      */
-    public ColorBoard getBoard(){
+    public ColorBoard getBoard() {
         return colorBoard;
     }
 
     /**
      * Set colorBoard to colorBoard.
+     *
      * @param colorBoard the colorBoard of this colorBoardManager.
      */
-    void setColorBoard(ColorBoard colorBoard){
+    void setColorBoard(ColorBoard colorBoard) {
         this.colorBoard = colorBoard;
     }
 
@@ -185,7 +189,7 @@ public class ColorBoardManager extends SuperManager implements Serializable, Und
         boolean result = true;
         for (int x = 0; x < colorBoard.getTiles().length; x++) {
             for (int y = 0; y < colorBoard.getTiles()[x].length; y++) {
-                if (colorBoard.getGrid(x, y).getColor() != colorBoard.getGrid(0, 0).getColor()){
+                if (colorBoard.getGrid(x, y).getColor() != colorBoard.getGrid(0, 0).getColor()) {
                     result = false;
                 }
             }

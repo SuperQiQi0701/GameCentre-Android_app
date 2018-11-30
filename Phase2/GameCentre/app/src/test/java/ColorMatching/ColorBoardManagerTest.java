@@ -10,33 +10,39 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Test ColorBoardManager class.
  */
 public class ColorBoardManagerTest {
 
-    /** The color board manager for testing. */
+    /**
+     * The color board manager for testing.
+     */
     private ColorBoardManager colorBoardManager;
 
-    /** The complexity of board at level 1 */
+    /**
+     * The complexity of board at level 1
+     */
     private int complexity1 = 3;
 
     /**
      * Make a random colorBoard.
      */
     @Before
-    public void setUpCorrect(){
+    public void setUpCorrect() {
         colorBoardManager = new ColorBoardManager(complexity1);
     }
 
     /**
      * Make a set of colorTiles that are in order.
+     *
      * @return a set of colorTiles that are in order
      */
-    private List<ColorTile> makeSameColorTiles(){
+    private List<ColorTile> makeSameColorTiles() {
         List<ColorTile> tiles = new ArrayList<>();
         int rowNum = (complexity1 - 2) * 4;
         int colNum = (complexity1 - 2) * 5;
@@ -54,7 +60,7 @@ public class ColorBoardManagerTest {
      * Make a solved colorBoard.
      */
     @Before
-    public void setUpSameColor(){
+    public void setUpSameColor() {
         List<ColorTile> tiles = makeSameColorTiles();
         ColorBoard colorBoard = new ColorBoard(tiles, complexity1);
         colorBoardManager = new ColorBoardManager(complexity1);
@@ -93,7 +99,7 @@ public class ColorBoardManagerTest {
         setUpSameColor();
         String previous = colorBoardManager.getBoard().toString();
         colorBoardManager.makeChange(-65536);
-        assertEquals(previous,colorBoardManager.getBoard().toString());
+        assertEquals(previous, colorBoardManager.getBoard().toString());
         colorBoardManager.makeChange(-16711936);
         assertEquals(2, colorBoardManager.getScore());
     }
@@ -162,7 +168,7 @@ public class ColorBoardManagerTest {
             } catch (NoSuchElementException e) {
                 System.out.println("No more ColorTiles.");
             }
-            i ++;
+            i++;
         }
     }
 
@@ -170,7 +176,7 @@ public class ColorBoardManagerTest {
      * Check whether the colorBoard can getRowNum correctly.
      */
     @Test
-    public void testColorBoardGetRowNum(){
+    public void testColorBoardGetRowNum() {
         setUpCorrect();
         int expectRowNum = (complexity1 - 2) * 4;
         assertEquals(expectRowNum, colorBoardManager.getBoard().getRowNum());
@@ -180,7 +186,7 @@ public class ColorBoardManagerTest {
      * Check whether the colorBoard can getColNum correctly.
      */
     @Test
-    public void testColorBoardGetColNum(){
+    public void testColorBoardGetColNum() {
         setUpCorrect();
         int expectColNum = (complexity1 - 2) * 5;
         assertEquals(expectColNum, colorBoardManager.getBoard().getColNum());

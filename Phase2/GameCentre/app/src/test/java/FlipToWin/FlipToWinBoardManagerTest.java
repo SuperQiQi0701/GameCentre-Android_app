@@ -12,8 +12,13 @@ import java.util.NoSuchElementException;
 import Basic.DataManager;
 import fall2018.csc2017.slidingtiles.R;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+/**
+ * Test the FlipToWinBoardManager class
+ */
 public class FlipToWinBoardManagerTest {
 
 
@@ -29,6 +34,7 @@ public class FlipToWinBoardManagerTest {
 
     /**
      * return the <List> tiles and the ids are in a inorder.
+     *
      * @return the <List> tiles and the ids are in a inorder
      */
     private List<FlipToWinTile> setUpInOrderFlipToWinTiles() {
@@ -55,7 +61,7 @@ public class FlipToWinBoardManagerTest {
      */
     private void setUpPaired() {
         FlipToWinBoard board = (FlipToWinBoard) boardManager.getBoard();
-        for (FlipToWinTile tile: board) {
+        for (FlipToWinTile tile : board) {
             tile.setPaired();
         }
     }
@@ -114,7 +120,7 @@ public class FlipToWinBoardManagerTest {
     @Test
     public void testBoardTilesBackground() {
 
-        for (FlipToWinTile tile: board) {
+        for (FlipToWinTile tile : board) {
             assertEquals(tile.getBackground(), R.drawable.back_of_tile4);
         }
     }
@@ -138,10 +144,10 @@ public class FlipToWinBoardManagerTest {
         while (i <= board.numGrids()) {
             try {
                 iterator.next();
-            } catch (NoSuchElementException e){
+            } catch (NoSuchElementException e) {
                 System.out.println("No more FlipToWinTiles.");
             }
-            i ++;
+            i++;
         }
     }
 
