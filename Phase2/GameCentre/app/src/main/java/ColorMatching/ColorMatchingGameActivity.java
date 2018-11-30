@@ -26,28 +26,23 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     /**
      * The width and height of the game board.
      */
-    int width, height;
+    private int width, height;
 
     /**
      * The view of this ColorView.
      */
     @SuppressLint("StaticFieldLeak")
-    static ColorView colorView;
-
-    /**
-     * The complexity of the current game.
-     */
-    int complexity;
+    private static ColorView colorView;
 
     /**
      * The color buttons to display.
      */
-    int[] color_button = {R.id.red, R.id.yellow, R.id.blue, R.id.green, R.id.grey};
+    private int[] color_button = {R.id.red, R.id.yellow, R.id.blue, R.id.green, R.id.grey};
 
     /**
      * The colors to display.
      */
-    int[] colors = {Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.GRAY};
+    private int[] colors = {Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.GRAY};
 
     /**
      * Return the view of this ColorView.
@@ -89,14 +84,14 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
      * Set the view for this game, and draw lines and color tiles on the canvas.
      */
     private void draw(){
-        colorView.view = new View(this) {
+        colorView.setView(new View(this){
             protected void onDraw(Canvas canvas) {
                 setUpTiles(canvas);
                 colorView.drawLine(canvas);
             }
-        };
-        colorView.view.setLayoutParams(new FrameLayout.LayoutParams(width,height));
-        colorView.view.setBackgroundColor(0x10000000);
+        });
+        colorView.getView().setLayoutParams(new FrameLayout.LayoutParams(width,height));
+        colorView.getView().setBackgroundColor(0x10000000);
         addScoreTextViewListener();
     }
 
@@ -120,7 +115,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
      * complexity and tiles' size on canvas.
      */
     private void initData(){
-        complexity = DataManager.INSTANCE.getBoardManager().getComplexity();
+//        int complexity = DataManager.INSTANCE.getBoardManager().getComplexity();
         int width = getScreenWidth(this);
         this.width = width;
         height = width * 5 / 4;
@@ -134,7 +129,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     private void initView(){
         FrameLayout layoutGame = findViewById(R.id.layoutGame);
         draw();
-        layoutGame.addView(colorView.view); }
+        layoutGame.addView(colorView.getView()); }
 
     /**
      * Adapted from:
@@ -159,7 +154,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
             ColorBoardManager boardManager = (ColorBoardManager) DataManager.INSTANCE.getBoardManager();
             if (boardManager.undoAvailable()) {
                 boardManager.undo();
-                colorView.view.invalidate();
+                colorView.getView().invalidate();
 
                 makeToastUndoSuccessText();
             }
@@ -220,7 +215,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         Button colorButton = findViewById(color_button[color]);
         colorButton.setOnClickListener((v) -> {
             DataManager.INSTANCE.getBoardManager().makeChange(colors[color]);
-            colorView.view.invalidate();
+            colorView.getView().invalidate();
             addScoreTextViewListener();
             checkWin();
         });
