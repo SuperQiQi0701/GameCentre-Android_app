@@ -25,10 +25,6 @@ public class ScoreBoardTest {
 
         // Add some record with complexity 3
         DataManager.INSTANCE.setCurrentUserName("@u1");
-        DataManager.INSTANCE.setCurrentGameName("ST");
-        DataManager.INSTANCE.startNewGame(4);
-        DataManager.INSTANCE.setCurrentGameName("FTW");
-        DataManager.INSTANCE.startNewGame(5);
         DataManager.INSTANCE.setCurrentGameName("CM");
         DataManager.INSTANCE.startNewGame(5);
         DataManager.INSTANCE.setCurrentGameName("ST");
