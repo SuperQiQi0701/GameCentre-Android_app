@@ -117,15 +117,6 @@ public class ScoreBoardActivity extends AppCompatActivity {
         } else {
             finish();
             Intent temp = new Intent(this, StartingActivity.class);
-
-            Intent preIntent = getIntent();
-            Bundle bundle = preIntent.getExtras();
-            if (bundle != null) {
-                temp.putExtra("currGameName", bundle.getString("currGameName"));
-
-                System.out.println("put extra successfully in ScoreBoardActivity");
-
-            }
             startActivity(temp);
         }
     }
