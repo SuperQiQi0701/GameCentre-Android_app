@@ -1,8 +1,5 @@
 package Basic;
 
-import ColorMatching.ColorBoardManager;
-import FlipToWin.FlipToWinBoardManager;
-import fall2018.csc2017.slidingtiles.BoardManager;
 
 public enum DataManager {
     INSTANCE;
@@ -85,16 +82,5 @@ public enum DataManager {
     public void startNewGame(int complexity) {
         ManagerFactory managerFactory = new ManagerFactory();
         this.boardManager = managerFactory.getManager(currentGameName, complexity);
-        /*switch (currentGameName) {
-            case "ST":
-                this.boardManager = new BoardManager(complexity);
-                break;
-            case "CM":
-                this.boardManager = new ColorBoardManager(complexity);
-                break;
-            case "FTW":
-                this.boardManager = new FlipToWinBoardManager(complexity);
-                break;
-        }*/
     }
 }
