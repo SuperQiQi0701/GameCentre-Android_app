@@ -31,7 +31,8 @@
     <string name="level_3">Level 3</string>
     <string name="undo">Undo</string>
     <string name="flip_to_win">Flip To Win</string>
-    <string name="savegame">savegame</string>
+    <string name="color_matching">Color Matching</string>
+    <string name="save_game">Save Game</string>
 
 
 </resources>
