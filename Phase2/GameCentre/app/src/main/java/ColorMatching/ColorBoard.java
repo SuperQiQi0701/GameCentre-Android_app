@@ -27,8 +27,15 @@ public class ColorBoard extends SuperBoard implements Iterable<ColorTile>, Seria
      */
     private int colNum;
 
-    static final int rowRatio = 4;
-    static final int colRatio = 5;
+    /**
+     * The row ratio of this ColorBoard.
+     */
+    private static final int rowRatio = 4;
+
+    /**
+     * The column ratio of this ColorBoard.
+     */
+    private static final int colRatio = 5;
 
     /**
      * A new ColorBoard of tiles in row-major order.
