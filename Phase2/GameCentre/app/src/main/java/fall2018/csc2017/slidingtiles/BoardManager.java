@@ -20,9 +20,9 @@ public class BoardManager extends SuperManager implements Serializable{
     private Board board;
 
     /**
-     * An ArrayList that store all the previous moves for undo function.
+     * An List that store all the previous moves for undo function.
      */
-    private ArrayList<int[]> previousMoves;
+    private List<int[]> previousMoves;
 
     /**
      * Manage a new shuffled board.

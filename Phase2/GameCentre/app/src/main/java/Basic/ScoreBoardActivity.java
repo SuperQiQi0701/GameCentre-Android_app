@@ -5,8 +5,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-
-import java.util.ArrayList;
+import java.util.List;
 
 
 import fall2018.csc2017.slidingtiles.R;
@@ -59,7 +58,7 @@ public class ScoreBoardActivity extends AppCompatActivity {
         myTextView.setTextColor(Color.RED);
 
         //set the TextView for the first five record.
-        ArrayList topFive = scoreBoard.TopFiveToString();
+        List topFive = scoreBoard.TopFiveToString();
 
         TextView no1TextView = findViewById(R.id.no1Record);
         no1TextView.setText((String) topFive.get(0));

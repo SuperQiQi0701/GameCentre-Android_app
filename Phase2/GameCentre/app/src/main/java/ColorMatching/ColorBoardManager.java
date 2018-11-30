@@ -15,19 +15,19 @@ public class ColorBoardManager extends SuperManager implements Serializable{
     private ColorBoard colorBoard;
 
     /**
-     * The arrayList of arrayList of all color tiles being changed.
+     * The List of List of all color tiles being changed.
      */
-    private ArrayList<ArrayList<ColorTile>> allMove;
+    private List<List<ColorTile>> allMove;
 
     /**
-     * The arrayList of all colors being set before.
+     * The List of all colors being set before.
      */
-    private ArrayList<Integer> colors;
+    private List<Integer> colors;
 
     /**
-     * A temporary arrayList used for record which color tiles has been set colors for each time doing color change.
+     * A temporary List used for record which color tiles has been set colors for each time doing color change.
      */
-    private ArrayList<ColorTile> allState;
+    private List<ColorTile> allState;
 
 
     /**
@@ -62,7 +62,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
      * @param initColor the Color which are the same as the color of ColorTile(0, 0)
      * @param direction the direction of neighbour being checked.
      */
-    private void helpFindNeighbour(ArrayList arr, ColorTile tile, int initColor, String direction ){
+    private void helpFindNeighbour(List arr, ColorTile tile, int initColor, String direction ){
         if(colorBoard.getNeighbour(tile, direction)!= null
                 && Objects.requireNonNull(colorBoard.getNeighbour(tile, direction)).getColor() ==
                 initColor && ! allState.contains(colorBoard.getNeighbour(tile, direction)) &&
@@ -78,7 +78,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
      * @param tile the ColorTile whose neighbours are being checked.
      * @param initColor the Color which are the same as the color of ColorTile(0, 0)
      */
-    private void neighbour(ArrayList arr, ColorTile tile, int initColor){
+    private void neighbour(List arr, ColorTile tile, int initColor){
         helpFindNeighbour(arr, tile, initColor, "top");
         helpFindNeighbour(arr, tile, initColor, "bottom");
         helpFindNeighbour(arr, tile, initColor, "right");
@@ -95,7 +95,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
     @Override
     public void makeChange(int newColor) {
         allState = new ArrayList<>();
-        ArrayList<ColorTile> arr =  new ArrayList<>();
+        List<ColorTile> arr =  new ArrayList<>();
         ColorTile tile = colorBoard.getGrid(0, 0);
         int initColor = tile.getColor();
         if (newColor != initColor){
@@ -137,7 +137,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
      */
     void undo(){
         if(undoAvailable()){
-            ArrayList<ColorTile> whatever = allMove.remove(allMove.size()-1);
+            List<ColorTile> whatever = allMove.remove(allMove.size()-1);
             int color = colors.remove(colors.size()-1);
             for(ColorTile cur: whatever){
                 cur.setColor(color);
