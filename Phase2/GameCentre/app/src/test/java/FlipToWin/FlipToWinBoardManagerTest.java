@@ -93,13 +93,12 @@ public class FlipToWinBoardManagerTest {
 
     @Test
     public void testBoardIterable() {
-        Iterator<FlipToWinTile> iter = board.iterator();
+        Iterator<FlipToWinTile> iterator = board.iterator();
         int i = 0;
         while (i <= board.numGrids()) {
             try {
-                FlipToWinTile temp = iter.next();
+                iterator.next();
             } catch (NoSuchElementException e) {}
-
             i ++;
         }
     }
