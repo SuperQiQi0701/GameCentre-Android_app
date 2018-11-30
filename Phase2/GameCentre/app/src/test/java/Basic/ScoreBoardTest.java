@@ -18,6 +18,9 @@ public class ScoreBoardTest {
      */
     private ScoreBoard scoreBoard;
 
+    /**
+     * set up the environment for testing
+     */
     @Before
     public void setUp() {
         this.scoreBoard = new ScoreBoard();
@@ -38,6 +41,9 @@ public class ScoreBoardTest {
         this.scoreBoard.addNewRecords(new Record(3, 15, "@u3", "ST"));
     }
 
+    /**
+     * clean up the environment after testing
+     */
     @After
     public void tearDown() {
         this.scoreBoard = null;
@@ -47,7 +53,7 @@ public class ScoreBoardTest {
      * This is a test for SoreBoard.topFiveToString()
      */
     @Test
-    public void topFiveToString() {
+    public void testTopFiveToString() {
         // Complexity 5 -> no record
         this.scoreBoard.setComplexity(5);
         List result = this.scoreBoard.TopFiveToString();
@@ -77,7 +83,7 @@ public class ScoreBoardTest {
      * This is a test for SoreBoard.getMyBestRank()
      */
     @Test
-    public void getMyBestRank() {
+    public void testGetMyBestRank() {
         int result1 = this.scoreBoard.getMyBestRank(new Record(4, 5, "@u1", "ST"));
         assertEquals(1, result1);
         int result2 = this.scoreBoard.getMyBestRank(new Record(3, 15, "@u3", "ST"));

@@ -32,7 +32,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
      * The view of this ColorView.
      */
     @SuppressLint("StaticFieldLeak")
-    private static ColorView colorView;
+    private ColorView colorView;
 
     /**
      * Total number of Button.
@@ -64,7 +64,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
      *
      * @return the view of this ColorView.
      */
-    public static ColorView getColorView(){
+    public ColorView getColorView(){
         return colorView;
     }
 
@@ -120,7 +120,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         for (int row = 0; row < board.getRowNum(); row++) {
             for (int col = 0; col < board.getColNum(); col++) {
                 int color = board.getGrid(row, col).getColor();
-                ColorMatchingGameActivity.getColorView().drawBox(canvas, color, row, col);
+                getColorView().drawBox(canvas, color, row, col);
             }
         }
     }
@@ -130,7 +130,6 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
      * complexity and tiles' size on canvas.
      */
     private void initData(){
-//        int complexity = DataManager.INSTANCE.getBoardManager().getComplexity();
         int width = getScreenWidth(this);
         this.width = width;
         height = width * colRatio / rowRatio;
@@ -151,7 +150,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
      * https://stackoverflow.com/questions/4743116/get-screen-width-and-height
      * This method is used to get the screen's width.
      */
-    private static int getScreenWidth(Context context){
+    private int getScreenWidth(Context context){
         WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         assert wm != null;
