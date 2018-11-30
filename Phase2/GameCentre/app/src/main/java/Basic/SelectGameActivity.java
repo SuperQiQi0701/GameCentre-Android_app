@@ -3,8 +3,8 @@ package Basic;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -17,9 +17,12 @@ public class SelectGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_game);
-        addGameListener(R.id.enter_sliding_button, Color.MAGENTA, Color.YELLOW ,"ST");
-        addGameListener(R.id.enter_colorMatching_button, Color.YELLOW, Color.BLACK ,"CM");
-        addGameListener(R.id.enter_flipToTile_button, Color.CYAN, Color.RED ,"FTW");
+        addGameListener(R.id.enter_sliding_button, Color.MAGENTA, Color.YELLOW, "ST");
+        addGameListener(R.id.enter_colormatching_button, Color.YELLOW, Color.BLACK, "CM");
+        addGameListener(R.id.enter_flipToTile_button, Color.CYAN, Color.RED, "FTW");
+        addGameListener(R.id.enter_sliding_button, Color.MAGENTA, Color.YELLOW, "ST");
+        addGameListener(R.id.enter_colorMatching_button, Color.YELLOW, Color.BLACK, "CM");
+        addGameListener(R.id.enter_flipToTile_button, Color.CYAN, Color.RED, "FTW");
     }
 
     @SuppressLint("SetTextI18n")
@@ -36,7 +39,7 @@ public class SelectGameActivity extends AppCompatActivity {
     /**
      * Activate the Game button.
      */
-    private void addGameListener(int button, int backgroundColor, int textColor, String game){
+    private void addGameListener(int button, int backgroundColor, int textColor, String game) {
         Button mSliding = findViewById(button);
         mSliding.setBackgroundColor(backgroundColor);
         mSliding.setTextColor(textColor);

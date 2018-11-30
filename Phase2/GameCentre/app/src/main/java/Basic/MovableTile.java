@@ -2,6 +2,9 @@ package Basic;
 
 import java.io.Serializable;
 
+/**
+ * This is a super class for all Tile class
+ */
 public abstract class MovableTile implements Serializable {
 
     /**

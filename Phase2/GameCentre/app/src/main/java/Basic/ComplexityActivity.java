@@ -3,8 +3,8 @@ package Basic;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -13,6 +13,9 @@ import FlipToWin.FlipToWinGameActivity;
 import fall2018.csc2017.slidingtiles.GameActivity;
 import fall2018.csc2017.slidingtiles.R;
 
+/**
+ * This class is reasonable for the complexity select page
+ */
 public class ComplexityActivity extends AppCompatActivity {
 
 
@@ -59,6 +62,7 @@ public class ComplexityActivity extends AppCompatActivity {
 
     /**
      * set up game by the complexity
+     *
      * @param complexity the complexity of the game
      */
     private void setUpGame(int complexity) {
