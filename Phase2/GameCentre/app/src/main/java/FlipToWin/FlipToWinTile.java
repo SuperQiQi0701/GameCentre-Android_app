@@ -67,7 +67,6 @@ public class FlipToWinTile extends MovableTile implements Serializable {
      * flip the tile.
      */
     void setFlipped() {
-
         this.facedUp = !(this.facedUp);
     }
 
@@ -75,7 +74,7 @@ public class FlipToWinTile extends MovableTile implements Serializable {
      * return true iff tile is faced up
      * @return true iff tile is faced up
      */
-    boolean facedUpStatus() {
+    boolean isFacedUp() {
         return facedUp;
     }
 
@@ -83,7 +82,6 @@ public class FlipToWinTile extends MovableTile implements Serializable {
      * set the tile to be paired.
      */
     void setPaired() {
-
         this.paired = true;
     }
 
@@ -93,7 +91,6 @@ public class FlipToWinTile extends MovableTile implements Serializable {
      * @return true iff the tile is paired
      */
     boolean isPaired() {
-
         return (this.paired);
     }
 }

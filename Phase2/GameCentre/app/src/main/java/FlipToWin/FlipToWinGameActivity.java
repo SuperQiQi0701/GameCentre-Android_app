@@ -99,7 +99,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
             FlipToWinTile tile = board.getGrid(row, col);
 
             // showing the background
-            if (!(tile.facedUpStatus())) {
+            if (!(tile.isFacedUp())) {
                 b.setBackgroundResource(tile.getBackground());
                 b.setText("");
             }
