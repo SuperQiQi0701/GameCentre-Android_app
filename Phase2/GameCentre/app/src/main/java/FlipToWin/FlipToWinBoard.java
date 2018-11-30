@@ -15,7 +15,7 @@ import Basic.SuperBoard;
  * The sliding tiles board.
  */
 
-public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile>, Serializable{
+public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile>, Serializable {
 
     /**
      * The number of row
@@ -105,8 +105,8 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
     @Override
     public String toString() {
         List<Integer> ids = new ArrayList<>();
-        for (FlipToWinTile[] tileList: tiles) {
-            for (FlipToWinTile tile: tileList) {
+        for (FlipToWinTile[] tileList : tiles) {
+            for (FlipToWinTile tile : tileList) {
                 ids.add(tile.getId());
             }
         }

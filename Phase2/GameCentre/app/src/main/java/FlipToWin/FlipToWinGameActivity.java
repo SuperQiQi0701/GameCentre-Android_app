@@ -3,8 +3,8 @@ package FlipToWin;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,9 +15,9 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import Basic.CustomAdapter;
 import Basic.DataManager;
 import Basic.FileManager;
-import Basic.CustomAdapter;
 import Basic.StartingActivity;
 import fall2018.csc2017.slidingtiles.R;
 
@@ -81,11 +81,10 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
         FlipToWinBoard board = (FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getBoard();
 
         for (int i = 0; i != board.numGrids(); i++) {
-                Button tmp = new Button(context);
-                this.fTileButtons.add(tmp);
-            }
+            Button tmp = new Button(context);
+            this.fTileButtons.add(tmp);
         }
-
+    }
 
 
     /**
@@ -95,8 +94,8 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
         int nextPos = 0;
         for (Button b : fTileButtons) {
             FlipToWinBoard board = (FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getBoard();
-            int row = nextPos /  board.getColNum();
-            int col = nextPos %  board.getColNum();
+            int row = nextPos / board.getColNum();
+            int col = nextPos % board.getColNum();
             FlipToWinTile tile = board.getGrid(row, col);
 
             // showing the background
