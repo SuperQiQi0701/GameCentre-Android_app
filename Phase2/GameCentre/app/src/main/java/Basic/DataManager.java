@@ -83,7 +83,9 @@ public enum DataManager {
      * This will create a new boardManager according to the currentGameName
      */
     public void startNewGame(int complexity) {
-        switch (currentGameName) {
+        ManagerFactory managerFactory = new ManagerFactory();
+        this.boardManager = managerFactory.getManager(currentGameName, complexity);
+        /*switch (currentGameName) {
             case "ST":
                 this.boardManager = new BoardManager(complexity);
                 break;
@@ -93,6 +95,6 @@ public enum DataManager {
             case "FTW":
                 this.boardManager = new FlipToWinBoardManager(complexity);
                 break;
-        }
+        }*/
     }
 }
