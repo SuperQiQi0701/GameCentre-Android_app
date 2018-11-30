@@ -8,9 +8,9 @@ import Basic.DataManager;
 import Basic.ScoreBoardActivity;
 
 
-class FlipToWinMovementController {
+class FlipToWinTapMessageView {
 
-    FlipToWinMovementController() {
+    FlipToWinTapMessageView() {
     }
 
     /**
