@@ -28,10 +28,8 @@ public class ScoreBoardActivity extends AppCompatActivity {
 
         // if there is Extra message passed.
         if (bundle != null) {
-            String currGameName = bundle.getString("currGameName");
             int complexity = bundle.getInt("complexity");
 
-            DataManager.INSTANCE.setCurrentGameName(currGameName);
             String noScore = "You don't have a current score because you have not won the current game " +
                     "yet.";
 

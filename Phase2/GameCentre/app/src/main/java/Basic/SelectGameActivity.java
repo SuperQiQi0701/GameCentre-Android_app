@@ -43,10 +43,6 @@ public class SelectGameActivity extends AppCompatActivity {
         mSliding.setOnClickListener(v -> {
             DataManager.INSTANCE.setCurrentGameName(game);
             Intent slide = new Intent(this, StartingActivity.class);
-            slide.putExtra("currGameName", game);
-
-            System.out.println("put extra successfully in SelectGameActivity");
-
             startActivity(slide);
         });
     }

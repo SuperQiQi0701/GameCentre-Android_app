@@ -68,16 +68,9 @@ public class ComplexityActivity extends AppCompatActivity {
         Intent preIntent = getIntent();
         Bundle bundle = preIntent.getExtras();
         if (bundle != null) {
-
             temp = new Intent(this, ScoreBoardActivity.class);
-
-            temp.putExtra("currGameName", bundle.getString("currGameName"));
-//            temp.putExtra("visit", bundle.getString("visit"));
             temp.putExtra("complexity", complexity);
-
-            System.out.println("put extra successfully in ComplexityActivity");
         }
-
         else {
             DataManager.INSTANCE.startNewGame(complexity);
             FileManager.saveGame(this.getApplicationContext(), "Auto");
