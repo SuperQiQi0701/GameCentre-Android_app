@@ -91,8 +91,11 @@ public class ColorBoardManagerTest {
     @Test
     public void testMakeSameColorChange() {
         setUpSameColor();
+        String previous = colorBoardManager.getBoard().toString();
         colorBoardManager.makeChange(-65536);
-        assertEquals(1, colorBoardManager.getScore());
+        assertEquals(previous,colorBoardManager.getBoard().toString());
+        colorBoardManager.makeChange(-16711936);
+        assertEquals(2, colorBoardManager.getScore());
     }
 
     /**
