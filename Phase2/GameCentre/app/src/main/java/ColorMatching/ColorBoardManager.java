@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Objects;
 
 import Basic.SuperManager;
+import Basic.Undoable;
 
-public class ColorBoardManager extends SuperManager implements Serializable{
+public class ColorBoardManager extends SuperManager implements Serializable, Undoable {
 
     /**
      * The ColorBoard being managed.
@@ -137,14 +138,14 @@ public class ColorBoardManager extends SuperManager implements Serializable{
      *
      * @return true if the undo function is available
      */
-    boolean undoAvailable(){
+    public boolean undoAvailable(){
         return (this.allMove.size() >= 1);
     }
 
     /**
      * Undo the previous move
      */
-    void undo(){
+    public void undo(){
         if(undoAvailable()){
             List<ColorTile> whatever = allMove.remove(allMove.size()-1);
             int color = colors.remove(colors.size()-1);
