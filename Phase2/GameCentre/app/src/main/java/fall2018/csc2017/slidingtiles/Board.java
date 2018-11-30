@@ -43,12 +43,12 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
         super(complexity);
         this.rowNum = getComplexity();
         this.colNum = getComplexity();
-        Iterator<Tile> iter = tiles.iterator();
+        Iterator<Tile> iterator = tiles.iterator();
         this.tiles = new Tile[this.rowNum][this.colNum];
 
         for (int row = 0; row != this.rowNum; row++) {
             for (int col = 0; col != this.colNum; col++) {
-                this.tiles[row][col] = iter.next();
+                this.tiles[row][col] = iterator.next();
             }
         }
     }

@@ -16,9 +16,8 @@ public class ColorBoardManagerTest {
     private ColorBoardManager colorBoardManager;
     private int complexity1 = 3;
 
+    @Before
     private void setUpCorrect(){
-//        List<ColorTile> tiles = makeRandomColorTiles();
-//        ColorBoard colorBoard = new ColorBoard(tiles,complexity1);
         colorBoardManager = new ColorBoardManager(complexity1);
     }
 
@@ -36,6 +35,7 @@ public class ColorBoardManagerTest {
         return tiles;
     }
 
+    @Before
     private void setUpSameColor(){
         List<ColorTile> tiles = makeSameColorTiles();
         ColorBoard colorBoard = new ColorBoard(tiles, complexity1);
@@ -43,12 +43,10 @@ public class ColorBoardManagerTest {
         colorBoardManager.setColorBoard(colorBoard);
     }
 
-    @Before
-    public void setUp() throws Exception {
-    }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
+        colorBoardManager = null;
     }
 
     @Test

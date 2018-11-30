@@ -49,9 +49,9 @@ public class UserManager implements Serializable {
      * @param password the password of the current user.
      */
     void signUp(String username, String password) {
-        User tempuser = new User(username);
-        tempuser.setPassword(password);
-        users.add(tempuser);
+        User tempUser = new User(username);
+        tempUser.setPassword(password);
+        users.add(tempUser);
     }
 
     /**
