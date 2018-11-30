@@ -29,6 +29,26 @@ public class ColorBoardManager extends SuperManager implements Serializable{
      */
     private List<ColorTile> allState;
 
+    /**
+     * The row ratio of this ColorBoard.
+     */
+    private static final int rowRatio = 4;
+
+    /**
+     * The column ratio of this ColorBoard.
+     */
+    private static final int colRatio = 5;
+
+    /**
+     * The score to be added when normally makeChange.
+     */
+    private static final int normalAddScore = 1;
+
+    /**
+     * The score to be added when doing undo.
+     */
+    private static final int punishAddScore = 2;
+
 
     /**
      * A new ColorBoardManager with complexity.
@@ -38,8 +58,8 @@ public class ColorBoardManager extends SuperManager implements Serializable{
     public ColorBoardManager(int complexity) {
         super(complexity);
         List<ColorTile> tiles = new ArrayList<>();
-        int rowNum = (getComplexity() - 2) * 4;
-        int colNum = (getComplexity() - 2) * 5;
+        int rowNum = (getComplexity() - 2) * rowRatio;
+        int colNum = (getComplexity() - 2) * colRatio;
 
         for (int row = 0; row != rowNum; row++) {
             for (int col = 0; col != colNum; col++) {
@@ -120,7 +140,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
             allMove.add(arr);
             colors.add(initColor);
         }
-        addScoreBy(1);
+        addScoreBy(normalAddScore);
     }
 
     /**
@@ -143,7 +163,7 @@ public class ColorBoardManager extends SuperManager implements Serializable{
                 cur.setColor(color);
             }
         }
-        addScoreBy(2);
+        addScoreBy(punishAddScore);
     }
 
     /**
