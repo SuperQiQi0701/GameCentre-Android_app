@@ -1,4 +1,4 @@
-package Basic;
+package Scores;
 
 import org.junit.After;
 import org.junit.Before;
@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import Basic.DataManager;
 import fall2018.csc2017.slidingtiles.BoardManager;
 
 import static org.junit.Assert.*;

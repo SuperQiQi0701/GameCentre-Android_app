@@ -81,11 +81,10 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
         FlipToWinBoard board = (FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getBoard();
 
         for (int i = 0; i != board.numGrids(); i++) {
-                Button tmp = new Button(context);
-                this.fTileButtons.add(tmp);
-            }
+            Button tmp = new Button(context);
+            this.fTileButtons.add(tmp);
         }
-
+    }
 
 
     /**
@@ -95,8 +94,8 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
         int nextPos = 0;
         for (Button b : fTileButtons) {
             FlipToWinBoard board = (FlipToWinBoard) DataManager.INSTANCE.getBoardManager().getBoard();
-            int row = nextPos /  board.getColNum();
-            int col = nextPos %  board.getColNum();
+            int row = nextPos / board.getColNum();
+            int col = nextPos % board.getColNum();
             FlipToWinTile tile = board.getGrid(row, col);
 
             // showing the background

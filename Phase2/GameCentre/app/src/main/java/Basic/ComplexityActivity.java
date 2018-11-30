@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import ColorMatching.ColorMatchingGameActivity;
 import FlipToWin.FlipToWinGameActivity;
+import Scores.ScoreBoardActivity;
 import fall2018.csc2017.slidingtiles.GameActivity;
 import fall2018.csc2017.slidingtiles.R;
 
@@ -74,8 +75,7 @@ public class ComplexityActivity extends AppCompatActivity {
         if (bundle != null) {
             temp = new Intent(this, ScoreBoardActivity.class);
             temp.putExtra("complexity", complexity);
-        }
-        else {
+        } else {
             DataManager.INSTANCE.startNewGame(complexity);
             FileManager.saveGame(this.getApplicationContext(), "Auto");
             String gameName = DataManager.INSTANCE.getCurrentGameName();

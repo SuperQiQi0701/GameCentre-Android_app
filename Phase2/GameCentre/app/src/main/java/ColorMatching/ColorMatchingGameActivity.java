@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import Basic.DataManager;
 import Basic.FileManager;
-import Basic.ScoreBoardActivity;
+import Scores.ScoreBoardActivity;
 import Basic.StartingActivity;
 import fall2018.csc2017.slidingtiles.R;
 

@@ -1,4 +1,4 @@
-package Basic;
+package Scores;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +8,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import Basic.DataManager;
+import Basic.FileManager;
+import Basic.SelectGameActivity;
+import Basic.StartingActivity;
 import fall2018.csc2017.slidingtiles.R;
 
 /**

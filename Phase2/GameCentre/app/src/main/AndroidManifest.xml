@@ -17,9 +17,9 @@
         <activity android:name="Basic.StartingActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name="Basic.ComplexityActivity" />
-        <activity android:name="Basic.RegistrationActivity" />
-        <activity android:name="Basic.ScoreBoardActivity" />
-        <activity android:name="Basic.LoginActivity">
+        <activity android:name="Users.RegistrationActivity" />
+        <activity android:name="Scores.ScoreBoardActivity" />
+        <activity android:name="Users.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name="Basic.SelectGameActivity" />
-        <activity android:name="Basic.ResetPasswordActivity" />
+        <activity android:name="Users.ResetPasswordActivity" />
         <activity android:name="ColorMatching.ColorMatchingGameActivity" />
         <activity android:name="FlipToWin.FlipToWinGameActivity" />
         <!--<activity android:name="FlipToWin.FlipToWinStartingActivity" />-->

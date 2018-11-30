@@ -1,9 +1,10 @@
-package Basic;
+package Scores;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 
 /**
  * This is ScoreBoard class that will create a scoreBoard object

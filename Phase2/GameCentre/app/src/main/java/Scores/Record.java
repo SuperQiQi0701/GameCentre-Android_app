@@ -1,9 +1,11 @@
-package Basic;
+package Scores;
 
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
+
+import Basic.DataManager;
 
 public class Record implements Comparable<Record>, Serializable {
 
@@ -43,10 +45,10 @@ public class Record implements Comparable<Record>, Serializable {
     /**
      * The constructor for testing
      *
-     * @param complexity    the complexity of the finished game
-     * @param finalScore    the finalScore that user got
-     * @param userName      the name of the user
-     * @param gameName      the current game name
+     * @param complexity the complexity of the finished game
+     * @param finalScore the finalScore that user got
+     * @param userName   the name of the user
+     * @param gameName   the current game name
      */
     Record(int complexity, int finalScore, String userName, String gameName) {
         this.complexity = complexity;

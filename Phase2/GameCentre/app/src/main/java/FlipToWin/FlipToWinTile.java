@@ -33,6 +33,7 @@ public class FlipToWinTile extends MovableTile implements Serializable {
 
     /**
      * A tile with a background id and set the id.
+     *
      * @param num num + 1 is the id of tile.
      */
     FlipToWinTile(int num) {
@@ -57,6 +58,7 @@ public class FlipToWinTile extends MovableTile implements Serializable {
 
     /**
      * Return the front page string
+     *
      * @return the front page string
      */
     String getFrontPage() {
@@ -72,6 +74,7 @@ public class FlipToWinTile extends MovableTile implements Serializable {
 
     /**
      * return true iff tile is faced up
+     *
      * @return true iff tile is faced up
      */
     boolean isFacedUp() {
@@ -88,6 +91,7 @@ public class FlipToWinTile extends MovableTile implements Serializable {
 
     /**
      * return true iff the tile is paired
+     *
      * @return true iff the tile is paired
      */
     boolean isPaired() {

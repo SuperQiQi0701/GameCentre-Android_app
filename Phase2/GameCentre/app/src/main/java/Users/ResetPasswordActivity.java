@@ -1,4 +1,4 @@
-package Basic;
+package Users;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import Basic.FileManager;
 import fall2018.csc2017.slidingtiles.R;
 
 /**

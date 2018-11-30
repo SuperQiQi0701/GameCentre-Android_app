@@ -1,11 +1,13 @@
 package FlipToWin;
 
 import android.os.Handler;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+
 import Basic.SuperBoard;
 import Basic.SuperManager;
 
@@ -32,7 +34,8 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
 
     /**
      * Manage a board that has been pre-populated.
-     * @param board the board
+     *
+     * @param board      the board
      * @param complexity the complexity of game
      */
     FlipToWinBoardManager(FlipToWinBoard board, int complexity) {
@@ -158,10 +161,11 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
 
     /**
      * helper method, flip the two tiles which are all faced up and not paired, and set the flipping status to false
+     *
      * @param rowTileOne row of the tile one
      * @param colTileOne col of the tile one
-     * @param row row of the tile two
-     * @param col col of the tile two
+     * @param row        row of the tile two
+     * @param col        col of the tile two
      */
     void flipTwoTiles(int rowTileOne, int colTileOne, int row, int col) {
 
@@ -174,10 +178,11 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
 
     /**
      * helper method, set up before flip the two tiles
+     *
      * @param row row of the tile
      * @param col col of the tile
      */
-    void setUpBeforeFlipping (int row, int col) {
+    void setUpBeforeFlipping(int row, int col) {
         positionTileOneFaceUp = -1;
         board.makeMove(row, col);
         setFlipping(true);

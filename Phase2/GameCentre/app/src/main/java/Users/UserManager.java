@@ -1,8 +1,9 @@
-package Basic;
+package Users;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * This class manages all the user of the game.

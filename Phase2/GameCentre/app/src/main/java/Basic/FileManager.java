@@ -9,6 +9,9 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import Scores.ScoreBoard;
+import Users.UserManager;
+
 /**
  * This is a FileManager class that is responsible for all save and load functionality
  */
@@ -23,7 +26,7 @@ public class FileManager {
      * @param object      the object that will be saved
      * @param type        the type of the object.
      */
-    static void saveToFile(Context fileContext, Object object, String type) {
+    public static void saveToFile(Context fileContext, Object object, String type) {
         try {
             String fileName;
             if ("UM".equals(type)) {
@@ -46,7 +49,7 @@ public class FileManager {
      * @param fileContext this.getApplicationContext()
      * @return the userManager that loaded from file
      */
-    static UserManager loadUserManager(Context fileContext) {
+    public static UserManager loadUserManager(Context fileContext) {
         try {
             String fileName = "UserManager.ser";
             InputStream inputStream = fileContext.openFileInput(fileName);
@@ -68,7 +71,7 @@ public class FileManager {
      * @param fileContext this.getApplicationContext()
      * @return the scoreBoard that loaded from file
      */
-    static ScoreBoard loadScoreBoard(Context fileContext) {
+    public static ScoreBoard loadScoreBoard(Context fileContext) {
         try {
             String fileName = DataManager.INSTANCE.getCurrentGameName() + "_ScoreBoard.ser";
             InputStream inputStream = fileContext.openFileInput(fileName);

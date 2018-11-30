@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import Basic.DataManager;
-import Basic.ScoreBoardActivity;
+import Scores.ScoreBoardActivity;
 
 
 class FlipToWinTapMessageView {
@@ -19,8 +19,8 @@ class FlipToWinTapMessageView {
     void processTapMovement(Context context, int position, boolean display) {
 
         FlipToWinBoardManager boardManager = (FlipToWinBoardManager) DataManager.INSTANCE.getBoardManager();
-        int row = position /  ((FlipToWinBoard)boardManager.getBoard()).getColNum();
-        int col = position %  ((FlipToWinBoard)boardManager.getBoard()).getColNum();
+        int row = position / ((FlipToWinBoard) boardManager.getBoard()).getColNum();
+        int col = position % ((FlipToWinBoard) boardManager.getBoard()).getColNum();
 
 
         // if position is a valid tap
@@ -41,7 +41,7 @@ class FlipToWinTapMessageView {
             }
         }
         // if not valid tap and the tile on the position is paired.
-        else if (((FlipToWinBoard) boardManager.getBoard()).getGrid(row, col).isPaired()){
+        else if (((FlipToWinBoard) boardManager.getBoard()).getGrid(row, col).isPaired()) {
             Toast.makeText(context, "Already Solved", Toast.LENGTH_SHORT).show();
         }
         // if not valid tap and the tile is flipping.
