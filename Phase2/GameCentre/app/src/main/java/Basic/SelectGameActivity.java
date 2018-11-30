@@ -29,7 +29,7 @@ public class SelectGameActivity extends AppCompatActivity {
 
         TextView tv = findViewById(R.id.gameCentre);
         tv.setText("  Game Centre");
-        tv.setTextColor(Color.BLACK);
+        tv.setTextColor(Color.WHITE);
     }
 
 
