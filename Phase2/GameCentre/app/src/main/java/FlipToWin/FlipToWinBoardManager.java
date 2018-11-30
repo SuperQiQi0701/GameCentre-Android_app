@@ -1,14 +1,11 @@
 package FlipToWin;
 
-
 import android.os.Handler;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
 import Basic.SuperBoard;
 import Basic.SuperManager;
 
@@ -31,6 +28,17 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
      * the position of the first tap tile if there is a first tap, otherwise set to -1.
      */
     private int positionTileOneFaceUp = -1;
+
+
+    /**
+     * Manage a board that has been pre-populated.
+     * @param board the board
+     * @param complexity the complexity of game
+     */
+    FlipToWinBoardManager(FlipToWinBoard board, int complexity) {
+        super(complexity);
+        this.board = board;
+    }
 
     /**
      * Manage a new shuffled board.
@@ -92,8 +100,13 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
         int col = position % board.getColNum();
 
         return (!(board.getGrid(row, col).isPaired())
-                & (!board.getGrid(row, col).facedUpStatus())
+                & (!board.getGrid(row, col).isFacedUp())
                 & (!flippingTiles));
+    }
+
+
+    void setFlipping(boolean b) {
+        this.flippingTiles = b;
     }
 
     /**
@@ -129,24 +142,55 @@ public class FlipToWinBoardManager extends SuperManager implements Serializable 
                     board.makeMove(row, col);
 
                 }
-                // if the two tiles is not in paired, the flip them over.
+                // if the two tiles is not in paired
                 else {
-                    positionTileOneFaceUp = -1;
-                    board.makeMove(row, col);
-                    this.flippingTiles = true;
+                    // flip the second tile first.
+                    setUpBeforeFlipping(row, col);
 
-                    // set a delay (0.8 second) to flip two the tiles.
-                    new Handler().postDelayed(() -> {
-
-                        board.makeMove(rowTileOne, colTileOne);
-                        board.makeMove(row, col);
-                        this.flippingTiles = false;
-
-                    }, 800);
+                    // set a delay (0.8 second) and then flip two the tiles over, since they are
+                    // not in paired.
+                    new Handler().postDelayed(() -> flipTwoTiles(rowTileOne, colTileOne, row, col), 800);
                 }
             }
         }
 
     }
 
+    /**
+     * flip the two tiles which are all faced up and not paired, and set the flipping status to false
+     * @param rowTileOne row of the tile one
+     * @param colTileOne col of the tile one
+     * @param row row of the tile two
+     * @param col col of the tile two
+     */
+    void flipTwoTiles(int rowTileOne, int colTileOne, int row, int col) {
+
+        board.makeMove(rowTileOne, colTileOne);
+        board.makeMove(row, col);
+        setFlipping(false);
+
+    }
+
+
+    /**
+     * set up before flip the two tiles
+     * @param row row of the tile
+     * @param col col of the tile
+     */
+    void setUpBeforeFlipping (int row, int col) {
+        positionTileOneFaceUp = -1;
+        board.makeMove(row, col);
+        setFlipping(true);
+    }
+
+    /**
+     * return the position of the Tile one that is already faced up,
+     * and if there is no such tile return -1.
+     *
+     * @return the position of the Tile one that is already faced up,
+     * and if there is no such tile return -1.
+     */
+    int getPositionTileOneFaceUp() {
+        return this.positionTileOneFaceUp;
+    }
 }
