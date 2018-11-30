@@ -24,7 +24,7 @@ public class ColorBoardManagerTest {
      * Make a random colorBoard.
      */
     @Before
-    private void setUpCorrect(){
+    public void setUpCorrect(){
         colorBoardManager = new ColorBoardManager(complexity1);
     }
 
@@ -50,7 +50,7 @@ public class ColorBoardManagerTest {
      * Make a solved colorBoard.
      */
     @Before
-    private void setUpSameColor(){
+    public void setUpSameColor(){
         List<ColorTile> tiles = makeSameColorTiles();
         ColorBoard colorBoard = new ColorBoard(tiles, complexity1);
         colorBoardManager = new ColorBoardManager(complexity1);
