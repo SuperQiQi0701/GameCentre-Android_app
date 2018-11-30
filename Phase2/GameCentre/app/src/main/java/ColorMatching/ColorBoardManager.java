@@ -155,6 +155,10 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         return colorBoard;
     }
 
+    /**
+     * Set colorBoard to colorBoard.
+     * @param colorBoard the colorBoard of this colorBoardManager.
+     */
     void setColorBoard(ColorBoard colorBoard){
         this.colorBoard = colorBoard;
     }
