@@ -12,6 +12,9 @@ import Users.LoginActivity;
 import fall2018.csc2017.slidingtiles.R;
 
 
+/**
+ * The activity for selecting game.
+ */
 public class SelectGameActivity extends AppCompatActivity {
 
     @Override
