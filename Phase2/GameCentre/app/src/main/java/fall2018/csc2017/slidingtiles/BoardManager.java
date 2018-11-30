@@ -27,7 +27,8 @@ public class BoardManager extends SuperManager implements Serializable, Undoable
 
     /**
      * Manage a board that has been pre-populated.
-     * @param board the board
+     *
+     * @param board      the board
      * @param complexity the complexity of the game
      */
     public BoardManager(Board board, int complexity) {
@@ -48,7 +49,7 @@ public class BoardManager extends SuperManager implements Serializable, Undoable
         }
 
         Collections.shuffle(tiles);
-        while (!checkSolvable(tiles, complexity)){
+        while (!checkSolvable(tiles, complexity)) {
             Collections.shuffle(tiles);
         }
         this.board = new Board(tiles, complexity);
@@ -58,19 +59,20 @@ public class BoardManager extends SuperManager implements Serializable, Undoable
     /**
      * Return whether the tiles are solvable.
      * Adapted from: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/.
-     * @param tiles the tiles to check
+     *
+     * @param tiles      the tiles to check
      * @param complexity the complexity of tiles
      * @return whether the tiles are solvable or not.
      */
-    boolean checkSolvable(List<Tile> tiles, int complexity){
+    boolean checkSolvable(List<Tile> tiles, int complexity) {
         int num = getInvNumber(tiles);
-        if (tiles.size() % 2 == 1){
+        if (tiles.size() % 2 == 1) {
             return num % 2 == 0;
         } else {
             int blank_pos = findBlank(tiles, complexity);
-            if (blank_pos % 2 == 1){
+            if (blank_pos % 2 == 1) {
                 return num % 2 == 0;
-            } else{
+            } else {
                 return num % 2 == 1;
             }
         }
@@ -81,15 +83,16 @@ public class BoardManager extends SuperManager implements Serializable, Undoable
     /**
      * Return the number of rows counting from bottom that the blank is on.
      * Adapted from: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/.
-     * @param tiles the tiles to check
+     *
+     * @param tiles      the tiles to check
      * @param complexity the complexity of tiles
      * @return the number of rows counting from bottom that the blank is on.
      */
-    private int findBlank(List<Tile> tiles, int complexity){
+    private int findBlank(List<Tile> tiles, int complexity) {
         int blank = 0;
-        for (int row = complexity - 1; row >= 0; row--){
-            for (int col = complexity - 1; col >= 0; col--){
-                if (tiles.get(row * complexity + col).getId() == tiles.size()){
+        for (int row = complexity - 1; row >= 0; row--) {
+            for (int col = complexity - 1; col >= 0; col--) {
+                if (tiles.get(row * complexity + col).getId() == tiles.size()) {
                     blank = complexity - row;
                 }
             }
@@ -101,17 +104,18 @@ public class BoardManager extends SuperManager implements Serializable, Undoable
     /**
      * Return the number of inversions in tiles.
      * Adapted from: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/.
+     *
      * @param tiles the tiles to check
      * @return the number of inversions in tiles.
      */
-    private int getInvNumber(List<Tile> tiles){
+    private int getInvNumber(List<Tile> tiles) {
         int sum = 0;
-        for (int first = 0; first < tiles.size() - 1; first++){
-            for (int second = first + 1; second < tiles.size(); second++){
+        for (int first = 0; first < tiles.size() - 1; first++) {
+            for (int second = first + 1; second < tiles.size(); second++) {
 
                 if (tiles.get(first).getId() > tiles.get(second).getId() &&
-                       tiles.get(first).getId() != tiles.size() &&
-                        tiles.get(second).getId() != tiles.size()){
+                        tiles.get(first).getId() != tiles.size() &&
+                        tiles.get(second).getId() != tiles.size()) {
                     sum++;
                 }
             }
@@ -123,7 +127,7 @@ public class BoardManager extends SuperManager implements Serializable, Undoable
     /**
      * Return the current board.
      *
-     *@return the board.
+     * @return the board.
      */
     public Board getBoard() {
 
@@ -134,7 +138,7 @@ public class BoardManager extends SuperManager implements Serializable, Undoable
     /**
      * Set the board.
      */
-    public void setBoard(Board board){
+    public void setBoard(Board board) {
         this.board = board;
     }
 
@@ -169,9 +173,9 @@ public class BoardManager extends SuperManager implements Serializable, Undoable
         int blankId = board.numGrids();
         // Are any of the 4 the blank tile?
 
-        System.out.println("row: "+row);
+        System.out.println("row: " + row);
         System.out.println("\n");
-        System.out.println("col: "+col);
+        System.out.println("col: " + col);
         Tile above = row == 0 ? null : board.getGrid(row - 1, col);
         Tile below = row == board.getComplexity() - 1 ? null : board.getGrid(row + 1, col);
         Tile left = col == 0 ? null : board.getGrid(row, col - 1);

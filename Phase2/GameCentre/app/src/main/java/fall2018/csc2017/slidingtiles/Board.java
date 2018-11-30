@@ -2,7 +2,6 @@ package fall2018.csc2017.slidingtiles;
 
 import android.support.annotation.NonNull;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -58,7 +57,7 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
      *
      * @return the tiles on the board
      */
-     Tile[][] getTiles() {
+    Tile[][] getTiles() {
         return this.tiles;
     }
 
@@ -103,8 +102,8 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
     @Override
     public String toString() {
         List<Integer> ids = new ArrayList<>();
-        for (Tile[] tileList: tiles) {
-            for (Tile tile: tileList) {
+        for (Tile[] tileList : tiles) {
+            for (Tile tile : tileList) {
                 ids.add(tile.getId());
             }
         }
