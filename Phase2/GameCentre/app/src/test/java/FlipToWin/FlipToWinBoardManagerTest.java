@@ -59,9 +59,9 @@ public class FlipToWinBoardManagerTest {
     @Test
     public void testConstructor() {
         FlipToWinBoardManager newBoardManager = new FlipToWinBoardManager(5);
-       assertFalse(newBoardManager.puzzleSolved());
-       assertEquals(newBoardManager.getBoard().getComplexity(), 5);
-       assertEquals(newBoardManager.getBoard().numGrids(), 30);
+        assertFalse(newBoardManager.puzzleSolved());
+        assertEquals(newBoardManager.getBoard().getComplexity(), 5);
+        assertEquals(newBoardManager.getBoard().numGrids(), 30);
     }
 
     @Test
