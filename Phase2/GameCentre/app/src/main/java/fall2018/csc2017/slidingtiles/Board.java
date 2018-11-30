@@ -55,6 +55,16 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
     }
 
     /**
+     * Return the tiles on the board.
+     *
+     * @return the tiles on the board
+     */
+     Tile[][] getTiles() {
+        return this.tiles;
+    }
+
+
+    /**
      * Return the number of tiles on the board.
      *
      * @return the number of tiles on the board
