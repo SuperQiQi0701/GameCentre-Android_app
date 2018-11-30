@@ -16,6 +16,7 @@ public abstract class MovableTile implements Serializable {
 
     /**
      * construct a new tile
+     *
      * @param num the num is the id.
      */
     public MovableTile(int num) {
@@ -24,6 +25,7 @@ public abstract class MovableTile implements Serializable {
 
     /**
      * return the id of the tile
+     *
      * @return the id of the tile
      */
     public int getId() {
@@ -32,6 +34,7 @@ public abstract class MovableTile implements Serializable {
 
     /**
      * return the background of the tile
+     *
      * @return the background of the tile
      */
     public int getBackground() {
@@ -40,9 +43,10 @@ public abstract class MovableTile implements Serializable {
 
     /**
      * set the background of a tile as background
+     *
      * @param background the background
      */
-    public void setBackground(int background){
+    public void setBackground(int background) {
         this.background = background;
     }
 }

@@ -106,7 +106,7 @@ public class BoardManagerTest {
     }
 
     /**
-     * Test whether isValidHelp works.
+     * Test whether isValidTap works.
      */
     @Test
     public void testIsValidTap() {
@@ -129,6 +129,9 @@ public class BoardManagerTest {
     }
 
 
+    /**
+     * Test whether Undo works.
+     */
     @Test
     public void testUndo() {
         setUpCorrect(middle_complexity);
