@@ -15,14 +15,14 @@ public class UserManagerTest {
 
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         this.userManager = new UserManager();
         this.userManager.signUp("@test user 1", "111111");
         this.userManager.signUp("@test user 2", "222222");
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         this.userManager = null;
     }
 

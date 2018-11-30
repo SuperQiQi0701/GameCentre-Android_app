@@ -1,10 +1,14 @@
 package fall2018.csc2017.slidingtiles;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import Basic.DataManager;
 
 import static org.junit.Assert.*;
 
@@ -13,15 +17,31 @@ import static org.junit.Assert.*;
  */
 public class BoardManagerTest {
 
-    /** The board manager for testing. */
+    /**
+     * The board manager for testing.
+     */
     private BoardManager boardManager;
 
-    /** The complexity of board at level 2 */
-    private int middle_complexity = 4;
 
+    @Before
+    public void setUp() {
+        DataManager.INSTANCE.setCurrentGameName("ST");
+        DataManager.INSTANCE.startNewGame(4);
+        this.boardManager = (BoardManager) DataManager.INSTANCE.getBoardManager();
+        List<Tile> tiles = makeTiles(4);
+        Board board = new Board(tiles, 4);
+        boardManager = new BoardManager(4);
+        boardManager.setBoard(board);
+    }
+
+    @After
+    public void tearDown() {
+        this.boardManager = null;
+    }
 
     /**
      * Make a set of tiles that are in order.
+     *
      * @return a set of tiles that are in order
      */
     private List<Tile> makeTiles(int complexity) {
@@ -37,24 +57,16 @@ public class BoardManagerTest {
 
     /**
      * Make an array of tiles to a list of tiles.
+     *
      * @return a list of tiles.
      */
     private List<Tile> makeList(Tile[][] tiles) {
         List<Tile> newTiles = new ArrayList<>();
-        for (Tile[] row: tiles) {
+        for (Tile[] row : tiles) {
             Collections.addAll(newTiles, row);
         }
 
         return newTiles;
-    }
-    /**
-     * Make a solved Board.
-     */
-    private void setUpCorrect( int complexity) {
-        List<Tile> tiles = makeTiles( complexity);
-        Board board = new Board(tiles, complexity);
-        boardManager = new BoardManager(complexity);
-        boardManager.setBoard(board);
     }
 
     /**
@@ -69,14 +81,9 @@ public class BoardManagerTest {
      */
     @Test
     public void testIsSolved() {
-        setUpCorrect(middle_complexity);
-        assertTrue( boardManager.puzzleSolved());
+        assertTrue(boardManager.puzzleSolved());
         swapFirstTwoTiles();
-        assertFalse( boardManager.puzzleSolved());
-        setUpCorrect(5);
-        assertTrue( boardManager.puzzleSolved());
-        swapFirstTwoTiles();
-        assertFalse( boardManager.puzzleSolved());
+        assertFalse(boardManager.puzzleSolved());
     }
 
     /**
@@ -84,7 +91,6 @@ public class BoardManagerTest {
      */
     @Test
     public void testSwapFirstTwo() {
-        setUpCorrect(middle_complexity);
         assertEquals(1, boardManager.getBoard().getGrid(0, 0).getId());
         assertEquals(2, boardManager.getBoard().getGrid(0, 1).getId());
         boardManager.getBoard().makeMove(0, 0, 0, 1);
@@ -97,7 +103,6 @@ public class BoardManagerTest {
      */
     @Test
     public void testSwapLastTwo() {
-        setUpCorrect(middle_complexity);
         assertEquals(15, boardManager.getBoard().getGrid(3, 2).getId());
         assertEquals(16, boardManager.getBoard().getGrid(3, 3).getId());
         boardManager.getBoard().makeMove(3, 3, 3, 2);
@@ -110,10 +115,9 @@ public class BoardManagerTest {
      */
     @Test
     public void testIsValidTap() {
-        setUpCorrect(middle_complexity);
         assertTrue(boardManager.isValidTap(11));
-        assertTrue( boardManager.isValidTap(14));
-        assertFalse( boardManager.isValidTap(10));
+        assertTrue(boardManager.isValidTap(14));
+        assertFalse(boardManager.isValidTap(10));
     }
 
 
@@ -122,7 +126,6 @@ public class BoardManagerTest {
      */
     @Test
     public void testMakeChange() {
-        setUpCorrect(middle_complexity);
         boardManager.makeChange(14);
         assertEquals(16, boardManager.getBoard().getGrid(3, 2).getId());
         assertEquals(15, boardManager.getBoard().getGrid(3, 3).getId());
@@ -134,7 +137,6 @@ public class BoardManagerTest {
      */
     @Test
     public void testUndo() {
-        setUpCorrect(middle_complexity);
         boardManager.makeChange(14);
         boardManager.undo();
         assertEquals(15, boardManager.getBoard().getGrid(3, 2).getId());
@@ -147,11 +149,17 @@ public class BoardManagerTest {
      */
     @Test
     public void testCheckSolvable() {
-        setUpCorrect(middle_complexity);
-        assertTrue(boardManager.checkSolvable(makeList(boardManager.getBoard().getTiles()), middle_complexity));
+        assertTrue(boardManager.checkSolvable(makeList(boardManager.getBoard().getTiles()), 4));
         boardManager.getBoard().makeMove(3, 2, 3, 1);
-        assertFalse(boardManager.checkSolvable(makeList(boardManager.getBoard().getTiles()), middle_complexity));
+        assertFalse(boardManager.checkSolvable(makeList(boardManager.getBoard().getTiles()), 4));
         swapFirstTwoTiles();
-        assertTrue(boardManager.checkSolvable(makeList(boardManager.getBoard().getTiles()), middle_complexity));
+        assertTrue(boardManager.checkSolvable(makeList(boardManager.getBoard().getTiles()), 4));
+    }
+
+
+    @Test
+    public void testGetterAndSetterOfTile() {
+        int Background = boardManager.getBoard().getGrid(0, 0).getBackground();
+        assertEquals(R.drawable.tile_1, Background);
     }
 }
