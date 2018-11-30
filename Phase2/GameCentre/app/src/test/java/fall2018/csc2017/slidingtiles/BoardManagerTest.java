@@ -1,42 +1,154 @@
 package fall2018.csc2017.slidingtiles;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test BoardManager class.
+ */
 public class BoardManagerTest {
 
-    @Before
-    public void setUp() throws Exception {
+    /** The board manager for testing. */
+    private BoardManager boardManager;
+
+    /** The complexity of board at level 2 */
+    private int middle_complexity = 4;
+
+
+    /**
+     * Make a set of tiles that are in order.
+     * @return a set of tiles that are in order
+     */
+    private List<Tile> makeTiles(int complexity) {
+        List<Tile> tiles = new ArrayList<>();
+        final int numTiles = complexity * complexity;
+        for (int tileNum = 0; tileNum != numTiles; tileNum++) {
+            tiles.add(new Tile(tileNum, tileNum));
+        }
+
+        return tiles;
     }
 
-    @After
-    public void tearDown() throws Exception {
+
+    /**
+     * Make an array of tiles to a list of tiles.
+     * @return a list of tiles.
+     */
+    private List<Tile> makeList(Tile[][] tiles) {
+        List<Tile> newTiles = new ArrayList<>();
+        for (Tile[] row: tiles) {
+            Collections.addAll(newTiles, row);
+        }
+
+        return newTiles;
     }
+    /**
+     * Make a solved Board.
+     */
+    private void setUpCorrect( int complexity) {
+        List<Tile> tiles = makeTiles( complexity);
+        Board board = new Board(tiles, complexity);
+        boardManager = new BoardManager(complexity);
+        boardManager.setBoard(board);
+    }
+
+    /**
+     * Shuffle a few tiles.
+     */
+    private void swapFirstTwoTiles() {
+        boardManager.getBoard().makeMove(0, 0, 0, 1);
+    }
+
+    /**
+     * Test whether swapping two tiles makes a solved board unsolved.
+     */
+    @Test
+    public void testIsSolved() {
+        setUpCorrect(middle_complexity);
+        assertTrue( boardManager.puzzleSolved());
+        swapFirstTwoTiles();
+        assertFalse( boardManager.puzzleSolved());
+        setUpCorrect(5);
+        assertTrue( boardManager.puzzleSolved());
+        swapFirstTwoTiles();
+        assertFalse( boardManager.puzzleSolved());
+    }
+
+    /**
+     * Test whether swapping the first two tiles works.
+     */
+    @Test
+    public void testSwapFirstTwo() {
+        setUpCorrect(middle_complexity);
+        assertEquals(1, boardManager.getBoard().getGrid(0, 0).getId());
+        assertEquals(2, boardManager.getBoard().getGrid(0, 1).getId());
+        boardManager.getBoard().makeMove(0, 0, 0, 1);
+        assertEquals(2, boardManager.getBoard().getGrid(0, 0).getId());
+        assertEquals(1, boardManager.getBoard().getGrid(0, 1).getId());
+    }
+
+    /**
+     * Test whether swapping the last two tiles works.
+     */
+    @Test
+    public void testSwapLastTwo() {
+        setUpCorrect(middle_complexity);
+        assertEquals(15, boardManager.getBoard().getGrid(3, 2).getId());
+        assertEquals(16, boardManager.getBoard().getGrid(3, 3).getId());
+        boardManager.getBoard().makeMove(3, 3, 3, 2);
+        assertEquals(16, boardManager.getBoard().getGrid(3, 2).getId());
+        assertEquals(15, boardManager.getBoard().getGrid(3, 3).getId());
+    }
+
+    /**
+     * Test whether isValidHelp works.
+     */
+    @Test
+    public void testIsValidTap() {
+        setUpCorrect(middle_complexity);
+        assertTrue(boardManager.isValidTap(11));
+        assertTrue( boardManager.isValidTap(14));
+        assertFalse( boardManager.isValidTap(10));
+    }
+
+
+    /**
+     * Test whether checkSolvable works.
+     */
+    @Test
+    public void testMakeChange() {
+        setUpCorrect(middle_complexity);
+        boardManager.makeChange(14);
+        assertEquals(16, boardManager.getBoard().getGrid(3, 2).getId());
+        assertEquals(15, boardManager.getBoard().getGrid(3, 3).getId());
+    }
+
 
     @Test
-    public void getGame() {
+    public void testUndo() {
+        setUpCorrect(middle_complexity);
+        boardManager.makeChange(14);
+        boardManager.undo();
+        assertEquals(15, boardManager.getBoard().getGrid(3, 2).getId());
+        assertEquals(16, boardManager.getBoard().getGrid(3, 3).getId());
     }
 
-    @Test
-    public void puzzleSolved() {
-    }
 
+    /**
+     * Test whether checkSolvable works.
+     */
     @Test
-    public void isValidTap() {
-    }
-
-    @Test
-    public void makeChange() {
-    }
-
-    @Test
-    public void undoAvailable() {
-    }
-
-    @Test
-    public void undo() {
+    public void testCheckSolvable() {
+        setUpCorrect(middle_complexity);
+        assertTrue(boardManager.checkSolvable(makeList(boardManager.getBoard().getTiles()), middle_complexity));
+        boardManager.getBoard().makeMove(3, 2, 3, 1);
+        assertFalse(boardManager.checkSolvable(makeList(boardManager.getBoard().getTiles()), middle_complexity));
+        swapFirstTwoTiles();
+        assertTrue(boardManager.checkSolvable(makeList(boardManager.getBoard().getTiles()), middle_complexity));
     }
 }
