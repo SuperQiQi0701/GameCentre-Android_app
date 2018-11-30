@@ -31,15 +31,20 @@ public class StartingActivity extends AppCompatActivity {
         setGameInfo();
     }
 
+    /**
+     * set the game info by current game name.
+     */
     private void setGameInfo(){
         String intro = "";
         TextView gameTextView = findViewById(R.id.GameText);
         switch (DataManager.INSTANCE.getCurrentGameName()) {
+            // Sliding Tiles
             case "ST":
                 intro = "Welcome To Sliding Tiles.  \n A Puzzle Game where you must arrange " +
                         "the numbers in the correct order. If you undo, you got a penalty of adding 1" +
                         "extra score. The player who took lower steps got higher rank.";
                 break;
+            // Color Matching
             case "CM":
                 intro = "Welcome to Color Matching. \n A Grid Game where need to unify the color of all" +
                         "the grids. You can change grid colors from the top left corner by clicking " +
@@ -47,6 +52,7 @@ public class StartingActivity extends AppCompatActivity {
                         "unify more grids. If you undo, you got a penalty of adding 1 extra score. The " +
                         "player who took lower steps got higher rank.";
                 break;
+            // Flip To Win
             case "FTW":
                 intro = "Welcome to Flip To Win. \n A Memory Game where you need to match pairs of tiles." +
                         "Once you click a tile, an emoji would expose for 0.8 seconds. If you flip two " +
@@ -128,6 +134,9 @@ public class StartingActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Activate the ScoreBoard button.
+     */
     private void addScoreBoardButtonListener() {
         Button resume = findViewById(R.id.scoreboardButton);
         resume.setBackgroundColor(Color.DKGRAY);
@@ -190,15 +199,6 @@ public class StartingActivity extends AppCompatActivity {
         }
         startActivity(temp);
     }
-
-//    /**
-//     * Switch to the ComplexityActivity view to choose a game level.
-//     */
-//    private void switchToComplexity() {
-//        Intent temp = new Intent(this, ComplexityActivity.class);
-//        startActivity(temp);
-//        finish();
-//    }
 
     /**
      * Override onBackPressed method, so that when touch back button it goes back to the

@@ -1,5 +1,6 @@
 package ColorMatching;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -30,6 +31,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     /**
      * The view of this ColorView.
      */
+    @SuppressLint("StaticFieldLeak")
     static ColorView colorView;
 
     /**

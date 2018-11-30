@@ -57,6 +57,10 @@ public class ComplexityActivity extends AppCompatActivity {
         startActivity(temp);
     }
 
+    /**
+     * set up game by the complexity
+     * @param complexity the complexity of the game
+     */
     private void setUpGame(int complexity) {
 
         Intent temp;

@@ -3,8 +3,6 @@ package Basic;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import Basic.User;
-
 public class UserManager implements Serializable {
 
     /**
@@ -87,6 +85,11 @@ public class UserManager implements Serializable {
         }
     }
 
+    /**
+     * return true iff the password is valid.
+     * @param password the password
+     * @return true iff the password is valid.
+     */
     boolean isValidPassword(String password) {
         return (password.length() >= 6);
     }
