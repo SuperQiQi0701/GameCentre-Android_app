@@ -10,37 +10,62 @@ easy to learn. Hash marks (the number sign) indicate headers. Asterisks indicate
 
 ### Description of the game:
 
-* [This is an puzzle game where you must arrange the numbers in the correct order to win the game, 
-every winner of the game gets a score. The player who process less movements to win the game, 
-and would get a higher rank on the scoreboard. 
-First, when the players open the app, they can choose to log in with the correct password(if 
-they already have an account),change password(if they already have an account and want to change 
-their password),or register(if they don't have an account). An available account name should be 
-an email address which contains a "@" symbol. An register-able account should be an email address 
-that have never been registered before. The player can change password only if they enter the 
-right account name and the right old password.
-Once the player log in to the game, they can choose a game from the Game Centre(but currently only 
-have one game: Sliding Tiles). After they have chose a game, they can choose between 3 options: 
-new game(which is to start a new game); load saved game(which is to load a game the player saved 
-before with the corresponding level they chose previously) and resume(which is to resume a game 
-that is auto-saved if the phone restarts or is turned off ). 
-If they choose a new game, they are able to choose the level of the game they want to play. 
-We have three levels for the players that have different complexities. Level 1 Sliding Tile is 3x3 
-and with 9 tiles; level 2 Sliding Tile is 4x4 and with 16 tiles; level 3 Sliding Tile is 5x5 and 
-with 25 tiles. 
-During the game, there are two buttons on the top, one is undo and the other is save. The players 
-can press undo button to undo their last move. But they can only undo if they processed a movement 
-before, and if they are not able to undo, there would be a message telling that undo failed. 
-Besides, they can keep on undoing until there are no movement to undo. However, since this game is
-counting steps, every time the player undo, they would get a penalty which is add 1 extra step(
-so if you press undo, you can see the current step increased by 2, 1 for a movement, 1 for penalty, 
-1+1=2, so in total 2 steps would be added). The save button is for, when players want to quit the
-app, but want to save current progress. So the player can simply press the save button on the top, 
-and next time they can just press Load Saved Game to get back to their saved board. 
-On the top right conner of the game view page, it would show the player's current steps, which 
-starts from 0 initially. Once a player win the game, it would jump to a Score Board page, which 
-shows their current steps, their highest rank, and also the world's top 5 rank of the current
+* [
+First step: 
+1.if you use Android Studio to open, choose app and press run ‘app’, choose ‘Pixel 2 API 27
+(Android 8.1.0, API 27)’ as the device. Then our app, ‘GameCenter’ will automatically open on the 
+emulator.
+2.if you want to open the app directly on emulator, go to app menu, find ‘Game Center’ and click it,
+ the app will be opened for you. 
+Second Step: 
+When you enter the app, you will need an account to continue.
+If you already have an account, simply enter you email address and corresponding password. 
+If you don't have one, you can register one by clicking the register button. To successfully 
+register an account, you need to enter an available account name, and then click ‘CHECK AVAILABLE’ 
+to check whether your account name is available. An available account name should be an email 
+address which contains a "@" symbol and have never been registered before. 
+Once it says “OK!” after pressing ‘CHECK AVAILABLE’ button, you can set a password of your account,
+and then press register to finish registration. After you successfully registered, the app will jump 
+to log in page and you can log in with the account name and password you just registered.
+Besides, if you already have an account but want to change password, we also have this option for 
+you on this page. If you press change password, then you need to first enter you account email and 
+the corresponding password, then press ‘CHECK AVAILABLE’ to check whether this is an existed email 
+and the password is correct. If it says “OK!”, then you can enter you new password, and after you 
+successfully changed you password, the app will jump to the log in page and you can log in with your
+account name and the latest password you set.
+Third Step:
+After you log in, you are now at the Game Centre page. There are currently three games: Sliding 
+Tiles, Color Matching and Flip To Win. You can choose which one you currently want to play.
+Fourth Step:
+After choosing a game, you will enter a starting page, where you can read the instruction of the 
+current game you have chosen at the top, and you can choose between: “New Game”, “Load Saved Game”, 
+“Resume”, and “Scoreboard”. 
+1.If this is your first time playing this game, you shall press “New Game”. After that, you will 
+jump to a page where you can choose the level of the game which corresponding to different 
+difficulty levels. Obviously, level 1 is the easiest and level 3 is the hardest. After choosing a 
+level you want to play, you can play the game! For all the games, there are “UNDO” and “SaveGame” 
+buttons on the top left corner, and your current score at the top right corner. If you want to quit 
+the app or quit the current game, but you want to save the game state so you can continue on this 
+next time, you can press “SaveGame”, and your current game state will be saved! 
+For all the games, possess one movement will increment your score by 1 mark, and if you press “UNDO” 
+to recall the last movement, your mark will be added by 2, 1 for movement and 1 for penalty. If you 
+win the game, you will create a new record with your score of the current game with your selected 
+complexity. The user who got lower score will get higher rank on the scoreboard, because lower score 
+means you win the game with fewer movements. At the same time, you will jump to the ScoreBoard page 
+which shows your current record, and the records of the world’s top 5 ranks. 
+2.If you have saved a game before, then you can press “Load Saved Game” to load you previously saved 
 game.
-Besides, if you want to log out your current account during the game or during any time, you can 
-just keep on pressing the back button until it gets to the first page.] 
+3.If your phone accidentally went off or you accidentally quit the app but you want to continue on 
+the previous game, you press “Resume” to resume your previous game.
+4.If you want to check the scoreboard, you can press “Scoreboard”, and then you will jump to the 
+choose level page, because for different complexities of the game, the records should rank 
+respectively. After pick a level you want to see, you will enter Scoreboard page, since you have not 
+played a game, you do not have a current record. But you can still see the world’s top 5 records of 
+the current game with the current complexity you have chosen. 
+Fifth Step:
+If you won the game, and after checking your record and the top 5 ranks on the scoreboard, you can 
+press back button which will bring you back to Game Centre so you can choose whether to continue on 
+playing the game you just played or change to a different game, or you can just quit the app, and 
+you will be automatically logged out.
+] 
 
