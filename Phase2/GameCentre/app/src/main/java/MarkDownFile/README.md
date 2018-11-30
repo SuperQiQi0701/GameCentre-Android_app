@@ -43,10 +43,11 @@ current game you have chosen at the top, and you can choose between: “New Game
 1.If this is your first time playing this game, you shall press “New Game”. After that, you will 
 jump to a page where you can choose the level of the game which corresponding to different 
 difficulty levels. Obviously, level 1 is the easiest and level 3 is the hardest. After choosing a 
-level you want to play, you can play the game! For all the games, there are “UNDO” and “SaveGame” 
-buttons on the top left corner, and your current score at the top right corner. If you want to quit 
-the app or quit the current game, but you want to save the game state so you can continue on this 
-next time, you can press “SaveGame”, and your current game state will be saved! 
+level you want to play, you can play the game! For all the games, there are “SaveGame” buttons on
+the top left corner, and your current score at the top right corner. For Sliding Tiles and
+ColorMatching, there are “UNDO” buttons on the top.  If you want to quit the app or quit the
+current game, but you want to save the game state so you can continue on this next time, you can
+press “SaveGame”, and your current game state will be saved!
 For all the games, possess one movement will increment your score by 1 mark, and if you press “UNDO” 
 to recall the last movement, your mark will be added by 2, 1 for movement and 1 for penalty. If you 
 win the game, you will create a new record with your score of the current game with your selected 
