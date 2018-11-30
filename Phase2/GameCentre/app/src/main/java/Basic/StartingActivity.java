@@ -55,8 +55,9 @@ public class StartingActivity extends AppCompatActivity {
             // Flip To Win
             case "FTW":
                 introduction = "Welcome to Flip To Win. \n A Memory Game where you need to match pairs of tiles." +
-                        "Once you click a tile, an emoji would expose for 0.8 seconds. If you flip two " +
-                        "identical emoji, they got matched and will cancel out. The player who took " +
+                        "Once you click a tile, the front page of a tile would be faced up. If user tap two tiles that " +
+                        "have different front pages, the two tiles would expose for 0.8 seconds. If you flip two " +
+                        "identical front page, they got matched and will cancel out. The player who took " +
                         "less flips got higher rank. ";
                 break;
         }
