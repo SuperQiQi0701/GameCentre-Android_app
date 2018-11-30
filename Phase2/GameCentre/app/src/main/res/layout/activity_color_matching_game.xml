@@ -14,14 +14,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_purple"
-            android:text="UNDO" />
+            android:text="@string/undo" />
 
         <Button
             android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/darker_gray"
-            android:text="SAVE" />
+            android:text="@string/save_game" />
 
         <TextView
             android:id="@+id/color_match_currScoreText"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorAccent"
-            android:text="RED" />
+            android:text="@string/red" />
 
         <Button
             android:id="@+id/yellow"
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
-            android:text="YELLOW" />
+            android:text="@string/yellow" />
 
         <Button
             android:id="@+id/blue"
@@ -81,15 +81,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:text="BLUE" />
+            android:text="@string/blue" />
 
         <Button
             android:id="@+id/green"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@android:color/holo_green_light"
-            android:text="GREEN" />
+            android:text="@string/green" />
 
         <Button
             android:id="@+id/grey"
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/darker_gray"
-            android:text="GREY" />
+            android:text="@string/gray" />
     </LinearLayout>
 
 </LinearLayout>

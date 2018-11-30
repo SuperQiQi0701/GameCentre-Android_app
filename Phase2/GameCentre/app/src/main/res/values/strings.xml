@@ -34,6 +34,12 @@
     <string name="flip_to_win">Flip To Win</string>
     <string name="color_matching">Color Matching</string>
     <string name="save_game">Save Game</string>
+    <!-- Strings related to color matching -->
+    <string name="red">RED</string>
+    <string name="yellow">YELLOW</string>
+    <string name="blue">BLUE</string>
+    <string name="green">GREEN</string>
+    <string name="gray">GRAY</string>
 
 
 </resources>

@@ -35,9 +35,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
      */
     @SuppressLint("SetTextI18n")
     private void addCheckButtonListener() {
-        Button CheckButton = findViewById(R.id.checkaccount);
+        Button CheckButton = findViewById(R.id.checkAccount);
         EditText account = findViewById(R.id.old_account);
-        EditText oldPassword = findViewById(R.id.oldpassword);
+        EditText oldPassword = findViewById(R.id.old_password);
         TextView message = findViewById(R.id.textView);
 
         CheckButton.setOnClickListener((v) -> {
@@ -64,8 +64,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
      */
     @SuppressLint("SetTextI18n")
     private void addResetPasswordButtonListener() {
-        Button ResetButton = findViewById(R.id.resetbutton);
-        EditText Password = findViewById(R.id.resetpassword);
+        Button ResetButton = findViewById(R.id.resetButton);
+        EditText Password = findViewById(R.id.resetPassword);
         @SuppressLint("CutPasteId") TextView ResetResult = findViewById(R.id.textView);
         EditText Account = findViewById(R.id.old_account);
         @SuppressLint("CutPasteId") TextView message = findViewById(R.id.textView);
