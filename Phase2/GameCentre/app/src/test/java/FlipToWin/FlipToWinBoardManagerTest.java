@@ -20,9 +20,9 @@ public class FlipToWinBoardManagerTest {
 
     private FlipToWinBoard board;
 
-    private List<FlipToWinTile> setUpInOrderFlipToWinTiles(int complexity) {
+    private List<FlipToWinTile> setUpInOrderFlipToWinTiles() {
         List<FlipToWinTile> tiles = new ArrayList<>();
-        int numTiles = complexity * (complexity + 1);
+        int numTiles = 5 * (5 + 1);
         for (int tileNum = 0; tileNum != numTiles / 2; tileNum++) {
             tiles.add(new FlipToWinTile(tileNum));
             tiles.add(new FlipToWinTile(tileNum));
@@ -31,10 +31,10 @@ public class FlipToWinBoardManagerTest {
     }
 
 
-    private void setUpFlipToWinBoardManager(int complexity) {
-        List<FlipToWinTile> tiles = setUpInOrderFlipToWinTiles(complexity);
-        FlipToWinBoard board = new FlipToWinBoard(tiles, complexity);
-        boardManager = new FlipToWinBoardManager(board, complexity);
+    private void setUpFlipToWinBoardManager() {
+        List<FlipToWinTile> tiles = setUpInOrderFlipToWinTiles();
+        FlipToWinBoard board = new FlipToWinBoard(tiles, 5);
+        boardManager = new FlipToWinBoardManager(board, 5);
     }
 
     private void setUpPaired() {
@@ -47,8 +47,8 @@ public class FlipToWinBoardManagerTest {
 
     @Before
     public void setUp() {
-        setUpFlipToWinBoardManager(5);
-        List<FlipToWinTile> tiles = setUpInOrderFlipToWinTiles(5);
+        setUpFlipToWinBoardManager();
+        List<FlipToWinTile> tiles = setUpInOrderFlipToWinTiles();
         board = new FlipToWinBoard(tiles, 5);
     }
 

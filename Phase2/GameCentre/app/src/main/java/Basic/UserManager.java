@@ -2,13 +2,14 @@ package Basic;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserManager implements Serializable {
 
     /**
-     * An ArrayList that store all the users.
+     * An List that store all the users.
      */
-    private ArrayList<User> users = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
     /**
      * Return the user's name of the current user.

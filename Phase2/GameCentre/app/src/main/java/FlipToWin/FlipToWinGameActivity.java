@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -28,7 +29,7 @@ public class FlipToWinGameActivity extends AppCompatActivity implements Observer
     /**
      * The buttons to display.
      */
-    private ArrayList<Button> fTileButtons;
+    private List<Button> fTileButtons;
 
     // Grid View and calculated column height and width based on device size
     private FlipGestureDetectGridView flipGridView;

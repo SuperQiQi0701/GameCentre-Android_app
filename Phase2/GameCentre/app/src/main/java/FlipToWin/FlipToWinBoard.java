@@ -104,7 +104,7 @@ public class FlipToWinBoard extends SuperBoard implements Iterable<FlipToWinTile
 
     @Override
     public String toString() {
-        ArrayList<Integer> ids = new ArrayList<>();
+        List<Integer> ids = new ArrayList<>();
         for (FlipToWinTile[] tileList: tiles) {
             for (FlipToWinTile tile: tileList) {
                 ids.add(tile.getId());

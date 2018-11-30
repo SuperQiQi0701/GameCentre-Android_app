@@ -2,6 +2,7 @@ package fall2018.csc2017.slidingtiles;
 
 import android.support.annotation.NonNull;
 
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -51,6 +52,16 @@ public class Board extends SuperBoard implements Iterable<Tile>, Serializable {
             }
         }
     }
+
+    /**
+     * Return the tiles on the board.
+     *
+     * @return the tiles on the board
+     */
+     Tile[][] getTiles() {
+        return this.tiles;
+    }
+
 
     /**
      * Return the number of tiles on the board.
