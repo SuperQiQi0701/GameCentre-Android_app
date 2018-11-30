@@ -1,7 +1,5 @@
 package ColorMatching;
 
-import android.graphics.Color;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,16 +9,29 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test ColorBoardManager class.
+ */
 public class ColorBoardManagerTest {
 
+    /** The color board manager for testing. */
     private ColorBoardManager colorBoardManager;
+
+    /** The complexity of board at level 1 */
     private int complexity1 = 3;
 
+    /**
+     * Make a random colorBoard.
+     */
     @Before
     private void setUpCorrect(){
         colorBoardManager = new ColorBoardManager(complexity1);
     }
 
+    /**
+     * Make a set of colorTiles that are in order.
+     * @return a set of colorTiles that are in order
+     */
     private List<ColorTile> makeSameColorTiles(){
         List<ColorTile> tiles = new ArrayList<>();
         int rowNum = (complexity1 - 2) * 4;
@@ -35,6 +46,9 @@ public class ColorBoardManagerTest {
         return tiles;
     }
 
+    /**
+     * Make a solved colorBoard.
+     */
     @Before
     private void setUpSameColor(){
         List<ColorTile> tiles = makeSameColorTiles();
@@ -44,11 +58,17 @@ public class ColorBoardManagerTest {
     }
 
 
+    /**
+     * Set the colorBoardManager to null
+     */
     @After
     public void tearDown() {
         colorBoardManager = null;
     }
 
+    /**
+     * Test whether makeChange does change the color of the top left grid
+     */
     @Test
     public void testMakeChange() {
         setUpCorrect();
@@ -60,6 +80,9 @@ public class ColorBoardManagerTest {
         assertEquals(-16711936, colorBoardManager.getBoard().getGrid(0, 0).getColor());
     }
 
+    /**
+     * Check whether undoAvailable works after make some changes
+     */
     @Test
     public void testUndoAvailable() {
         setUpCorrect();
@@ -69,6 +92,9 @@ public class ColorBoardManagerTest {
         assertTrue(colorBoardManager.undoAvailable());
     }
 
+    /**
+     * Check whether undoAvailable works after make some changes
+     */
     @Test
     public void testUndo() {
         setUpCorrect();
@@ -78,16 +104,29 @@ public class ColorBoardManagerTest {
         assertEquals(-65536, colorBoardManager.getBoard().getGrid(0, 0).getColor());
     }
 
+    /**
+     * Check whether getBoard works.
+     */
     @Test
-    public void testGetGame() {
+    public void testGetBoard() {
         setUpCorrect();
         assertEquals(3, colorBoardManager.getBoard().getComplexity());
     }
 
+    /**
+     * Check whether the game is not solved after randomly create a colorBoard.
+     */
     @Test
-    public void testPuzzleSolved() {
+    public void testPuzzleUnsolved() {
         setUpCorrect();
         assertFalse(colorBoardManager.puzzleSolved());
+    }
+
+    /**
+     * Check whether the game is solved after setting all the colorTiles the same color.
+     */
+    @Test
+    public void testPuzzleSolved() {
         setUpSameColor();
         assertTrue(colorBoardManager.puzzleSolved());
     }
