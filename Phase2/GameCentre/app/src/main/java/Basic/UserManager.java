@@ -23,7 +23,7 @@ public class UserManager implements Serializable {
                 return u.getUserName();
             }
         }
-        return null;
+        return "";
     }
 
     /**

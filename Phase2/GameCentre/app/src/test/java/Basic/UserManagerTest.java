@@ -29,7 +29,7 @@ public class UserManagerTest {
     @Test
     public void login() {
         assertEquals("@test user 1", this.userManager.login("@test user 1", "111111"));
-        assertNull(this.userManager.login("@test user 6", "666666"));
+        assertEquals("", this.userManager.login("@test user 6", "666666"));
     }
 
     @Test
