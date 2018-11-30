@@ -24,9 +24,6 @@ public class SelectGameActivity extends AppCompatActivity {
         addGameListener(R.id.enter_sliding_button, Color.MAGENTA, Color.YELLOW, "ST");
         addGameListener(R.id.enter_colorMatching_button, Color.YELLOW, Color.BLACK, "CM");
         addGameListener(R.id.enter_flipToTile_button, Color.CYAN, Color.RED, "FTW");
-        addGameListener(R.id.enter_sliding_button, Color.MAGENTA, Color.YELLOW, "ST");
-        addGameListener(R.id.enter_colorMatching_button, Color.YELLOW, Color.BLACK, "CM");
-        addGameListener(R.id.enter_flipToTile_button, Color.CYAN, Color.RED, "FTW");
     }
 
     @SuppressLint("SetTextI18n")
