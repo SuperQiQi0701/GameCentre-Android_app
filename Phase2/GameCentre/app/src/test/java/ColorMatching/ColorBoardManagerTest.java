@@ -41,9 +41,9 @@ public class ColorBoardManagerTest {
         int rowNum = (complexity1 - 2) * 4;
         int colNum = (complexity1 - 2) * 5;
         for (int row = 0; row != rowNum; row++) {
-            for (int col = 0; col != colNum; col++) {ColorTile colorTiles = new ColorTile(row, col);
+            for (int col = 0; col != colNum; col++) {
                 ColorTile colorTile = new ColorTile(row, col);
-                colorTiles.setColor(-65536);
+                colorTile.setColor(-65536);
                 tiles.add(colorTile);
             }
         }
@@ -82,6 +82,17 @@ public class ColorBoardManagerTest {
         assertEquals(-16711936, colorBoardManager.getBoard().getGrid(0, 0).getColor());
         colorBoardManager.makeChange(-16711936);
         assertEquals(-16711936, colorBoardManager.getBoard().getGrid(0, 0).getColor());
+    }
+
+    /**
+     * Test whether makeChange is correct when the color button chosen has the same color as the
+     * ColorTile at (0, 0).
+     */
+    @Test
+    public void testMakeSameColorChange() {
+        setUpSameColor();
+        colorBoardManager.makeChange(-65536);
+        assertEquals(1, colorBoardManager.getScore());
     }
 
     /**
@@ -151,4 +162,26 @@ public class ColorBoardManagerTest {
             i ++;
         }
     }
+
+    /**
+     * Check whether the colorBoard can getRowNum correctly.
+     */
+    @Test
+    public void testColorBoardGetRowNum(){
+        setUpCorrect();
+        int expectRowNum = (complexity1 - 2) * 4;
+        assertEquals(expectRowNum, colorBoardManager.getBoard().getRowNum());
+    }
+
+    /**
+     * Check whether the colorBoard can getColNum correctly.
+     */
+    @Test
+    public void testColorBoardGetColNum(){
+        setUpCorrect();
+        int expectColNum = (complexity1 - 2) * 5;
+        assertEquals(expectColNum, colorBoardManager.getBoard().getColNum());
+    }
+
+
 }

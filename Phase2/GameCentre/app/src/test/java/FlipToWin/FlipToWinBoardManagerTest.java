@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import Basic.DataManager;
 import fall2018.csc2017.slidingtiles.R;
 
 import static org.junit.Assert.*;
@@ -47,6 +48,9 @@ public class FlipToWinBoardManagerTest {
 
     @Before
     public void setUp() {
+        DataManager.INSTANCE.setCurrentGameName("FTW");
+        DataManager.INSTANCE.startNewGame(5);
+        boardManager = (FlipToWinBoardManager) DataManager.INSTANCE.getBoardManager();
         setUpFlipToWinBoardManager();
         List<FlipToWinTile> tiles = setUpInOrderFlipToWinTiles();
         board = new FlipToWinBoard(tiles, 5);
@@ -89,7 +93,7 @@ public class FlipToWinBoardManagerTest {
     @Test
     public void testBoardTilesFrontPage() {
 
-        assertEquals(board.getGrid(0, 0).getFrontPage(), board.getGrid(0,1).getFrontPage());
+        assertEquals(board.getGrid(0, 0).getFrontPage(), board.getGrid(0, 1).getFrontPage());
     }
 
     @Test
@@ -137,12 +141,11 @@ public class FlipToWinBoardManagerTest {
         setUpPaired();
         assertFalse(boardManager.isValidTap(1));
         //faced up
-        ((FlipToWinTile) boardManager.getBoard().getGrid(0,0)).setFlipped();
+        ((FlipToWinTile) boardManager.getBoard().getGrid(0, 0)).setFlipped();
         assertFalse(boardManager.isValidTap(1));
         //flipping
         boardManager.setFlipping(true);
         assertFalse(boardManager.isValidTap(1));
-
 
 
     }
@@ -152,33 +155,31 @@ public class FlipToWinBoardManagerTest {
 
         //test on two tiles that has same id.
         boardManager.makeChange(0);
-        assertTrue(((FlipToWinTile) boardManager.getBoard().getGrid(0,0)).isFacedUp());
+        assertTrue(((FlipToWinTile) boardManager.getBoard().getGrid(0, 0)).isFacedUp());
         boardManager.makeChange(1);
-        assertTrue(((FlipToWinTile) boardManager.getBoard().getGrid(0,1)).isFacedUp());
-        assertTrue(((FlipToWinTile) boardManager.getBoard().getGrid(0,0)).isPaired());
-        assertTrue(((FlipToWinTile) boardManager.getBoard().getGrid(0,1)).isPaired());
+        assertTrue(((FlipToWinTile) boardManager.getBoard().getGrid(0, 1)).isFacedUp());
+        assertTrue(((FlipToWinTile) boardManager.getBoard().getGrid(0, 0)).isPaired());
+        assertTrue(((FlipToWinTile) boardManager.getBoard().getGrid(0, 1)).isPaired());
 
     }
 
     @Test
-    public void testFlipTwoTiles(){
+    public void testFlipTwoTiles() {
 
-        assertFalse(((FlipToWinTile) boardManager.getBoard().getGrid(0,0)).isFacedUp());
-        assertFalse(((FlipToWinTile) boardManager.getBoard().getGrid(1,1)).isFacedUp());
+        assertFalse(((FlipToWinTile) boardManager.getBoard().getGrid(0, 0)).isFacedUp());
+        assertFalse(((FlipToWinTile) boardManager.getBoard().getGrid(1, 1)).isFacedUp());
 
-        boardManager.flipTwoTiles(0,0,1,1);
+        boardManager.flipTwoTiles(0, 0, 1, 1);
 
-        assertTrue(((FlipToWinTile) boardManager.getBoard().getGrid(0,0)).isFacedUp());
-        assertTrue(((FlipToWinTile) boardManager.getBoard().getGrid(1,1)).isFacedUp());
+        assertTrue(((FlipToWinTile) boardManager.getBoard().getGrid(0, 0)).isFacedUp());
+        assertTrue(((FlipToWinTile) boardManager.getBoard().getGrid(1, 1)).isFacedUp());
         assertFalse(boardManager.isFlippingTiles());
     }
 
     @Test
     public void testSetUpBeforeFlipping() {
 
-        boardManager.setUpBeforeFlipping(0,0);
+        boardManager.setUpBeforeFlipping(0, 0);
         assertEquals(boardManager.getPositionTileOneFaceUp(), -1);
     }
-
-
 }
