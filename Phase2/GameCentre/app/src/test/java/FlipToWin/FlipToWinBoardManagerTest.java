@@ -17,10 +17,20 @@ import static org.junit.Assert.*;
 public class FlipToWinBoardManagerTest {
 
 
+    /**
+     * the boardManager
+     */
     private FlipToWinBoardManager boardManager;
 
+    /**
+     * the board
+     */
     private FlipToWinBoard board;
 
+    /**
+     * return the <List> tiles and the ids are in a inorder.
+     * @return the <List> tiles and the ids are in a inorder
+     */
     private List<FlipToWinTile> setUpInOrderFlipToWinTiles() {
         List<FlipToWinTile> tiles = new ArrayList<>();
         int numTiles = 5 * (5 + 1);
@@ -31,13 +41,18 @@ public class FlipToWinBoardManagerTest {
         return tiles;
     }
 
-
+    /**
+     * set up the FlipToWinBoardManager with complexity 5.
+     */
     private void setUpFlipToWinBoardManager() {
         List<FlipToWinTile> tiles = setUpInOrderFlipToWinTiles();
         FlipToWinBoard board = new FlipToWinBoard(tiles, 5);
         boardManager = new FlipToWinBoardManager(board, 5);
     }
 
+    /**
+     * set all tiles in the board to be paired.
+     */
     private void setUpPaired() {
         FlipToWinBoard board = (FlipToWinBoard) boardManager.getBoard();
         for (FlipToWinTile tile: board) {
@@ -45,7 +60,9 @@ public class FlipToWinBoardManagerTest {
         }
     }
 
-
+    /**
+     * set up for unit test
+     */
     @Before
     public void setUp() {
         DataManager.INSTANCE.setCurrentGameName("FTW");
@@ -56,11 +73,17 @@ public class FlipToWinBoardManagerTest {
         board = new FlipToWinBoard(tiles, 5);
     }
 
+    /**
+     * tear down for next unit test.
+     */
     @After
     public void tearDown() {
         this.boardManager = null;
     }
 
+    /**
+     * this is an unit test for the constructor of FlipToWinBoardManager.
+     */
     @Test
     public void testConstructor() {
         FlipToWinBoardManager newBoardManager = new FlipToWinBoardManager(5);
@@ -69,6 +92,9 @@ public class FlipToWinBoardManagerTest {
         assertEquals(newBoardManager.getBoard().numGrids(), 30);
     }
 
+    /**
+     * this is an unit test for getBoard() method
+     */
     @Test
     public void testGetBoard() {
 
@@ -82,6 +108,9 @@ public class FlipToWinBoardManagerTest {
 
     }
 
+    /**
+     * this is an unit test for testing the tiles of the board have correct background.
+     */
     @Test
     public void testBoardTilesBackground() {
 
@@ -90,12 +119,18 @@ public class FlipToWinBoardManagerTest {
         }
     }
 
+    /**
+     * this is an unit test for testing the tiles of the board have correct front page.
+     */
     @Test
     public void testBoardTilesFrontPage() {
 
         assertEquals(board.getGrid(0, 0).getFrontPage(), board.getGrid(0, 1).getFrontPage());
     }
 
+    /**
+     * test the tiles of the board is iterable.
+     */
     @Test
     public void testBoardIterable() {
         Iterator<FlipToWinTile> iterator = board.iterator();
@@ -110,6 +145,9 @@ public class FlipToWinBoardManagerTest {
         }
     }
 
+    /**
+     * test puzzleSolved() method.
+     */
     @Test
     public void testPuzzleSolved() {
 
@@ -121,6 +159,9 @@ public class FlipToWinBoardManagerTest {
 
     }
 
+    /**
+     * test isFlippingTiles() method.
+     */
     @Test
     public void testIsFlippingTiles() {
 
@@ -132,6 +173,9 @@ public class FlipToWinBoardManagerTest {
 
     }
 
+    /**
+     * test isValidTap() method.
+     */
     @Test
     public void testIsValidTap() {
 
@@ -150,6 +194,9 @@ public class FlipToWinBoardManagerTest {
 
     }
 
+    /**
+     * test makeChange() method.
+     */
     @Test
     public void testMakeChange() {
 
@@ -163,6 +210,9 @@ public class FlipToWinBoardManagerTest {
 
     }
 
+    /**
+     * test flipTwoTiles() method.
+     */
     @Test
     public void testFlipTwoTiles() {
 
@@ -176,6 +226,9 @@ public class FlipToWinBoardManagerTest {
         assertFalse(boardManager.isFlippingTiles());
     }
 
+    /**
+     * test setUpBeforeFlipping() method.
+     */
     @Test
     public void testSetUpBeforeFlipping() {
 
