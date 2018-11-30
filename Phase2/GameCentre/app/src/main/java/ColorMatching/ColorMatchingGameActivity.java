@@ -35,6 +35,21 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
     private static ColorView colorView;
 
     /**
+     * Total number of Button.
+     */
+    private static final int numButton = 5;
+
+    /**
+     * The row ratio of this ColorBoard.
+     */
+    private static final int rowRatio = 4;
+
+    /**
+     * The column ratio of this ColorBoard.
+     */
+    private static final int colRatio = 5;
+
+    /**
      * The color buttons to display.
      */
     private int[] color_button = {R.id.red, R.id.yellow, R.id.blue, R.id.green, R.id.grey};
@@ -60,7 +75,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
         initData();
         initView();
         int position = 0;
-        while (position < 5){
+        while (position < numButton){
             addColorButtonListener(position);
             position++;
         }
@@ -118,7 +133,7 @@ public class ColorMatchingGameActivity extends AppCompatActivity {
 //        int complexity = DataManager.INSTANCE.getBoardManager().getComplexity();
         int width = getScreenWidth(this);
         this.width = width;
-        height = width * 5 / 4;
+        height = width * colRatio / rowRatio;
         colorView = new ColorView();
         colorView.setBoxSize(this.width / ((ColorBoardManager) DataManager.INSTANCE.getBoardManager()).getBoard().getTiles().length);
     }
