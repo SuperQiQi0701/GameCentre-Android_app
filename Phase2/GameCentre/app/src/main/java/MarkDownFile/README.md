@@ -3,7 +3,7 @@
 Markdown is a plain-text file format. There are lots of programming tools that use Markdown, and it's useful and
 easy to learn. Hash marks (the number sign) indicate headers. Asterisks indicate lists.
 
-## URL: [https://markus.teach.cs.toronto.edu/git/csc207-2018-09-reg/group_0497]
+## URL: [https://markus.teach.cs.toronto.edu/git/csc207-2018-09-reg/group_0704]
 
 ### What to click and what path to click: 
 * [Copy the url in the Android Studio, and then to clone the project.]
