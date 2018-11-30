@@ -28,7 +28,8 @@ public class BoardManagerTest {
         DataManager.INSTANCE.setCurrentGameName("ST");
         DataManager.INSTANCE.startNewGame(5);
         this.boardManager = (BoardManager) DataManager.INSTANCE.getBoardManager();
-        List<Tile> tiles = makeTiles(4);
+        List<Tile> tiles = makeTiles();
+        //reset the board to complexity 4
         Board board = new Board(tiles, 4);
         boardManager = new BoardManager(4);
         boardManager.setBoard(board);
@@ -44,9 +45,9 @@ public class BoardManagerTest {
      *
      * @return a set of tiles that are in order
      */
-    private List<Tile> makeTiles(int complexity) {
+    private List<Tile> makeTiles() {
         List<Tile> tiles = new ArrayList<>();
-        final int numTiles = complexity * complexity;
+        final int numTiles = 4 * 4;
         for (int tileNum = 0; tileNum != numTiles; tileNum++) {
             tiles.add(new Tile(tileNum, tileNum));
         }
