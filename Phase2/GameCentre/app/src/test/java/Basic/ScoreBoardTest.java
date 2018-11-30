@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fall2018.csc2017.slidingtiles.BoardManager;
 
@@ -53,9 +54,9 @@ public class ScoreBoardTest {
     public void topFiveToString() {
         // Complexity 5 -> no record
         this.scoreBoard.setComplexity(5);
-        ArrayList result = this.scoreBoard.TopFiveToString();
+        List result = this.scoreBoard.TopFiveToString();
         int count = 0;
-        for (Object message: result){
+        for (Object message : result) {
             assertEquals("Not enough users to get a full rank", message);
             count++;
         }
@@ -64,8 +65,8 @@ public class ScoreBoardTest {
 
         // Complexity 3 -> should have 3 records
         this.scoreBoard.setComplexity(3);
-        ArrayList result3 = this.scoreBoard.TopFiveToString();
-        ArrayList<String> expected = new ArrayList<>();
+        List result3 = this.scoreBoard.TopFiveToString();
+        List<String> expected = new ArrayList<>();
         expected.add("User: @u1, got 1 steps in game: ST, in level: 1");
         expected.add("User: @u2, got 10 steps in game: ST, in level: 1");
         expected.add("User: @u3, got 15 steps in game: ST, in level: 1");
