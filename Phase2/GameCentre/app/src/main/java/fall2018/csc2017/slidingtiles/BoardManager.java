@@ -51,7 +51,7 @@ public class BoardManager extends SuperManager implements Serializable{
      * @param complexity the complexity of tiles
      * @return whether the tiles are solvable or not.
      */
-    private boolean checkSolvable(List<Tile> tiles, int complexity){
+    boolean checkSolvable(List<Tile> tiles, int complexity){
         int num = getInvNumber(tiles);
         if (tiles.size() % 2 == 1){
             return num % 2 == 0;
@@ -110,10 +110,20 @@ public class BoardManager extends SuperManager implements Serializable{
 
     /**
      * Return the current board.
+     *
+     *@return the board.
      */
     public Board getBoard() {
 
         return board;
+    }
+
+
+    /**
+     * Set the board.
+     */
+    public void setBoard(Board board){
+        this.board = board;
     }
 
     /**
