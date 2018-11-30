@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * This is ScoreBoard class that will create a scoreBoard object
+ */
 public class ScoreBoard implements Serializable {
 
     /**
@@ -27,11 +30,12 @@ public class ScoreBoard implements Serializable {
      */
     private int currComplexity;
 
-    /** Set this.currComplexity to the given complexity
+    /**
+     * Set this.currComplexity to the given complexity
      *
      * @param complexity the complexity of the record
      */
-    public void setComplexity(int complexity){
+    public void setComplexity(int complexity) {
         this.currComplexity = complexity;
     }
 

@@ -2,14 +2,17 @@ package Basic;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import java.util.List;
 
+import java.util.List;
 
 import fall2018.csc2017.slidingtiles.R;
 
+/**
+ * This is a ScoreBoardActivity class that is responsible for display scoreboard
+ */
 public class ScoreBoardActivity extends AppCompatActivity {
 
     private boolean isOnlyViewScoreBoard;

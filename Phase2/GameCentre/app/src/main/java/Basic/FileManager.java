@@ -9,6 +9,9 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * This is a FileManager class that is responsible for all save and load functionality
+ */
 public class FileManager {
 
     /**

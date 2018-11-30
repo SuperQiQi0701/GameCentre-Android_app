@@ -1,6 +1,8 @@
 package Basic;
 
-
+/**
+ * This is a DataManager that will manage the BoardManager for all there games
+ */
 public enum DataManager {
     INSTANCE;
 

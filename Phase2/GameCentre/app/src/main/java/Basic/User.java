@@ -2,6 +2,9 @@ package Basic;
 
 import java.io.Serializable;
 
+/**
+ * This class creates User object
+ */
 class User implements Serializable {
 
     /**
@@ -24,7 +27,7 @@ class User implements Serializable {
     /**
      * Return if the given password matched the current password.
      *
-     * @param password  the given checkPassword
+     * @param password the given checkPassword
      * @return if the given password matched this.password
      */
     boolean checkPassword(String password) {

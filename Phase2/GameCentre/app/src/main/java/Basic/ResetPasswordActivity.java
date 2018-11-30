@@ -3,14 +3,17 @@ package Basic;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import fall2018.csc2017.slidingtiles.R;
 
+/**
+ * This class manage the reset password page
+ */
 @SuppressLint("Registered")
 public class ResetPasswordActivity extends AppCompatActivity {
 

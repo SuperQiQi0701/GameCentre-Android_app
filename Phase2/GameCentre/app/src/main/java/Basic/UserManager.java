@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class manages all the user of the game.
+ */
 public class UserManager implements Serializable {
 
     /**
@@ -88,6 +91,7 @@ public class UserManager implements Serializable {
 
     /**
      * return true iff the password is valid.
+     *
      * @param password the password
      * @return true iff the password is valid.
      */

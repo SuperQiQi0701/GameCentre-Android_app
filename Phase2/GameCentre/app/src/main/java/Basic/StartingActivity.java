@@ -2,8 +2,8 @@ package Basic;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +34,7 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * set the game info by current game name.
      */
-    private void setGameInfo(){
+    private void setGameInfo() {
         String introduction = "";
         TextView gameTextView = findViewById(R.id.GameText);
         switch (DataManager.INSTANCE.getCurrentGameName()) {
