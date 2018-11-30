@@ -61,7 +61,7 @@ public class ScoreBoard implements Serializable {
      */
     void addNewRecords(Record record) {
         int complexity = record.getComplexity();
-        updateComplexity(complexity);
+        setComplexity(complexity);
 
         // get the ArrayList records which corresponding to the current game
         // complexity(add a record)
@@ -128,16 +128,6 @@ public class ScoreBoard implements Serializable {
             }
         }
         return result;
-    }
-
-
-    /**
-     * Modify the current complexity of the game.
-     *
-     * @param complexity the current complexity of the game.
-     */
-    private void updateComplexity(int complexity) {
-        this.currComplexity = complexity;
     }
 
 

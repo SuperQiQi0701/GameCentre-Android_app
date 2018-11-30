@@ -3,8 +3,6 @@ package Basic;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import Basic.User;
-
 public class UserManager implements Serializable {
 
     /**
@@ -12,25 +10,20 @@ public class UserManager implements Serializable {
      */
     private ArrayList<User> users = new ArrayList<>();
 
-//    /**
-//     * The user's name for current user.
-//     */
-//    private String currUser;
-
     /**
      * Return the user's name of the current user.
      *
      * @param username the username of the current user.
      * @param password the password of the current user.
-     * @return the user who log in.
+     * @return the name of user who log in.
      */
-    public User login(String username, String password) {
+    public String login(String username, String password) {
         for (User u : users) {
-            if (u.userName.equals(username) && u.checkPassword(password)) {
-                return u;
+            if (u.getUserName().equals(username) && u.checkPassword(password)) {
+                return u.getUserName();
             }
         }
-        return null;
+        return "";
     }
 
     /**
@@ -92,6 +85,11 @@ public class UserManager implements Serializable {
         }
     }
 
+    /**
+     * return true iff the password is valid.
+     * @param password the password
+     * @return true iff the password is valid.
+     */
     boolean isValidPassword(String password) {
         return (password.length() >= 6);
     }

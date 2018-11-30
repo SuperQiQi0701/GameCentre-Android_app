@@ -7,7 +7,7 @@ class User implements Serializable {
     /**
      * The user's name for current user.
      */
-    String userName;
+    private String userName;
     /**
      * The user's password for current user.
      */

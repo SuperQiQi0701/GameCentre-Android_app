@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener((v) -> {
             String name = nameInput.getText().toString();
             String password = passwordInput.getText().toString();
-            if (this.userManager.login(name, password) == null) {
+            if ("".equals(this.userManager.login(name, password))) {
                 messageBox.setTextColor(Color.RED);
                 messageBox.setText("Please check your username and password");
             } else {

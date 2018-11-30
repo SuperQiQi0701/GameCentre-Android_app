@@ -11,24 +11,49 @@ public class Record implements Comparable<Record>, Serializable {
     /**
      * The complexity of the game.
      */
-    private int complexity = DataManager.INSTANCE.getBoardManager().getComplexity();
+    private int complexity;
 
 
     /**
      * The current score of the game.
      */
-    private int finalScore = DataManager.INSTANCE.getBoardManager().getScore();
+    private int finalScore;
 
 
     /**
      * The current username of the game.
      */
-    private String userName = DataManager.INSTANCE.getCurrentUserName();
+    private String userName;
 
     /**
      * The current name of the game.
      */
-    private String gameName = DataManager.INSTANCE.getCurrentGameName();
+    private String gameName;
+
+    /**
+     * Create an instance of Record
+     */
+    Record() {
+        this.complexity = DataManager.INSTANCE.getBoardManager().getComplexity();
+        this.finalScore = DataManager.INSTANCE.getBoardManager().getScore();
+        this.userName = DataManager.INSTANCE.getCurrentUserName();
+        this.gameName = DataManager.INSTANCE.getCurrentGameName();
+    }
+
+    /**
+     * The constructor for testing
+     *
+     * @param complexity    the complexity of the finished game
+     * @param finalScore    the finalScore that user got
+     * @param userName      the name of the user
+     * @param gameName      the current game name
+     */
+    Record(int complexity, int finalScore, String userName, String gameName) {
+        this.complexity = complexity;
+        this.finalScore = finalScore;
+        this.userName = userName;
+        this.gameName = gameName;
+    }
 
 
     /**
