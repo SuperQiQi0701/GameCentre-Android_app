@@ -53,6 +53,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
             } else {
                 message.setTextColor(Color.GREEN);
                 message.setText("OK!");
+                this.checked_account = name;
             }
         });
     }
