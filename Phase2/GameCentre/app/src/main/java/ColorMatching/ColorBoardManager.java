@@ -118,10 +118,13 @@ public class ColorBoardManager extends SuperManager implements Serializable{
         List<ColorTile> arr =  new ArrayList<>();
         ColorTile tile = colorBoard.getGrid(0, 0);
         int initColor = tile.getColor();
+        // if newColor is the different as the color of (0,0) colorTile
         if (newColor != initColor){
             tile.setColor(newColor);
             arr.add(tile);
             neighbour(arr, tile, initColor);
+            //if any of tile's neighbours has the same color, then continue on checking the neighbours
+            //of the current neighbours.
             while(allState.size() != 0){
                 tile = allState.get(0);
                 neighbour(arr, tile, initColor);
@@ -131,10 +134,9 @@ public class ColorBoardManager extends SuperManager implements Serializable{
             }
             allMove.add(arr);
             colors.add(initColor);
-        }else if (allMove.size() != 0){
-            allMove.add(allMove.get(allMove.size()-1));
-            colors.add(initColor);
-        }else{
+        }
+        // if newColor is the same as the color of (0,0) colorTile
+        else{
             arr.add(tile);
             neighbour(arr, tile, initColor);
             allMove.add(arr);
