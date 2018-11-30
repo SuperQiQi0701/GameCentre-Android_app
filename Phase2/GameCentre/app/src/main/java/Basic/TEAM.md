@@ -49,7 +49,7 @@ Meeting No.2 (Oct.29)
 We finish the design part of the project. We finish the CRC and uml of this project together.
 And we separated the project into 5 main part: User-UserManager, Game-GameManager, Activities, 
 Scoreboards and a MainClass. Runqi Bi writes User-UserManager, Shang Liu and Qi Zou writes 
-Activities, Quan Xu does Scoreboards and Zijin Zhang does Game-GameManager. We will wirte 
+Activities, Quan Xu does Scoreboards and Zijin Zhang does Game-GameManager. We will write 
 the MainClass together, since the MainClass is the top class that organize all classes.
 In the following days, we are going to finish each part of the project and we are going wo have a 
 another meeting on this Saturday.
@@ -92,6 +92,41 @@ new games. After discussion, we decided that we make two games which were "Color
 group 1 and Quan Xu, Zijin Zhang were group 2. Group 1 was working the game, 'Color Matching', and 
 group 2 was doing the game, 'Flip to Win'.
 \\
-Meeting No.8
+Meeting No.8 (Nov.21)
+We designed the functionality of Color Matching(CM) and Flip to Win(FTW). 
+The description of CM is:
+CM is a grid where need to unify the color of all the grids. User can change grid colors from 
+the top left corner by clicking color buttons at the bottom. The grids user can change would 
+increase as you unify more grids. If user undo, user got a penalty of adding 1 extra score. 
+The player who took lower steps got higher rank.
+The description of FTW is:
+TTW is a memory game where you need to match pairs of tiles. Once you click a tile, the front page 
+of a tile would be faced up. If user tap two tiles that have different front pages, the two 
+tiles would expose for 0.8 seconds. If you flip two identical front page, they got matched 
+and will cancel out. The player who took less flips got higher rank.
+\\
+Meeting No.9 (Nov.24)
+Two group of us finished the design of new games and finishing coding the two game. And we have a
+problem of update observer. So we watch some youtube videos about the observer and we look through 
+some paper and answers about observer. Then we fix the update view issues.
+\\
+Meeting No.10 (Nov.25)
+After we finished the two new game, we redesigned the main class, since in teh feedback of phase 1, 
+it suggests we split the main class into two parts. So we redesign it and split main class to two 
+class(class DataManager and class FileManager). DataManager use singleton design pattern, and the 
+functionality of this class is yto manage date from GameBoardManager and user manager and so on. 
+The functionality of FileManager is the to load and save files. So we grouped together and changed 
+the main class and applied changes.
+\\
+Meeting No.11 (Nov.28)
+We found a bug of saving/loading file for game Color Matching. The reason of the bug was we create 
+new game in the Color Matching GameActivity and since we cannot save/load activity. So we could 
+not able to save\load the Color Matching BoardManager. Then, we redesign the structure of game 
+Color Matching and made it savable/loadable.
+\\
+\\Meeting No.12 (Nov.29)
+This the final meeting before submitting. We grouped up together to write the Java Doc and the unit 
+test for our controller(which is the C in the MVC design pattern). 
+Today is a big day.
 ]
 

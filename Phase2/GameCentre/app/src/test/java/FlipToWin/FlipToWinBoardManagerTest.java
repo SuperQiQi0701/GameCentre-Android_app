@@ -40,7 +40,7 @@ public class FlipToWinBoardManagerTest {
 
     private void setUpPaired() {
         FlipToWinBoard board = (FlipToWinBoard) boardManager.getBoard();
-        for (FlipToWinTile tile : board) {
+        for (FlipToWinTile tile: board) {
             tile.setPaired();
         }
     }
@@ -58,6 +58,7 @@ public class FlipToWinBoardManagerTest {
 
     @After
     public void tearDown() {
+        this.boardManager = null;
     }
 
     @Test
@@ -84,7 +85,7 @@ public class FlipToWinBoardManagerTest {
     @Test
     public void testBoardTilesBackground() {
 
-        for (FlipToWinTile tile : board) {
+        for (FlipToWinTile tile: board) {
             assertEquals(tile.getBackground(), R.drawable.back_of_tile4);
         }
     }
@@ -102,9 +103,10 @@ public class FlipToWinBoardManagerTest {
         while (i <= board.numGrids()) {
             try {
                 iterator.next();
-            } catch (NoSuchElementException e) {
+            } catch (NoSuchElementException e){
+                System.out.println("No more FlipToWinTiles.");
             }
-            i++;
+            i ++;
         }
     }
 

@@ -145,7 +145,9 @@ public class ColorBoardManagerTest {
         while (i <= colorBoardManager.getBoard().numGrids()) {
             try {
                 iterator.next();
-            } catch (NoSuchElementException e) {}
+            } catch (NoSuchElementException e) {
+                System.out.println("No more ColorTiles.");
+            }
             i ++;
         }
     }
