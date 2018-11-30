@@ -1,11 +1,15 @@
 package ColorMatching;
 
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 
 import static org.junit.Assert.*;
 
@@ -129,5 +133,20 @@ public class ColorBoardManagerTest {
     public void testPuzzleSolved() {
         setUpSameColor();
         assertTrue(colorBoardManager.puzzleSolved());
+    }
+
+    /**
+     * Check whether the colorBoard is Iterable
+     */
+    @Test
+    public void testColorBoardIterable() {
+        Iterator<ColorTile> iterator = colorBoardManager.getBoard().iterator();
+        int i = 0;
+        while (i <= colorBoardManager.getBoard().numGrids()) {
+            try {
+                iterator.next();
+            } catch (NoSuchElementException e) {}
+            i ++;
+        }
     }
 }
