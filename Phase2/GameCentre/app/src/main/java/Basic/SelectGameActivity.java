@@ -18,7 +18,7 @@ public class SelectGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_game);
         addGameListener(R.id.enter_sliding_button, Color.MAGENTA, Color.YELLOW, "ST");
-        addGameListener(R.id.enter_colormatching_button, Color.YELLOW, Color.BLACK, "CM");
+        addGameListener(R.id.enter_colorMatching_button, Color.YELLOW, Color.BLACK, "CM");
         addGameListener(R.id.enter_flipToTile_button, Color.CYAN, Color.RED, "FTW");
         addGameListener(R.id.enter_sliding_button, Color.MAGENTA, Color.YELLOW, "ST");
         addGameListener(R.id.enter_colorMatching_button, Color.YELLOW, Color.BLACK, "CM");
