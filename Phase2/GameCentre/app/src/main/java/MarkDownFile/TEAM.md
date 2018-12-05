@@ -3,6 +3,7 @@
 Markdown is a plain-text file format. There are lots of programming tools that use Markdown, and it's useful and
 easy to learn. Hash marks (the number sign) indicate headers. Asterisks indicate lists.
 
+
 ## Contact information: 
 * [
 Shang Liu, shaun.liu@mail.utoronto.ca,6265664438;
@@ -10,6 +11,7 @@ Runqi Bi, runqi.bi@mail.utoronto.ca, 6476767926;
 Qi Zou, qi.zou@mail.utoronto.ca, 4168273760;
 Quan Xu, quan.xu@mail.utoronto.ca, 6476740007;
 Zijin Zhang, zijin.zhang@mail.utoronto.ca, 6476760331]
+
 
 ### Real name vs. Git name:
 * [
@@ -20,10 +22,11 @@ Quan Xu: quan,
 Zijin Zhang: Zijin Zhang & Arieski.
 ]
 
+
 ### communication tools: [Wechat. We have a Wechat group to communicate.]
 
-### Team contact:
 
+### Team contact:
 * [ 
 I will get my allotted work done on time.
 I will attend every team meeting and actively participate.
@@ -40,13 +43,26 @@ Zijin Zhang agreed
 
 
 ### Detail:
-
 [We will do it in pairs, since one person can be typing and the other can be looking up 
 documentation, and one can discuss design issues as the arise.). If in some small cases some codes 
 need to be done individually, we will do it individually and finish it on time.]
 
-### Meeting notes:
 
+### Contributes(generally) in project phase 2:
+* [
+Note: Since we are a group, so sometimes we group together to write codes(some overlap 
+coding). Then the contributes below is only a general contributes. Actually each group member 
+did much more than the contribute list below.
+\\
+Shang Liu: interfaces, complexity，sliding tile(board unsolvable), factory design pattern, ST unit tests.
+Runqi Bi: game color matching(tile, board, board manager, gameActivity) and Superclass
+Qi Zou: game color matching(record, scoreboard, scoreboardActivity), README.md, CM unit tests.
+Quan Xu: game Flip to Win (tile, board, board manager, gameActivity, scoreboard) and Superclass, FTW unit tests.
+Zijin Zhang: Data manager, file manager(load and save), and Superclass, unit tests for Score file and Users file.
+]
+
+
+### Meeting notes:
 [
 Meeting No.1 (Oct.22)
 We did the CRC of phase 1, and we draw 5 different cards to show the connections between each 
