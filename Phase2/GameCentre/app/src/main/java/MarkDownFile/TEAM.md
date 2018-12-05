@@ -11,6 +11,15 @@ Qi Zou, qi.zou@mail.utoronto.ca, 4168273760;
 Quan Xu, quan.xu@mail.utoronto.ca, 6476740007;
 Zijin Zhang, zijin.zhang@mail.utoronto.ca, 6476760331]
 
+### Real name vs. Git name:
+* [
+Shang Liu: Shaun Liu,
+Runqi Bi: birunqi,
+Qi Zou: zouqi,
+Quan Xu: quan,
+Zijin Zhang: Zijin Zhang & Arieski.
+]
+
 ### communication tools: [Wechat. We have a Wechat group to communicate.]
 
 ### Team contact:
@@ -124,9 +133,13 @@ new game in the Color Matching GameActivity and since we cannot save/load activi
 not able to save\load the Color Matching BoardManager. Then, we redesign the structure of game 
 Color Matching and made it savable/loadable.
 \\
-\\Meeting No.12 (Nov.29)
+Meeting No.12 (Nov.29)
 This the final meeting before submitting. We grouped up together to write the Java Doc and the unit 
 test for our controller(which is the C in the MVC design pattern). 
 Today is a big day.
+\\
+Meeting No.13 (Dec.4)
+This might be the last meeting for csc207. We finished designing the presentation(outline), and each 
+group members will finish their part of ppt, and we will group each part of ppt together later.
 ]
 
